@@ -39,7 +39,7 @@
 		class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/bkelearning?useSSL=false&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/bkelearning?allowPublicKeyRetriny = true;useSSL=false&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8"/>
 		<!--value="jdbc:mysql://localhost:3306/NongSanQueHuong?useSSL=false&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8"-->
 		 
 		<property name="user" value="root" />
