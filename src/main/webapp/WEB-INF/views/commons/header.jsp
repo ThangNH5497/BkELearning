@@ -16,9 +16,10 @@
 <link rel="stylesheet"
 	href="<c:url value='/resources/commons/lib/fontawesome5.12.0/css/all.css' />">
 <link rel="stylesheet"
-	href="<c:url value='/resources/commons/css/commons.css' />">
+	href="<c:url value='/resources/manager/commons/css/dashboard.css' />">
 </head>
+
+
+
 <body>
 
-</body>
-</html>
