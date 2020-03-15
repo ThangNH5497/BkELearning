@@ -1,9 +1,5 @@
 var rootLocation;
-const LOW_TO_HIGH = -1;
-const  HIGH_TO_LOW= 1;
-const SORT_DEFAULT=0;
-var shoppingCartIds=[];// chua danh sach id san pham cua shoppingcart
-var dataShoppingCart=[];// chua du lieu ve san pham trong shopping cart
+
 class Base {
 	
     constructor() {
@@ -13,6 +9,7 @@ class Base {
     	rootLocation=rootLocation+"/";
     	// for real host
     	// rootLocation = getUrl .protocol + "//" + getUrl.host + "/";
+    	
 
     }
 
@@ -20,7 +17,7 @@ class Base {
     	
     }
     
-    getData(ajxMethod,ajaxUrl,ajaxData,loadData) {
+    getData(ajxMethod,ajaxUrl,ajaxData) {
         var returnData = [];
         $.ajax({
             method: ajxMethod,
@@ -40,6 +37,46 @@ class Base {
         });
         return returnData;
     }
-    // ham lay tat ca san pham
+    
+    //get all teachers
+    getAllTeachers()
+    {
+    	return this.getData('GET','teacher/teachers',"")
+    }
+    
+    
+    initData(containerId,rowDataId,data)
+    {
+    		$('#'+rowDataId).removeClass('hidden');
+    		var html=$('#'+rowDataId).prop('outerHTML');
+        	$('#'+containerId).empty();
+        	//hien thi du lieu
+        	for(var i=0;i<data.length;i++)
+        	{
+        		$('#'+containerId).append(html);
+        		//dat id du lieu bang id cua data, vi tri 0 la cua hang mau
+        		$('#'+rowDataId).attr('dataId',data[i].id);
+        		$('#'+rowDataId).removeAttr('id');
+        		var keys=Object.keys(data[i]);
+        		for(var j=0;j<keys.length;j++)
+        		{
+        			if(keys[j]!="image")
+        			{
+        				$('#'+containerId+' [dataId='+data[i].id+'] [field='+keys[j]+']').text(data[i][keys[j]]);
+        			}
+        			else
+        			{
+        				$('[field=image]').attr("src",rootLocation+data[i].image);
+        			}
+        		}
+        		
+        	}
+        	
+        	$('#'+containerId).append(html);
+        	$('#'+rowDataId).addClass('hidden');
+
+
+
+    }
 
 }

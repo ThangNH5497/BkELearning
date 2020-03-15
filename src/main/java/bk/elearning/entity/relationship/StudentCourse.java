@@ -8,23 +8,23 @@ import javax.persistence.Table;
 
 import bk.elearning.entity.AbstractEntity;
 import bk.elearning.entity.Course;
-import bk.elearning.entity.User;
+import bk.elearning.entity.Student;
 
 @Entity
-@Table(name="user_course")
-public class UserCourse extends AbstractEntity{
+@Table(name="student_course")
+public class StudentCourse extends AbstractEntity{
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id",nullable=false)
-	private User user;
+	@JoinColumn(name = "student_id",nullable=false)
+	private Student student;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "course_id")
 	private Course course;
 	
-	public UserCourse(User user, Course course) {
+	public StudentCourse(Student student, Course course) {
 		super();
-		this.user = user;
+		this.student = student;
 		this.course = course;
 	}
 }

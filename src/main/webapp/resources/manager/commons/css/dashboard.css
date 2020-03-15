@@ -1,16 +1,47 @@
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+  display: block; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fff; }
+
+[tabindex="-1"]:focus {
+  outline: 0 !important; }
+/* side bar*/
+
 .wrapper {
 	width: 100%;
 }
 
 #sidebar {
-	min-width: 270px;
-	max-width: 270px;
+	min-width: 240px;
+	max-width: 240px;
 	background: #3445b4;
 	color: #fff;
 	-webkit-transition: all 0.3s;
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
 	position: relative;
+	min-height: 100vh;
+
 }
 
 #sidebar .h6 {
@@ -18,7 +49,7 @@
 }
 
 #sidebar.active {
-	margin-left: -270px;
+	margin-left: -240px;
 }
 
 #sidebar h1 {
@@ -42,7 +73,8 @@
 }
 
 #sidebar ul li {
-	font-size: 16px;
+	font-size: 18px;
+	line-height: 30px;
 }
 
 #sidebar ul li>ul {
@@ -50,7 +82,7 @@
 }
 
 #sidebar ul li>ul li {
-	font-size: 14px;
+	font-size: 15px;
 }
 
 #sidebar ul li a {
@@ -60,8 +92,9 @@
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-#sidebar ul li a span {
+#sidebar ul li a span.icon {
 	color: #44bef1;
+	width: 20px;
 }
 
 #sidebar ul li a:hover {
@@ -75,7 +108,7 @@
 
 @media ( max-width : 991.98px) {
 	#sidebar {
-		margin-left: -270px;
+		margin-left: -240px;
 	}
 	#sidebar.active {
 		margin-left: 0;
@@ -141,8 +174,17 @@
     box-shadow:none !important;
 }
 
+#sidebar a
+{
+	text-decoration: none;
+}
+span.redirect
+{
+	padding-left:5px;
+}
+
 @media ( max-width : 991.98px) {
-	#sidebarCollapse span {
+	#sidebarCollapse span.icon {
 		display: none;
 	}
 }

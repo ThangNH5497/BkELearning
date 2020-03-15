@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import bk.elearning.entity.relationship.UserCourse;
+import bk.elearning.entity.relationship.StudentCourse;
 
 @Entity
 public class Course extends AbstractEntity{
@@ -25,25 +25,23 @@ public class Course extends AbstractEntity{
 	private String descriptor;
 	
 	@OneToMany(mappedBy="course",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private Set<UserCourse> userCourse;
+    private Set<StudentCourse> studentCourses;
 	
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name = "subject_id")
 	private Subject subject;
 
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "teacher_id")
+	private Teacher teacher;
+	
 	public Course() {
 		super();
 	}
 
-	public Course(String code, String courseName, String descriptor, Set<UserCourse> userCourse, Subject subject) {
-		super();
-		this.code = code;
-		this.courseName = courseName;
-		this.descriptor = descriptor;
-		this.userCourse = userCourse;
-		this.subject = subject;
-	}
+
 
 	public String getCode() {
 		return code;
@@ -69,13 +67,6 @@ public class Course extends AbstractEntity{
 		this.descriptor = descriptor;
 	}
 
-	public Set<UserCourse> getUserCourse() {
-		return userCourse;
-	}
-
-	public void setUserCourse(Set<UserCourse> userCourse) {
-		this.userCourse = userCourse;
-	}
 
 	public Subject getSubject() {
 		return subject;
