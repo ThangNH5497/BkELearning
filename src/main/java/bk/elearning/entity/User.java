@@ -48,6 +48,8 @@ public class User  extends AbstractEntity{
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 	
+	@Column(columnDefinition = "resources/commons/image/default.jpg")
+	
 	private String image;
 	
 

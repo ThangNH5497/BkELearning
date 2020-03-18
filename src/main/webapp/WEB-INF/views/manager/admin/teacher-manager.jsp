@@ -25,22 +25,27 @@
 						page</span></a>
 			</h1>
 			<ul class="list-unstyled components mb-5">
-				<li class="active"><a href="#"><span
+				<li class=""><a href="#"><span
 						class="icon fa fa-briefcase mr-3"></span> <span class="redirect">Trang
 							Chủ</span></a></li>
 
-				<li><a href="#"><span class="icon fa fa-cogs mr-3"></span>
-						<span class="redirect">Tài Khoản</span></a></li>
+				<li class="active"><a
+					href="<c:url value='/admin/ql-giang-vien'/>"><span
+						class="icon fas fa-chalkboard-teacher mr-3"></span> <span
+						class="redirect">Giảng Viên</span></a></li>
 
+				<li class=""><a href="<c:url value='/admin/ql-sinh-vien'/>"><span
+						class="icon fas fa-user-graduate mr-3"></span> <span
+						class="redirect">Sinh Viên</span></a></li>
 
-				<li><a href="#"><span class="icon fa fa-briefcase mr-3"></span>
+				<li><a href="#"><span class="icon fas fa-book-open mr-3"></span>
 						<span class="redirect">Môn Học</span></a></li>
 				<li><a href="#"><span class="icon fa fa-sticky-note mr-3"></span>
 						<span class="redirect">Thông Tin</span></a></li>
 
 				<li><a href="#"><span class="icon fa fa-cogs mr-3"></span>
 						<span class="redirect">Hệ Thống</span></a></li>
-				<li><a href="#"><span class="icon fa fa-cogs mr-3"></span>
+				<li><a href="#"><span class="icon fas fa-sign-out-alt mr-3"></span>
 						<span class="redirect">Đăng Xuất</span></a></li>
 
 
@@ -192,8 +197,8 @@
 							<h6 class="m-0 font-weight-bold text-primary">Danh Sách
 								Giảng Viên</h6>
 							<div class="d-flex">
-								<button class="btn btn-add text-success"
-									style="margin-right: 10px;">
+								<button class="btn btn-add text-success" data-toggle="modal"
+									data-target="#modal-add-new" style="margin-right: 10px;">
 									<i style="font-size: 20px;" class="far fa-plus-square"></i>
 								</button>
 								<button class="btn btn-edit text-primary"
@@ -209,10 +214,22 @@
 									<ul class="pagination justify-content-end">
 
 										<li class="page-item disabled"><a class="page-link"
-											id="pagination-title">Hiển Thị : </a></li>
+											id="pagination-title">Hiển Thị 1-10/20</a></li>
 										<li class="page-item disabled" id="prePage"><a
 											class="page-link" tabindex="-1">Previous</a></li>
-										<div id="pagination" style="display: flex;"></div>
+										<div id="pagination" style="display: flex;">
+											<li class="page-item page-item-number "><a
+												class="page-link">1</a></li>
+											<li class="page-item page-item-number "><a
+												class="page-link">2</a></li>
+											<li class="page-item page-item-number "><a
+												class="page-link">3</a></li>
+
+											<li class="page-item page-item-number "><a
+												class="page-link">4</a></li>
+											<li class="page-item page-item-number "><a
+												class="page-link">5</a></li>
+										</div>
 
 										<li class="page-item disabled" id="nextPage"><a
 											class="page-link">Next</a></li>
@@ -224,24 +241,27 @@
 						</div>
 						<!-- Card Body -->
 						<div class="card-body">
-							<div class="wrap-table100 h-100">
-								<div class="table100  m-b-110">
-									<div class="table100-head">
-										<table>
-											<thead>
-												<tr class="row100 head">
-													<th class="cell100 column1">Chọn</th>
-													<th class="cell100 column2">Mã Số</th>
-													<th class="cell100 column3">Họ Tên</th>
-													<th class="cell100 column4">Bộ Môn</th>
-													<th class="cell100 column5">Chức Vụ</th>
-													<th class="cell100 column6">Ngày Sinh</th>
+							<div class="limiter">
+								<div class="container-table100">
+									<div class="wrap-table100 h-100">
+										<div class="table100  m-b-110">
+											<div class="table100-head">
+												<table>
+													<thead>
+														<tr class="row100 head">
+															<th class="cell100 column1">Chọn</th>
+															<th class="cell100 column2">Mã GV</th>
+															<th class="cell100 column3">Họ Tên</th>
+															<th class="cell100 column4">Bộ Môn</th>
+															<th class="cell100 column5">Chức Vụ</th>
+															<th class="cell100 column6">Ngày Sinh</th>
 
-												</tr>
-											</thead>
-										</table>
+														</tr>
+													</thead>
+												</table>
+											</div>
+										</div>
 									</div>
-
 									<div class="table100-body js-pscroll">
 										<table>
 											<tbody id="table-data-body">
@@ -301,8 +321,8 @@
 								<div class="row ">
 									<div class="col-md-12">
 										<div class="profile-img">
-											<img class='hidden' field="image" style="width: 100%; max-height: 20vh;"
-												src="" alt="" />
+											<img class='hidden' field="image"
+												style="width: 100%; max-height: 20vh;" src="" alt="" />
 										</div>
 									</div>
 								</div>
@@ -310,97 +330,98 @@
 									<div class="tab-pane fade show active" id="user-detail"
 										role="tabpanel" aria-labelledby="home-tab">
 										<div id="user-detail-row" class="hidden">
-										<div >
-											<div class="border-top my-3"></div>
-											<div class="row">
-												<div class="col-md-4">
-													<label>Mã GV</label>
-												</div>
-												<div class="col-md-8">
-													<p field="code">KTMT1</p>
-												</div>
-											</div>
-										</div>
+											<div>
+												<div class="border-top my-3"></div>
+												<div class="row">
+													<div class="col-md-4">
+														<label>Mã GV</label>
+													</div>
+													<div class="col-md-8">
 
-										<div>
-											<div class="border-top my-3"></div>
-											<div class="row">
-												<div class="col-md-4">
-													<label>Họ&Tên</label>
-												</div>
-												<div class="col-md-8">
-													<p field="fullName">Kshiti Ghelani</p>
+														<p field="code">KTMT1</p>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div>
-											<div class="border-top my-3"></div>
-											<div class="row">
-												<div class="col-md-4">
-													<label>Email</label>
-												</div>
-												<div class="col-md-8">
-													<p field="email">kshitighelani@gmail.com</p>
-												</div>
-											</div>
-										</div>
-										<div>
-											<div class="border-top my-3"></div>
-											<div class="row">
-												<div class="col-md-4">
-													<label>SĐT</label>
-												</div>
-												<div class="col-md-8">
-													<p field="phoneNumber">123 456 7890</p>
-												</div>
-											</div>
-										</div>
-										<div>
-											<div class="border-top my-3"></div>
-											<div class="row">
-												<div class="col-md-4">
-													<label>Bộ Môn</label>
-												</div>
-												<div class="col-md-8">
-													<p field="department">Web Developer and Designer</p>
-												</div>
-											</div>
-										</div>
-										<div>
-											<div class="border-top my-3"></div>
-											<div class="row">
-												<div class="col-md-4">
-													<label>Chức Vụ</label>
-												</div>
-												<div class="col-md-8">
-													<p field="position">Web Developer and Designer</p>
-												</div>
-											</div>
-										</div>
-										<div>
-											<div class="border-top my-3"></div>
-											<div class="row">
-												<div class="col-md-4">
-													<label>Địa Chỉ</label>
-												</div>
-												<div class="col-md-8">
-													<p field="addr">Web Developer and Designer</p>
-												</div>
-											</div>
-										</div>
-										<div>
-											<div class="border-top my-3"></div>
-											<div class="row">
-												<div class="col-md-4">
-													<label>Ngày Sinh</label>
-												</div>
-												<div class="col-md-8">
-													<p field="dateOfBirth">Web Developer and Designer</p>
-												</div>
-											</div>
-										</div>
 
-									</div>
+											<div>
+												<div class="border-top my-3"></div>
+												<div class="row">
+													<div class="col-md-4">
+														<label>Họ&Tên</label>
+													</div>
+													<div class="col-md-8">
+														<p field="fullName">Kshiti Ghelani</p>
+													</div>
+												</div>
+											</div>
+											<div>
+												<div class="border-top my-3"></div>
+												<div class="row">
+													<div class="col-md-4">
+														<label>Email</label>
+													</div>
+													<div class="col-md-8">
+														<p field="email">kshitighelani@gmail.com</p>
+													</div>
+												</div>
+											</div>
+											<div>
+												<div class="border-top my-3"></div>
+												<div class="row">
+													<div class="col-md-4">
+														<label>SĐT</label>
+													</div>
+													<div class="col-md-8">
+														<p field="phoneNumber">123 456 7890</p>
+													</div>
+												</div>
+											</div>
+											<div>
+												<div class="border-top my-3"></div>
+												<div class="row">
+													<div class="col-md-4">
+														<label>Bộ Môn</label>
+													</div>
+													<div class="col-md-8">
+														<p field="department">Web Developer and Designer</p>
+													</div>
+												</div>
+											</div>
+											<div>
+												<div class="border-top my-3"></div>
+												<div class="row">
+													<div class="col-md-4">
+														<label>Chức Vụ</label>
+													</div>
+													<div class="col-md-8">
+														<p field="position">Web Developer and Designer</p>
+													</div>
+												</div>
+											</div>
+											<div>
+												<div class="border-top my-3"></div>
+												<div class="row">
+													<div class="col-md-4">
+														<label>Địa Chỉ</label>
+													</div>
+													<div class="col-md-8">
+														<p field="addr">Web Developer and Designer</p>
+													</div>
+												</div>
+											</div>
+											<div>
+												<div class="border-top my-3"></div>
+												<div class="row">
+													<div class="col-md-4">
+														<label>Ngày Sinh</label>
+													</div>
+													<div class="col-md-8">
+														<p field="dateOfBirth">Web Developer and Designer</p>
+													</div>
+												</div>
+											</div>
+
+										</div>
 
 									</div>
 
@@ -417,9 +438,222 @@
 
 	</div>
 </div>
+
+<!-- modal add new teacher -->
+
+<div class="modal fade" id="modal-add-new" tabindex="-1" role="dialog"
+	aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<p class="heading lead">Thêm Giảng Viên</p>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+			<div class="modal-body">
+				<ul class="nav nav-tabs" id="container-tab-add" role="tablist">
+					<li class="nav-item"><a class="nav-link active"
+						id="add-one-tab-btn" data-toggle="tab" href="#add-one-tab"
+						role="tab" aria-controls="tab-add" aria-selected="true">Thêm
+							Thủ Công</a></li>
+					<li class="nav-item"><a class="nav-link" id="add-exel-tab-btn"
+						data-toggle="tab" href="#add-exel-tab" role="tab"
+						aria-controls="profile" aria-selected="false">Thêm từ Exel</a></li>
+
+				</ul>
+				<div class="tab-content">
+					<!-- them giang vien thu cong -->
+					<div class="tab-pane fade show active" id="add-one-tab"
+						role="tabpanel" aria-labelledby="home-tab">
+						<div class="form-container" id="form-container-one">
+							<div class="form-v4">
+								<div class="form-v4-content">
+									<form class="form-detail" action="#" method="post"
+										id="form-add-step-one">
+										<h2>Thông Tin Giảng Viên Bắt Buộc</h2>
+										<div class="form-group">
+											<div class="form-row form-row-1">
+												<label for="code">Mã GV (*)</label> <input type="text"
+													name="code" id="code" class="input-text"> <label
+													id="code-error" class="error hidden" for="code">Mã
+													Gv Tồn Tại</label>
+											</div>
+
+											<div class="form-row form-row-1">
+												<label for="fullName">Họ & Tên (*)</label> <input
+													type="text" name="fullName" id="fullName"
+													class="input-text">
+											</div>
+										</div>
+
+										<div class="form-row">
+											<label for="your_email">Username (*)</label> <input
+												type="text" name="username" id="username" class="input-text"
+												required> <label id="comfirm_password-error"
+												class="error hidden" for="comfirm_password">Username
+												Tồn Tại</label>
+										</div>
+										<div class="form-group">
+											<div class="form-row form-row-1 ">
+												<label for="password">Mật Khẩu (*)</label> <input
+													type="password" name="password" id="password"
+													class="input-text" required>
+											</div>
+											<div class="form-row form-row-1">
+												<label for="comfirm-password">Xác Nhận Mật Khẩu (*)</label>
+												<input type="password" 
+													id="comfirm_password" class="input-text" required>
+												<label id="comfirm_password-error" class="error hidden"
+													for="comfirm_password">Xác nhận mật khẩu chưa khớp</label>
+											</div>
+
+										</div>
+
+									</form>
+								</div>
+							</div>
+							<!--Footer-->
+							<div class="border-top my-3"></div>
+							<div class="d-flex justify-content-center">
+								<a type="button" class="btn  waves-effect btn-cancel"
+									data-dismiss="modal">Hủy</a> <a type="button"
+									class="btn  waves-effect btn-next">Tiếp Tục</a>
+							</div>
+						</div>
+
+						<!-- form next step -->
+						<div class="hidden form-container" id="form-container-two">
+							<div class="row">
+								<div class="image-input-container col-sm-2 col-md-2">
+									<form action="" id="form-img">
+										<div class="profile-img">
+											<img
+												src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+												alt="" />
+											<div class="file btn btn-lg btn-primary">
+												Change Photo <input type="file" name="file" />
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="form-v4 col-sm-10 col-md-10">
+									<div class="form-v4-content">
+										<form class="form-detail" action="#" method="post"
+											id="form-add-step-two">
+
+											<div class="form-group">
+
+												<div class="form-row form-row-1 ">
+													<label for="department">Email</label> <input type="text"
+														name="email" id="email" class="input-text" required>
+												</div>
+												<div class="form-row form-row-1">
+													<label for="comfirm-password">SĐT</label> <input
+														type="number" name="phoneNumber" id="phoneNumber"
+														class="input-text" required>
+												</div>
+
+
+											</div>
+
+											<div class="form-group">
+												<div class="form-row form-row-1 ">
+													<label for="department">Địa Chỉ</label> <input type="text"
+														name="addr" id="addr" class="input-text" required>
+												</div>
+												<div class="form-row form-row-1">
+													<label for="comfirm-password">Ngày Sinh</label> <input
+														type="date" value="2011-08-19" name="dateOfBirth"
+														id="dateOfBirth" class="input-text" required>
+												</div>
+
+											</div>
+											<div class="form-group">
+												<div class="form-row form-row-1 ">
+													<label for="department">Bộ Môn</label> <input type="text"
+														name="department" id="department" class="input-text"
+														required>
+												</div>
+												<div class="form-row form-row-1">
+													<label for="comfirm-password">Chức Vụ</label> <input
+														type="text" name="position" id="position"
+														class="input-text" required>
+												</div>
+
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+
+							<!--Footer-->
+							<div class="border-top my-3"></div>
+							<div class="d-flex justify-content-center">
+								<a type="button" class="btn  waves-effect btn-cancel"
+									data-dismiss="modal">Hủy</a> <a type="button"
+									class="btn  waves-effect btn-back">Quay Lại</a> <a
+									type="button" class="btn  waves-effect btn-submit">Lưu</a>
+							</div>
+						</div>
+						<!-- end form next step -->
+						<!-- alert -->
+
+					</div>
+					<!-- ket thuc them giang vien thu cong -->
+					<!-- them giang vien tu file exel -->
+					<div class="tab-pane fade" id="add-exel-tab" role="tabpanel"
+						aria-labelledby="profile-tab">
+						<div class="form-container">
+							<div class="form-v4">
+								<div class="form-v4-content">
+									<form class="form-detail" action="#" method="post" id="myform">
+										<h2>Thêm Danh Sách Giảng Viên Từ File Exel</h2>
+
+										<div class="custom-file">
+											<input type="file" class="custom-file-input file-input"
+												id="file-exel-input"
+												accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+											<label class="custom-file-label file-exel-name"
+												for="customFile">Chọn file</label>
+										</div>
+									</form>
+								</div>
+							</div>
+							<!--Footer-->
+							<div class="border-top my-3"></div>
+							<div class="d-flex justify-content-center">
+								<a type="button" class="btn  waves-effect btn-cancel"
+									data-dismiss="modal">Hủy</a> <a type="button"
+									class="btn  waves-effect btn-submit-file">Tải Lên</a>
+							</div>
+						</div>
+					</div>
+					<!-- end them giang vien tu file exel -->
+				</div>
+
+			</div>
+
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+
+<!-- end modal save or update -->
+
+
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>
-<script src="<c:url value='/resources/manager/admin/js/teacher-manager.js' />"></script>
+<script
+	src="<c:url value='/resources/manager/admin/js/teacher-manager.js' />"></script>
 <!-- Footer -->
 <script type="text/javascript">
 	(function($) {

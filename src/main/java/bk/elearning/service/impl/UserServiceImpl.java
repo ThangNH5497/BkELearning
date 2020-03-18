@@ -41,7 +41,7 @@ public class UserServiceImpl implements IUserService{
 	}
 
 	@Override
-	public int delete(Class<User> clazz, int id) {
+	public int delete( int id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

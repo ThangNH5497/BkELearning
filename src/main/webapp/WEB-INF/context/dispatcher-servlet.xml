@@ -75,6 +75,13 @@
 	<tx:annotation-driven
 		transaction-manager="myTransactionManager" />
 	<!-- email -->
-	
+	<!-- upload file -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+		<!-- setting maximum upload size -->
+		<property name="maxUploadSize" value="5000000" />
+
+	</bean>
 	
 </beans>

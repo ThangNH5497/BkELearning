@@ -38,7 +38,7 @@ public class StudentServiceImpl implements IStudentService{
 	}
 
 	@Override
-	public int delete(Class<Student> clazz, int id) {
+	public int delete(int id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

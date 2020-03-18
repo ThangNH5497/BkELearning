@@ -41,7 +41,7 @@ public class AnswerServiceImpl implements IAnswerService{
 	}
 
 	@Override
-	public int delete(Class<Answer> clazz, int id) {
+	public int delete(int id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

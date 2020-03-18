@@ -41,7 +41,7 @@ public class SubjectServiceImpl implements ISubjectService{
 	}
 
 	@Override
-	public int delete(Class<Subject> clazz, int id) {
+	public int delete( int id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

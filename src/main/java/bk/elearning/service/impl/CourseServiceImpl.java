@@ -41,7 +41,7 @@ public class CourseServiceImpl implements ICourseService{
 	}
 
 	@Override
-	public int delete(Class<Course> clazz, int id) {
+	public int delete(int id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

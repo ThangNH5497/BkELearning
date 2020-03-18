@@ -43,7 +43,17 @@ class Base {
     {
     	return this.getData('GET','teacher/teachers',"")
     }
-    
+    //get teacher by username
+    getTeacherByUsername(username)
+    {
+    	return this.getData('GET','teacher/username/'+username,"");
+    }
+  //get teacher by code
+    getTeacherByCode(code)
+    {
+    	return this.getData('GET','teacher/code/'+code,"");
+    }
+
     
     initData(containerId,rowDataId,data)
     {
@@ -78,5 +88,27 @@ class Base {
 
 
     }
+    
+    //chuyen doi du lieu cac form sang json
+    formToJson(forms)
+    {
+    var o = {};
+    var dataTmp;
+    for(var i=0;i<forms.length;i++)
+    {
+    	dataTmp=$(forms[i]).serializeArray();
+    	 $.each(dataTmp, function() {
+    	        if (o[this.name] !== undefined) {
+    	            if (!o[this.name].push) {
+    	                o[this.name] = [o[this.name]];
+    	            }
+    	            o[this.name].push(this.value || '');
+    	        } else {
+    	            o[this.name] = this.value || '';
+    	        }
+    	    });
+    }
+    return o;
+    };
 
 }

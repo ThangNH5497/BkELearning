@@ -21,13 +21,7 @@ public class HomeController {
 
 	@RequestMapping(method = RequestMethod.GET, path = "/trang-chu")
 	public String homePage() {
-		Session session = this.sessionFactory.getCurrentSession();
-		String hql = "from Teacher";
-		long start = System.currentTimeMillis();
-		List<Teacher> list = session.createQuery(hql).list();
-		long end = System.currentTimeMillis();
-		long t = end - start;
-		System.out.println("Tổng thời gian: " + t + " millisecond");
+
 		return "manager/admin/teacher-manager";
 	}
 
@@ -37,5 +31,6 @@ public class HomeController {
 
 		return "manager/admin/test";
 	}
+	
 
 }

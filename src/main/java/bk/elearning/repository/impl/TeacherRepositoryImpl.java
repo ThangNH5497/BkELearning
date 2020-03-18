@@ -2,19 +2,23 @@ package bk.elearning.repository.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import bk.elearning.entity.Teacher;
 import bk.elearning.repository.ITeacherRepository;
-@Repository
-public class TeacherRepositoryImpl extends GeneralRepositoryImpl<Teacher> implements ITeacherRepository{
 
-	
-	@Override
-	public List<Teacher> getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+@Repository
+@Transactional
+public class TeacherRepositoryImpl extends GeneralRepositoryImpl<Teacher> implements ITeacherRepository {
+
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	@Override
 	public List<Teacher> getByIds(int[] ids) {
@@ -23,9 +27,37 @@ public class TeacherRepositoryImpl extends GeneralRepositoryImpl<Teacher> implem
 	}
 
 	@Override
-	public List<Teacher> getAll() {
+	public List<Teacher> getByUsername(String username) {
 		// TODO Auto-generated method stub
-		return null;
+		String hqlQuery = "from Teacher t where t.username=:param";
+		List<Teacher> list = null;
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Query q = session.createQuery(hqlQuery);
+			q.setParameter("param", username);
+			list = q.list();
+			list = session.createQuery(hqlQuery).list();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+	}
+
+	@Override
+	public List<Teacher> getByCode(String code) {
+
+		String hqlQuery = "from Teacher t where t.code=:param";
+		List<Teacher> list = null;
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Query q = session.createQuery(hqlQuery);
+			q.setParameter("param", code);
+			list = q.list();
+			list = session.createQuery(hqlQuery).list();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
 	}
 
 }

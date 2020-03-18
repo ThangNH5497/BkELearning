@@ -41,7 +41,7 @@ public class ExamPaperServiceImpl implements IExamPaperService {
 	}
 
 	@Override
-	public int delete(Class<ExamPaper> clazz, int id) {
+	public int delete(int id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
