@@ -1,6 +1,6 @@
 package bk.elearning.controller.teacher.api;
 
-import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -8,14 +8,15 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.multipart.MultipartFile;
 
 import bk.elearning.entity.Teacher;
 import bk.elearning.service.ITeacherService;
@@ -41,11 +42,11 @@ public class TeacherApi {
 	}
 
 	// lay tung khoang
-	@GetMapping(path = "/teachers/{start}/{count}")
-	public List<Teacher> getTeachersLimit(@PathVariable int start, @PathVariable int count) {
+	@GetMapping(path = "/limit")
+	public List<Teacher> getTeachersLimit(@RequestParam int start, @RequestParam int size) {
 		List<Teacher> teachers = null;
 		try {
-			teachers = teacherService.getLimit(start, count);
+			teachers = teacherService.getLimit(start, size);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -54,48 +55,38 @@ public class TeacherApi {
 
 	// lay theo id
 	@GetMapping(path = "/id/{id}")
-	public List<Teacher> getTeacherById(@PathVariable int id) {
-		List<Teacher> teachers = null;
+	public Teacher getTeacherById(@PathVariable int id) {
+		Teacher teacher = null;
 		try {
-			teachers = teacherService.getById(id);
+			teacher = teacherService.getById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return teachers;
+		return teacher;
 	}
 
 	// lay theo code
 	@GetMapping(path = "/code/{code}")
-	public List<Teacher> getTeacherByCode(@PathVariable String code) {
-		List<Teacher> teachers = null;
+	public Teacher getTeacherByCode(@PathVariable String code) {
+		Teacher teacher = null;
 		try {
-			teachers = teacherService.getByCode(code);
+			teacher = teacherService.getByCode(code);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return teachers;
+		return teacher;
 	}
 
 	// lay theo cuserName
 	@GetMapping(path = "/username/{username}")
-	public List<Teacher> getTeacherByUsername(@PathVariable String username) {
-		List<Teacher> teachers = null;
+	public Teacher getTeacherByUsername(@PathVariable String username) {
+		Teacher teacher = null;
 		try {
-			teachers = teacherService.getByUsername(username);
+			teacher = teacherService.getByUsername(username);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return teachers;
-	}
-
-	@PostMapping(path = "/save")
-	public int saveTeacher(@RequestBody Teacher teacher) {
-		try {
-			System.out.println(teacher.getAddr());
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return 0;
+		return teacher;
 	}
 
 	@DeleteMapping(path = "/delete/{id}")
@@ -103,32 +94,79 @@ public class TeacherApi {
 		return teacherService.delete(id);
 	}
 
-	/*
-	 * @PostMapping(path = "/test") public String doUpload(@RequestParam
-	 * MultipartFile multipartFile,MultipartHttpServletRequest request) {
-	 * 
-	 * 
-	 * System.out.println("ok"); String t=request.getParameter("jsonObjectData");
-	 * System.out.println("in ra t : "+t); File file = new File("D://my-file.jpg");
-	 * try { multipartFile.transferTo(file); } catch (IllegalStateException |
-	 * IOException e) { // TODO Auto-generated catch block e.printStackTrace(); }
-	 * return "Uploaded: " + multipartFile.getSize() + " bytes"; }
-	 */
-	@PostMapping("/test")
-	public String multiUploadFileModel(@ModelAttribute UploadModel model) {
+	// xoa nhieu 1 luc
+	@DeleteMapping(path = "/delete/multiple")
+	public int deleteTeacherByIds(@RequestBody ArrayList<Integer> ids) {
+		return teacherService.deleteMultiple(ids);
+	}
+
+	@PostMapping("/save")
+	public String saveNewTeacher(@RequestPart("teacher") Teacher teacher,
+			@RequestPart(name = "file", required = false) MultipartFile file) {
 
 		try {
-			String json = model.getExtraField();
-			ObjectMapper objectMapper = new ObjectMapper();
-			Teacher t = objectMapper.readValue(json, Teacher.class);
-			System.out.println("code : "+t.getCode());
-			File file = new File("D://my-file.jpg");
-			model.getFile().transferTo(file); 
+			if (teacherService.save(teacher, file) == 1)
+				return "Thêm Thành Công";
 		} catch (Exception e) {
-			System.out.println(e.toString());
+
 		}
 
+		return "error . Xin Thử Lại Sau !";
+
+	}
+
+	// update
+	@PutMapping("/update")
+	public String updateTeacher(@RequestPart("teacher") Teacher teacher,
+			@RequestPart(name = "file", required = false) MultipartFile file) {
+
+		try {
+			if (teacherService.update(teacher, file) == 1)
+				return "Update Thành Công";
+		} catch (Exception e) {
+
+		}
+
+		return "error . Xin Thử Lại Sau !";
+
+	}
+
+	// lay ve tong so ban ghi
+	@GetMapping("/count")
+	public Long getCountTeacher() {
+
+		try {
+			return teacherService.getCount();
+		} catch (Exception e) {
+
+		}
+
+		return 0l;
+
+	}
+
+	// lay du lieu tim kiem
+	@GetMapping("/search")
+	public List<Teacher> searchTeachers(@RequestParam String type, @RequestParam String key, @RequestParam int start,
+			int size) {
+		try {
+			return teacherService.searchTeachers(type, key, start, size);
+		} catch (Exception e) {
+
+		}
 		return null;
+
+	}
+
+	// lay tong so luog ban ghi tim kiem
+	@GetMapping("/search/count")
+	public Long searchCountTeachers(@RequestParam String type, @RequestParam String key) {
+		try {
+			return teacherService.searchCountTeachers(type, key);
+		} catch (Exception e) {
+
+		}
+		return 0l;
 
 	}
 }

@@ -76,9 +76,9 @@
 		transaction-manager="myTransactionManager" />
 	<!-- email -->
 	<!-- upload file -->
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-
+	<bean id="multipartResolver" class="bk.elearning.config.MultipartResolver">
+		<!--  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+	
 		<!-- setting maximum upload size -->
 		<property name="maxUploadSize" value="5000000" />
 

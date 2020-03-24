@@ -6,6 +6,6 @@ import bk.elearning.entity.Role;
 
 public interface IRoleRepository extends IGeneralRepository<Role>{
 
-	List<Role> getByName(String roleName);
+	Role getByName(String roleName);
 
 }

@@ -25,19 +25,19 @@ public class RoleRepositoryImpl extends GeneralRepositoryImpl<Role> implements I
 		return null;
 	}
 	//get by name
-	public List<Role> getByName(String roleName) {
+	public Role getByName(String roleName) {
 		// TODO Auto-generated method stub
-		String hqlQuery="from Role r where role.roleName=:param";
-		List<Role> list=null;
+		String hqlQuery="from bk.elearning.entity.Role r where r.roleName=:param";
+		Role r=null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			Query q=session.createQuery(hqlQuery);
 			q.setParameter("param", roleName);
-			list=q.list();
+			r=(Role) q.list().get(0);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return list;
+		return r;
 	}
 	
 	

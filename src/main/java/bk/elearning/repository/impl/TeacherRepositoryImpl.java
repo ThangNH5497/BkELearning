@@ -27,37 +27,70 @@ public class TeacherRepositoryImpl extends GeneralRepositoryImpl<Teacher> implem
 	}
 
 	@Override
-	public List<Teacher> getByUsername(String username) {
+	public Teacher getByUsername(String username) {
 		// TODO Auto-generated method stub
 		String hqlQuery = "from Teacher t where t.username=:param";
-		List<Teacher> list = null;
+		Teacher teacher = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			Query q = session.createQuery(hqlQuery);
 			q.setParameter("param", username);
-			list = q.list();
-			list = session.createQuery(hqlQuery).list();
+			teacher = (Teacher) q.list().get(0);
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.out.println("ex: "+e.toString());
 		}
-		return list;
+		return teacher;
 	}
 
 	@Override
-	public List<Teacher> getByCode(String code) {
+	public Teacher getByCode(String code) {
 
 		String hqlQuery = "from Teacher t where t.code=:param";
-		List<Teacher> list = null;
+		Teacher teacher = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			Query q = session.createQuery(hqlQuery);
 			q.setParameter("param", code);
-			list = q.list();
-			list = session.createQuery(hqlQuery).list();
+			teacher = (Teacher) q.list().get(0);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return list;
+		return teacher;
+	}
+
+	@Override
+	public List<Teacher> searchTeachers(String type, String key, int start, int size) {
+		// TODO Auto-generated method stub
+		String hqlQuery =  " FROM Teacher t WHERE t."+type+" like concat('%',:param,'%')";
+		List<Teacher> teachers = null;
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Query q=session.createQuery(hqlQuery);
+			q.setParameter("param", key);
+			q.setFirstResult(start);
+			q.setMaxResults(size);
+			teachers=q.list();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return teachers;
+	}
+
+	@Override
+	public Long searchCountTeachers(String type, String key) {
+		// TODO Auto-generated method stub
+		String hqlQuery= "select count(distinct t.id) FROM Teacher t WHERE t."+type+" like concat('%',:param,'%')";
+		Long count=0l;
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Query q=session.createQuery(hqlQuery);
+			q.setParameter("param", key);
+			count=(Long) q.uniqueResult();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return count;
 	}
 
 }

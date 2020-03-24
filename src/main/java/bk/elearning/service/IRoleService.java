@@ -6,5 +6,5 @@ import bk.elearning.entity.Role;
 
 public interface IRoleService extends IGeneralService<Role>{
 
-	public List<Role> getByName(String roleName) ;
+	public Role getByName(String roleName) ;
 }

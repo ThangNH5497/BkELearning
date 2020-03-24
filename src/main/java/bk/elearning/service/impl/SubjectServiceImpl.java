@@ -11,7 +11,7 @@ import bk.elearning.service.ISubjectService;
 public class SubjectServiceImpl implements ISubjectService{
 
 	@Override
-	public List<Subject> getById(int id) {
+	public Subject getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

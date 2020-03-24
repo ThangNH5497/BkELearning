@@ -8,7 +8,7 @@ import bk.elearning.service.IStudentService;
 public class StudentServiceImpl implements IStudentService{
 
 	@Override
-	public List<Student> getById(int id) {
+	public Student getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

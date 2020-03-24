@@ -11,7 +11,7 @@ import bk.elearning.service.IUserService;
 public class UserServiceImpl implements IUserService{
 
 	@Override
-	public List<User> getById(int id) {
+	public User getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

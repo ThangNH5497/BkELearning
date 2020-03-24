@@ -11,7 +11,7 @@ import bk.elearning.service.IExamService;
 public class ExamServiceImpl implements IExamService {
 
 	@Override
-	public List<Exam> getById(int id) {
+	public Exam getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

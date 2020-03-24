@@ -11,7 +11,7 @@ import bk.elearning.service.IQuestionService;
 public class QuestionServiceImpl implements IQuestionService{
 
 	@Override
-	public List<Question> getById(int id) {
+	public Question getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

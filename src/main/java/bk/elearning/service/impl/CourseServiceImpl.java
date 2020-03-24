@@ -11,7 +11,7 @@ import bk.elearning.service.ICourseService;
 public class CourseServiceImpl implements ICourseService{
 
 	@Override
-	public List<Course> getById(int id) {
+	public Course getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

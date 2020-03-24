@@ -12,6 +12,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User  extends AbstractEntity{
 
@@ -28,7 +30,7 @@ public class User  extends AbstractEntity{
 	@Column(name="username",nullable = false,unique = true)
 	private String username;
 	
-	@Column(name="password",nullable = false,unique = true)
+	@Column(name="password",nullable = false)
 	private String password;
 	
 	@Column(name="full_name",nullable = false)
@@ -48,7 +50,6 @@ public class User  extends AbstractEntity{
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 	
-	@Column(columnDefinition = "resources/commons/image/default.jpg")
 	
 	private String image;
 	

@@ -20,7 +20,7 @@
 	<mvc:annotation-driven />
 	<!-- Configures Interceptors -->
 	<context:component-scan
-		base-package="vn.nongsanquehuong" />
+		base-package="bk.elearning" />
 	<mvc:resources mapping="/resources/**"
 		location="/resources/" />
 	<mvc:resources mapping="/template/**"
@@ -39,7 +39,7 @@
 		class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/bkelearning?useSSL=false&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/bkelearning?allowPublicKeyRetriny = true;useSSL=false&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8"/>
 		<!--value="jdbc:mysql://localhost:3306/NongSanQueHuong?useSSL=false&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8"-->
 		 
 		<property name="user" value="root" />
@@ -54,7 +54,7 @@
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
 		<property name="packagesToScan"
-			value="vn.nongsanquehuong.entity" />
+			value="bk.elearning.entity" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL55Dialect</prop>
@@ -75,6 +75,13 @@
 	<tx:annotation-driven
 		transaction-manager="myTransactionManager" />
 	<!-- email -->
-	
+	<!-- upload file -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+		<!-- setting maximum upload size -->
+		<property name="maxUploadSize" value="5000000" />
+
+	</bean>
 	
 </beans>

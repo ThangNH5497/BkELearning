@@ -10,11 +10,7 @@ import bk.elearning.service.IAnswerService;
 @Service
 public class AnswerServiceImpl implements IAnswerService{
 
-	@Override
-	public List<Answer> getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public List<Answer> getByIds(int[] ids) {
@@ -50,6 +46,12 @@ public class AnswerServiceImpl implements IAnswerService{
 	public int update(Answer t) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Answer getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

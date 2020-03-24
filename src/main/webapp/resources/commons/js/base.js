@@ -16,15 +16,14 @@ class Base {
     InitEventsBase() {
     	
     }
-    
-    getData(ajxMethod,ajaxUrl,ajaxData) {
-        var returnData = [];
+    //thuc hien ajax dong bo
+    getData(ajxMethod,ajaxUrl) {
+        var returnData = undefined;
         $.ajax({
             method: ajxMethod,
             url: rootLocation+ajaxUrl,
             async: false,
-            data:JSON.stringify(ajaxData),
-            dataType : "json",
+           // dataType : "json",
 			contentType : "application/json; charset=utf-8",
             beforeSend: function () {
                // $(loadData).show();
@@ -33,25 +32,56 @@ class Base {
             	returnData=data;
             },
             error: function (data) {
+            	alert("Không Thể Nhận Dữ Liệu !");
             }
         });
         return returnData;
     }
-    
+    //thuc hien ajax ko dong bo
+    getDataAsync(ajxMethod,ajaxUrl,methodHandle) {
+        $.ajax({
+            method: ajxMethod,
+            url: rootLocation+ajaxUrl,
+            async: true,
+           // dataType : "json",
+			contentType : "application/json; charset=utf-8",
+            success: function (data) {
+            	methodHandle(data);
+            },
+            error: function (data) {
+            	methodHandle(undefined);
+            }
+        });
+    }
+    //lay tong so teacher
+    getCountTeacher()
+    {
+    	return this.getData('GET','teacher/count');
+    }
+    //lay theo tung khoang
+    getTeachersLimit(start,count)
+    {
+    	return this.getData('GET','teacher/teachers/'+start+"/"+count);
+    }
     //get all teachers
     getAllTeachers()
     {
-    	return this.getData('GET','teacher/teachers',"")
+    	return this.getData('GET','teacher/teachers');
     }
     //get teacher by username
     getTeacherByUsername(username)
     {
-    	return this.getData('GET','teacher/username/'+username,"");
+    	return this.getData('GET','teacher/username/'+username);
     }
   //get teacher by code
     getTeacherByCode(code)
     {
-    	return this.getData('GET','teacher/code/'+code,"");
+    	return this.getData('GET','teacher/code/'+code);
+    }
+  //get teacher by id
+    getTeacherById(id)
+    {
+    	return this.getData('GET','teacher/id/'+id);
     }
 
     
@@ -68,18 +98,28 @@ class Base {
         		$('#'+rowDataId).attr('dataId',data[i].id);
         		$('#'+rowDataId).removeAttr('id');
         		var keys=Object.keys(data[i]);
-        		for(var j=0;j<keys.length;j++)
+        		var fields=$('#'+containerId+' [dataId='+data[i].id+'] [field]');
+        		for(var j=0;j<fields.length;j++)
         		{
-        			if(keys[j]!="image")
+        			var fieldAttr=$(fields[j]).attr('field');
+        			
+        			if(fieldAttr=="image")
         			{
-        				$('#'+containerId+' [dataId='+data[i].id+'] [field='+keys[j]+']').text(data[i][keys[j]]);
+        				$(fields[j]).attr('src',data[i][fieldAttr]);
         			}
-        			else
+        			else if(fieldAttr=="index")
         			{
-        				$('[field=image]').attr("src",rootLocation+data[i].image);
+        				$(fields[j]).text(parseInt(i)+1);
         			}
+        			else if(fieldAttr=='checkBox')
+        			{
+        				$(fields[j]).children().children('input').attr('id','check-'+i);
+        				$(fields[j]).children().children('label.custom-control-label').attr('for','check-'+i);
+        			}
+        			else $(fields[j]).text(data[i][fieldAttr]);
+  	 
         		}
-        		
+        	
         	}
         	
         	$('#'+containerId).append(html);
@@ -89,7 +129,7 @@ class Base {
 
     }
     
-    //chuyen doi du lieu cac form sang json
+    //chuyen doi du lieu cac form sang json object
     formToJson(forms)
     {
     var o = {};

@@ -15,14 +15,14 @@ public class RoleServiceImpl implements IRoleService{
 	@Autowired
 	IRoleRepository roleRepository;
 	@Override
-	public List<Role> getByName(String roleName)
+	public Role getByName(String roleName)
 	{
 		return roleRepository.getByName(roleName);
 		
 	}
 
 	@Override
-	public List<Role> getById(int id) {
+	public Role getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

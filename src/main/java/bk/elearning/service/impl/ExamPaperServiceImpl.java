@@ -11,7 +11,7 @@ import bk.elearning.service.IExamPaperService;
 public class ExamPaperServiceImpl implements IExamPaperService {
 
 	@Override
-	public List<ExamPaper> getById(int id) {
+	public ExamPaper getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
