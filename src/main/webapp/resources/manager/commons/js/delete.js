@@ -12,12 +12,12 @@ function deleteEvents(urlApi)
      });
 	 //select-all
 	 $('#select-all').click(function(){
-		 $('#table-data-body tr[dataId] input[type="checkbox"]').attr('checked',"");
+		 $('#table-data-body tr[dataId] input[type="checkbox"]').prop('checked',true);
 		 $('#table-data-body tr[dataId]').addClass('checked');
      });
 	 //de select-all
 	 $('#deselect-all').click(function(){
-		 $('#table-data-body input[type="checkbox"]').removeAttr('checked');
+		 $('#table-data-body input[type="checkbox"]').prop('checked',false);
 		 $('#table-data-body tr').removeClass('checked');
      });
 	// btn-delete click

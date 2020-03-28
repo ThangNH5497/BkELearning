@@ -172,6 +172,51 @@ function addNewUserEvents(paramName,urlApi)
 		}
 		 
 	 });
+	 
+	 //upload from file exel
+	 $(document).on('click', '#modal-add-new .btn-submit-file-exel', function () {
+		 //check file not empty
+		if ($('#input-file-exel').get(0).files.length === 0) {
+			   $('#alert-file-exel').removeClass('hidden');
+		}
+		else
+		{
+			$('#modal-add-new').modal('hide');
+			$('#modal-message').modal({backdrop: 'static', keyboard: false}) ;
+			var message="";
+			try {				
+				var formData = new FormData();	
+				//them file vao data
+		        formData.append('file', $('#modal-add-new #input-file-exel')[0].files[0]);		    
+		        $.ajax({
+		        	method : "POST",
+		            url : rootLocation+urlApi+'/file',
+		            data : formData,
+		            processData : false,
+		            contentType : false,
+		            async:true,
+		            success : function(data) {
+		            	showMessage(data[0]+ " Thành Công, "+data[1]+" Thất Bại.");
+		            },
+		            error : function(err) {
+		            	showMessage("Lỗi : " +err);
+		            }
+		        });
+			} catch (e) {
+				// TODO: handle exception
+				showMessage("Lỗi : " +e);
+			}
+			
+			
+			
+		}
+	 });
+	 
+	 $('#alert-file-exel').on('close.bs.alert', function (event) {
+		  event.preventDefault();
+		  $(this).addClass('hidden');
+	 });
+
 	 // even tab select
 		$('#modal-add-new a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 			resetFormAdd();
@@ -183,13 +228,25 @@ function addNewUserEvents(paramName,urlApi)
 		});
 		
 }
+function showMessage(message)
+{
+	$('#modal-message .message').text(message);
+	$('#modal-message img').addClass('hidden');
+	$('#modal-message .message').removeClass('hidden');
+	$('#modal-message .btn-ok').removeClass('hidden');
+	$('#modal-message .btn-ok').click(this,function(){
+		//refresh page
+		location.reload(true);
+	});
+}
+
 //dat lai cac gia tri ban dau cho form them moi
 function resetFormAdd()
 {
 	$('#modal-add-new input').val("");
 	$('#modal-add-new input').removeClass('border-danger');
 	$('#input-file-exel').next('#modal-add-new .file-exel-name').html("Chọn File");
-	$('#modal-add-new .image-preview').attr('src',rootLocation+"resources/commons/image/default-user.jpg");
+	$('#modal-add-new .image-preview').attr('src',rootLocation+"resources/commons/image/user/default-user.jpg");
 	$('#modal-add-new .error').addClass('hidden');
 	$('#form-container-one').removeClass('hidden');
 	$('#form-container-two').addClass('hidden');

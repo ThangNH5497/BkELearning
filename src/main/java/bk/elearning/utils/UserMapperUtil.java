@@ -1,0 +1,124 @@
+package bk.elearning.utils;
+
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.PictureData;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
+import org.apache.poi.xssf.usermodel.XSSFDrawing;
+import org.apache.poi.xssf.usermodel.XSSFPicture;
+import org.apache.poi.xssf.usermodel.XSSFShape;
+
+public abstract class UserMapperUtil<T> implements IModelMapper<T> {
+
+	public List<T> mapFields(Sheet sheet, Class<T> clazz) {
+		// TODO Auto-generated method stub
+		List<T> list = new ArrayList<T>();
+		try {
+			DataFormatter dataFormatter = new DataFormatter();
+			List<String> fieldNames = new ArrayList<String>();
+			int i = 0;
+			// read first row
+			for (Row row : sheet) {
+				// next first row
+				if (i == 0) {
+					for (Cell cell : row) {
+						String cellValue = dataFormatter.formatCellValue(cell);
+						fieldNames.add(cellValue);
+					}
+				} else {
+					int j = 0;
+					// create object instance
+					try {
+						T t = clazz.newInstance();
+						for (Cell cell : row) {
+							String cellValue = dataFormatter.formatCellValue(cell);
+							if (j < fieldNames.size()) {
+								try {
+									BeanUtils.setProperty(t, fieldNames.get(j), cellValue);
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
+							j++;
+						}
+						list.add(t);
+
+					} catch (InstantiationException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IllegalAccessException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				i++;
+			}
+			mapImages(sheet, list, fieldNames);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return list;
+	}
+
+	/**
+	 * Map image to model user sheet -> sheet exel list -> list model user
+	 */
+	@Override
+	public void mapImages(Sheet sheet, List<T> list, List<String> fieldNames) {
+		// TODO Auto-generated method stub
+		try {
+			XSSFDrawing dp = (XSSFDrawing) sheet.createDrawingPatriarch();
+			List<XSSFShape> pics = dp.getShapes();
+			for (XSSFShape xssfShape : pics) {
+				XSSFPicture inpPic = (XSSFPicture) xssfShape;
+
+				XSSFClientAnchor clientAnchor = inpPic.getClientAnchor();
+
+				if (clientAnchor.getRow1() == clientAnchor.getRow2() && clientAnchor.getCol1() == clientAnchor.getCol2()
+						&& fieldNames.get(clientAnchor.getCol1()).equals("image")) {
+					inpPic.getShapeName();
+					PictureData pict = inpPic.getPictureData();
+					System.out.println("mime type : " + pict.getMimeType());
+					int picType = pict.getPictureType();
+					String ext = "jpg";
+					T t = list.get(clientAnchor.getRow1() - 1);
+					boolean checkType = true;
+					if (picType == Workbook.PICTURE_TYPE_JPEG) {
+						ext = "jpg";
+					} else if (picType == Workbook.PICTURE_TYPE_PNG) {
+						ext = "png";
+					} else
+						checkType = false;
+					if (checkType == true) {
+						String rootPath = FileUpload.context.getRealPath("/");
+						String filePath = "resources/commons/image/user/user." + ext;
+						filePath = FileUpload.createUniqueFileName(filePath);
+						FileOutputStream out = new FileOutputStream(rootPath + filePath);
+						byte[] data = pict.getData();
+						out.write(data);
+
+						BeanUtils.setProperty(t, "image", filePath);
+						out.close();
+					}
+
+				}
+
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+	}
+
+}

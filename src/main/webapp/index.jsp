@@ -8,6 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:redirect url="/trang-chu"/>
+	<c:redirect url="/admin/ql-giang-vien"/>
 </body>
 </html>

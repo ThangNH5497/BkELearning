@@ -29,12 +29,12 @@
 						class="icon fa fa-briefcase mr-3"></span> <span class="redirect">Trang
 							Chủ</span></a></li>
 
-				<li class="active"><a
+				<li ><a
 					href="<c:url value='/admin/ql-giang-vien'/>"><span
 						class="icon fas fa-chalkboard-teacher mr-3"></span> <span
 						class="redirect">Giảng Viên</span></a></li>
 
-				<li class=""><a href="<c:url value='/admin/ql-sinh-vien'/>"><span
+				<li class="active"><a href="<c:url value='/admin/ql-sinh-vien'/>"><span
 						class="icon fas fa-user-graduate mr-3"></span> <span
 						class="redirect">Sinh Viên</span></a></li>
 
@@ -73,8 +73,8 @@
 	</nav>
 
 	<!-- Page Content  -->
-	<div id="content">
-		
+	<div id="content" class="mb-5">
+
 		<!-- Topbar -->
 		<nav
 			class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -85,28 +85,25 @@
 				<i class="fa fa-bars"></i>
 			</button>
 			<!-- Topbar Search -->
+
 			<form
 				class="d-flex d-sm-inline-block form-inline  ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 
-				<div class="input-group">
-					<div class="input-group-append border" id='search-filter'>
-						<div class="input-group-btn search-panel no-arrow">
-							<div class="btn-group">
-								<a class="btn btn-primary dropdown-toggle"
-									id="search-filter-value" data-toggle="dropdown" value="code">MÃ
-									GV <i class="fas fa-caret-down"></i>
-								</a>
-								<ul class="dropdown-menu menu">
-									<li class="dropdown-item px-2" name='code'><a>MÃ GV</a></li>
-									<li class="dropdown-item px-2" name='username'><a>USERNAME</a></li>
-									<li class="dropdown-item px-2" name='fullName'><a>TÊN
-											GV</a></li>
+				<div class="input-group ">
+					<div class="input-group-append" id='search-filter'>
 
-								</ul>
-							</div>
+						<div class="select-style d-flex">
+							<select>
+								<option value='code'>Mã GV</option>
+								<option value='username'>TK</option>
+								<option value='fullName'>Tên</option>
+							</select> <i class="fas fa-caret-down"
+								style="margin-top: 10px; padding-right: 10px;"></i>
 						</div>
+
 					</div>
-					<input type="text" class="form-control bg-light border-0 small"
+
+					<input type="text" class="form-control bg-light  small"
 						placeholder="Search for..." aria-label="Search"
 						aria-describedby="basic-addon2" id='key-search'>
 
@@ -207,17 +204,23 @@
 
 
 		<div class=" container-fluid ">
-			<!-- Content Row -->
-			<button type="button" class="btn btn-primary">Primary</button>
+			<nav class="navbar navbar-light bg-light hidden"
+				style="font-weight: 600;" id='link-back-search'>
+				<span class="navbar-text"> <i class="fas fa-link"></i> <a
+					class='text-primary' href="trang-chu">Quản Lý Gảng Viên</a><span>
+						/ Tìm Kiếm</span>
+				</span>
+			</nav>
 			<div class="row ">
 
 				<!-- Area Chart -->
 				<div class="col-xl-9 col-lg-8 card-container">
-					<div class="card shadow mb-4 h-100">
+					<div class="card shadow h-100">
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary">Danh Sách Giảng Viên</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Danh Sách
+								Giảng Viên</h6>
 
 							<div class="d-flex">
 								<button class="btn btn-add text-success" data-toggle="modal"
@@ -232,6 +235,10 @@
 								<button class="btn btn-delete text-danger"
 									style="margin-right: 10px; box-shadow: none;">
 									<i style="font-size: 20px;" class="fas fa-trash"></i>
+								</button>
+								<button class="btn btn-refresh text-primary"
+									style="margin-right: 10px; box-shadow: none;">
+									<i style="font-size: 20px;" class="fas fa-sync"></i>
 								</button>
 								<nav aria-label="Page navigation">
 
@@ -343,7 +350,7 @@
 
 				<!-- Pie Chart -->
 				<div class="col-xl-3 col-lg-4 card-container">
-					<div class="card shadow mb-4 h-100">
+					<div class="card shadow h-100">
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -488,9 +495,9 @@
 		</div>
 
 	</div>
-	
+
 	<!-- end content -->
-	
+
 </div>
 
 <!-- modal add new teacher -->
@@ -585,7 +592,7 @@
 									<form class="form-img">
 										<div class="profile-img">
 											<img class="image-preview"
-												src="<c:url value='/resources/commons/image/default-user.jpg' />"
+												src="<c:url value='/resources/commons/image/user/default-user.jpg' />"
 												alt="" />
 											<div class="file btn btn-lg btn-primary">
 												Change Photo <input type="file" name="file"
@@ -664,7 +671,15 @@
 								<div class="form-v4-content">
 									<form class="form-detail" action="#" method="post" id="myform">
 										<h2>Thêm Danh Sách Giảng Viên Từ File Exel</h2>
-
+										
+										<div class="hidden alert alert-danger alert-dismissible fade show"
+											role="alert" id='alert-file-exel'>
+											<strong>Cảnh Báo !</strong> Bạn Chưa Chọn File.
+											<button type="button" class="close" data-dismiss="alert"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
 										<div class="custom-file">
 											<input type="file" class="custom-file-input file-input"
 												id="input-file-exel"
@@ -723,7 +738,7 @@
 							<form class="form-img">
 								<div class="profile-img">
 									<img class="image-preview"
-										src="<c:url value='/resources/commons/image/default-user.jpg' />"
+										src="<c:url value='/resources/commons/image/user/default-user.jpg' />"
 										alt="" />
 									<div class="file btn btn-lg btn-primary">
 										Change Photo <input type="file" name="file"
@@ -829,7 +844,7 @@
 		<!-- /.modal-content -->
 	</div>
 	<!-- /.modal-dialog -->
-	
+
 </div>
 
 <!-- end modal alert -->

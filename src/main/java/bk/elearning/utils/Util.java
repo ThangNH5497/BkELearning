@@ -17,7 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class Util {
 
-	public final static String DEFAULT_USER_IMAGE="resources/commons/image/default-user.jpg";
+	public final static String DEFAULT_USER_IMAGE="resources/commons/image/user/default-user.jpg";
 	public static Date getDate() {
 		Calendar calendar = Calendar.getInstance();
 		// java.sql.Date ourJavaDateObject = new

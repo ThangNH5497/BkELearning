@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 	obj=new TeacherManager();
 	//file add-user.js
-	addNewUserEvents('teacher','teacher/save');
+	addNewUserEvents('teacher','teacher/add');
 	
 	//file edit-user.js
 	editUserEvents('teacher','teacher/update');
@@ -11,9 +11,9 @@ $(document).ready(function() {
 	deleteEvents("teacher/delete/multiple");
 	
 	tableDataEvents();
-	//lay tong so doi tuong teacher trong database, thuc hien phan trang
-	var count=obj.getCountTeacher();
-	handlePagination($('#pagination'),count,'teacher/limit?');
+	
+	//lay du lieu trang va phan trang
+	handlePagination($('#pagination'),'teacher/page?');
 	
 	//search events
 	searchEvents('teacher/search');
@@ -39,7 +39,11 @@ function tableDataEvents()
 		//lay doi tuong user ko dong bo va xu ly voi ham initUserDetail
 		obj.getDataAsync("GET",'teacher/id/'+id,initUserDetail);
 	});
-
+	//btn refresh
+	$(document).on('click', '.btn-refresh', function () {
+		location.reload();
+	});
+	
 	//mo form edit
 	$('.btn-edit').on('click', function() {
 

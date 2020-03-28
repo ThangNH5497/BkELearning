@@ -11,41 +11,45 @@ var currentPage=1;
 //url api to get data
 var urlApiData;
 //count
-var countItems=0;
-function handlePagination(paginationContainer, count,url) {
+var count=0;
+function handlePagination(paginationContainer,url) {
 	urlApiData=url;
 	currentPage=1;
-	countItems=count;
-	// tinh tong so trang
-	if (parseInt(count) % parseInt(MAX_ITEMS) != 0) {
-		lastPage = (parseInt(count) / parseInt(MAX_ITEMS)) + 1;
-
-	} else
-		lastPage = (parseInt(count) / parseInt(MAX_ITEMS));
-	lastPage = parseInt(lastPage);
 	
-	if(lastPage==0) lastPage=1;
-	//khoi tao pagination
-	var pages=$('#pagination .page-item');
-	$(pages).removeClass('hidden');
-	$('#pagination .active').removeClass('active');
-	$(pages[0]).addClass('active');
-	//danh so va loai bo nhung trang hien thi du thua neu co
-	for (var i = 0; i < TOTAL_PAGE_SHOW; i++) {
-		$(pages[i]).children().text(parseInt(i)+1);
-		if(parseInt(i)+1>lastPage)
-		{
-			$(pages[i]).addClass('hidden');
+	try {
+		//lay du lieu
+		var pageData=obj.getData('GET',urlApiData+"page="+currentPage+"&size="+MAX_ITEMS);
+		
+		// tinh tong so trang
+		if (parseInt(pageData.count) % parseInt(MAX_ITEMS) != 0) {
+			lastPage = (parseInt(pageData.count) / parseInt(MAX_ITEMS)) + 1;
+
+		} else
+			lastPage = (parseInt(pageData.count) / parseInt(MAX_ITEMS));
+		lastPage = parseInt(lastPage);
+		
+		if(lastPage==0) lastPage=1;
+		//khoi tao pagination
+		var pages=$('#pagination .page-item');
+		$(pages).removeClass('hidden');
+		$('#pagination .active').removeClass('active');
+		$(pages[0]).addClass('active');
+		//danh so va loai bo nhung trang hien thi du thua neu co
+		for (var i = 0; i < TOTAL_PAGE_SHOW; i++) {
+			$(pages[i]).children().text(parseInt(i)+1);
+			if(parseInt(i)+1>lastPage)
+			{
+				$(pages[i]).addClass('hidden');
+			}
+				
 		}
-			
+		updateTableData(currentPage,pageData.data);
+		// add events
+		addEvents();
+	} catch (e) {
+		// TODO: handle exception
 	}
-	updateTableData(currentPage,urlApiData);
-	// add events
-	addEvents();
 	
-	
-	
-
 }
 function addEvents() {
 
@@ -58,10 +62,6 @@ function addEvents() {
 			// update so cua trang hien thi phan trang
 			updatePagination(currentPage);
 		}
-		
-		
-		// update du lieu trong table
-		
 	});
 	
 	//prePage
@@ -87,7 +87,7 @@ function addEvents() {
 	});
 }
 function updatePagination(currentPage) {
-	pages=$('#pagination .page-item');
+	var pages=$('#pagination .page-item');
 	var mid=parseInt(TOTAL_PAGE_SHOW/2);
 	
 	//neu so trang vuot qua khoang dang hien thi
@@ -132,15 +132,13 @@ function updatePagination(currentPage) {
 	}
 	else $('#nextPage').removeClass('disabled');
 	
-	updateTableData(currentPage,urlApiData);
+	var pageData=obj.getData('GET',urlApiData+"page="+currentPage+"&size="+MAX_ITEMS);
+	updateTableData(currentPage,pageData.data);
 	
 }
-function updateTableData(currentPage,urlApiData)
+function updateTableData(currentPage,data)
 {
-	var data=[];
 	try {
-		data=obj.getData('GET',urlApiData+"start="+(parseInt(currentPage)-1)*MAX_ITEMS+"&size="+MAX_ITEMS);
-		
 		//update pagination-title
 		var title='';
 		if(currentPage==1)

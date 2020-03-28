@@ -11,14 +11,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import bk.elearning.entity.Role;
 import bk.elearning.entity.Teacher;
+import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.repository.ITeacherRepository;
+import bk.elearning.service.IPaginationResultService;
 import bk.elearning.service.IRoleService;
 import bk.elearning.service.ITeacherService;
 import bk.elearning.utils.FileUpload;
+import bk.elearning.utils.TeacherMapperUtil;
+import bk.elearning.utils.UserMapperUtil;
 import bk.elearning.utils.Util;
 
 @Service
-public class TeacherServiceImpl implements ITeacherService {
+public class TeacherServiceImpl implements ITeacherService, IPaginationResultService<Teacher> {
 
 	@Autowired
 	private ITeacherRepository teacherRepository;
@@ -42,13 +46,15 @@ public class TeacherServiceImpl implements ITeacherService {
 		// TODO Auto-generated method stub
 		return teacherRepository.getAll(Teacher.class);
 	}
-	//lay theo tung khoang
+
+	// lay theo tung khoang
 	@Override
 	public List<Teacher> getLimit(int start, int count) {
 		// TODO Auto-generated method stub
 		return teacherRepository.getLimit(start, count, Teacher.class);
 	}
 
+	// thêm mới đối tượng teacher không có ảnh đại diện
 	@Override
 	public int save(Teacher t) {
 		// TODO Auto-generated method stub
@@ -60,7 +66,9 @@ public class TeacherServiceImpl implements ITeacherService {
 		return teacherRepository.save(t);
 	}
 
-	// luu voi anh
+	/**
+	 * Thêm mới đối tượng teacher Tham số file là ảnh đại diện.
+	 */
 	public int save(Teacher t, MultipartFile file) {
 		// TODO Auto-generated method stub
 		roleService.getByName("ROLE_TEACHER");
@@ -69,7 +77,7 @@ public class TeacherServiceImpl implements ITeacherService {
 
 		t.setCourse(null);
 		if (file != null) {
-			String filePath = "resources/commons/image/teacher-" + t.getCode() + "."
+			String filePath = "resources/commons/image/user/user-" + t.getCode() + "."
 					+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.') + 1);
 			System.out.println("path : " + filePath);
 			if (FileUpload.saveFile(file, filePath)) {
@@ -82,18 +90,24 @@ public class TeacherServiceImpl implements ITeacherService {
 		return teacherRepository.save(t);
 	}
 
+	// xoa theo id
 	@Override
 	public int delete(int id) {
 		// TODO Auto-generated method stub
 		return teacherRepository.delete(Teacher.class, id);
 	}
 
+	// cập nhật không có hình ảnh
 	@Override
 	public int update(Teacher t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	/**
+	 * Cập Nhật dữ liệu Tham số teacher đối tượng cập nhât Tham số file là ảnh đại
+	 * diện.
+	 */
 	@Override
 	public int update(Teacher teacher, MultipartFile file) {
 		Teacher teacherUpdate = teacherRepository.getById(Teacher.class, teacher.getId());
@@ -104,7 +118,7 @@ public class TeacherServiceImpl implements ITeacherService {
 		teacherUpdate.setFullName(teacher.getFullName());
 		teacherUpdate.setPosition(teacher.getPosition());
 		if (file != null) {
-			String filePath = "resources/commons/image/teacher-" + teacher.getCode() + "."
+			String filePath = "resources/commons/image/user/user-" + teacher.getCode() + "."
 					+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.') + 1);
 			if (FileUpload.saveFile(file, filePath)) {
 				teacherUpdate.setImage(filePath);
@@ -113,22 +127,27 @@ public class TeacherServiceImpl implements ITeacherService {
 		return teacherRepository.update(teacherUpdate);
 	}
 
+	// lấy theo username
 	@Override
 	public Teacher getByUsername(String username) {
 		// TODO Auto-generated method stub
 		return teacherRepository.getByUsername(username);
 	}
 
+	// lấy theo code
 	@Override
 	public Teacher getByCode(String code) {
 		// TODO Auto-generated method stub
 		return teacherRepository.getByCode(code);
 	}
 
+	/**
+	 * Xóa du lieu va phan trang du lieu Tham số ids là danh sách id cần xóa
+	 */
 	@Override
 	public int deleteMultiple(ArrayList<Integer> ids) {
 		// TODO Auto-generated method stub
-		int checkErro=0;
+		int checkErro = 0;
 		for (Integer integer : ids) {
 			try {
 				teacherRepository.delete(Teacher.class, integer);
@@ -137,26 +156,74 @@ public class TeacherServiceImpl implements ITeacherService {
 				checkErro++;
 			}
 		}
-		if(checkErro==0) return 1;
-		return 	1;
+		if (checkErro == 0)
+			return 1;
+		return 1;
 	}
 
+	/**
+	 * tra ve du lieu va phan trang du lieu Tham số page là chỉ số trang Tham số
+	 * size là lượng phần tử cần lấy
+	 */
 	@Override
-	public Long getCount() {
+	public PaginationResult<Teacher> getPage(int page, int size) {
 		// TODO Auto-generated method stub
-		return teacherRepository.getCount(Teacher.class);
+		PaginationResult<Teacher> pageResult = new PaginationResult<Teacher>();
+		try {
+			pageResult.setCount(teacherRepository.getCount(Teacher.class));
+			if (page > 0) {
+				pageResult.setData(teacherRepository.getLimit((page - 1) * size, size, Teacher.class));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return pageResult;
 	}
 
+	/**
+	 * tra ve du lieu va phan trang du lieu tham so filer bộ lọc trường dữ liệu Tham
+	 * số key là từ khóa tìm kiếm Tham số page là chỉ số trang Tham số size là lượng
+	 * phần tử cần lấy
+	 */
 	@Override
-	public List<Teacher> searchTeachers(String type, String key, int start, int count) {
+	public PaginationResult<Teacher> getSearchPage(String filter, String key, int page, int size) {
 		// TODO Auto-generated method stub
-		return teacherRepository.searchTeachers(type,key,start,count);
+		PaginationResult<Teacher> pageResult = new PaginationResult<Teacher>();
+		try {
+			pageResult.setCount(teacherRepository.getCount(Teacher.class, filter, key));
+			if (page > 0) {
+				pageResult.setData(teacherRepository.search(Teacher.class, filter, key, (page - 1) * size, size));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return pageResult;
 	}
 
+	// luu tu file exel
 	@Override
-	public Long searchCountTeachers(String type, String key) {
+	public int[] saveFromFile(MultipartFile file) {
 		// TODO Auto-generated method stub
-		return teacherRepository.searchCountTeachers(type,key);
+		int success = 0;
+		int error = 0;
+		if (file != null) {
+			List<Teacher> teachers = FileUpload.processFileExel(file, new TeacherMapperUtil());
+			for (Teacher teacher : teachers) {
+				try {
+					if (teacher.getImage() == null || teacher.getImage().equals("")) {
+						teacher.setImage(Util.DEFAULT_USER_IMAGE);
+					}
+					if (teacherRepository.save(teacher) == 1)
+						success++;
+				} catch (Exception e) {
+				}
+
+			}
+			error=teachers.size()-success;
+		}
+		
+		return new int[] {success,error};
+
 	}
 
 }

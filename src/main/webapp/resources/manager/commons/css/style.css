@@ -1,8 +1,6 @@
-
-* {
+*{
 	box-sizing: border-box !important;
 }
-
 #content {
 	background-color: #fafafa;
 	margin: 0px;
@@ -42,38 +40,44 @@
 	display: none !important;
 }
 
-#search-filter a {
-	border-bottom-right-radius: 0px !important;
-	border-top-right-radius: 0px !important;
-	color: white;
-	min-width: 7vw;
-	max-width: 7vw;
+.select-style {
+    border: 1px solid #007BFF;
+    width: 100px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
 }
 
-#search-filter li a {
-	color: #007BFF !important;
+.select-style select {
+    padding: 5px 8px;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    
+ 
 }
-
-select {
-	/* for Firefox */
-	-moz-appearance: none;
-	/* for Chrome */
-	-webkit-appearance: none;
+.navbar-search input
+{
+	borer-top:1px solid !important;
+	border-bottom:1px solid !important;
+	border-left: none !important;
+	border-color:#007BFF !important;
 }
-
-/* For IE10 */
-select::-ms-expand {
-	display: none;
+.select-style select:focus {
+    outline: none;
 }
 /*search*/
 
 /*end search*/
 /*event table*/
-#table-data-body .selected td {
+#table-data-body .selected td
+{
 	background: #facde9;
 }
-
-#table-data-body .checked td {
+#table-data-body .checked td
+{
 	background: #f0ad4e;
 }
 
@@ -124,48 +128,48 @@ iframe {
 
 /*//////////////////////////////////////////////////////////////////
 [ Scroll bar ]*/
-[Scroll bar ]* /
+[ Scroll bar ]*/
 .js-pscroll {
-	position: relative;
-	overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .table-data .ps__rail-y {
-	width: 9px;
-	background-color: transparent;
-	opacity: 1 !important;
-	right: 5px;
+  width: 9px;
+  background-color: transparent;
+  opacity: 1 !important;
+  right: 5px;
 }
 
 .table-data .ps__rail-y::before {
-	content: "";
-	display: block;
-	position: absolute;
-	background-color: #ebebeb;
-	border-radius: 5px;
-	width: 100%;
-	height: calc(100% - 30px);
-	left: 0;
-	top: 15px;
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: #ebebeb;
+  border-radius: 5px;
+  width: 100%;
+  height: calc(100% - 30px);
+  left: 0;
+  top: 15px;
 }
 
 .table-data .ps__rail-y .ps__thumb-y {
-	width: 100%;
-	right: 0;
-	background-color: transparent;
-	opacity: 1 !important;
+  width: 100%;
+  right: 0;
+  background-color: transparent;
+  opacity: 1 !important;
 }
 
 .table-data .ps__rail-y .ps__thumb-y::before {
-	content: "";
-	display: block;
-	position: absolute;
-	background-color: #cccccc;
-	border-radius: 5px;
-	width: 100%;
-	height: calc(100% - 30px);
-	left: 0;
-	top: 15px;
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: #cccccc;
+  border-radius: 5px;
+  width: 100%;
+  height: calc(100% - 30px);
+  left: 0;
+  top: 15px;
 }
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*/
@@ -185,8 +189,8 @@ iframe {
 	max-height: 76vh;
 	height: 76vh;
 }
-
-.wrap-table-data .table-data {
+.wrap-table-data .table-data
+{
 	min-height: 76vh;
 	max-height: 76vh;
 	height: 76vh;
@@ -244,6 +248,7 @@ th, td {
 .table-data-body td {
 	padding-top: 16px;
 	padding-bottom: 16px;
+	
 }
 
 /*==================================================================
@@ -270,6 +275,7 @@ th, td {
 	max-height: 70vh !important;
 	height: 70vh !important;
 	min-height: 70vh !important;
+	
 }
 
 /*==================================================================
@@ -352,7 +358,7 @@ th, td {
 	min-width: 15%;
 }
 
-.modal-body .btn-submit, .btn-next, .btn-submit-file-exel,
+.modal-body .btn-submit, .btn-next, .btn-submit-file-exel,.btn-ok,
 	.btn-delete-alert-ok {
 	background: #33b5e5 !important;
 	margin-left: 10%;
@@ -384,7 +390,7 @@ th, td {
 	font-family: 'Open Sans', sans-serif;
 }
 
-.form-v4-content h2 {
+.form-container h2,.form-v4-content h2 {
 	font-weight: 400;
 	font-size: 24px;
 	padding: 6px 0 0;
@@ -397,7 +403,7 @@ th, td {
 	width: 100%;
 }
 
-.form-v4-content .form-detail h2 {
+.form-container h2,.form-v4-content .form-detail h2 {
 	color: #3786bd;
 }
 
@@ -677,4 +683,13 @@ th, td {
 }
 
 /* end modal form*/
+
+/*css add from file exel tab*/
+#add-exel-tab .message-container
+{
+	min-height: 30vh !important;
+	padding:40px;
+}
+/*end css add from file exel tab*/
 /*end modal*/
+

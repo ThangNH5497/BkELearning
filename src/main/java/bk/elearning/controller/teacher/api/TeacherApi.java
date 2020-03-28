@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import bk.elearning.entity.Teacher;
+import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.service.ITeacherService;
 
 @RestController
@@ -35,18 +36,6 @@ public class TeacherApi {
 		List<Teacher> teachers = null;
 		try {
 			teachers = teacherService.getAll();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return teachers;
-	}
-
-	// lay tung khoang
-	@GetMapping(path = "/limit")
-	public List<Teacher> getTeachersLimit(@RequestParam int start, @RequestParam int size) {
-		List<Teacher> teachers = null;
-		try {
-			teachers = teacherService.getLimit(start, size);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -89,6 +78,7 @@ public class TeacherApi {
 		return teacher;
 	}
 
+	// xoa theo id
 	@DeleteMapping(path = "/delete/{id}")
 	public int deleteTeacherById(@PathVariable int id) {
 		return teacherService.delete(id);
@@ -100,8 +90,9 @@ public class TeacherApi {
 		return teacherService.deleteMultiple(ids);
 	}
 
-	@PostMapping("/save")
-	public String saveNewTeacher(@RequestPart("teacher") Teacher teacher,
+	// tao moi giang vien
+	@PostMapping("/add")
+	public String addNewTeacher(@RequestPart("teacher") Teacher teacher,
 			@RequestPart(name = "file", required = false) MultipartFile file) {
 
 		try {
@@ -112,6 +103,21 @@ public class TeacherApi {
 		}
 
 		return "error . Xin Thử Lại Sau !";
+
+	}
+
+	// them tu file exel
+	@PostMapping("/add/file")
+	public int[] addFromFile(@RequestPart(name = "file",required = true) MultipartFile file) {
+		//first value is success and second value is error
+		int result[]= {0,0};
+		try {
+			result=teacherService.saveFromFile(file);
+		} catch (Exception e) {
+
+		}
+
+		return result;
 
 	}
 
@@ -131,26 +137,12 @@ public class TeacherApi {
 
 	}
 
-	// lay ve tong so ban ghi
-	@GetMapping("/count")
-	public Long getCountTeacher() {
-
-		try {
-			return teacherService.getCount();
-		} catch (Exception e) {
-
-		}
-
-		return 0l;
-
-	}
-
-	// lay du lieu tim kiem
+	// lay du lieu tim kiem va phan trang
 	@GetMapping("/search")
-	public List<Teacher> searchTeachers(@RequestParam String type, @RequestParam String key, @RequestParam int start,
-			int size) {
+	public PaginationResult<Teacher> searchTeachers(@RequestParam(name = "filter") String filter,
+			@RequestParam String key, @RequestParam int page, int size) {
 		try {
-			return teacherService.searchTeachers(type, key, start, size);
+			return teacherService.getSearchPage(filter, key, page, size);
 		} catch (Exception e) {
 
 		}
@@ -158,15 +150,17 @@ public class TeacherApi {
 
 	}
 
-	// lay tong so luog ban ghi tim kiem
-	@GetMapping("/search/count")
-	public Long searchCountTeachers(@RequestParam String type, @RequestParam String key) {
+	// phan trang tat ca teacher
+	@GetMapping("/page")
+	public PaginationResult<Teacher> getPage(@RequestParam int page, int size) {
 		try {
-			return teacherService.searchCountTeachers(type, key);
+			return teacherService.getPage(page, size);
 		} catch (Exception e) {
 
 		}
-		return 0l;
+		return null;
 
 	}
+	// phan trang tat ca teacher
+
 }

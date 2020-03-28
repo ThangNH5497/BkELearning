@@ -5,7 +5,7 @@ function initUserDetail(user) {
 			// load anh
 			$('#user-detail-img').removeClass('hidden');
 			$('#user-detail-img').attr('src',
-					rootLocation + "resources/commons/image/default-user.jpg");
+					rootLocation + "resources/commons/image/user/default-user.jpg");
 			$('#user-detail-img').attr("src", rootLocation + user.image);
 			obj.initData('user-detail', 'user-detail-row', [ user ]);
 		} else {
