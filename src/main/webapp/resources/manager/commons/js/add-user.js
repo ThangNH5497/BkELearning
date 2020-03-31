@@ -1,5 +1,5 @@
 //kiem tra cac input bat buoc khi them moi
-function validFormAdd()
+function validFormAdd(userType)
 {
 	var checkValidInput=true;
 		 var inputs=$('#form-add-step-one input');
@@ -17,7 +17,14 @@ function validFormAdd()
 		{
 			var checkDataExis;
 			// kiem tra ma code ton tai
-			checkDataExis=obj.getTeacherByCode($('#add-one-tab input[name="code"]').val());
+			if(userType=="teacher")
+			{
+				checkDataExis=obj.getTeacherByCode($('#add-one-tab input[name="code"]').val());
+			}
+			else if(userType=="student")
+			{
+				checkDataExis=obj.getStudentByCode($('#add-one-tab input[name="code"]').val());
+			}
 			if(checkDataExis!="")
 			{
 				checkValidInput=false;
@@ -33,7 +40,16 @@ function validFormAdd()
 			}
 			
 			// kiem tra username ton tai
-			checkDataExis=obj.getTeacherByUsername($('#add-one-tab input[name="username"]').val());
+			
+			
+			if(userType=="teacher")
+			{
+				checkDataExis=obj.getStudentByUsername($('#add-one-tab input[name="username"]').val());
+			}
+			else if(userType=="student")
+			{
+				checkDataExis=obj.getStudentByUsername($('#add-one-tab input[name="username"]').val());
+			}
 			if(checkDataExis!="")
 			{
 				checkValidInput=false;
@@ -85,10 +101,10 @@ function validFormAdd()
 //urlApi-dia chi url cua api
 function addNewUserEvents(paramName,urlApi)
 {
-	// btn-next step add teacher
+	// btn-next step add user
 	$('#modal-add-new .btn-next').click(this,function(){
 		try {
-			if(validFormAdd())
+			if(validFormAdd(paramName))
 			{
 				$('#form-container-one').addClass('hidden');
 				$('#form-container-two').removeClass('hidden');
@@ -115,31 +131,18 @@ function addNewUserEvents(paramName,urlApi)
 			
 			//them file vao data
 	        formData.append('file', $('#modal-add-new .form-img input[type=file]')[0].files[0]);
-	        //them doi tuong teacher json vao form data
+	        //them doi tuong user json vao form data
 	        formData.append(paramName, new Blob([JSON.stringify(userJson)], {
 	            type: "application/json"
 	        }));
-	        $.ajax({
-	        	method : "POST",
-	            url : rootLocation+urlApi,
-	            data : formData,
-	            processData : false,
-	            contentType : false,
-	            async:false,
-	            success : function(data) {
-	                alert(data);
-	            },
-	            errorr : function(err) {
-	            	alert("error : "+err);
-	            }
-	        });
+	       
+	        obj.saveOrUpdate(formData,"POST",urlApi);
+	        location.reload(true);
 		} catch (e) {
 			// TODO: handle exception
 			alert("Lỗi : "+err);
 		}
-		
-        //close modal
-        $('#modal-add-new').modal('hide');
+	
 	
 	});
 	// dat lai mau border cho input khi click

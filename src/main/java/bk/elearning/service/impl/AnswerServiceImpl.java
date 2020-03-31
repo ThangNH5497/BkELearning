@@ -1,5 +1,6 @@
 package bk.elearning.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -10,22 +11,14 @@ import bk.elearning.service.IAnswerService;
 @Service
 public class AnswerServiceImpl implements IAnswerService{
 
-	
-
 	@Override
-	public List<Answer> getByIds(int[] ids) {
+	public Answer getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<Answer> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Answer> getLimit(int start, int count) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -49,12 +42,18 @@ public class AnswerServiceImpl implements IAnswerService{
 	}
 
 	@Override
-	public Answer getById(int id) {
+	public Answer getByCode(String code) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
+	@Override
+	public int deleteMultiple(ArrayList<Integer> ids) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	
+
+
 }

@@ -45,6 +45,10 @@ public class User  extends AbstractEntity{
 	@Column(name="phone_number")
 	private String phoneNumber;
 	
+	@Column(name="role",nullable = false)
+	private String role;
+	
+	
 	@Column(name="date_of_birth")
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -53,18 +57,18 @@ public class User  extends AbstractEntity{
 	
 	private String image;
 	
-
+/*
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.MERGE) // load cac phan tu manytomany
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
-
+*/
 	public User()
 	{
 		
 	}
 	public User(String code, String username, String password, String fullName, String email, String addr,
-			String phoneNumber, Date dateOfBirth, String image, Set<Role> roles) {
+			String phoneNumber, Date dateOfBirth, String image, String role) {
 		this.code = code;
 		this.username = username;
 		this.password = password;
@@ -74,11 +78,11 @@ public class User  extends AbstractEntity{
 		this.phoneNumber = phoneNumber;
 		this.dateOfBirth = dateOfBirth;
 		this.image = image;
-		this.roles = roles;
+		this.role = role;
 	}
 	
 	public User(int id,String code, String username, String password, String fullName, String email, String addr,
-			String phoneNumber, Date dateOfBirth, String image, Set<Role> roles) {
+			String phoneNumber, Date dateOfBirth, String image, String role) {
 		super(id);
 		this.code = code;
 		this.username = username;
@@ -89,7 +93,7 @@ public class User  extends AbstractEntity{
 		this.phoneNumber = phoneNumber;
 		this.dateOfBirth = dateOfBirth;
 		this.image = image;
-		this.roles = roles;
+		this.role = role;
 	}
 	public String getCode() {
 		return code;
@@ -145,11 +149,11 @@ public class User  extends AbstractEntity{
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public Set<Role> getRoles() {
-		return roles;
+	public String getRole() {
+		return role;
 	}
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	

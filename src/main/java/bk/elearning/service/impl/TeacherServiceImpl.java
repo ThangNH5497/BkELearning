@@ -1,24 +1,21 @@
 package bk.elearning.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import bk.elearning.entity.Role;
 import bk.elearning.entity.Teacher;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.repository.ITeacherRepository;
 import bk.elearning.service.IPaginationResultService;
-import bk.elearning.service.IRoleService;
 import bk.elearning.service.ITeacherService;
 import bk.elearning.utils.FileUpload;
 import bk.elearning.utils.TeacherMapperUtil;
-import bk.elearning.utils.UserMapperUtil;
 import bk.elearning.utils.Util;
 
 @Service
@@ -26,43 +23,27 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 
 	@Autowired
 	private ITeacherRepository teacherRepository;
-	@Autowired
-	IRoleService roleService;
 
 	@Override
 	public Teacher getById(int id) {
 		// TODO Auto-generated method stub
-		return teacherRepository.getById(Teacher.class, id);
+		return teacherRepository.getById( id);
 	}
-
-	@Override
-	public List<Teacher> getByIds(int[] ids) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public List<Teacher> getAll() {
 		// TODO Auto-generated method stub
-		return teacherRepository.getAll(Teacher.class);
+		return teacherRepository.getAll();
 	}
-
-	// lay theo tung khoang
-	@Override
-	public List<Teacher> getLimit(int start, int count) {
-		// TODO Auto-generated method stub
-		return teacherRepository.getLimit(start, count, Teacher.class);
-	}
-
 	// thêm mới đối tượng teacher không có ảnh đại diện
 	@Override
 	public int save(Teacher t) {
 		// TODO Auto-generated method stub
-		Set roles = new HashSet<Role>();
-		roles.add(roleService.getByName("ROLE_TEACHER"));
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		t.setPassword(passwordEncoder.encode(t.getPassword()));
+		t.setRole(Util.ROLE_TEACHER);
 		if (t.getImage() == "")
 			t.setImage(Util.DEFAULT_USER_IMAGE);
-		t.setCourse(null);
+		t.setCourses(null);
 		return teacherRepository.save(t);
 	}
 
@@ -71,11 +52,11 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 	 */
 	public int save(Teacher t, MultipartFile file) {
 		// TODO Auto-generated method stub
-		roleService.getByName("ROLE_TEACHER");
-		Set roles = new HashSet<Role>();
-		roles.add(roleService.getByName("ROLE_TEACHER"));
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		t.setPassword(passwordEncoder.encode(t.getPassword()));
+		t.setRole(Util.ROLE_TEACHER);
 
-		t.setCourse(null);
+		t.setCourses(null);
 		if (file != null) {
 			String filePath = "resources/commons/image/user/user-" + t.getCode() + "."
 					+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.') + 1);
@@ -94,7 +75,7 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 	@Override
 	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return teacherRepository.delete(Teacher.class, id);
+		return teacherRepository.delete( id);
 	}
 
 	// cập nhật không có hình ảnh
@@ -110,7 +91,7 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 	 */
 	@Override
 	public int update(Teacher teacher, MultipartFile file) {
-		Teacher teacherUpdate = teacherRepository.getById(Teacher.class, teacher.getId());
+		Teacher teacherUpdate = teacherRepository.getById( teacher.getId());
 		teacherUpdate.setEmail(teacher.getEmail());
 		teacherUpdate.setPhoneNumber(teacher.getPhoneNumber());
 		teacherUpdate.setDateOfBirth(teacher.getDateOfBirth());
@@ -132,6 +113,7 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 	public Teacher getByUsername(String username) {
 		// TODO Auto-generated method stub
 		return teacherRepository.getByUsername(username);
+
 	}
 
 	// lấy theo code
@@ -141,26 +123,7 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		return teacherRepository.getByCode(code);
 	}
 
-	/**
-	 * Xóa du lieu va phan trang du lieu Tham số ids là danh sách id cần xóa
-	 */
-	@Override
-	public int deleteMultiple(ArrayList<Integer> ids) {
-		// TODO Auto-generated method stub
-		int checkErro = 0;
-		for (Integer integer : ids) {
-			try {
-				teacherRepository.delete(Teacher.class, integer);
-			} catch (Exception e) {
-				// TODO: handle exception
-				checkErro++;
-			}
-		}
-		if (checkErro == 0)
-			return 1;
-		return 1;
-	}
-
+	
 	/**
 	 * tra ve du lieu va phan trang du lieu Tham số page là chỉ số trang Tham số
 	 * size là lượng phần tử cần lấy
@@ -170,9 +133,9 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		// TODO Auto-generated method stub
 		PaginationResult<Teacher> pageResult = new PaginationResult<Teacher>();
 		try {
-			pageResult.setCount(teacherRepository.getCount(Teacher.class));
+			pageResult.setCount(teacherRepository.getCount());
 			if (page > 0) {
-				pageResult.setData(teacherRepository.getLimit((page - 1) * size, size, Teacher.class));
+				pageResult.setData(teacherRepository.getAll((page - 1) * size, size));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -190,29 +153,55 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		// TODO Auto-generated method stub
 		PaginationResult<Teacher> pageResult = new PaginationResult<Teacher>();
 		try {
-			pageResult.setCount(teacherRepository.getCount(Teacher.class, filter, key));
+			HashMap<String, String> searchFields = new HashMap<String, String>();
+			searchFields.put(filter, key);
+			pageResult.setCount(teacherRepository.getCount(null, searchFields));
 			if (page > 0) {
-				pageResult.setData(teacherRepository.search(Teacher.class, filter, key, (page - 1) * size, size));
+				pageResult.setData(teacherRepository.search(null, searchFields, (page - 1) * size, size));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return pageResult;
 	}
-
-	// luu tu file exel
+	/**
+	 * Xóa du lieu va phan trang du lieu Tham số ids là danh sách id cần xóa
+	 */
+	
 	@Override
+	public int deleteMultiple(ArrayList<Integer> ids) {
+		// TODO Auto-generated method stub
+		int checkErro = 0;
+		for (Integer integer : ids) {
+			try {
+				teacherRepository.delete( integer);
+			} catch (Exception e) {
+				// TODO: handle exception
+				checkErro++;
+			}
+		}
+		if (checkErro == 0)
+			return 1;
+		return 1;
+	}
+	// luu tu file exel
+	
 	public int[] saveFromFile(MultipartFile file) {
 		// TODO Auto-generated method stub
+	
 		int success = 0;
 		int error = 0;
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		if (file != null) {
 			List<Teacher> teachers = FileUpload.processFileExel(file, new TeacherMapperUtil());
 			for (Teacher teacher : teachers) {
 				try {
+					
+					teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
 					if (teacher.getImage() == null || teacher.getImage().equals("")) {
 						teacher.setImage(Util.DEFAULT_USER_IMAGE);
 					}
+					teacher.setRole(Util.ROLE_TEACHER);
 					if (teacherRepository.save(teacher) == 1)
 						success++;
 				} catch (Exception e) {

@@ -1,7 +1,6 @@
 package bk.elearning.repository;
 
-import bk.elearning.entity.User;
+public interface IUserRepository<T> extends IGenericRepository<T>{
 
-public interface IUserRepository extends IGeneralRepository<User>{
-
+	T getByUsername(String username);
 }

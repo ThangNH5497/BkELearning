@@ -7,6 +7,14 @@
 	padding: 0px;
 	width: 100%;
 }
+.btn-control {
+	margin-right: 10px;
+	box-shadow: none;
+}
+.btn-control i
+{
+	font-size: 20px;
+}
 
 .hidden {
 	display: none !important;
@@ -221,11 +229,11 @@ th, td {
 }
 
 .column2 {
-	width: 13%;
+	width: 15%;
 }
 
 .column3 {
-	width: 23%;
+	width: 21%;
 }
 
 .column4 {
@@ -233,11 +241,11 @@ th, td {
 }
 
 .column5 {
-	width: 15%;
+	width: 20%;
 }
 
 .column6 {
-	width: 20%;
+	width: 15%;
 }
 
 .table-data-head th {
@@ -527,8 +535,8 @@ th, td {
 	-ms-box-sizing: border-box;
 }
 
-.form-v4-content .form-detail .form-row input:focus {
-	border: 1px solid #53c83c;
+.form-v4-content .form-detail .form-row input:focus ,area:focus{
+	border: 1px solid #53c83c !important;
 }
 
 .form-v4-content .form-detail .form-checkbox {

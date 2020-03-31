@@ -121,6 +121,6 @@ function resetFormEdit() {
 	$('#modal-edit input').val("");
 	$('#modal-edit input').removeClass('border-danger');
 	$('#modal-edit .image-preview').attr('src',
-			rootLocation + "resources/commons/image/default-user.jpg");
+			rootLocation + "resources/commons/image/user/default-user.jpg");
 	$('#modal-edit .error').addClass('hidden');
 }

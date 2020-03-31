@@ -91,7 +91,7 @@ public abstract class UserMapperUtil<T> implements IModelMapper<T> {
 					System.out.println("mime type : " + pict.getMimeType());
 					int picType = pict.getPictureType();
 					String ext = "jpg";
-					T t = list.get(clientAnchor.getRow1() - 1);
+					T object = list.get(clientAnchor.getRow1() - 1);
 					boolean checkType = true;
 					if (picType == Workbook.PICTURE_TYPE_JPEG) {
 						ext = "jpg";
@@ -99,15 +99,16 @@ public abstract class UserMapperUtil<T> implements IModelMapper<T> {
 						ext = "png";
 					} else
 						checkType = false;
-					if (checkType == true) {
+					String code=BeanUtils.getProperty(object, "code");
+					if (checkType == true&&object!=null&&code!=null&&code!="") {
 						String rootPath = FileUpload.context.getRealPath("/");
-						String filePath = "resources/commons/image/user/user." + ext;
+						String filePath = "resources/commons/image/user/user-"+code+"."+ ext;
 						filePath = FileUpload.createUniqueFileName(filePath);
 						FileOutputStream out = new FileOutputStream(rootPath + filePath);
-						byte[] data = pict.getData();
+						byte[] data = pict.getData(); 
 						out.write(data);
 
-						BeanUtils.setProperty(t, "image", filePath);
+						BeanUtils.setProperty(object, "image", filePath);
 						out.close();
 					}
 

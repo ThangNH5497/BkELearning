@@ -1,7 +1,17 @@
 package bk.elearning.service;
 
-import bk.elearning.entity.User;
+import org.springframework.web.multipart.MultipartFile;
 
-public interface IUserService extends IGeneralService<User>{
+import bk.elearning.entity.dto.PaginationResult;
 
+public interface IUserService<T> extends IGenericService<T>{
+
+	public T getByUsername(String username);
+	//luu voi anh
+	public int save(T t,MultipartFile file);
+	public int update(T t, MultipartFile file);
+	public int[] saveFromFile(MultipartFile file);
+	
+	public PaginationResult<T> getPage(int page,int size);
+	public PaginationResult<T> getSearchPage(String filter, String key, int page, int size);
 }

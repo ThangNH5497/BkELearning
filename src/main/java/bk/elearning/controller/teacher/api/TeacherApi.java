@@ -23,12 +23,13 @@ import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.service.ITeacherService;
 
 @RestController
-@RequestMapping(path = "/teacher")
+@RequestMapping(path = "/admin/teacher")
 @Transactional
 public class TeacherApi {
 
 	@Autowired
 	private ITeacherService teacherService;
+	
 
 	// lay tat ca
 	@GetMapping(path = "/teachers")

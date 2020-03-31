@@ -56,35 +56,82 @@ class Base {
     //lay tong so teacher
     getCountTeacher()
     {
-    	return this.getData('GET','teacher/count');
+    	return this.getData('GET','admin/teacher/count');
     }
     //lay theo tung khoang
     getTeachersLimit(start,count)
     {
-    	return this.getData('GET','teacher/teachers/'+start+"/"+count);
+    	return this.getData('GET','admin/teacher/teachers/'+start+"/"+count);
     }
     //get all teachers
     getAllTeachers()
     {
-    	return this.getData('GET','teacher/teachers');
+    	return this.getData('GET','admin/teacher/teachers');
     }
     //get teacher by username
     getTeacherByUsername(username)
     {
-    	return this.getData('GET','teacher/username/'+username);
+    	return this.getData('GET','admin/teacher/username/'+username);
     }
   //get teacher by code
     getTeacherByCode(code)
     {
-    	return this.getData('GET','teacher/code/'+code);
+    	return this.getData('GET','admin/teacher/code/'+code);
     }
   //get teacher by id
     getTeacherById(id)
     {
-    	return this.getData('GET','teacher/id/'+id);
+    	return this.getData('GET','admin/teacher/id/'+id);
     }
-
     
+	////////////////////////////////////////
+
+    //lay tong so student
+    getCountStudent()
+    {
+    	return this.getData('GET','admin/student/count');
+    }
+    //lay theo tung khoang
+    getStudentsLimit(start,count)
+    {
+    	return this.getData('GET','admin/student/students/'+start+"/"+count);
+    }
+    //get all student
+    getAllStudents()
+    {
+    	return this.getData('GET','admin/student/students');
+    }
+    //get student by username
+    getStudentByUsername(username)
+    {
+    	return this.getData('GET','admin/student/username/'+username);
+    }
+  //get student by code
+    getStudentByCode(code)
+    {
+    	return this.getData('GET','admin/student/code/'+code);
+    }
+  //get student by id
+    getStudentById(id)
+    {
+    	return this.getData('GET','admin/student/id/'+id);
+    }
+    //////////////////////////////////////////////
+  //get subject by code
+    getSubjectByCode(code)
+    {
+    	return this.getData('GET','admin/subject/code/'+code);
+    }
+    //get subject by id
+    getSubjectById(subjectId)
+    {
+    	return this.getData('GET','admin/subject/id/'+subjectId);
+    }
+    ///////////////get course////////////////////
+    getCourseByCode(code)
+    {
+    	return this.getData('GET','admin/course/code/'+code);
+    }
     initData(containerId,rowDataId,data)
     {
     		$('#'+rowDataId).removeClass('hidden');
@@ -102,10 +149,10 @@ class Base {
         		for(var j=0;j<fields.length;j++)
         		{
         			var fieldAttr=$(fields[j]).attr('field');
-        			
+        			var value=this.resolve(fieldAttr,data[i]);
         			if(fieldAttr=="image")
         			{
-        				$(fields[j]).attr('src',data[i][fieldAttr]);
+        				$(fields[j]).attr('src',value);
         			}
         			else if(fieldAttr=="index")
         			{
@@ -116,7 +163,7 @@ class Base {
         				$(fields[j]).children().children('input').attr('id','check-'+i);
         				$(fields[j]).children().children('label.custom-control-label').attr('for','check-'+i);
         			}
-        			else $(fields[j]).text(data[i][fieldAttr]);
+        			else $(fields[j]).text(value);
   	 
         		}
         	
@@ -128,7 +175,11 @@ class Base {
 
 
     }
-    
+    resolve(path, obj) {
+        return path.split('.').reduce(function(prev, curr) {
+            return prev ? prev[curr] : null
+        }, obj || self)
+    }
     //chuyen doi du lieu cac form sang json object
     formToJson(forms)
     {
@@ -150,5 +201,22 @@ class Base {
     }
     return o;
     };
-
+    //save or update model
+    saveOrUpdate(data,method,urlApi)
+    {
+    	$.ajax({
+        	method : method,
+            url : rootLocation+urlApi,
+            data : data,
+            processData : false,
+            contentType : false,
+            async:false,
+            success : function(data) {
+                alert(data);
+            },
+            errorr : function(err) {
+            	alert("error : "+err);
+            }
+        });
+    }
 }

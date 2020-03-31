@@ -11,67 +11,8 @@
 
 <!-- Phan noi dung trang -->
 <div class="wrapper d-flex align-items-stretch">
-	<nav id="sidebar">
-		<div class="custom-menu">
 
-			<button type="button" id="sidebarCollapse" class="btn btn-primary">
-				<i class="fa fa-bars"></i> <span class="sr-only">Toggle Menu</span>
-			</button>
-
-		</div>
-		<div class="p-4">
-			<h1>
-				<a href="index.html" class="logo">BK ELearning <span>Admin
-						page</span></a>
-			</h1>
-			<ul class="list-unstyled components mb-5">
-				<li class=""><a href="#"><span
-						class="icon fa fa-briefcase mr-3"></span> <span class="redirect">Trang
-							Chủ</span></a></li>
-
-				<li ><a
-					href="<c:url value='/admin/ql-giang-vien'/>"><span
-						class="icon fas fa-chalkboard-teacher mr-3"></span> <span
-						class="redirect">Giảng Viên</span></a></li>
-
-				<li class="active"><a href="<c:url value='/admin/ql-sinh-vien'/>"><span
-						class="icon fas fa-user-graduate mr-3"></span> <span
-						class="redirect">Sinh Viên</span></a></li>
-
-				<li><a href="#"><span class="icon fas fa-book-open mr-3"></span>
-						<span class="redirect">Môn Học</span></a></li>
-				<li><a href="#"><span class="icon fa fa-sticky-note mr-3"></span>
-						<span class="redirect">Thông Tin</span></a></li>
-
-				<li><a href="#"><span class="icon fa fa-cogs mr-3"></span>
-						<span class="redirect">Hệ Thống</span></a></li>
-				<li><a href="#"><span class="icon fas fa-sign-out-alt mr-3"></span>
-						<span class="redirect">Đăng Xuất</span></a></li>
-
-
-
-			</ul>
-
-			<div class="mb-5">
-				<!-- 
-				<h3 class="h6 mb-3">Subscribe for newsletter</h3>
-				<form action="#" class="subscribe-form">
-					<div class="form-group d-flex">
-						<div class="icon">
-							<span class="icon-paper-plane"></span>
-						</div>
-						<input type="text" class="form-control"
-							placeholder="Enter Email Address">
-					</div>
-				</form>
-				 -->
-			</div>
-
-			<div class="footer"></div>
-
-		</div>
-	</nav>
-
+	<jsp:include page="/WEB-INF/views/manager/commons/menu.jsp"></jsp:include>
 	<!-- Page Content  -->
 	<div id="content" class="mb-5">
 
@@ -94,7 +35,7 @@
 
 						<div class="select-style d-flex">
 							<select>
-								<option value='code'>Mã GV</option>
+								<option value='code'>Mã SV</option>
 								<option value='username'>TK</option>
 								<option value='fullName'>Tên</option>
 							</select> <i class="fas fa-caret-down"
@@ -207,7 +148,7 @@
 			<nav class="navbar navbar-light bg-light hidden"
 				style="font-weight: 600;" id='link-back-search'>
 				<span class="navbar-text"> <i class="fas fa-link"></i> <a
-					class='text-primary' href="trang-chu">Quản Lý Gảng Viên</a><span>
+					class='text-primary' href="ql-sinh-vien">Quản Lý Sinh Viên</a><span>
 						/ Tìm Kiếm</span>
 				</span>
 			</nav>
@@ -219,8 +160,8 @@
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary">Danh Sách
-								Giảng Viên</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Danh Sách Sinh
+								Viên</h6>
 
 							<div class="d-flex">
 								<button class="btn btn-add text-success" data-toggle="modal"
@@ -300,10 +241,10 @@
 																</div>
 															</th>
 															<th class="table-cell column1">STT</th>
-															<th class="table-cell column2">Mã GV</th>
+															<th class="table-cell column2">Mã SV</th>
 															<th class="table-cell column3">Họ&Tên</th>
-															<th class="table-cell column4">Bộ Môn</th>
-															<th class="table-cell column5">Chức Vụ</th>
+															<th class="table-cell column4">Lớp</th>
+															<th class="table-cell column5">Email</th>
 															<th class="table-cell column6">Ngày Sinh</th>
 
 														</tr>
@@ -316,7 +257,7 @@
 												<table>
 													<tbody id="table-data-body">
 
-														<tr class="table-row body hidden" id="row-data-container">
+														<tr class="table-row body hidden border-bottom border-top" id="row-data-container">
 
 															<td class="table-cell column0" field='checkBox'><div
 																	class="custom-control custom-checkbox">
@@ -324,16 +265,12 @@
 																		id="check-1"> <label
 																		class="custom-control-label" for="check-1"></label>
 																</div></td>
-															<td class="table-cell column1" field="index">Like a
-																butterfly</td>
-															<td class="table-cell column2" field="code">Like a
-																butterfly</td>
-															<td class="table-cell column3" field="fullName">Boxing</td>
-															<td class="table-cell column4" field="department">9:00
-																AM - 11:00 AM</td>
-															<td class="table-cell column5" field=position>Aaron
-																Chapman</td>
-															<td class="table-cell column6" field="dateOfBirth">10</td>
+															<td class="table-cell column1" field="index"></td>
+															<td class="table-cell column2" field="code"></td>
+															<td class="table-cell column3" field="fullName"></td>
+															<td class="table-cell column4" field="className"></td>
+															<td class="table-cell column5" field=email></td>
+															<td class="table-cell column6" field="dateOfBirth"></td>
 														</tr>
 
 													</tbody>
@@ -392,11 +329,11 @@
 												<div class="border-top my-3"></div>
 												<div class="row">
 													<div class="col-md-4">
-														<label>Mã GV</label>
+														<label>Mã SV</label>
 													</div>
 													<div class="col-md-8">
 
-														<p field="code">KTMT1</p>
+														<p field="code"></p>
 													</div>
 												</div>
 											</div>
@@ -408,7 +345,7 @@
 														<label>Họ&Tên</label>
 													</div>
 													<div class="col-md-8">
-														<p field="fullName">Kshiti Ghelani</p>
+														<p field="fullName"></p>
 													</div>
 												</div>
 											</div>
@@ -419,7 +356,7 @@
 														<label>Email</label>
 													</div>
 													<div class="col-md-8">
-														<p field="email">kshitighelani@gmail.com</p>
+														<p field="email"></p>
 													</div>
 												</div>
 											</div>
@@ -430,7 +367,7 @@
 														<label>SĐT</label>
 													</div>
 													<div class="col-md-8">
-														<p field="phoneNumber">123 456 7890</p>
+														<p field="phoneNumber"></p>
 													</div>
 												</div>
 											</div>
@@ -438,21 +375,10 @@
 												<div class="border-top my-3"></div>
 												<div class="row">
 													<div class="col-md-4">
-														<label>Bộ Môn</label>
+														<label>Lớp </label>
 													</div>
 													<div class="col-md-8">
-														<p field="department">Web Developer and Designer</p>
-													</div>
-												</div>
-											</div>
-											<div>
-												<div class="border-top my-3"></div>
-												<div class="row">
-													<div class="col-md-4">
-														<label>Chức Vụ</label>
-													</div>
-													<div class="col-md-8">
-														<p field="position">Web Developer and Designer</p>
+														<p field="className"></p>
 													</div>
 												</div>
 											</div>
@@ -463,7 +389,7 @@
 														<label>Địa Chỉ</label>
 													</div>
 													<div class="col-md-8">
-														<p field="addr">Web Developer and Designer</p>
+														<p field="addr"></p>
 													</div>
 												</div>
 											</div>
@@ -474,7 +400,7 @@
 														<label>Ngày Sinh</label>
 													</div>
 													<div class="col-md-8">
-														<p field="dateOfBirth">Web Developer and Designer</p>
+														<p field="dateOfBirth"></p>
 													</div>
 												</div>
 											</div>
@@ -508,7 +434,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thêm Giảng Viên</p>
+				<p class="heading lead">Thêm Sinh Viên</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -537,12 +463,12 @@
 								<div class="form-v4-content">
 									<form class="form-detail" action="#" method="post"
 										id="form-add-step-one">
-										<h2>Thông Tin Giảng Viên Bắt Buộc</h2>
+										<h2>Thông Tin Sinh Viên Bắt Buộc</h2>
 										<div class="form-group">
 											<div class="form-row form-row-1">
-												<label for="code">Mã GV (*)</label> <input type="text"
+												<label for="code">Mã SV (*)</label> <input type="text"
 													name="code" class="input-text"> <label
-													name="code-error" class="error hidden">Mã Gv Tồn
+													name="code-error" class="error hidden">Mã SV Tồn
 													Tại</label>
 											</div>
 
@@ -619,11 +545,14 @@
 
 
 											</div>
-
+											<div class="form-row">
+												<label for="addr">Địa Chỉ</label> <input type="text"
+													name="addr" class="input-text">
+											</div>
 											<div class="form-group">
 												<div class="form-row form-row-1 ">
-													<label for="department">Địa Chỉ</label> <input type="text"
-														name="addr" class="input-text">
+													<label>Lớp</label> <input type="text" name="className"
+														class="input-text">
 												</div>
 												<div class="form-row form-row-1">
 													<label for="comfirm-password">Ngày Sinh</label> <input
@@ -632,17 +561,7 @@
 												</div>
 
 											</div>
-											<div class="form-group">
-												<div class="form-row form-row-1 ">
-													<label for="department">Bộ Môn</label> <input type="text"
-														name="department" class="input-text">
-												</div>
-												<div class="form-row form-row-1">
-													<label for="comfirm-password">Chức Vụ</label> <input
-														type="text" name="position" class="input-text">
-												</div>
 
-											</div>
 
 										</form>
 									</div>
@@ -666,13 +585,15 @@
 					<!-- them giang vien tu file exel -->
 					<div class="tab-pane fade" id="add-exel-tab" role="tabpanel"
 						aria-labelledby="profile-tab">
+
 						<div class="form-container">
 							<div class="form-v4">
 								<div class="form-v4-content">
-									<form class="form-detail" action="#" method="post" id="myform">
-										<h2>Thêm Danh Sách Giảng Viên Từ File Exel</h2>
-										
-										<div class="hidden alert alert-danger alert-dismissible fade show"
+									<form class="form-detail" id="form-exel-file">
+										<h2>Thêm Danh Sách Sinh Viên Từ File Exel</h2>
+
+										<div
+											class="hidden alert alert-danger alert-dismissible fade show"
 											role="alert" id='alert-file-exel'>
 											<strong>Cảnh Báo !</strong> Bạn Chưa Chọn File.
 											<button type="button" class="close" data-dismiss="alert"
@@ -698,6 +619,9 @@
 									class="btn  waves-effect btn-submit-file-exel">Tải Lên</a>
 							</div>
 						</div>
+
+
+
 					</div>
 					<!-- end them giang vien tu file exel -->
 				</div>
@@ -712,9 +636,10 @@
 </div>
 
 <!-- end modal save or update -->
-<!-- modal edit -->
 
-<!-- modal add new teacher -->
+
+
+<!-- modal edit -->
 
 <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog"
 	aria-labelledby="edit" aria-hidden="true">
@@ -722,7 +647,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Sửa Thông Tin Giảng Viên</p>
+				<p class="heading lead">Sửa Thông Tin Sinh Viên</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -765,11 +690,14 @@
 
 
 									</div>
-
+									<div class="form-row">
+										<label for="addr">Địa Chỉ</label> <input type="text"
+											name="addr" class="input-text">
+									</div>
 									<div class="form-group">
 										<div class="form-row form-row-1 ">
-											<label for="department">Địa Chỉ</label> <input type="text"
-												name="addr" class="input-text">
+											<label>Lớp</label> <input type="text" name="className"
+												class="input-text">
 										</div>
 										<div class="form-row form-row-1">
 											<label for="comfirm-password">Ngày Sinh</label> <input
@@ -778,17 +706,7 @@
 										</div>
 
 									</div>
-									<div class="form-group">
-										<div class="form-row form-row-1 ">
-											<label for="department">Bộ Môn</label> <input type="text"
-												name="department" class="input-text">
-										</div>
-										<div class="form-row form-row-1">
-											<label for="comfirm-password">Chức Vụ</label> <input
-												type="text" name="position" class="input-text">
-										</div>
 
-									</div>
 
 								</form>
 							</div>
@@ -848,6 +766,46 @@
 </div>
 
 <!-- end modal alert -->
+
+<!-- modal message -->
+<div class="modal fade" id="modal-message" tabindex="-1" role="dialog"
+	aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<p class="heading lead">Đang Xử Lý...</p>
+
+			</div>
+
+			<!--Body-->
+			<div class="modal-body">
+				<div class="form-container message-container">
+					<div class="border-top my-3"></div>
+					<div class="waiting-process d-flex justify-content-center">
+						<h2 class="message hidden"></h2>
+						<img style="max-width: 48px; max-height: 48px;"
+							src="<c:url value='/resources/commons/image/icon/load-icon.gif' />">
+
+					</div>
+					<!--Footer-->
+					<div class="border-top my-3"></div>
+					<div class="d-flex justify-content-center">
+						<a type="button" style="margin: 0 !important;"
+							class="btn hidden waves-effect btn-ok">OK</a>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</div>
+	<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+<!-- end modal message -->
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>
 <script
@@ -861,7 +819,7 @@
 	src="<c:url value='/resources/manager/commons/js/pagination.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/search.js' />"></script>
 <script
-	src="<c:url value='/resources/manager/admin/js/teacher-manager.js' />"></script>
+	src="<c:url value='/resources/manager/admin/js/student-management.js' />"></script>
 <!-- Footer -->
 <script type="text/javascript">
 	(function($) {

@@ -22,7 +22,7 @@ public class Teacher extends User{
 
 	@JsonIgnore
 	@OneToMany(mappedBy="teacher",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private Set<Course> course;
+    private Set<Course> courses;
 
 	public Teacher() {
 		super();
@@ -30,20 +30,20 @@ public class Teacher extends User{
 	}
 
 	public Teacher(int id, String code, String username, String password, String fullName, String email, String addr,
-			String phoneNumber, Date dateOfBirth, String image, Set<Role> roles,String department, String position) {
-		super(id, code, username, password, fullName, email, addr, phoneNumber, dateOfBirth, image, roles);
+			String phoneNumber, Date dateOfBirth, String image, String role,String department, String position) {
+		super(id, code, username, password, fullName, email, addr, phoneNumber, dateOfBirth, image, role);
 		// TODO Auto-generated constructor stub
 		this.department = department;
 		this.position = position;
 	}
 
 	public Teacher(String code, String username, String password, String fullName, String email, String addr,
-			String phoneNumber, Date dateOfBirth, String image, Set<Role> roles,String department, String position, Set<Course> course) {
-		super(code, username, password, fullName, email, addr, phoneNumber, dateOfBirth, image, roles);
+			String phoneNumber, Date dateOfBirth, String image, String role,String department, String position, Set<Course> courses) {
+		super(code, username, password, fullName, email, addr, phoneNumber, dateOfBirth, image, role);
 		// TODO Auto-generated constructor stub
 		this.department = department;
 		this.position = position;
-		this.course = course;
+		this.courses = courses;
 	}
 
 	public String getDepartment() {
@@ -62,12 +62,12 @@ public class Teacher extends User{
 		this.position = position;
 	}
 
-	public Set<Course> getCourse() {
-		return course;
+	public Set<Course> getCourses() {
+		return courses;
 	}
 
-	public void setCourse(Set<Course> course) {
-		this.course = course;
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
 	}
 	
 }

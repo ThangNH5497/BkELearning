@@ -1,5 +1,5 @@
 //so luong data max tren 1 trang
-const MAX_ITEMS = 1;
+const MAX_ITEMS = 10;
 // so luong lien ket hien thi
 const TOTAL_PAGE_SHOW=5;
 // trang cuoi
@@ -43,7 +43,7 @@ function handlePagination(paginationContainer,url) {
 			}
 				
 		}
-		updateTableData(currentPage,pageData.data);
+		updatePagination(currentPage);
 		// add events
 		addEvents();
 	} catch (e) {
@@ -133,35 +133,32 @@ function updatePagination(currentPage) {
 	else $('#nextPage').removeClass('disabled');
 	
 	var pageData=obj.getData('GET',urlApiData+"page="+currentPage+"&size="+MAX_ITEMS);
-	updateTableData(currentPage,pageData.data);
 	
-}
-function updateTableData(currentPage,data)
-{
 	try {
 		//update pagination-title
-		var title='';
+		var title='Hiển Thị ';
 		if(currentPage==1)
 		{
-			title='1-'+data.length+'/'+countItems;
+			title+='1-'+pageData.data.length+'/'+pageData.count;
 		}
-		else if(data.length==MAX_ITEMS)
+		else if(pageData.data.length==MAX_ITEMS)
 		{
-			title=(parseInt((parseInt(currentPage)-1)*MAX_ITEMS)+1)+'-'+parseInt(currentPage)*MAX_ITEMS+'/'+countItems;
+			title+=(parseInt((parseInt(currentPage)-1)*MAX_ITEMS)+1)+'-'+parseInt(currentPage)*MAX_ITEMS+'/'+pageData.count;
 		}
-		else if(data.length<MAX_ITEMS)
+		else if(pageData.data.length<MAX_ITEMS)
 		{
-			title=(parseInt((parseInt(currentPage)-1)*MAX_ITEMS)+1)+'-'+data.length+'/'+countItems;
+			title+=(parseInt((parseInt(currentPage)-1)*MAX_ITEMS)+1)+'-'+(pageData.data.length+(parseInt(currentPage)-1)*MAX_ITEMS)+'/'+pageData.count;
 		}
 		$('#pagination-title').text(title);
 	} catch (e) {
 		// TODO: handle exception
 	}
 	
+	updateTableData(currentPage,pageData.data);
 	
+}
+function updateTableData(currentPage,data)
+{	
 	obj.initData('table-data-body','row-data-container',data);
-
-	
-
 	
 }

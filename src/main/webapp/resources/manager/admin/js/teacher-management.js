@@ -1,22 +1,24 @@
 $(document).ready(function() {
 
 	obj=new TeacherManager();
+	$('#sidebar .active').removeClass('active');
+	$('#menu-item-teacher').addClass('active');
 	//file add-user.js
-	addNewUserEvents('teacher','teacher/add');
+	addNewUserEvents('teacher','admin/teacher/add');
 	
 	//file edit-user.js
-	editUserEvents('teacher','teacher/update');
+	editUserEvents('teacher','admin/teacher/update');
 	
 	//file delete.js
-	deleteEvents("teacher/delete/multiple");
+	deleteEvents("admin/teacher/delete/multiple");
 	
 	tableDataEvents();
 	
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'teacher/page?');
+	handlePagination($('#pagination'),'admin/teacher/page?');
 	
 	//search events
-	searchEvents('teacher/search');
+	searchEvents('admin/teacher/search?');
 	
 });
 
@@ -37,7 +39,7 @@ function tableDataEvents()
 		var id=$(this).attr("dataId");
 		$(this).addClass('selected');
 		//lay doi tuong user ko dong bo va xu ly voi ham initUserDetail
-		obj.getDataAsync("GET",'teacher/id/'+id,initUserDetail);
+		obj.getDataAsync("GET",'admin/teacher/id/'+id,initUserDetail);
 	});
 	//btn refresh
 	$(document).on('click', '.btn-refresh', function () {

@@ -1,0 +1,26 @@
+.content-container
+{
+	min-height: 90vh;
+	height: 90vh;
+	max-height: 90vh;
+	overflow: auto;
+}
+.card-container {
+	height: 18vh !important;
+	max-height: 18vh !important;
+	min-height: 18vh !important;
+}
+
+.card-body {
+	height: 10vh !important;
+	max-height: 10vh !important;
+	min-height: 10vh !important;
+}
+
+.card-header {
+	background: #bfe9ff;
+	height: 8vh !important;
+	max-height: 8vh !important;
+	min-height: 8vh !important;
+}
+

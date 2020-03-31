@@ -1,5 +1,6 @@
 package bk.elearning.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -16,11 +17,7 @@ public class ExamPaperServiceImpl implements IExamPaperService {
 		return null;
 	}
 
-	@Override
-	public List<ExamPaper> getByIds(int[] ids) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public List<ExamPaper> getAll() {
@@ -28,11 +25,6 @@ public class ExamPaperServiceImpl implements IExamPaperService {
 		return null;
 	}
 
-	@Override
-	public List<ExamPaper> getLimit(int start, int count) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public int save(ExamPaper t) {
@@ -52,6 +44,17 @@ public class ExamPaperServiceImpl implements IExamPaperService {
 		return 0;
 	}
 
+	@Override
+	public ExamPaper getByCode(String code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int deleteMultiple(ArrayList<Integer> ids) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 
 }

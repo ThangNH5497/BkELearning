@@ -7,22 +7,30 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
-@Entity
-public class Subject extends AbstractEntity{
+import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@DynamicUpdate
+public class Subject extends AbstractEntity{
+	@Column(name="code",nullable = false,unique = true)
 	private String code;
 	
-	@Column(name="subject_name")
+	@Column(name="subject_name",nullable = false)
 	private String subjectName;
 	
 	private String descriptor;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="subject",fetch = FetchType.LAZY)
 	private List<Course> courses;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="subject",fetch = FetchType.LAZY)
 	private List<Question> questions;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="subject",fetch = FetchType.LAZY)
 	private List<Exam> exams;
 

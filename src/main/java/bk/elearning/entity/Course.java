@@ -24,24 +24,21 @@ public class Course extends AbstractEntity{
 	
 	private String descriptor;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="course",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<StudentCourse> studentCourses;
 	
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "subject_id")
 	private Subject subject;
 
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "teacher_id")
 	private Teacher teacher;
 	
 	public Course() {
 		super();
 	}
-
-
 
 	public String getCode() {
 		return code;
@@ -67,6 +64,13 @@ public class Course extends AbstractEntity{
 		this.descriptor = descriptor;
 	}
 
+	public Set<StudentCourse> getStudentCourses() {
+		return studentCourses;
+	}
+
+	public void setStudentCourses(Set<StudentCourse> studentCourses) {
+		this.studentCourses = studentCourses;
+	}
 
 	public Subject getSubject() {
 		return subject;
@@ -75,6 +79,17 @@ public class Course extends AbstractEntity{
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+
+
 	
 	
 }
