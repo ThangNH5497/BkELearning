@@ -10,13 +10,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import bk.elearning.entity.relationship.StudentCourse;
 
 @Entity
+@DynamicUpdate
 public class Course extends AbstractEntity{
 
+	@Column(unique = true,nullable = false)
 	private String code;
 	
 	@Column(name = "course_name")
@@ -29,7 +33,7 @@ public class Course extends AbstractEntity{
     private Set<StudentCourse> studentCourses;
 	
 	@ManyToOne
-	@JoinColumn(name = "subject_id")
+	@JoinColumn(name = "subject_id",nullable = false)
 	private Subject subject;
 
 	@ManyToOne
@@ -88,8 +92,4 @@ public class Course extends AbstractEntity{
 		this.teacher = teacher;
 	}
 
-
-
-	
-	
 }

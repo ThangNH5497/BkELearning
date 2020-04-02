@@ -50,7 +50,12 @@ public class CourseServiceImpl implements ICourseService {
 	@Override
 	public int update(Course t) {
 		// TODO Auto-generated method stub
-		return courseRepository.update(t);
+		Course courseUpdate=courseRepository.getById(t.getId());
+		courseUpdate.setCode(t.getCode());
+		courseUpdate.setDescriptor(t.getDescriptor());
+		courseUpdate.setCourseName(t.getCourseName());
+		courseUpdate.setTeacher(t.getTeacher());
+		return courseRepository.update(courseUpdate);
 	}
 
 	@Override

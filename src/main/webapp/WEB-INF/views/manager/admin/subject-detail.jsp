@@ -10,7 +10,6 @@
 	href="<c:url value='/resources/manager/commons/css/dashboard.css' />">
 <link rel="stylesheet"
 	href="<c:url value='/resources/manager/commons/css/subject-detail.css' />">
-
 <!-- Phan noi dung trang -->
 <div class="wrapper d-flex align-items-stretch">
 
@@ -80,7 +79,8 @@
 							class=" card-header py-3 d-flex flex-row align-items-center justify-content-between">
 							<h5 class="m-0 font-weight-bold text-primary" field="code"></h5>
 							<div class="d-flex justify-content-end w-50">
-								<button class="btn btn-edit text-primary disabled btn-control">
+								<button class="btn btn-edit text-primary btn-control"
+									data-toggle="modal" data-target="#modal-edit">
 									<i class="fas fa-edit"></i>
 								</button>
 								<button class="btn btn-delete text-danger btn-control">
@@ -95,7 +95,8 @@
 							<div class="container h-100">
 								<div class=" row h-50 d-flex">
 									<div class="col-2 align-self-center">
-										<h6 class="m-0 font-weight-bold text-secondary">Giảng Viên</h6>
+										<h6 class="m-0 font-weight-bold text-secondary">Giảng
+											Viên</h6>
 									</div>
 									<div class="col-9 align-self-center">
 										<h6 class="m-0 font-weight-bold text-primary"
@@ -105,11 +106,10 @@
 
 									</div>
 								</div>
-								
+
 								<div class=" row h-50 d-flex">
 									<div class="col-2 align-self-center">
-										<h6 class="m-0 font-weight-bold text-secondary">Mô
-											Tả</h6>
+										<h6 class="m-0 font-weight-bold text-secondary">Mô Tả</h6>
 									</div>
 									<div class="col-9 align-self-center">
 										<h6 class="m-0 font-weight-bold text-primary"
@@ -228,7 +228,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thêm Môn Học</p>
+				<p class="heading lead">Sửa Thông Tin Lớp</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -242,17 +242,16 @@
 					<div class="form-v4">
 						<div class="form-v4-content">
 							<form class="form-detail" action="#" method="post" id="form-edit">
-								<h2>Sửa Thông Tin Môn Học</h2>
+								<h2>Sửa Thông Tin Lớp</h2>
 								<div class="form-group">
 									<div class="form-row form-row-1">
-										<label for="code">Mã Môn Học (*)</label> <input type="text"
+										<label for="code">Mã Lớp (*)</label> <input type="text"
 											name="code" class="input-text" required> <label
-											name="code-error" class="error hidden">Mã Môn Học Tồn
-											Tại</label>
+											name="code-error" class="error hidden">Mã Lớp Tồn Tại</label>
 									</div>
 									<div class="form-row form-row-1">
-										<label for="subjectName">Tên Môn Học (*)</label> <input
-											type="text" name="subjectName" class="input-text" required>
+										<label for="subjectName">Tên Lớp (*)</label> <input
+											type="text" name="courseName" class="input-text" required>
 									</div>
 								</div>
 
@@ -260,6 +259,61 @@
 									<label for="descriptor">Mô Tả</label> <input type="text"
 										name="descriptor" class=" input-text">
 
+								</div>
+
+								<div class="form-row">
+									<label for="descriptor">Mã Giảng Viên Phụ Trách</label> <input
+										type="text"  class=" input-text teacher-code">
+										<label name="code-error" id="teacher-code-error" class="error hidden">Mã Giảng Viên Không Tồn Tại</label>
+
+								</div>
+								<!-- teacher freview -->
+								<div class="container-fluid hidden" id="preview-teacher-container">
+									<div class="d-flex form-row" style="background: #f8f9fa;"
+										id="preview-teacher-row">
+										<div class="col-2">
+											<img field="image" style="max-height: 100%; max-width: 100%;"
+												src="<c:url value='/resources/commons/image/user/default-user.jpg'/>">
+										</div>
+										<div class="col-5 pl-3">
+											<div class="row h-50">
+												<div class="col-md-4 align-self-center">
+													<label>Mã GV</label>
+												</div>
+												<div class="col-md-8 align-self-center">
+													<p class="text-primary" field="code">gv01</p>
+												</div>
+											</div>
+											<div class="row h-50">
+												<div class="col-md-4 align-self-center">
+													<label>Họ&Tên</label>
+												</div>
+												<div class="col-md-8 align-self-center">
+													<p class="text-primary" field="fullName">Nguyễn Thắng</p>
+												</div>
+											</div>
+										</div>
+										<div class="col-5 pl-3">
+											<div class="row h-50">
+												<div class="col-md-4 align-self-center">
+													<label>Chức Vụ</label>
+												</div>
+												<div class="col-md-8 align-self-center">
+
+													<p class="text-primary" field="position">không</p>
+												</div>
+											</div>
+											<div class="row h-50">
+												<div class="col-md-4 align-self-center">
+													<label>Bộ Môn</label>
+												</div>
+												<div class="col-md-8 align-self-center">
+
+													<p class="text-primary" field="department">không</p>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 
 							</form>
@@ -270,7 +324,7 @@
 					<div class="d-flex justify-content-center">
 						<a type="button" class="btn  waves-effect btn-cancel"
 							data-dismiss="modal">Hủy</a> <a type="button"
-							class="btn  waves-effect btn-submit">Lưu</a>
+							class="btn  waves-effect btn-submit" disabled>Lưu</a>
 					</div>
 				</div>
 			</div>

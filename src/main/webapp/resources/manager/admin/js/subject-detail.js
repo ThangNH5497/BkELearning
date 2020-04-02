@@ -14,6 +14,9 @@ $(document).ready(function() {
 	searchEvents('admin/course/search/subject?subjectId='+subjectId+'&');
 	addNewCourseEvents();
 	
+	editCourseEvents('admin/course/update');
+	onDeleteEvents();
+	
 });
 
 var data=[];
@@ -36,7 +39,7 @@ function getParametter(paramName)
 	var param = urlParams.get(paramName);
 	return param;
 }
-function validForm(formId,subject)
+function validForm(formId,course)
 {
 	var checkValidInput=true;
 		 var inputs=$('#'+formId+' input[required]');
@@ -55,7 +58,7 @@ function validForm(formId,subject)
 			var checkDataExis;
 			// kiem tra ma code ton tai
 			checkDataExis=obj.getCourseByCode($('#'+formId+' input[name="code"]').val());
-			if(checkDataExis!=""&&checkDataExis.code!=subject.code)
+			if(checkDataExis!=""&&checkDataExis.code!=course.code)
 			{
 				checkValidInput=false;
 				//doi mau input
@@ -70,8 +73,7 @@ function validForm(formId,subject)
 			}
 			
 		}
-		
-		
+			
 	return checkValidInput;
 }
 function addNewCourseEvents()
@@ -103,19 +105,59 @@ function addNewCourseEvents()
 		$(this).removeClass('border-danger');
 	});
 }
-function editSubjectEvents()
+function editCourseEvents()
 {
-	var subject;
-	$(document).on('show.bs.modal', '#modal-edit', function(e) {
-		subject = initFormEdit();
+	var course;
+	var check=true;
+	var teacher;
+	$(document).on('click', '#table-data-body .btn-edit', function () {
+		var courseId=$(this).parents('[dataId]').attr('dataId');
+		course = initFormEdit(courseId);
 	});
 	// event modal edit closed, reset input of form
 	$(document).on('hidden.bs.modal', '#modal-edit', function(e) {
 		resetFormEdit();
 	});
+	//teacher code
+	$('#modal-edit .teacher-code').on('input',function(e){
+	    if($('#modal-edit .teacher-code').val()!="")
+	    {
+	    	check=false;
+	    	$('#modal-edit .btn-submit').prop("disabled", true);
+	    }
+	    else
+	    {
+	    	check=true;
+	    	$('#modal-edit .btn-submit').prop("disabled", true);
+	    }
+	});
+	$("#modal-edit .teacher-code").bind("input propertychange", function (evt) {
+	    // If it's the propertychange event, make sure it's the value that changed.
+	    if (window.event && event.type == "propertychange" && event.propertyName != "value")
+	        return;
+	    // Clear any previously set timer before setting a fresh one
+	    window.clearTimeout($(this).data("timeout"));
+	    $(this).data("timeout", setTimeout(function () {
+	        var teacherCode=$("#modal-edit .teacher-code").val();
+	        teacher=obj.getTeacherByCode(teacherCode);
+	    	if(teacher!=""&&teacher!=undefined)
+	    	{
+	    		$('#preview-teacher-container').removeClass('hidden');
+	    		obj.initData('preview-teacher-container','preview-teacher-row',[teacher]);
+	    		check=true;
+	    	}
+	    	else
+	    	{
+	    		$("#modal-edit .teacher-code").addClass('border-danger');
+	    		$("#teacher-code-error").removeClass('hidden');
+	    		$('#preview-teacher-container').addClass('hidden');
+	    	}
+	    
+	    }, 1500));
+	});
 	// event submit form
 	$('#modal-edit .btn-submit').click(this,function(){
-		if(validForm('form-edit',subject)==true)
+		if(validForm('form-edit',course)==true&&check==true)
 		{
 			try {
 				var formData = new FormData();
@@ -124,20 +166,15 @@ function editSubjectEvents()
 				for (var i = 0; i < inputs.length; i++) 
 				{
 					var name = $(inputs[i]).attr('name');
-					subject[name] = $(inputs[i]).val();
+					course[name] = $(inputs[i]).val();
 				}
-		        //them doi tuong user json vao form data
-		        formData.append("subject", new Blob([JSON.stringify(subject)], {
+				course['teacher']=teacher;
+		        //them doi tuong  json vao form data
+		        formData.append("course", new Blob([JSON.stringify(course)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"PUT","admin/subject/update");
-		     // cap nhat lai bang du lieu
-				var fields = $('#table-data-body tr.selected td[field]');
-				for (var i = 0; i < fields.length; i++) 
-				{
-					var name = $(fields[i]).attr('field');
-					$(fields[i]).text(subject[name]);
-				}
+		        obj.saveOrUpdate(formData,"PUT","admin/course/update");
+		        location.reload(true);
 			} catch (e) {
 				// TODO: handle exception
 				alert("Lỗi : "+err);
@@ -145,6 +182,10 @@ function editSubjectEvents()
 			
 	        //close modal
 	        $('#modal-edit').modal('hide');
+		}
+		else if(check==false)
+		{
+			alert("Giảng Viên Không Tồn Tại!")
 		}
 	
 	});
@@ -154,31 +195,55 @@ function editSubjectEvents()
 	});
 }
 //khoi tao cac gia tri co san cho form
-function initFormEdit() {
-	var subject;
+function initFormEdit(courseId) {
+	var course;
 	try {
 		// lay doi tuong dang chon
 		
-		var subjectId = $('#table-data-body tr.selected').attr('dataId');
-		
-		subject = obj.getSubjectById(subjectId);
+		course = obj.getCourseById(courseId);
 		// init input
 		var inputs = $('#form-edit input[name]');
 		for (var i = 0; i < inputs.length; i++) {
 			var name = $(inputs[i]).attr('name');
-			$(inputs[i]).val(subject[name]);
+			$(inputs[i]).val(course[name]);
 		}
 		
 	} catch (err) {
 
 	}
-	return subject;
+	return course;
 }
 // dat lai cac gia tri ban dau cho form them moi
 function resetForm() {
 	$('.modal input').val("");
 	$('.modal input').removeClass('border-danger');
 	$('.modal .error').addClass('hidden');
+}
+
+function onDeleteEvents()
+{
+	$(document).on('click', '#table-data-body .btn-delete', function () {
+		$('#modal-delete-alert').modal('show');
+		var courseId=$(this).parents('[dataId]').attr('dataId');
+		$(document).on('click', '#modal-delete-alert .btn-delete-alert-ok', function () {		
+		
+			$.ajax({
+	        	method : "DELETE",
+	            url : rootLocation+"admin/course/delete/"+courseId,
+	            data : "",
+	            dataType : "text",
+				contentType : "application/json; charset=utf-8",
+	            success : function(data) {
+	                console.log('delete success : '+data);
+	            },
+	            errorr : function(err) {
+	            	console.log('delete error : '+err);
+	            }
+	        });
+			location.reload();
+		});
+		
+	});
 }
 class SubjectManagement extends Base {
 	

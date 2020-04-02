@@ -128,6 +128,10 @@ class Base {
     	return this.getData('GET','admin/subject/id/'+subjectId);
     }
     ///////////////get course////////////////////
+    getCourseById(courseId)
+    {
+    	return this.getData('GET','admin/course/id/'+courseId);
+    }
     getCourseByCode(code)
     {
     	return this.getData('GET','admin/course/code/'+code);
@@ -218,5 +222,24 @@ class Base {
             	alert("error : "+err);
             }
         });
+    }
+    //valid input
+    validateInput(formId)
+    {
+    	var check=true;
+    	var inputs=$('#'+formId+' input[requied]');
+    	for(var i=0;i<inputs.length;i++)
+    	{
+    		if($(inputs[i]).val("")=="")
+    		{
+    			$(inputs[i]).addClass('border-danger');
+    			check=false;
+    		}
+    		else 
+    		{
+    			$(inputs[i]).removeClass('border-danger');
+    		}
+    	}
+    	return check;
     }
 }

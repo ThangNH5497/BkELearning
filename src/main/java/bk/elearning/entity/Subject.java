@@ -2,6 +2,7 @@ package bk.elearning.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,7 +24,7 @@ public class Subject extends AbstractEntity{
 	private String descriptor;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="subject",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="subject",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<Course> courses;
 	
 	@JsonIgnore

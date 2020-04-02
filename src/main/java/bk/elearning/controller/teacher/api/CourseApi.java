@@ -99,7 +99,7 @@ public class CourseApi {
 			if (courseService.update(course) == 1)
 				return "Update Thành Công";
 		} catch (Exception e) {
-
+			System.out.println("ex : "+e.toString());
 		}
 
 		return "error . Xin Thử Lại Sau !";
