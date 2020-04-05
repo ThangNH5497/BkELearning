@@ -15,7 +15,9 @@ $(document).ready(function() {
 	addNewCourseEvents();
 	
 	editCourseEvents('admin/course/update');
+	teacherManagementEvents();
 	onDeleteEvents();
+	removeTeacherEvents();
 	
 });
 
@@ -30,7 +32,10 @@ function tableDataEvents()
 	$(document).on('click', '.btn-refresh', function () {
 		location.reload();
 	});
-	
+	$(document).on('click', '#btn-search', function () {
+		$('#link-back-search').removeClass('hidden');
+		$('#link-current').addClass('hidden');
+	});
 }
 function getParametter(paramName)
 {
@@ -86,7 +91,7 @@ function addNewCourseEvents()
 				var jsonObject=obj.formToJson([$('#form-add-new')]);
 				jsonObject['subject']=subject;
 				var formData = new FormData();
-		        //them doi tuong user json vao form data
+		        //them doi tuong course json vao form data
 		        formData.append("course", new Blob([JSON.stringify(jsonObject)], {
 		            type: "application/json"
 		        }));
@@ -118,43 +123,6 @@ function editCourseEvents()
 	$(document).on('hidden.bs.modal', '#modal-edit', function(e) {
 		resetFormEdit();
 	});
-	//teacher code
-	$('#modal-edit .teacher-code').on('input',function(e){
-	    if($('#modal-edit .teacher-code').val()!="")
-	    {
-	    	check=false;
-	    	$('#modal-edit .btn-submit').prop("disabled", true);
-	    }
-	    else
-	    {
-	    	check=true;
-	    	$('#modal-edit .btn-submit').prop("disabled", true);
-	    }
-	});
-	$("#modal-edit .teacher-code").bind("input propertychange", function (evt) {
-	    // If it's the propertychange event, make sure it's the value that changed.
-	    if (window.event && event.type == "propertychange" && event.propertyName != "value")
-	        return;
-	    // Clear any previously set timer before setting a fresh one
-	    window.clearTimeout($(this).data("timeout"));
-	    $(this).data("timeout", setTimeout(function () {
-	        var teacherCode=$("#modal-edit .teacher-code").val();
-	        teacher=obj.getTeacherByCode(teacherCode);
-	    	if(teacher!=""&&teacher!=undefined)
-	    	{
-	    		$('#preview-teacher-container').removeClass('hidden');
-	    		obj.initData('preview-teacher-container','preview-teacher-row',[teacher]);
-	    		check=true;
-	    	}
-	    	else
-	    	{
-	    		$("#modal-edit .teacher-code").addClass('border-danger');
-	    		$("#teacher-code-error").removeClass('hidden');
-	    		$('#preview-teacher-container').addClass('hidden');
-	    	}
-	    
-	    }, 1500));
-	});
 	// event submit form
 	$('#modal-edit .btn-submit').click(this,function(){
 		if(validForm('form-edit',course)==true&&check==true)
@@ -168,7 +136,6 @@ function editCourseEvents()
 					var name = $(inputs[i]).attr('name');
 					course[name] = $(inputs[i]).val();
 				}
-				course['teacher']=teacher;
 		        //them doi tuong  json vao form data
 		        formData.append("course", new Blob([JSON.stringify(course)], {
 		            type: "application/json"
@@ -241,6 +208,145 @@ function onDeleteEvents()
 	            }
 	        });
 			location.reload();
+		});
+		
+	});
+}
+//quản lý giảng viên phụ trách lớp
+function teacherManagementEvents()
+{
+	var course;
+	var check=true;
+	var teacher;
+	$(document).on('click', '#table-data-body .btn-add-teacher', function () {
+		var courseId=$(this).parents('[dataId]').attr('dataId');
+		course = obj.getCourseById(courseId);
+		if(course.teacher!=null&&course.teacher!={}&&course.teacher!=undefined)
+		{
+			//init input
+			$('#modal-teacher input.teacher-code').val(course.teacher.code);
+			//init detail infomation
+			obj.initData('preview-teacher-container','preview-teacher-row',[course.teacher]);
+			teacherCode=course.teacher.code;
+		}
+		else
+		{
+			//init input
+			$('#modal-teacher input.teacher-code').val("");
+			//init detail infomation
+			obj.initData('preview-teacher-container','preview-teacher-row',[{}]);
+		}
+	});
+	// event modal edit closed, reset input of form
+	$(document).on('hidden.bs.modal', '#modal-teacher', function(e) {
+		resetFormEdit();
+	});
+	//teacher code
+	$('#modal-teacher .teacher-code').on('input',function(e){
+	    if($('#modal-edit .teacher-code').val()!="")
+	    {
+	    	check=false;
+	    	$('#modal-teacher .btn-submit').addClass('disabled');
+	    }
+	    else
+	    {
+	    	check=true;
+	    	$('#modal-teacher .btn-submit').removeClass('disabled');
+	    }
+	});
+	$("#modal-teacher .teacher-code").bind("input propertychange", function (evt) {
+	    // If it's the propertychange event, make sure it's the value that changed.
+	    if (window.event && event.type == "propertychange" && event.propertyName != "value")
+	    {
+	    	return;
+	    }
+	    // Clear any previously set timer before setting a fresh one
+	    window.clearTimeout($(this).data("timeout"));
+	    $(this).data("timeout", setTimeout(function () {
+	        var teacherCode=$("#modal-teacher .teacher-code").val();
+	        //open waiting process
+	        $('#form-teacher .waiting-process').removeClass('hidden');
+	        $('#preview-teacher-container').addClass('hidden');
+	        //get teacher asyn
+	        teacher=obj.getDataAsync("GET",'admin/teacher/code/'+teacherCode,function(data){
+	        	$('#form-teacher .waiting-process').addClass('hidden');
+	        	$('#preview-teacher-container').removeClass('hidden');
+	        	if(data!=""&&data!=undefined)
+	        	{
+	        		$("#modal-teacher .teacher-code").removeClass('border-danger');
+	        		$("#teacher-code-error").addClass('hidden');
+	        		obj.initData('preview-teacher-container','preview-teacher-row',[data]);
+	        		$('#modal-teacher .btn-submit').removeClass('disabled');
+	        		teacher=data;
+	        		check= true;
+	        	}
+	        	else
+	        	{
+	        		$("#modal-teacher .teacher-code").addClass('border-danger');
+	        		$("#teacher-code-error").removeClass('hidden');
+	        		obj.initData('preview-teacher-container','preview-teacher-row',[{}]);
+	        		check= false;
+	        	}
+	        });
+	        
+	    }, 1500));
+	});
+	// event submit form
+	$('#modal-teacher .btn-submit').click(this,function(){
+		if(check==true&&teacher!=null&&teacher!={}&&teacher!=undefined&&teacher!="")
+		{
+			try {
+				var formData = new FormData();
+				// them doi tuong json vao form data
+				course['teacher']=teacher;
+		        //them doi tuong  json vao form data
+		        formData.append("course", new Blob([JSON.stringify(course)], {
+		            type: "application/json"
+		        }));
+		        obj.saveOrUpdate(formData,"PUT","admin/course/update");
+		        location.reload(true);
+			} catch (e) {
+				// TODO: handle exception
+				alert("Lỗi : "+err);
+			}
+			
+	        //close modal
+	        $('#modal-teacher').modal('hide');
+		}
+		else if(check==false)
+		{
+			alert("Giảng Viên Không Tồn Tại!")
+		}
+	
+	});
+	// dat lai mau border cho input khi click
+	$('#modal-teacher input').click(this, function() {
+		$(this).removeClass('border-danger');
+	});
+}
+//remove teacher phụ trách lớp
+function removeTeacherEvents()
+{
+	$(document).on('click', '#table-data-body .btn-remove-teacher', function () {
+		$('#modal-delete-alert').modal('show');
+		var courseId=$(this).parents('[dataId]').attr('dataId');
+		$(document).on('click', '#modal-delete-alert .btn-delete-alert-ok', function () {		
+			$('#modal-delete-alert').modal('hide');
+			try {
+				var course=obj.getCourseById(courseId);
+				var formData = new FormData();
+				course['teacher']=null;
+		        //them doi tuong  json vao form data
+		        formData.append("course", new Blob([JSON.stringify(course)], {
+		            type: "application/json"
+		        }));
+				 obj.saveOrUpdate(formData,"PUT","admin/course/update");
+			     location.reload(true);
+			} catch (e) {
+				// TODO: handle exception
+				alert('Có Lỗi, Thử Lại Sau!');
+			}
+			$('#modal-delete-alert').modal('hide');
 		});
 		
 	});

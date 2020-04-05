@@ -9,7 +9,7 @@
 }
 .btn-control {
 	margin-right: 10px;
-	box-shadow: none;
+	box-shadow: none !important;
 }
 .btn-control i
 {

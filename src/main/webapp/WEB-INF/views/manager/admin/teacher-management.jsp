@@ -164,22 +164,18 @@
 								Giảng Viên</h6>
 
 							<div class="d-flex">
-								<button class="btn btn-add text-success" data-toggle="modal"
-									data-target="#modal-add-new"
-									style="margin-right: 10px; box-shadow: none;">
-									<i style="font-size: 20px;" class="far fa-plus-square"></i>
+								<button class="btn btn-add text-success btn-control"
+									data-toggle="modal" data-target="#modal-add-new">
+									<i class="far fa-plus-square"></i>
 								</button>
-								<button class="btn btn-edit text-primary disabled"
-									style="margin-right: 10px; box-shadow: none;">
-									<i style="font-size: 20px;" class="fas fa-edit"></i>
+								<button class="btn btn-edit text-primary disabled  btn-control">
+									<i class="fas fa-edit"></i>
 								</button>
-								<button class="btn btn-delete text-danger"
-									style="margin-right: 10px; box-shadow: none;">
-									<i style="font-size: 20px;" class="fas fa-trash"></i>
+								<button class="btn btn-delete text-danger  btn-control">
+									<i class="fas fa-trash"></i>
 								</button>
-								<button class="btn btn-refresh text-primary"
-									style="margin-right: 10px; box-shadow: none;">
-									<i style="font-size: 20px;" class="fas fa-sync"></i>
+								<button class="btn btn-refresh text-primary btn-control">
+									<i class="fas fa-sync"></i>
 								</button>
 								<nav aria-label="Page navigation">
 
@@ -213,6 +209,7 @@
 						</div>
 						<!-- Card Body -->
 						<div class="card-body">
+
 							<div class="limiter">
 								<div class="container-table-data">
 									<div class="wrap-table-data">
@@ -256,8 +253,11 @@
 											<div class="table-data-body js-pscroll">
 												<table>
 													<tbody id="table-data-body">
-
-														<tr class="table-row body hidden border-bottom border-top" id="row-data-container">
+														<h5 id='data-empty-alert'
+															class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
+															Có Dữ Liệu Khớp</h5>
+														<tr class="table-row body hidden border-bottom border-top"
+															id="row-data-container">
 
 															<td class="table-cell column0" field='checkBox'><div
 																	class="custom-control custom-checkbox">
@@ -482,21 +482,21 @@
 										<div class="form-group">
 											<div class="form-row form-row-1">
 												<label for="code">Mã GV (*)</label> <input type="text"
-													name="code" class="input-text"> <label
+													name="code" class="input-text" required> <label
 													name="code-error" class="error hidden">Mã Gv Tồn
 													Tại</label>
 											</div>
 
 											<div class="form-row form-row-1">
 												<label for="fullName">Họ & Tên (*)</label> <input
-													type="text" name="fullName" class="input-text">
+													type="text" name="fullName" class="input-text" required>
 											</div>
 										</div>
 
 										<div class="form-row">
 											<label for="your_email">Username (*)</label> <input
-												type="text" name="username" class="input-text"> <label
-												name="username-error" class="error hidden">Username
+												type="text" name="username" class="input-text" required>
+											<label name="username-error" class="error hidden">Username
 												Tồn Tại</label>
 										</div>
 										<div class="form-group">
@@ -508,7 +508,7 @@
 											</div>
 											<div class="form-row form-row-1">
 												<label>Xác Nhận Mật Khẩu (*)</label> <input type="password"
-													class="input-text confirm-password"> <label
+													class="input-text confirm-password" required> <label
 													name="confirm-password-error" class="error hidden">Xác
 													nhận mật khẩu chưa khớp</label>
 											</div>
@@ -837,15 +837,10 @@
 <!-- end modal message -->
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>
-<script
-	src="<c:url value='/resources/manager/commons/js/display-user-detail.js' />"></script>
-<script
-	src="<c:url value='/resources/manager/commons/js/add-user.js' />"></script>
-<script
-	src="<c:url value='/resources/manager/commons/js/edit-user.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/delete.js' />"></script>
+<script src="<c:url value='/resources/commons/js/pagination.js' />"></script>
 <script
-	src="<c:url value='/resources/manager/commons/js/pagination.js' />"></script>
+	src="<c:url value='/resources/manager/commons/js/user-management.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/search.js' />"></script>
 <script
 	src="<c:url value='/resources/manager/admin/js/teacher-management.js' />"></script>

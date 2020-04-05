@@ -165,22 +165,18 @@
 								Học</h6>
 
 							<div class="d-flex">
-								<button class="btn btn-add text-success" data-toggle="modal"
-									data-target="#modal-add-new"
-									style="margin-right: 10px; box-shadow: none;">
-									<i style="font-size: 20px;" class="far fa-plus-square"></i>
+								<button class="btn btn-add text-success btn-control"
+									data-toggle="modal" data-target="#modal-add-new">
+									<i class="far fa-plus-square"></i>
 								</button>
-								<button class="btn btn-edit text-primary disabled"
-									style="margin-right: 10px; box-shadow: none;">
-									<i style="font-size: 20px;" class="fas fa-edit"></i>
+								<button class="btn btn-edit text-primary disabled  btn-control">
+									<i class="fas fa-edit"></i>
 								</button>
-								<button class="btn btn-delete text-danger"
-									style="margin-right: 10px; box-shadow: none;">
-									<i style="font-size: 20px;" class="fas fa-trash"></i>
+								<button class="btn btn-delete text-danger">
+									<i class="fas fa-trash"></i>
 								</button>
-								<button class="btn btn-refresh text-primary"
-									style="margin-right: 10px; box-shadow: none;">
-									<i style="font-size: 20px;" class="fas fa-sync"></i>
+								<button class="btn btn-refresh text-primary">
+									<i class="fas fa-sync"></i>
 								</button>
 								<nav aria-label="Page navigation">
 
@@ -256,7 +252,9 @@
 											<div class="table-data-body js-pscroll">
 												<table>
 													<tbody id="table-data-body">
-
+														<h5 id='data-empty-alert'
+															class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
+															Có Dữ Liệu Khớp</h5>
 														<tr class="table-row body hidden border-bottom border-top"
 															id="row-data-container">
 
@@ -502,15 +500,8 @@
 <!-- end modal message -->
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>
-<script
-	src="<c:url value='/resources/manager/commons/js/display-user-detail.js' />"></script>
-<script
-	src="<c:url value='/resources/manager/commons/js/add-user.js' />"></script>
-<script
-	src="<c:url value='/resources/manager/commons/js/edit-user.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/delete.js' />"></script>
-<script
-	src="<c:url value='/resources/manager/commons/js/pagination.js' />"></script>
+<script src="<c:url value='/resources/commons/js/pagination.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/search.js' />"></script>
 <script
 	src="<c:url value='/resources/manager/admin/js/subject-management.js' />"></script>

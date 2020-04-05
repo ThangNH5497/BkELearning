@@ -4,10 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import bk.elearning.utils.FileUpload;
+import bk.elearning.utils.Util;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
+	@RequestMapping("/trang-chu")
+	public String getHomePage()
+	{
+		return "manager/admin/home";
+	}
 	@RequestMapping("/ql-giang-vien")
 	public String getTeacherManagementView()
 	{

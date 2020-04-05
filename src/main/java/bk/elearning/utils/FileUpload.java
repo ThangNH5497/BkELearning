@@ -1,6 +1,7 @@
 package bk.elearning.utils;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,15 +30,16 @@ public class FileUpload implements ServletContextAware {
 		return context;
 	}
 
-	public static boolean saveFile(MultipartFile file, String filePath) {
+	public static String saveFile(MultipartFile file, String filePath) {
 		try {
-			File fileSave = new File(context.getRealPath("/") + createUniqueFileName(filePath));
+			filePath=createUniqueFileName(filePath);
+			File fileSave = new File(context.getRealPath("/") +filePath );
 			file.transferTo(fileSave);
-			return true;
+			return filePath;
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return false;
+		return Util.DEFAULT_USER_IMAGE;
 	}
 
 	public static <T> List<T> processFileExel(MultipartFile file, IModelMapper<T> mapper) {
@@ -70,12 +72,10 @@ public class FileUpload implements ServletContextAware {
 		try {
 			String rootPath = context.getRealPath("/");
 			String ext = filePath.substring(filePath.lastIndexOf('.') + 1);
-			int i=1;
-			while (new File(rootPath + filePath).exists()) {
-				filePath = filePath.substring(0, filePath.lastIndexOf('.')) +String.valueOf(i)+ "." + ext;
-				i++;
-			}
-
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
+			// Output "Wed Sep 26 14:23:28 EST 2012"
+			String time = format.format(Util.getDate());
+			filePath = filePath.substring(0, filePath.lastIndexOf('.'))+"-" +time+ "." + ext;
 			return filePath;
 		} catch (Exception e) {
 			// TODO: handle exception

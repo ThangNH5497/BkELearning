@@ -18,7 +18,7 @@ class Base {
     }
     //thuc hien ajax dong bo
     getData(ajxMethod,ajaxUrl) {
-        var returnData = undefined;
+        var returnData = "";
         $.ajax({
             method: ajxMethod,
             url: rootLocation+ajaxUrl,
@@ -32,7 +32,7 @@ class Base {
             	returnData=data;
             },
             error: function (data) {
-            	alert("Không Thể Nhận Dữ Liệu !");
+            	
             }
         });
         return returnData;
@@ -142,35 +142,43 @@ class Base {
     		var html=$('#'+rowDataId).prop('outerHTML');
         	$('#'+containerId).empty();
         	//hien thi du lieu
-        	for(var i=0;i<data.length;i++)
+        	if(data.length>0)
         	{
-        		$('#'+containerId).append(html);
-        		//dat id du lieu bang id cua data, vi tri 0 la cua hang mau
-        		$('#'+rowDataId).attr('dataId',data[i].id);
-        		$('#'+rowDataId).removeAttr('id');
-        		var keys=Object.keys(data[i]);
-        		var fields=$('#'+containerId+' [dataId='+data[i].id+'] [field]');
-        		for(var j=0;j<fields.length;j++)
-        		{
-        			var fieldAttr=$(fields[j]).attr('field');
-        			var value=this.resolve(fieldAttr,data[i]);
-        			if(fieldAttr=="image")
-        			{
-        				$(fields[j]).attr('src',value);
-        			}
-        			else if(fieldAttr=="index")
-        			{
-        				$(fields[j]).text(parseInt(i)+1);
-        			}
-        			else if(fieldAttr=='checkBox')
-        			{
-        				$(fields[j]).children().children('input').attr('id','check-'+i);
-        				$(fields[j]).children().children('label.custom-control-label').attr('for','check-'+i);
-        			}
-        			else $(fields[j]).text(value);
-  	 
-        		}
-        	
+        		$('#data-empty-alert').addClass('hidden');
+        		for(var i=0;i<data.length;i++)
+            	{
+            		$('#'+containerId).append(html);
+            		//dat id du lieu bang id cua data, vi tri 0 la cua hang mau
+            		$('#'+rowDataId).attr('dataId',data[i].id);
+            		$('#'+rowDataId).removeAttr('id');
+            		var keys=Object.keys(data[i]);
+            		var fields=$('#'+containerId+' [dataId='+data[i].id+'] [field]');
+            		for(var j=0;j<fields.length;j++)
+            		{
+            			var fieldAttr=$(fields[j]).attr('field');
+            			var value=this.resolve(fieldAttr,data[i]);
+            			if(fieldAttr=="image")
+            			{
+            				$(fields[j]).attr('src',rootLocation+value);
+            			}
+            			else if(fieldAttr=="index")
+            			{
+            				$(fields[j]).text(parseInt(i)+1);
+            			}
+            			else if(fieldAttr=='checkBox')
+            			{
+            				$(fields[j]).children().children('input').attr('id','check-'+i);
+            				$(fields[j]).children().children('label.custom-control-label').attr('for','check-'+i);
+            			}
+            			else $(fields[j]).text(value);
+      	 
+            		}
+            	
+            	}
+        	}
+        	else
+        	{
+        		$('#data-empty-alert').removeClass('hidden');
         	}
         	
         	$('#'+containerId).append(html);
@@ -224,13 +232,13 @@ class Base {
         });
     }
     //valid input
-    validateInput(formId)
+    validInputs(formId)
     {
     	var check=true;
-    	var inputs=$('#'+formId+' input[requied]');
+    	var inputs=$('#'+formId+' input[required]');
     	for(var i=0;i<inputs.length;i++)
     	{
-    		if($(inputs[i]).val("")=="")
+    		if($(inputs[i]).val()=="")
     		{
     			$(inputs[i]).addClass('border-danger');
     			check=false;

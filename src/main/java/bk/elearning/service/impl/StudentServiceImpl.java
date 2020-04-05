@@ -62,10 +62,7 @@ public class StudentServiceImpl implements IStudentService{
 		if (file != null) {
 			String filePath = "resources/commons/image/user/user-" + t.getCode() + "."
 					+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.') + 1);
-			System.out.println("path : " + filePath);
-			if (FileUpload.saveFile(file, filePath)) {
-				t.setImage(filePath);
-			}
+			t.setImage(FileUpload.saveFile(file, filePath));
 		}
 		// dat hinh anh default
 		else
@@ -102,9 +99,7 @@ public class StudentServiceImpl implements IStudentService{
 		if (file != null) {
 			String filePath = "resources/commons/image/user/user-" + student.getCode() + "."
 					+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.') + 1);
-			if (FileUpload.saveFile(file, filePath)) {
-				studentUpdate.setImage(filePath);
-			}
+			studentUpdate.setImage(FileUpload.saveFile(file, filePath));
 		}
 		return studentRepository.update(studentUpdate);
 	}

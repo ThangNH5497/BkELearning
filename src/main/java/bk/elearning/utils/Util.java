@@ -1,5 +1,6 @@
 package bk.elearning.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
@@ -23,8 +24,6 @@ public class Util {
 	public final static String ROLE_STUDENT="ROLE_STUDENT";
 	public static Date getDate() {
 		Calendar calendar = Calendar.getInstance();
-		// java.sql.Date ourJavaDateObject = new
-		// java.sql.Date(calendar.getTime().getTime());
 		return calendar.getTime();
 
 	}

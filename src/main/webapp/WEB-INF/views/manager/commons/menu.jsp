@@ -15,7 +15,7 @@
 					page</span></a>
 		</h1>
 		<ul class="list-unstyled components mb-5">
-			<li id="menu-item-home"><a href="/admin/trang-chu"><span
+			<li id="menu-item-home"><a href="<c:url value='/admin/trang-chu'/>"><span
 					class="icon fa fa-briefcase mr-3"></span> <span class="redirect">Trang
 						Chủ</span></a></li>
 

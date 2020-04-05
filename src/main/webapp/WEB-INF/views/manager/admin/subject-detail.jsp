@@ -19,13 +19,20 @@
 
 		<div class=" container-fluid content-container">
 			<nav class="navbar navbar-light bg-light" style="font-weight: 600;"
-				id='link-back-search'>
+				id="link-current">
 				<span class="navbar-text"> <i class="fas fa-link"></i> <a
 					class='text-primary' href="<c:url value='/admin/ql-mon-hoc' />">Quản
 						Lý Môn Học</a><span> / Danh Sách Lớp</span>
 				</span>
 			</nav>
-
+			<nav class="navbar navbar-light bg-light hidden"
+				style="font-weight: 600;" id='link-back-search'>
+				<span class="navbar-text"> <i class="fas fa-link"></i> <a
+					class='text-primary' href="<c:url value='/admin/ql-mon-hoc' />">Quản
+						Lý Môn Học</a><a class='text-primary' href="javascript:location.reload(true)"> / Danh Sách Lớp</a><span>
+						/ Tìm Kiếm</span>
+				</span>
+			</nav>
 			<nav
 				class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -71,7 +78,7 @@
 
 			<div class="row " id="table-data-body">
 				<!-- Area Chart -->
-				<div class="col-xl-12 col-lg-12 card-container mb-4"
+				<div class="col-xl-12 col-lg-12 card-container mb-4 hidden"
 					id="row-data-container">
 					<div class="card  h-100">
 						<!-- Card Header - Dropdown -->
@@ -79,6 +86,14 @@
 							class=" card-header py-3 d-flex flex-row align-items-center justify-content-between">
 							<h5 class="m-0 font-weight-bold text-primary" field="code"></h5>
 							<div class="d-flex justify-content-end w-50">
+
+								<button class="btn btn-add-teacher text-success btn-control"
+									data-toggle="modal" data-target="#modal-teacher">
+									<i class="fas fa-user-plus"></i>
+								</button>
+								<button class="btn btn-remove-teacher text-danger btn-control">
+									<i class="fas fa-user-minus"></i>
+								</button>
 								<button class="btn btn-edit text-primary btn-control"
 									data-toggle="modal" data-target="#modal-edit">
 									<i class="fas fa-edit"></i>
@@ -258,21 +273,73 @@
 								<div class="form-row">
 									<label for="descriptor">Mô Tả</label> <input type="text"
 										name="descriptor" class=" input-text">
+								</div>
+							</form>
+						</div>
+					</div>
+					<!--Footer-->
+					<div class="border-top my-3"></div>
+					<div class="d-flex justify-content-center">
+						<a type="button" class="btn  waves-effect btn-cancel"
+							data-dismiss="modal">Hủy</a> <a type="button"
+							class="btn  waves-effect btn-submit" disabled>Lưu</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+
+<!-- end modal edit -->
+
+<!--  modal add teacher to course -->
+<div class="modal fade" id="modal-teacher" tabindex="-1" role="dialog"
+	aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<p class="heading lead">Quản Lý Giảng Viên Phụ Trách</p>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+			<div class="modal-body">
+				<div class="form-container">
+					<div class="form-v4">
+						<div class="form-v4-content">
+							<form class="form-detail" action="#" method="post"
+								id="form-teacher">
+								<h2>Thông Tin Giảng Viên</h2>
+								<div class="form-row">
+									<label for="code">Mã Giảng Viên Phụ Trách</label> <input
+										type="text" class=" input-text teacher-code"
+										name="teacher.code"> <label name="code-error"
+										id="teacher-code-error" class="error hidden">Mã Giảng
+										Viên Không Tồn Tại</label>
 
 								</div>
-
-								<div class="form-row">
-									<label for="descriptor">Mã Giảng Viên Phụ Trách</label> <input
-										type="text"  class=" input-text teacher-code">
-										<label name="code-error" id="teacher-code-error" class="error hidden">Mã Giảng Viên Không Tồn Tại</label>
+								<div
+									class="waiting-process d-flex justify-content-center pb-4 hidden">
+									<h2 class="message hidden"></h2>
+									<img style="max-width: 32px; max-height: 32px;"
+										src="<c:url value='/resources/commons/image/icon/load-icon.gif' />">
 
 								</div>
 								<!-- teacher freview -->
-								<div class="container-fluid hidden" id="preview-teacher-container">
+								<div class="container-fluid p-0" id="preview-teacher-container">
 									<div class="d-flex form-row" style="background: #f8f9fa;"
 										id="preview-teacher-row">
-										<div class="col-2">
-											<img field="image" style="max-height: 100%; max-width: 100%;"
+										<div class="col-2 p-0">
+											<img field="image"
+												style="height: 132px; width: 132px; max-height: 132px; max-width: 132px;"
 												src="<c:url value='/resources/commons/image/user/default-user.jpg'/>">
 										</div>
 										<div class="col-5 pl-3">
@@ -281,7 +348,7 @@
 													<label>Mã GV</label>
 												</div>
 												<div class="col-md-8 align-self-center">
-													<p class="text-primary" field="code">gv01</p>
+													<p class="text-primary" field="code">Không</p>
 												</div>
 											</div>
 											<div class="row h-50">
@@ -289,7 +356,7 @@
 													<label>Họ&Tên</label>
 												</div>
 												<div class="col-md-8 align-self-center">
-													<p class="text-primary" field="fullName">Nguyễn Thắng</p>
+													<p class="text-primary" field="fullName">Không</p>
 												</div>
 											</div>
 										</div>
@@ -324,7 +391,7 @@
 					<div class="d-flex justify-content-center">
 						<a type="button" class="btn  waves-effect btn-cancel"
 							data-dismiss="modal">Hủy</a> <a type="button"
-							class="btn  waves-effect btn-submit" disabled>Lưu</a>
+							class="btn  waves-effect btn-submit disabled">Lưu</a>
 					</div>
 				</div>
 			</div>
@@ -335,7 +402,6 @@
 	<!-- /.modal-dialog -->
 </div>
 
-<!-- end modal edit -->
 
 <!-- modal alert -->
 <div class="modal fade" id="modal-delete-alert" tabindex="-1"
@@ -414,11 +480,8 @@
 <!-- end modal message -->
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>
-<script
-	src="<c:url value='/resources/manager/commons/js/display-user-detail.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/search.js' />"></script>
-<script
-	src="<c:url value='/resources/manager/commons/js/pagination.js' />"></script>
+<script src="<c:url value='/resources/commons/js/pagination.js' />"></script>
 <script
 	src="<c:url value='/resources/manager/admin/js/subject-detail.js' />"></script>
 <!-- Footer -->

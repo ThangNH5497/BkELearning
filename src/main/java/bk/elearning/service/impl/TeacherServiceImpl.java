@@ -1,5 +1,6 @@
 package bk.elearning.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,12 +59,10 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 
 		t.setCourses(null);
 		if (file != null) {
+			
 			String filePath = "resources/commons/image/user/user-" + t.getCode() + "."
 					+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.') + 1);
-			System.out.println("path : " + filePath);
-			if (FileUpload.saveFile(file, filePath)) {
-				t.setImage(filePath);
-			}
+			t.setImage(FileUpload.saveFile(file, filePath));
 		}
 		// dat hinh anh default
 		else
@@ -101,9 +100,7 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		if (file != null) {
 			String filePath = "resources/commons/image/user/user-" + teacher.getCode() + "."
 					+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.') + 1);
-			if (FileUpload.saveFile(file, filePath)) {
-				teacherUpdate.setImage(filePath);
-			}
+			teacherUpdate.setImage(FileUpload.saveFile(file, filePath));
 		}
 		return teacherRepository.update(teacherUpdate);
 	}

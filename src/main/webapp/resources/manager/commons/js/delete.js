@@ -61,20 +61,17 @@ function deleteEvents(urlApi)
 			            data : JSON.stringify(ids),
 			            dataType : "json",
 						contentType : "application/json; charset=utf-8",
-			            success : function(data) {
-			                console.log('delete success : '+data);
+			            success : function(data) {			               
 			            },
 			            errorr : function(err) {
-			            	console.log('delete error : '+err);
+			            	
 			            }
 			        });
 					//delete row data in table
-					$(rowChecked).remove();
+					//$(rowChecked).remove();
+					 location.reload(true);
 				});
 			}
-	    	
-	    	
 	    }
 	});
-
 }
