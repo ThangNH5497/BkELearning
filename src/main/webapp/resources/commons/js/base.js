@@ -56,32 +56,32 @@ class Base {
     //lay tong so teacher
     getCountTeacher()
     {
-    	return this.getData('GET','admin/teacher/count');
+    	return this.getData('GET','api/admin/teacher/count');
     }
     //lay theo tung khoang
     getTeachersLimit(start,count)
     {
-    	return this.getData('GET','admin/teacher/teachers/'+start+"/"+count);
+    	return this.getData('GET','api/admin/teacher/teachers/'+start+"/"+count);
     }
     //get all teachers
     getAllTeachers()
     {
-    	return this.getData('GET','admin/teacher/teachers');
+    	return this.getData('GET','api/admin/teacher/teachers');
     }
     //get teacher by username
     getTeacherByUsername(username)
     {
-    	return this.getData('GET','admin/teacher/username/'+username);
+    	return this.getData('GET','api/admin/teacher/username/'+username);
     }
   //get teacher by code
     getTeacherByCode(code)
     {
-    	return this.getData('GET','admin/teacher/code/'+code);
+    	return this.getData('GET','api/admin/teacher/code/'+code);
     }
   //get teacher by id
     getTeacherById(id)
     {
-    	return this.getData('GET','admin/teacher/id/'+id);
+    	return this.getData('GET','api/admin/teacher/id/'+id);
     }
     
 	////////////////////////////////////////
@@ -89,52 +89,52 @@ class Base {
     //lay tong so student
     getCountStudent()
     {
-    	return this.getData('GET','admin/student/count');
+    	return this.getData('GET','api/admin/student/count');
     }
     //lay theo tung khoang
     getStudentsLimit(start,count)
     {
-    	return this.getData('GET','admin/student/students/'+start+"/"+count);
+    	return this.getData('GET','api/admin/student/students/'+start+"/"+count);
     }
     //get all student
     getAllStudents()
     {
-    	return this.getData('GET','admin/student/students');
+    	return this.getData('GET','api/admin/student/students');
     }
     //get student by username
     getStudentByUsername(username)
     {
-    	return this.getData('GET','admin/student/username/'+username);
+    	return this.getData('GET','api/admin/student/username/'+username);
     }
   //get student by code
     getStudentByCode(code)
     {
-    	return this.getData('GET','admin/student/code/'+code);
+    	return this.getData('GET','api/admin/student/code/'+code);
     }
   //get student by id
     getStudentById(id)
     {
-    	return this.getData('GET','admin/student/id/'+id);
+    	return this.getData('GET','api/admin/student/id/'+id);
     }
     //////////////////////////////////////////////
   //get subject by code
     getSubjectByCode(code)
     {
-    	return this.getData('GET','admin/subject/code/'+code);
+    	return this.getData('GET','api/admin/subject/code/'+code);
     }
     //get subject by id
     getSubjectById(subjectId)
     {
-    	return this.getData('GET','admin/subject/id/'+subjectId);
+    	return this.getData('GET','api/admin/subject/id/'+subjectId);
     }
     ///////////////get course////////////////////
     getCourseById(courseId)
     {
-    	return this.getData('GET','admin/course/id/'+courseId);
+    	return this.getData('GET','api/admin/course/id/'+courseId);
     }
     getCourseByCode(code)
     {
-    	return this.getData('GET','admin/course/code/'+code);
+    	return this.getData('GET','api/admin/course/code/'+code);
     }
     initData(containerId,rowDataId,data)
     {

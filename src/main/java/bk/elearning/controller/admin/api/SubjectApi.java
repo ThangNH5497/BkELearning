@@ -1,4 +1,4 @@
-package bk.elearning.controller.teacher.api;
+package bk.elearning.controller.admin.api;
 
 import java.util.ArrayList;
 
@@ -20,8 +20,8 @@ import bk.elearning.entity.Subject;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.service.ISubjectService;
 
-@RestController
-@RequestMapping(path = "/admin/subject")
+@RestController("adminSubjectApi")
+@RequestMapping(path = "/api/admin/subject")
 @Transactional
 public class SubjectApi {
 

@@ -1,4 +1,4 @@
-package bk.elearning.controller.teacher.api;
+package bk.elearning.controller.admin.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,86 +18,73 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import bk.elearning.entity.Student;
+import bk.elearning.entity.Teacher;
 import bk.elearning.entity.dto.PaginationResult;
-import bk.elearning.service.IStudentService;
+import bk.elearning.service.ITeacherService;
 
-@RestController
-@RequestMapping(path = "/admin/student")
+@RestController("adminTeacherApi")
+@RequestMapping(path = "/api/admin/teacher")
 @Transactional
-public class StudentApi {
+public class TeacherApi {
 
 	@Autowired
-	private IStudentService studentService;
+	private ITeacherService teacherService;
 	
-
-	// lay tat ca
-	@GetMapping(path = "/students")
-	public List<Student> getAllStudent() {
-		List<Student> students = null;
-		try {
-			students = studentService.getAll();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return students;
-	}
-
 	// lay theo id
 	@GetMapping(path = "/id/{id}")
-	public Student getStudentById(@PathVariable int id) {
-		Student students = null;
+	public Teacher getTeacherById(@PathVariable int id) {
+		Teacher teacher = null;
 		try {
-			students = studentService.getById(id);
+			teacher = teacherService.getById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return students;
+		return teacher;
 	}
 
 	// lay theo code
 	@GetMapping(path = "/code/{code}")
-	public Student getStudentByCode(@PathVariable String code) {
-		Student student = null;
+	public Teacher getTeacherByCode(@PathVariable String code) {
+		Teacher teacher = null;
 		try {
-			student = studentService.getByCode(code);
+			teacher = teacherService.getByCode(code);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return student;
+		return teacher;
 	}
 
 	// lay theo cuserName
 	@GetMapping(path = "/username/{username}")
-	public Student getStudentByUsername(@PathVariable String username) {
-		Student student = null;
+	public Teacher getTeacherByUsername(@PathVariable String username) {
+		Teacher teacher = null;
 		try {
-			student = studentService.getByUsername(username);
+			teacher = teacherService.getByUsername(username);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return student;
+		return teacher;
 	}
 
 	// xoa theo id
 	@DeleteMapping(path = "/delete/{id}")
-	public int deleteStudentById(@PathVariable int id) {
-		return studentService.delete(id);
+	public int deleteTeacherById(@PathVariable int id) {
+		return teacherService.delete(id);
 	}
 
 	// xoa nhieu 1 luc
 	@DeleteMapping(path = "/delete/multiple")
-	public int deleteStudentByIds(@RequestBody ArrayList<Integer> ids) {
-		return studentService.deleteMultiple(ids);
+	public int deleteTeacherByIds(@RequestBody ArrayList<Integer> ids) {
+		return teacherService.deleteMultiple(ids);
 	}
 
 	// tao moi giang vien
 	@PostMapping("/add")
-	public String addNewStudent(@RequestPart("student") Student student,
+	public String addNewTeacher(@RequestPart("teacher") Teacher teacher,
 			@RequestPart(name = "file", required = false) MultipartFile file) {
 
 		try {
-			if (studentService.save(student, file) == 1)
+			if (teacherService.save(teacher, file) == 1)
 				return "Thêm Thành Công";
 		} catch (Exception e) {
 
@@ -113,7 +100,7 @@ public class StudentApi {
 		//first value is success and second value is error
 		int result[]= {0,0};
 		try {
-			result=studentService.saveFromFile(file);
+			result=teacherService.saveFromFile(file);
 		} catch (Exception e) {
 
 		}
@@ -124,11 +111,11 @@ public class StudentApi {
 
 	// update
 	@PutMapping("/update")
-	public String updateStudent(@RequestPart("student") Student student,
+	public String updateTeacher(@RequestPart("teacher") Teacher teacher,
 			@RequestPart(name = "file", required = false) MultipartFile file) {
 
 		try {
-			if (studentService.update(student, file) == 1)
+			if (teacherService.update(teacher, file) == 1)
 				return "Update Thành Công";
 		} catch (Exception e) {
 
@@ -140,10 +127,10 @@ public class StudentApi {
 
 	// lay du lieu tim kiem va phan trang
 	@GetMapping("/search")
-	public PaginationResult<Student> searchStudents(@RequestParam(name = "filter") String filter,
+	public PaginationResult<Teacher> searchTeachers(@RequestParam(name = "filter") String filter,
 			@RequestParam String key, @RequestParam int page, int size) {
 		try {
-			return studentService.getSearchPage(filter, key, page, size);
+			return teacherService.getSearchPage(filter, key, page, size);
 		} catch (Exception e) {
 
 		}
@@ -151,16 +138,17 @@ public class StudentApi {
 
 	}
 
-	// phan trang tat ca student
+	// phan trang tat ca teacher
 	@GetMapping("/page")
-	public PaginationResult<Student> getPage(@RequestParam int page, int size) {
+	public PaginationResult<Teacher> getPage(@RequestParam int page, int size) {
 		try {
-			return studentService.getPage(page, size);
+			return teacherService.getPage(page, size);
 		} catch (Exception e) {
+
 		}
 		return null;
 
 	}
-	// phan trang tat ca student
+	// phan trang tat ca teacher
 
 }

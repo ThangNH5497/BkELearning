@@ -6,15 +6,15 @@ $(document).ready(function() {
 	
 	
 	//file delete.js
-	deleteEvents("admin/subject/delete/multiple");
+	deleteEvents("api/admin/subject/delete/multiple");
 	
 	tableDataEvents();
 	
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'admin/subject/page?');
+	handlePagination($('#pagination'),'api/admin/subject/page?');
 	
 	//search events
-	searchEvents('admin/subject/search?');
+	searchEvents('api/admin/subject/search?');
 	
 	//add events
 	addNewSubjectEvents();
@@ -128,7 +128,7 @@ function editSubjectEvents()
 		        formData.append("subject", new Blob([JSON.stringify(subject)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"PUT","admin/subject/update");
+		        obj.saveOrUpdate(formData,"PUT","api/admin/subject/update");
 		     // cap nhat lai bang du lieu
 				var fields = $('#table-data-body tr.selected td[field]');
 				for (var i = 0; i < fields.length; i++) 
@@ -191,7 +191,7 @@ function addNewSubjectEvents()
 		        formData.append("subject", new Blob([JSON.stringify(jsonObject)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"POST","admin/subject/add");
+		        obj.saveOrUpdate(formData,"POST","api/admin/subject/add");
 		        location.reload(true);
 			} catch (e) {
 				// TODO: handle exception

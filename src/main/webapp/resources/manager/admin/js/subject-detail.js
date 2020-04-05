@@ -9,12 +9,12 @@ $(document).ready(function() {
 	var subjectId=getParametter('id');
 	subject['id']=subjectId;
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'admin/course/page/subject?subjectId='+subjectId+'&');
+	handlePagination($('#pagination'),'api/admin/course/page/subject?subjectId='+subjectId+'&');
 	//search event , file search.js
-	searchEvents('admin/course/search/subject?subjectId='+subjectId+'&');
+	searchEvents('api/admin/course/search/subject?subjectId='+subjectId+'&');
 	addNewCourseEvents();
 	
-	editCourseEvents('admin/course/update');
+	editCourseEvents('api/admin/course/update');
 	teacherManagementEvents();
 	onDeleteEvents();
 	removeTeacherEvents();
@@ -95,7 +95,7 @@ function addNewCourseEvents()
 		        formData.append("course", new Blob([JSON.stringify(jsonObject)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"POST","admin/course/add");
+		        obj.saveOrUpdate(formData,"POST","api/admin/course/add");
 		        location.reload(true);
 			} catch (e) {
 				// TODO: handle exception
@@ -140,7 +140,7 @@ function editCourseEvents()
 		        formData.append("course", new Blob([JSON.stringify(course)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"PUT","admin/course/update");
+		        obj.saveOrUpdate(formData,"PUT","api/admin/course/update");
 		        location.reload(true);
 			} catch (e) {
 				// TODO: handle exception
@@ -196,7 +196,7 @@ function onDeleteEvents()
 		
 			$.ajax({
 	        	method : "DELETE",
-	            url : rootLocation+"admin/course/delete/"+courseId,
+	            url : rootLocation+"api/admin/course/delete/"+courseId,
 	            data : "",
 	            dataType : "text",
 				contentType : "application/json; charset=utf-8",
@@ -268,7 +268,7 @@ function teacherManagementEvents()
 	        $('#form-teacher .waiting-process').removeClass('hidden');
 	        $('#preview-teacher-container').addClass('hidden');
 	        //get teacher asyn
-	        teacher=obj.getDataAsync("GET",'admin/teacher/code/'+teacherCode,function(data){
+	        teacher=obj.getDataAsync("GET",'api/admin/teacher/code/'+teacherCode,function(data){
 	        	$('#form-teacher .waiting-process').addClass('hidden');
 	        	$('#preview-teacher-container').removeClass('hidden');
 	        	if(data!=""&&data!=undefined)
@@ -303,7 +303,7 @@ function teacherManagementEvents()
 		        formData.append("course", new Blob([JSON.stringify(course)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"PUT","admin/course/update");
+		        obj.saveOrUpdate(formData,"PUT","api/admin/course/update");
 		        location.reload(true);
 			} catch (e) {
 				// TODO: handle exception
@@ -340,7 +340,7 @@ function removeTeacherEvents()
 		        formData.append("course", new Blob([JSON.stringify(course)], {
 		            type: "application/json"
 		        }));
-				 obj.saveOrUpdate(formData,"PUT","admin/course/update");
+				 obj.saveOrUpdate(formData,"PUT","api/admin/course/update");
 			     location.reload(true);
 			} catch (e) {
 				// TODO: handle exception

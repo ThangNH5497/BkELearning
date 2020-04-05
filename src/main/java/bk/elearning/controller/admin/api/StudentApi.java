@@ -1,4 +1,4 @@
-package bk.elearning.controller.teacher.api;
+package bk.elearning.controller.admin.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,86 +18,86 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import bk.elearning.entity.Teacher;
+import bk.elearning.entity.Student;
 import bk.elearning.entity.dto.PaginationResult;
-import bk.elearning.service.ITeacherService;
+import bk.elearning.service.IStudentService;
 
-@RestController("teacherApi")
-@RequestMapping(path = "/teacher/teacher")
+@RestController("adminStudentApi")
+@RequestMapping(path = "/api/admin/student")
 @Transactional
-public class TeacherApi {
+public class StudentApi {
 
 	@Autowired
-	private ITeacherService teacherService;
+	private IStudentService studentService;
 	
 
 	// lay tat ca
-	@GetMapping(path = "/teachers")
-	public List<Teacher> getAllTeacher() {
-		List<Teacher> teachers = null;
+	@GetMapping(path = "/students")
+	public List<Student> getAllStudent() {
+		List<Student> students = null;
 		try {
-			teachers = teacherService.getAll();
+			students = studentService.getAll();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return teachers;
+		return students;
 	}
 
 	// lay theo id
 	@GetMapping(path = "/id/{id}")
-	public Teacher getTeacherById(@PathVariable int id) {
-		Teacher teacher = null;
+	public Student getStudentById(@PathVariable int id) {
+		Student students = null;
 		try {
-			teacher = teacherService.getById(id);
+			students = studentService.getById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return teacher;
+		return students;
 	}
 
 	// lay theo code
 	@GetMapping(path = "/code/{code}")
-	public Teacher getTeacherByCode(@PathVariable String code) {
-		Teacher teacher = null;
+	public Student getStudentByCode(@PathVariable String code) {
+		Student student = null;
 		try {
-			teacher = teacherService.getByCode(code);
+			student = studentService.getByCode(code);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return teacher;
+		return student;
 	}
 
 	// lay theo cuserName
 	@GetMapping(path = "/username/{username}")
-	public Teacher getTeacherByUsername(@PathVariable String username) {
-		Teacher teacher = null;
+	public Student getStudentByUsername(@PathVariable String username) {
+		Student student = null;
 		try {
-			teacher = teacherService.getByUsername(username);
+			student = studentService.getByUsername(username);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return teacher;
+		return student;
 	}
 
 	// xoa theo id
 	@DeleteMapping(path = "/delete/{id}")
-	public int deleteTeacherById(@PathVariable int id) {
-		return teacherService.delete(id);
+	public int deleteStudentById(@PathVariable int id) {
+		return studentService.delete(id);
 	}
 
 	// xoa nhieu 1 luc
 	@DeleteMapping(path = "/delete/multiple")
-	public int deleteTeacherByIds(@RequestBody ArrayList<Integer> ids) {
-		return teacherService.deleteMultiple(ids);
+	public int deleteStudentByIds(@RequestBody ArrayList<Integer> ids) {
+		return studentService.deleteMultiple(ids);
 	}
 
 	// tao moi giang vien
 	@PostMapping("/add")
-	public String addNewTeacher(@RequestPart("teacher") Teacher teacher,
+	public String addNewStudent(@RequestPart("student") Student student,
 			@RequestPart(name = "file", required = false) MultipartFile file) {
 
 		try {
-			if (teacherService.save(teacher, file) == 1)
+			if (studentService.save(student, file) == 1)
 				return "Thêm Thành Công";
 		} catch (Exception e) {
 
@@ -113,7 +113,7 @@ public class TeacherApi {
 		//first value is success and second value is error
 		int result[]= {0,0};
 		try {
-			result=teacherService.saveFromFile(file);
+			result=studentService.saveFromFile(file);
 		} catch (Exception e) {
 
 		}
@@ -124,11 +124,11 @@ public class TeacherApi {
 
 	// update
 	@PutMapping("/update")
-	public String updateTeacher(@RequestPart("teacher") Teacher teacher,
+	public String updateStudent(@RequestPart("student") Student student,
 			@RequestPart(name = "file", required = false) MultipartFile file) {
 
 		try {
-			if (teacherService.update(teacher, file) == 1)
+			if (studentService.update(student, file) == 1)
 				return "Update Thành Công";
 		} catch (Exception e) {
 
@@ -140,10 +140,10 @@ public class TeacherApi {
 
 	// lay du lieu tim kiem va phan trang
 	@GetMapping("/search")
-	public PaginationResult<Teacher> searchTeachers(@RequestParam(name = "filter") String filter,
+	public PaginationResult<Student> searchStudents(@RequestParam(name = "filter") String filter,
 			@RequestParam String key, @RequestParam int page, int size) {
 		try {
-			return teacherService.getSearchPage(filter, key, page, size);
+			return studentService.getSearchPage(filter, key, page, size);
 		} catch (Exception e) {
 
 		}
@@ -151,17 +151,16 @@ public class TeacherApi {
 
 	}
 
-	// phan trang tat ca teacher
+	// phan trang tat ca student
 	@GetMapping("/page")
-	public PaginationResult<Teacher> getPage(@RequestParam int page, int size) {
+	public PaginationResult<Student> getPage(@RequestParam int page, int size) {
 		try {
-			return teacherService.getPage(page, size);
+			return studentService.getPage(page, size);
 		} catch (Exception e) {
-
 		}
 		return null;
 
 	}
-	// phan trang tat ca teacher
+	// phan trang tat ca student
 
 }
