@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -23,7 +24,9 @@ public class Teacher extends User{
 	@JsonIgnore
 	@OneToMany(mappedBy="teacher",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Course> courses;
-
+	
+	
+	
 	public Teacher() {
 		super();
 		// TODO Auto-generated constructor stub

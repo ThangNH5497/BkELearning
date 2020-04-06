@@ -114,7 +114,20 @@ public class CourseServiceImpl implements ICourseService {
 	@Override
 	public PaginationResult<Course> getPageByTeacher(int teacherId, int page, int size) {
 		// TODO Auto-generated method stub
-		return null;
+		PaginationResult<Course> pageResult = new PaginationResult<Course>();
+		try {
+			HashMap<String, Object> constrantFields=new HashMap<String, Object>();
+			constrantFields.put("teacher.id", teacherId);
+		//	HashMap<String, String> searchFields=new HashMap<String, String>();
+			//searchFields.put(filter, key);
+			pageResult.setCount(courseRepository.getCount(constrantFields,null));
+			if (page > 0) {
+				pageResult.setData(courseRepository.getWithConstraint(constrantFields, (page - 1) * size, size));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return pageResult;
 	}
 
 	@Override
@@ -136,7 +149,24 @@ public class CourseServiceImpl implements ICourseService {
 		return pageResult;
 	}
 
-
+	@Override
+	public PaginationResult<Course> searchByTeacher(int teacherId, String filter, String key, int page, int size) {
+		// TODO Auto-generated method stub
+		PaginationResult<Course> pageResult = new PaginationResult<Course>();
+		try {
+			HashMap<String, Object> constrantFields=new HashMap<String, Object>();
+			constrantFields.put("teacher.id", teacherId);
+			HashMap<String, String> searchFields=new HashMap<String, String>();
+			searchFields.put(filter, key);
+			pageResult.setCount(courseRepository.getCount(constrantFields,searchFields));
+			if (page > 0) {
+				pageResult.setData(courseRepository.search(constrantFields,searchFields, (page - 1) * size, size));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return pageResult;
+	}
 
 
 }

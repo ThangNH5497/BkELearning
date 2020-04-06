@@ -96,16 +96,18 @@ public class TeacherApi {
 
 	// them tu file exel
 	@PostMapping("/add/file")
-	public int[] addFromFile(@RequestPart(name = "file",required = true) MultipartFile file) {
+	public String addFromFile(@RequestPart(name = "file",required = true) MultipartFile file) {
 		//first value is success and second value is error
 		int result[]= {0,0};
+		String msg="Thêm 0 Thành Công , 0 Thất Bại.";
 		try {
 			result=teacherService.saveFromFile(file);
+			msg="Thêm "+result[0]+" Thành Công, "+result[1]+" Thất Bại.";
 		} catch (Exception e) {
 
 		}
 
-		return result;
+		return msg;
 
 	}
 

@@ -6,15 +6,15 @@
 	overflow: auto;
 }
 .card-container {
-	height: 18vh !important;
-	max-height: 18vh !important;
-	min-height: 18vh !important;
+	height: 28vh !important;
+	max-height: 28vh !important;
+	min-height: 28vh !important;
 }
 
 .card-body {
-	height: 10vh !important;
-	max-height: 10vh !important;
-	min-height: 10vh !important;
+	height: 20vh !important;
+	max-height: 20vh !important;
+	min-height: 20vh !important;
 }
 
 .card-header {
