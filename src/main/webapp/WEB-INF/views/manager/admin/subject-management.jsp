@@ -14,7 +14,7 @@
 <!-- Phan noi dung trang -->
 <div class="wrapper d-flex align-items-stretch">
 
-	<jsp:include page="/WEB-INF/views/manager/admin/menu.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/manager/commons/menu.jsp"></jsp:include>
 	<!-- Page Content  -->
 	<div id="content" class="mb-5">
 
@@ -22,9 +22,6 @@
 		<nav
 			class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-			<button type="button" id="sidebarCollapse" class="btn btn-primary">
-				<i class="fa fa-bars"></i> <span class="sr-only">Toggle Menu</span>
-			</button>
 			<!-- Sidebar Toggle (Topbar) -->
 			<button id="sidebarToggleTop"
 				class="btn btn-link d-md-none rounded-circle mr-3">

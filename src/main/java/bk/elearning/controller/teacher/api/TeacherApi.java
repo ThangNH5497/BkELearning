@@ -1,4 +1,4 @@
-package bk.elearning.controller.admin.api;
+package bk.elearning.controller.teacher.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,20 +20,29 @@ import org.springframework.web.multipart.MultipartFile;
 
 import bk.elearning.entity.Teacher;
 import bk.elearning.entity.dto.PaginationResult;
-import bk.elearning.repository.ITeacherRepository;
 import bk.elearning.service.ITeacherService;
 
-@RestController("adminTeacherApi")
-@RequestMapping(path = "/api/admin/teacher")
+@RestController("teacherApi")
+@RequestMapping(path = "/teacher/teacher")
 @Transactional
 public class TeacherApi {
 
 	@Autowired
 	private ITeacherService teacherService;
 	
-	@Autowired
-	private ITeacherRepository teacherRepository;
-	
+
+	// lay tat ca
+	@GetMapping(path = "/teachers")
+	public List<Teacher> getAllTeacher() {
+		List<Teacher> teachers = null;
+		try {
+			teachers = teacherService.getAll();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return teachers;
+	}
+
 	// lay theo id
 	@GetMapping(path = "/id/{id}")
 	public Teacher getTeacherById(@PathVariable int id) {
@@ -154,16 +163,5 @@ public class TeacherApi {
 
 	}
 	// phan trang tat ca teacher
-	// lay du lieu tim kiem va phan trang
-		@GetMapping("/test")
-		public List<Teacher> test(
-				@RequestParam String key) {
-			try {
-				return teacherRepository.test(key);
-			} catch (Exception e) {
 
-			}
-			return null;
-
-		}
 }

@@ -25,9 +25,7 @@ public class Teacher extends User{
 	@JsonIgnore
 	@OneToMany(mappedBy="teacher",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Course> courses;
-	
-	
-	
+
 	public Teacher() {
 		super();
 		// TODO Auto-generated constructor stub

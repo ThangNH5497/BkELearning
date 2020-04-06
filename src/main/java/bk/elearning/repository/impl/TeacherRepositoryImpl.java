@@ -1,10 +1,15 @@
 package bk.elearning.repository.impl;
 
+<<<<<<< HEAD
 import java.awt.print.Book;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+=======
+import java.util.List;
+
+>>>>>>> parent of dd0be6d... edit delete method teacherRepository
 import org.hibernate.SessionFactory;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
@@ -13,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import bk.elearning.entity.Subject;
 import bk.elearning.entity.Teacher;
 import bk.elearning.repository.ITeacherRepository;
 
@@ -22,6 +28,7 @@ public class TeacherRepositoryImpl extends UserRepositoryImpl<Teacher> implement
 
 	@Autowired
 	private SessionFactory sessionFactory;
+<<<<<<< HEAD
 	@Override
 	public int delete(int id) {
 		// TODO Auto-generated method stub
@@ -59,6 +66,9 @@ public class TeacherRepositoryImpl extends UserRepositoryImpl<Teacher> implement
 		    List<Teacher> results = hibQuery.list();
 		    return results;
 	}
+=======
+
+>>>>>>> parent of dd0be6d... edit delete method teacherRepository
 	
 
 }

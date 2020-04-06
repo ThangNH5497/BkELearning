@@ -13,38 +13,26 @@
 <!-- Phan noi dung trang -->
 <div class="wrapper d-flex align-items-stretch">
 
-	<jsp:include page="/WEB-INF/views/manager/admin/menu.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/manager/commons/menu.jsp"></jsp:include>
 	<!-- Page Content  -->
 	<div id="content" class="mb-5">
+
 		<div class=" container-fluid content-container">
-			<div class=" container-fluid d-flex pl-0 ml-0">
-
-				<nav class="navbar navbar-light bg-light pl-0 ml-0">
-
-					<button type="button" id="sidebarCollapse" class="btn btn-primary">
-						<i class="fa fa-bars"></i> <span class="sr-only">Toggle
-							Menu</span>
-					</button>
-				</nav>
-				<nav class="navbar navbar-light bg-light" style="font-weight: 600;"
-					id="link-current">
-
-					<span class="navbar-text"> <i class="fas fa-link"></i> <a
-						class='text-primary' href="<c:url value='/admin/ql-mon-hoc' />">Quản
-							Lý Môn Học</a><span> / Danh Sách Lớp</span>
-					</span>
-				</nav>
-				<nav class="navbar navbar-light bg-light hidden"
-					style="font-weight: 600;" id='link-back-search'>
-					<span class="navbar-text"> <i class="fas fa-link"></i> <a
-						class='text-primary' href="<c:url value='/admin/ql-mon-hoc' />">Quản
-							Lý Môn Học</a><a class='text-primary'
-						href="javascript:location.reload(true)"> / Danh Sách Lớp</a><span>
-							/ Tìm Kiếm</span>
-					</span>
-				</nav>
-			</div>
-
+			<nav class="navbar navbar-light bg-light" style="font-weight: 600;"
+				id="link-current">
+				<span class="navbar-text"> <i class="fas fa-link"></i> <a
+					class='text-primary' href="<c:url value='/admin/ql-mon-hoc' />">Quản
+						Lý Môn Học</a><span> / Danh Sách Lớp</span>
+				</span>
+			</nav>
+			<nav class="navbar navbar-light bg-light hidden"
+				style="font-weight: 600;" id='link-back-search'>
+				<span class="navbar-text"> <i class="fas fa-link"></i> <a
+					class='text-primary' href="<c:url value='/admin/ql-mon-hoc' />">Quản
+						Lý Môn Học</a><a class='text-primary' href="javascript:location.reload(true)"> / Danh Sách Lớp</a><span>
+						/ Tìm Kiếm</span>
+				</span>
+			</nav>
 			<nav
 				class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 

@@ -9,13 +9,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import bk.elearning.repository.IGenericRepository;
-import bk.elearning.utils.Constant;
 
 @SuppressWarnings("unchecked")
-@Transactional
 public abstract class AbstractGenericRepository<T> implements IGenericRepository<T> {
 
 	public final int ALL_RECORD = -1;
@@ -147,19 +144,6 @@ public abstract class AbstractGenericRepository<T> implements IGenericRepository
 		}
 		return 0;
 	}
-	@Override
-	public int delete(T t) {
-		// TODO Auto-generated method stub
-		Session session = this.sessionFactory.getCurrentSession();
-		try {
-			
-			session.delete(t);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-			session.clear();
-		}
-		return 0;
-	}
 
 	@Override
 	public int update(T t) {
@@ -180,23 +164,18 @@ public abstract class AbstractGenericRepository<T> implements IGenericRepository
 		// TODO Auto-generated method stub
 		List<T> list = null;
 		// TODO Auto-generated method stub
-	
+		Session session = this.sessionFactory.getCurrentSession();
 		StringBuilder hqlQuery = new StringBuilder("from " + clazz.getName() + " t ");
 		try {
 			Query query = null;
 			query = queryBuild(constrantFields, null, hqlQuery);
-			if(size!=Constant.MAX_RESULT)
-			{
-				query.setFirstResult(start);
-				query.setMaxResults(size);
-			}
-			
+			query.setFirstResult(start);
+			query.setMaxResults(size);
 			list = query.list();
 		} catch (Exception e) {
 			// TODO: handle exception
-			(this.sessionFactory.getCurrentSession()).clear();
+			session.clear();
 		}
-		this.sessionFactory.getCurrentSession().clear();
 		return list;
 	}
 
@@ -222,11 +201,8 @@ public abstract class AbstractGenericRepository<T> implements IGenericRepository
 		try {
 			Query query = null;
 			query = queryBuild(constrantFields, searchFields, hqlQuery);
-			if(size!=Constant.MAX_RESULT)
-			{
-				query.setFirstResult(start);
-				query.setMaxResults(size);
-			}
+			query.setFirstResult(start);
+			query.setMaxResults(size);
 			list = query.list();
 		} catch (Exception e) {
 			// TODO: handle exceptio
@@ -287,6 +263,7 @@ public abstract class AbstractGenericRepository<T> implements IGenericRepository
 			// TODO: handle exception
 			session.clear();
 		}
+
 		return query;
 	}
 

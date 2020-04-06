@@ -178,8 +178,8 @@ function addNewUserEvents(paramName,urlApi)
 				var formData = new FormData();	
 				//them file vao data
 		        formData.append('file', $('#modal-add-new #input-file-exel')[0].files[0]);		    
-		        obj.saveOrUpdateAsync(formData,"Post",urlApi+'/file',showMessage);
-				
+		        obj.saveOrUpdate(formData,"Post",urlApi+'/file');
+				location.reload(true);
 			} catch (e) {
 				// TODO: handle exception
 				showMessage("Lỗi : " +e);

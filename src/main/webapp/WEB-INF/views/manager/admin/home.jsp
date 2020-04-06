@@ -11,7 +11,7 @@
 
 <!-- Phan noi dung trang -->
 <div class="wrapper d-flex align-items-stretch">
-	<jsp:include page="/WEB-INF/views/manager/admin/menu.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/manager/commons/menu.jsp"></jsp:include>
 
 	<!-- Page Content  -->
 	<div id="content" class="mb-5"></div>

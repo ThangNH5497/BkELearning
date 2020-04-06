@@ -231,24 +231,6 @@ class Base {
             }
         });
     }
-    //xu ly khong dong bộ
-    saveOrUpdateAsync(data,method,urlApi,functionHandle)
-    {
-    	$.ajax({
-        	method : method,
-            url : rootLocation+urlApi,
-            data : data,
-            processData : false,
-            contentType : false,
-            async:true,
-            success : function(data) {
-            	functionHandle(data);
-            },
-            errorr : function(err) {
-            	alert("error : "+err);
-            }
-        });
-    }
     //valid input
     validInputs(formId)
     {
