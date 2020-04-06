@@ -1,11 +1,16 @@
 package bk.elearning.repository.impl;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.awt.print.Book;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+=======
+import java.util.List;
+
+>>>>>>> parent of dd0be6d... edit delete method teacherRepository
 =======
 import java.util.List;
 
@@ -28,6 +33,7 @@ public class TeacherRepositoryImpl extends UserRepositoryImpl<Teacher> implement
 
 	@Autowired
 	private SessionFactory sessionFactory;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	@Override
 	public int delete(int id) {
@@ -66,6 +72,9 @@ public class TeacherRepositoryImpl extends UserRepositoryImpl<Teacher> implement
 		    List<Teacher> results = hibQuery.list();
 		    return results;
 	}
+=======
+
+>>>>>>> parent of dd0be6d... edit delete method teacherRepository
 =======
 
 >>>>>>> parent of dd0be6d... edit delete method teacherRepository
