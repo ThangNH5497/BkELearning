@@ -9,7 +9,6 @@
 
 	<properties>
 		<hibernate.version>5.2.17.Final</hibernate.version>
-		<search.hibernate.version>5.11.4.Final</search.hibernate.version>
 		<spring.data>2.2.3.RELEASE</spring.data>
 		<mysql.version>8.0.13</mysql.version>
 		<servlet.api.version>4.0.1</servlet.api.version>
@@ -189,36 +188,12 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 
-		<!-- hibernate search -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-search-engine</artifactId>
-			<version>${search.hibernate.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-search-orm</artifactId>
-			<version>${search.hibernate.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-search-orm</artifactId>
-			<version>${search.hibernate.version}</version>
-		</dependency>
-
 		<!-- Spring data -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring.data}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.1-api</artifactId>
-			<version>1.0.2.Final</version>
-		</dependency>
-
 		<dependency>
 			<groupId>com.google.code.maven-play-plugin.com.mchange</groupId>
 			<artifactId>c3p0-oracle-thin-extras</artifactId>

@@ -9,11 +9,11 @@
 <link rel="stylesheet"
 	href="<c:url value='/resources/manager/commons/css/dashboard.css' />">
 <link rel="stylesheet"
-	href="<c:url value='/resources/manager/commons/css/subject-detail.css' />">
+	href="<c:url value='/resources/manager/teacher/css/course-management.css' />">
 <!-- Phan noi dung trang -->
 <div class="wrapper d-flex align-items-stretch">
 
-	<jsp:include page="/WEB-INF/views/manager/admin/menu.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/manager/teacher/menu.jsp"></jsp:include>
 	<!-- Page Content  -->
 	<div id="content" class="mb-5">
 		<div class=" container-fluid content-container">
@@ -75,10 +75,6 @@
 				<!-- type search radio -->
 				<!-- end type search radio -->
 				<div class="d-flex justify-content-end w-100">
-					<button class="btn btn-add text-success btn-control"
-						data-toggle="modal" data-target="#modal-add-new">
-						<i class="far fa-plus-square"></i>
-					</button>
 					<button class="btn btn-refresh text-primary btn-control">
 						<i class="fas fa-sync"></i>
 					</button>
@@ -99,20 +95,11 @@
 							<h5 class="m-0 font-weight-bold text-primary" field="code"></h5>
 							<div class="d-flex justify-content-end w-50">
 
-								<button class="btn btn-add-teacher text-success btn-control"
+								<button class="btn btn-add-teacher text-primary btn-control"
 									data-toggle="modal" data-target="#modal-teacher">
-									<i class="fas fa-user-plus"></i>
+									<i class="fas fa-sliders-h"></i>
 								</button>
-								<button class="btn btn-remove-teacher text-danger btn-control">
-									<i class="fas fa-user-minus"></i>
-								</button>
-								<button class="btn btn-edit text-primary btn-control"
-									data-toggle="modal" data-target="#modal-edit">
-									<i class="fas fa-edit"></i>
-								</button>
-								<button class="btn btn-delete text-danger btn-control">
-									<i class="fas fa-trash"></i>
-								</button>
+								
 
 
 							</div>
@@ -120,21 +107,42 @@
 						<!-- Card Body -->
 						<div class="card-body">
 							<div class="container h-100">
-								<div class=" row h-50 d-flex">
+								<div class=" row h-25 d-flex">
 									<div class="col-2 align-self-center">
-										<h6 class="m-0 font-weight-bold text-secondary">Giảng
-											Viên</h6>
+										<h6 class="m-0 font-weight-bold text-secondary">Mã Học Phần</h6>
 									</div>
 									<div class="col-9 align-self-center">
 										<h6 class="m-0 font-weight-bold text-primary"
-											field="teacher.fullName"></h6>
+											field="subject.code"></h6>
 									</div>
 									<div class="col-1 justify-content-center align-self-center">
 
 									</div>
 								</div>
 
-								<div class=" row h-50 d-flex">
+								<div class=" row h-25 d-flex">
+									<div class="col-2 align-self-center">
+										<h6 class="m-0 font-weight-bold text-secondary">Tên Học Phần</h6>
+									</div>
+									<div class="col-9 align-self-center">
+										<h6 class="m-0 font-weight-bold text-primary"
+											field="subject.subjectName"></h6>
+									</div>
+									<div class="col-1 justify-content-center align-self-center">
+									</div>
+								</div>
+								<div class=" row h-25 d-flex">
+									<div class="col-2 align-self-center">
+										<h6 class="m-0 font-weight-bold text-secondary">Tên lớp</h6>
+									</div>
+									<div class="col-9 align-self-center">
+										<h6 class="m-0 font-weight-bold text-primary"
+											field="courseName"></h6>
+									</div>
+									<div class="col-1 justify-content-center align-self-center">
+									</div>
+								</div>
+								<div class=" row h-25 d-flex">
 									<div class="col-2 align-self-center">
 										<h6 class="m-0 font-weight-bold text-secondary">Mô Tả</h6>
 									</div>
@@ -143,7 +151,6 @@
 											field="descriptor"></h6>
 									</div>
 									<div class="col-1 justify-content-center align-self-center">
-
 									</div>
 								</div>
 							</div>
@@ -300,202 +307,17 @@
 			</div>
 
 		</div>
-		<!-- /.modal-content -->
+		
 	</div>
-	<!-- /.modal-dialog -->
+	
 </div>
 
-<!-- end modal edit -->
-
-<!--  modal add teacher to course -->
-<div class="modal fade" id="modal-teacher" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
-	<div class="modal-dialog modal-xl">
-		<div class="modal-content">
-			<!--Header-->
-			<div class="modal-header">
-				<p class="heading lead">Quản Lý Giảng Viên Phụ Trách</p>
-
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true" class="white-text">×</span>
-				</button>
-			</div>
-
-			<!--Body-->
-			<div class="modal-body">
-				<div class="form-container">
-					<div class="form-v4">
-						<div class="form-v4-content">
-							<form class="form-detail" action="#" method="post"
-								id="form-teacher">
-								<h2>Thông Tin Giảng Viên</h2>
-								<div class="form-row">
-									<label for="code">Mã Giảng Viên Phụ Trách</label> <input
-										type="text" class=" input-text teacher-code"
-										name="teacher.code"> <label name="code-error"
-										id="teacher-code-error" class="error hidden">Mã Giảng
-										Viên Không Tồn Tại</label>
-
-								</div>
-								<div
-									class="waiting-process d-flex justify-content-center pb-4 hidden">
-									<h2 class="message hidden"></h2>
-									<img style="max-width: 32px; max-height: 32px;"
-										src="<c:url value='/resources/commons/image/icon/load-icon.gif' />">
-
-								</div>
-								<!-- teacher freview -->
-								<div class="container-fluid p-0" id="preview-teacher-container">
-									<div class="d-flex form-row" style="background: #f8f9fa;"
-										id="preview-teacher-row">
-										<div class="col-2 p-0">
-											<img field="image"
-												style="height: 132px; width: 132px; max-height: 132px; max-width: 132px;"
-												src="<c:url value='/resources/commons/image/user/default-user.jpg'/>">
-										</div>
-										<div class="col-5 pl-3">
-											<div class="row h-50">
-												<div class="col-md-4 align-self-center">
-													<label>Mã GV</label>
-												</div>
-												<div class="col-md-8 align-self-center">
-													<p class="text-primary" field="code">Không</p>
-												</div>
-											</div>
-											<div class="row h-50">
-												<div class="col-md-4 align-self-center">
-													<label>Họ&Tên</label>
-												</div>
-												<div class="col-md-8 align-self-center">
-													<p class="text-primary" field="fullName">Không</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-5 pl-3">
-											<div class="row h-50">
-												<div class="col-md-4 align-self-center">
-													<label>Chức Vụ</label>
-												</div>
-												<div class="col-md-8 align-self-center">
-
-													<p class="text-primary" field="position">không</p>
-												</div>
-											</div>
-											<div class="row h-50">
-												<div class="col-md-4 align-self-center">
-													<label>Bộ Môn</label>
-												</div>
-												<div class="col-md-8 align-self-center">
-
-													<p class="text-primary" field="department">không</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-							</form>
-						</div>
-					</div>
-					<!--Footer-->
-					<div class="border-top my-3"></div>
-					<div class="d-flex justify-content-center">
-						<a type="button" class="btn  waves-effect btn-cancel"
-							data-dismiss="modal">Hủy</a> <a type="button"
-							class="btn  waves-effect btn-submit disabled">Lưu</a>
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<!-- /.modal-content -->
-	</div>
-	<!-- /.modal-dialog -->
-</div>
-
-
-<!-- modal alert -->
-<div class="modal fade" id="modal-delete-alert" tabindex="-1"
-	role="dialog" aria-labelledby="edit" aria-hidden="true">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<!--Header-->
-			<div class="modal-header bg-warning">
-				<p class="heading lead">Cảnh Báo</p>
-
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true" class="white-text">×</span>
-				</button>
-			</div>
-
-			<!--Body-->
-			<div class="modal-body border-top my-3">
-				<div class="message">Bạn Có Muốn Tiếp Tục Xóa ?</div>
-
-				<div class="border-top my-3"></div>
-				<div class="d-flex justify-content-center">
-					<a type="button" class="btn  waves-effect btn-cancel"
-						data-dismiss="modal">Hủy</a><a type="button"
-						class="btn  waves-effect btn-delete-alert-ok">OK</a>
-				</div>
-			</div>
-
-		</div>
-		<!-- /.modal-content -->
-	</div>
-	<!-- /.modal-dialog -->
-
-</div>
-
-<!-- end modal alert -->
-
-<!-- modal message -->
-<div class="modal fade" id="modal-message" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<!--Header-->
-			<div class="modal-header">
-				<p class="heading lead">Đang Xử Lý...</p>
-
-			</div>
-
-			<!--Body-->
-			<div class="modal-body">
-				<div class="form-container message-container">
-					<div class="border-top my-3"></div>
-					<div class="waiting-process d-flex justify-content-center">
-						<h2 class="message hidden"></h2>
-						<img style="max-width: 48px; max-height: 48px;"
-							src="<c:url value='/resources/commons/image/icon/load-icon.gif' />">
-
-					</div>
-					<!--Footer-->
-					<div class="border-top my-3"></div>
-					<div class="d-flex justify-content-center">
-						<a type="button" style="margin: 0 !important;"
-							class="btn hidden waves-effect btn-ok">OK</a>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-
-
-	</div>
-	<!-- /.modal-content -->
-</div>
-<!-- /.modal-dialog -->
-<!-- end modal message -->
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/search.js' />"></script>
 <script src="<c:url value='/resources/commons/js/pagination.js' />"></script>
 <script
-	src="<c:url value='/resources/manager/admin/js/subject-detail.js' />"></script>
+	src="<c:url value='/resources/manager/teacher/js/course-management.js' />"></script>
 <!-- Footer -->
 <script type="text/javascript">
 	(function($) {

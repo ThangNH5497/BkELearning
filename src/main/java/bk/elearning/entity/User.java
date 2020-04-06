@@ -1,31 +1,30 @@
 package bk.elearning.entity;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.search.annotations.Analyze;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Index;
-import org.hibernate.search.annotations.Store;
-import org.springframework.stereotype.Indexed;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "user")
-@Indexed
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User  extends AbstractEntity{
 
 	@Column(name="code",nullable = false,unique = true)
-	@Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO)
 	private String code;
 	
 	@Column(name="username",nullable = false,unique = true)
@@ -34,7 +33,6 @@ public class User  extends AbstractEntity{
 	@Column(name="password",nullable = false)
 	private String password;
 	
-	@Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO)
 	@Column(name="full_name",nullable = false)
 	private String fullName;
 	

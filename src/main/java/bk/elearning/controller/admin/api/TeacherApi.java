@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import bk.elearning.entity.Teacher;
 import bk.elearning.entity.dto.PaginationResult;
-import bk.elearning.repository.ITeacherRepository;
 import bk.elearning.service.ITeacherService;
 
 @RestController("adminTeacherApi")
@@ -30,9 +29,6 @@ public class TeacherApi {
 
 	@Autowired
 	private ITeacherService teacherService;
-	
-	@Autowired
-	private ITeacherRepository teacherRepository;
 	
 	// lay theo id
 	@GetMapping(path = "/id/{id}")
@@ -100,16 +96,18 @@ public class TeacherApi {
 
 	// them tu file exel
 	@PostMapping("/add/file")
-	public int[] addFromFile(@RequestPart(name = "file",required = true) MultipartFile file) {
+	public String addFromFile(@RequestPart(name = "file",required = true) MultipartFile file) {
 		//first value is success and second value is error
 		int result[]= {0,0};
+		String msg="Thêm 0 Thành Công , 0 Thất Bại.";
 		try {
 			result=teacherService.saveFromFile(file);
+			msg="Thêm "+result[0]+" Thành Công, "+result[1]+" Thất Bại.";
 		} catch (Exception e) {
 
 		}
 
-		return result;
+		return msg;
 
 	}
 
@@ -154,16 +152,5 @@ public class TeacherApi {
 
 	}
 	// phan trang tat ca teacher
-	// lay du lieu tim kiem va phan trang
-		@GetMapping("/test")
-		public List<Teacher> test(
-				@RequestParam String key) {
-			try {
-				return teacherRepository.test(key);
-			} catch (Exception e) {
 
-			}
-			return null;
-
-		}
 }

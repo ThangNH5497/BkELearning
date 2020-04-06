@@ -60,6 +60,7 @@ function deleteEvents(urlApi)
 			            url : rootLocation+urlApi,
 			            data : JSON.stringify(ids),
 			            dataType : "json",
+			            async:false,
 						contentType : "application/json; charset=utf-8",
 			            success : function(data) {			               
 			            },

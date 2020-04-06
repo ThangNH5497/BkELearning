@@ -1,20 +1,25 @@
 package bk.elearning.service.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import bk.elearning.entity.Course;
 import bk.elearning.entity.Teacher;
 import bk.elearning.entity.dto.PaginationResult;
+import bk.elearning.repository.ICourseRepository;
 import bk.elearning.repository.ITeacherRepository;
+import bk.elearning.service.ICourseService;
 import bk.elearning.service.IPaginationResultService;
 import bk.elearning.service.ITeacherService;
+import bk.elearning.utils.Constant;
 import bk.elearning.utils.FileUpload;
 import bk.elearning.utils.TeacherMapperUtil;
 import bk.elearning.utils.Util;
@@ -25,16 +30,24 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 	@Autowired
 	private ITeacherRepository teacherRepository;
 
+	@Autowired
+	private ICourseRepository courseRepository;
+	
+	@Autowired
+	private ICourseService courseService ;
+
 	@Override
 	public Teacher getById(int id) {
 		// TODO Auto-generated method stub
-		return teacherRepository.getById( id);
+		return teacherRepository.getById(id);
 	}
+
 	@Override
 	public List<Teacher> getAll() {
 		// TODO Auto-generated method stub
 		return teacherRepository.getAll();
 	}
+
 	// thêm mới đối tượng teacher không có ảnh đại diện
 	@Override
 	public int save(Teacher t) {
@@ -59,7 +72,7 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 
 		t.setCourses(null);
 		if (file != null) {
-			
+
 			String filePath = "resources/commons/image/user/user-" + t.getCode() + "."
 					+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.') + 1);
 			t.setImage(FileUpload.saveFile(file, filePath));
@@ -74,7 +87,7 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 	@Override
 	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return teacherRepository.delete( id);
+		return teacherRepository.delete(id);
 	}
 
 	// cập nhật không có hình ảnh
@@ -90,7 +103,7 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 	 */
 	@Override
 	public int update(Teacher teacher, MultipartFile file) {
-		Teacher teacherUpdate = teacherRepository.getById( teacher.getId());
+		Teacher teacherUpdate = teacherRepository.getById(teacher.getId());
 		teacherUpdate.setEmail(teacher.getEmail());
 		teacherUpdate.setPhoneNumber(teacher.getPhoneNumber());
 		teacherUpdate.setDateOfBirth(teacher.getDateOfBirth());
@@ -120,7 +133,6 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		return teacherRepository.getByCode(code);
 	}
 
-	
 	/**
 	 * tra ve du lieu va phan trang du lieu Tham số page là chỉ số trang Tham số
 	 * size là lượng phần tử cần lấy
@@ -161,6 +173,7 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		}
 		return pageResult;
 	}
+
 	/**
 	 * Xóa du lieu va phan trang du lieu Tham số ids là danh sách id cần xóa
 	 */
@@ -170,8 +183,8 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		// TODO Auto-generated method stub
 		int checkErro = 0;
 		for (Integer integer : ids) {
-			try {
-				teacherRepository.delete( integer);
+			try {						
+				teacherRepository.delete(integer);
 			} catch (Exception e) {
 				// TODO: handle exception
 				checkErro++;
@@ -182,10 +195,10 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		return 1;
 	}
 	// luu tu file exel
-	
+
 	public int[] saveFromFile(MultipartFile file) {
 		// TODO Auto-generated method stub
-	
+
 		int success = 0;
 		int error = 0;
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -193,7 +206,7 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 			List<Teacher> teachers = FileUpload.processFileExel(file, new TeacherMapperUtil());
 			for (Teacher teacher : teachers) {
 				try {
-					
+
 					teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
 					if (teacher.getImage() == null || teacher.getImage().equals("")) {
 						teacher.setImage(Util.DEFAULT_USER_IMAGE);
@@ -205,10 +218,10 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 				}
 
 			}
-			error=teachers.size()-success;
+			error = teachers.size() - success;
 		}
-		
-		return new int[] {success,error};
+
+		return new int[] { success, error };
 
 	}
 
