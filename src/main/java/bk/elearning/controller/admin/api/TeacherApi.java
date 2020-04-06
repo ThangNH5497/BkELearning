@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import bk.elearning.entity.Teacher;
 import bk.elearning.entity.dto.PaginationResult;
+import bk.elearning.repository.ITeacherRepository;
 import bk.elearning.service.ITeacherService;
 
 @RestController("adminTeacherApi")
@@ -29,6 +30,9 @@ public class TeacherApi {
 
 	@Autowired
 	private ITeacherService teacherService;
+	
+	@Autowired
+	private ITeacherRepository teacherRepository;
 	
 	// lay theo id
 	@GetMapping(path = "/id/{id}")
@@ -152,5 +156,16 @@ public class TeacherApi {
 
 	}
 	// phan trang tat ca teacher
+	// lay du lieu tim kiem va phan trang
+		@GetMapping("/test")
+		public List<Teacher> test(
+				@RequestParam String key) {
+			try {
+				return teacherRepository.test(key);
+			} catch (Exception e) {
 
+			}
+			return null;
+
+		}
 }

@@ -2,16 +2,13 @@ package bk.elearning.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import bk.elearning.entity.Course;
 import bk.elearning.entity.Teacher;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.repository.ICourseRepository;
@@ -19,7 +16,6 @@ import bk.elearning.repository.ITeacherRepository;
 import bk.elearning.service.ICourseService;
 import bk.elearning.service.IPaginationResultService;
 import bk.elearning.service.ITeacherService;
-import bk.elearning.utils.Constant;
 import bk.elearning.utils.FileUpload;
 import bk.elearning.utils.TeacherMapperUtil;
 import bk.elearning.utils.Util;

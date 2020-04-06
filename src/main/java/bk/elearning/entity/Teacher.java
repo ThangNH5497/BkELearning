@@ -7,14 +7,15 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.PreRemove;
 
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.stereotype.Indexed;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @DynamicUpdate
+@Indexed
 public class Teacher extends User{
 	
 	private String department;
