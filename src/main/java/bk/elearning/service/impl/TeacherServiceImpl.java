@@ -1,25 +1,18 @@
 package bk.elearning.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import bk.elearning.entity.Course;
 import bk.elearning.entity.Teacher;
 import bk.elearning.entity.dto.PaginationResult;
-import bk.elearning.repository.ICourseRepository;
 import bk.elearning.repository.ITeacherRepository;
-import bk.elearning.service.ICourseService;
 import bk.elearning.service.IPaginationResultService;
 import bk.elearning.service.ITeacherService;
-import bk.elearning.utils.Constant;
 import bk.elearning.utils.FileUpload;
 import bk.elearning.utils.TeacherMapperUtil;
 import bk.elearning.utils.Util;
@@ -30,11 +23,7 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 	@Autowired
 	private ITeacherRepository teacherRepository;
 
-	@Autowired
-	private ICourseRepository courseRepository;
-	
-	@Autowired
-	private ICourseService courseService ;
+
 
 	@Override
 	public Teacher getById(int id) {
@@ -140,50 +129,31 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 	@Override
 	public PaginationResult<Teacher> getPage(int page, int size) {
 		// TODO Auto-generated method stub
-		PaginationResult<Teacher> pageResult = new PaginationResult<Teacher>();
-		try {
-			pageResult.setCount(teacherRepository.getCount());
-			if (page > 0) {
-				pageResult.setData(teacherRepository.getAll((page - 1) * size, size));
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return pageResult;
+		if (page > 0)
+			return teacherRepository.getPage(page - 1, size);
+		return null;
 	}
 
-	/**
-	 * tra ve du lieu va phan trang du lieu tham so filer bộ lọc trường dữ liệu Tham
-	 * số key là từ khóa tìm kiếm Tham số page là chỉ số trang Tham số size là lượng
-	 * phần tử cần lấy
-	 */
+	
 	@Override
 	public PaginationResult<Teacher> getSearchPage(String filter, String key, int page, int size) {
 		// TODO Auto-generated method stub
-		PaginationResult<Teacher> pageResult = new PaginationResult<Teacher>();
-		try {
-			HashMap<String, String> searchFields = new HashMap<String, String>();
-			searchFields.put(filter, key);
-			pageResult.setCount(teacherRepository.getCount(null, searchFields));
-			if (page > 0) {
-				pageResult.setData(teacherRepository.search(null, searchFields, (page - 1) * size, size));
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return pageResult;
+		
+		if (page > 0)
+			return teacherRepository.search(filter,key,page - 1, size);
+		return null;
 	}
 
 	/**
 	 * Xóa du lieu va phan trang du lieu Tham số ids là danh sách id cần xóa
 	 */
-	
+
 	@Override
 	public int deleteMultiple(ArrayList<Integer> ids) {
 		// TODO Auto-generated method stub
 		int checkErro = 0;
 		for (Integer integer : ids) {
-			try {						
+			try {
 				teacherRepository.delete(integer);
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -195,7 +165,6 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		return 1;
 	}
 	// luu tu file exel
-
 	public int[] saveFromFile(MultipartFile file) {
 		// TODO Auto-generated method stub
 

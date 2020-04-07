@@ -1,15 +1,12 @@
 package bk.elearning.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bk.elearning.entity.Subject;
-import bk.elearning.entity.Teacher;
-import bk.elearning.entity.User;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.repository.ISubjectRepository;
 import bk.elearning.service.ISubjectService;
@@ -83,34 +80,17 @@ public class SubjectServiceImpl implements ISubjectService {
 	@Override
 	public PaginationResult<Subject> getPage(int page, int size) {
 		// TODO Auto-generated method stub
-		PaginationResult<Subject> pageResult = new PaginationResult<Subject>();
-		try {
-			pageResult.setCount(subjectRepository.getCount());
-			if (page > 0) {
-				pageResult.setData(subjectRepository.getAll((page - 1) * size, size));
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return pageResult;
+		if (page > 0)
+			return subjectRepository.getPage(page - 1, size);
+		return null;
 	}
 
 	@Override
 	public PaginationResult<Subject> getSearchPage(String filter, String key, int page, int size) {
 		// TODO Auto-generated method stub
-		PaginationResult<Subject> pageResult = new PaginationResult<Subject>();
-
-		try {
-			HashMap<String, String> searchFields = new HashMap<String, String>();
-			searchFields.put(filter, key);
-			pageResult.setCount(subjectRepository.getCount(null, searchFields));
-			if (page > 0) {
-				pageResult.setData(subjectRepository.search(null, searchFields, (page - 1) * size, size));
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return pageResult;
+		if (page > 0)
+			return subjectRepository.search(filter, key, page - 1, size);
+		return null;
 	}
 
 }

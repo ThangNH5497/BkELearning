@@ -147,19 +147,7 @@ public abstract class AbstractGenericRepository<T> implements IGenericRepository
 		}
 		return 0;
 	}
-	@Override
-	public int delete(T t) {
-		// TODO Auto-generated method stub
-		Session session = this.sessionFactory.getCurrentSession();
-		try {
-			
-			session.delete(t);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-			session.clear();
-		}
-		return 0;
-	}
+	
 
 	@Override
 	public int update(T t) {
@@ -175,7 +163,7 @@ public abstract class AbstractGenericRepository<T> implements IGenericRepository
 		return 0;
 	}
 
-	@Override
+	
 	public List<T> getWithConstraint(HashMap<String, Object> constrantFields, int start, int size) {
 		// TODO Auto-generated method stub
 		List<T> list = null;
@@ -200,7 +188,7 @@ public abstract class AbstractGenericRepository<T> implements IGenericRepository
 		return list;
 	}
 
-	@Override
+	
 	public Long getCount(HashMap<String, Object> constrantFields, HashMap<String, String> searchFields) {
 		// TODO Auto-generated method stub
 		Long count = 0L;
@@ -213,7 +201,7 @@ public abstract class AbstractGenericRepository<T> implements IGenericRepository
 		return count;
 	}
 
-	@Override
+	
 	public List<T> search(HashMap<String, Object> constrantFields, HashMap<String, String> searchFields, int start,
 			int size) {
 		StringBuilder hqlQuery = new StringBuilder("from " + clazz.getName() + " t ");

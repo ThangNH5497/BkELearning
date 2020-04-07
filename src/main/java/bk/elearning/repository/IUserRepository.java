@@ -1,6 +1,10 @@
 package bk.elearning.repository;
 
-public interface IUserRepository<T> extends IGenericRepository<T>{
+import org.springframework.stereotype.Repository;
 
-	T getByUsername(String username);
+import bk.elearning.entity.User;
+
+@Repository
+public interface IUserRepository extends IUserGenericRepository<User> {
+
 }

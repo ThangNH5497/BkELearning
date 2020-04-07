@@ -40,7 +40,7 @@
 
 			<li><a href="#"><span class="icon fa fa-cogs mr-3"></span> <span
 					class="redirect">Hệ Thống</span></a></li>
-			<li><a href="#"><span class="icon fas fa-sign-out-alt mr-3"></span>
+			<li><a href="<c:url value='/logout'/>"><span class="icon fas fa-sign-out-alt mr-3"></span>
 					<span class="redirect">Đăng Xuất</span></a></li>
 
 		</ul>

@@ -3,15 +3,11 @@ $(document).ready(function() {
 	obj=new CourseManagement();
 	$('#sidebar .active').removeClass('active');
 	$('#menu-item-subject').addClass('active');
-	
 	tableDataEvents();
-	
-	var teacherId=getParametter('id');
-	teacher['id']=teacherId;
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'api/teacher/course/page/teacher?teacherId='+teacherId+'&');
+	handlePagination($('#pagination'),'api/teacher/course/page/teacher?');
 	//search event , file search.js
-	searchEvents('api/teacher/course/search/teacher?teacherId='+teacherId+'&');
+	searchEvents('api/teacher/course/search/teacher?');
 	
 });
 

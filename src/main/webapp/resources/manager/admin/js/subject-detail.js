@@ -207,7 +207,7 @@ function onDeleteEvents()
 	            	console.log('delete error : '+err);
 	            }
 	        });
-			location.reload();
+			location.reload(true);
 		});
 		
 	});

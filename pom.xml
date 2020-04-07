@@ -188,6 +188,7 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 
+
 		<!-- Spring data -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>

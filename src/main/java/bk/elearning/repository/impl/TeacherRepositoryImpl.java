@@ -10,9 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import bk.elearning.entity.Teacher;
 import bk.elearning.repository.ITeacherRepository;
 
+@SuppressWarnings("deprecation")
 @Repository
 @Transactional
-public class TeacherRepositoryImpl extends UserRepositoryImpl<Teacher> implements ITeacherRepository {
+public class TeacherRepositoryImpl extends UserGenericRepositoryImpl<Teacher> implements ITeacherRepository {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -22,6 +23,7 @@ public class TeacherRepositoryImpl extends UserRepositoryImpl<Teacher> implement
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
 			String hqlQuery="UPDATE  Course c SET c.teacher=:teacher where c.teacher.id=:id";
+			@SuppressWarnings("rawtypes")
 			Query query=session.createQuery(hqlQuery);
 			query.setParameter("teacher", null);
 			query.setParameter("id", id);

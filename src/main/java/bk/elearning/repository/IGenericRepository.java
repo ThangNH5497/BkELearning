@@ -17,18 +17,9 @@ public interface IGenericRepository<T> {
 
 	public int delete( int id);
 	
-	public int delete( T t);
 
 	public int update(T t);
 
-	public List<T> getWithConstraint(HashMap<String, Object> constrantFields,int start,int size);
-	//count record
 	public Long getCount();
-
-	// count by constraints and search
-	Long getCount(HashMap<String, Object> constrantFields,HashMap<String, String> searchFields);
-
-	//// count with constraints
-	public List<T> search(HashMap<String, Object> constrantFields,HashMap<String, String> searchFields, int start, int size);
 	
 }

@@ -1,7 +1,6 @@
 package bk.elearning.controller.admin.api;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -26,7 +25,7 @@ import bk.elearning.service.ITeacherService;
 @RequestMapping(path = "/api/admin/teacher")
 @Transactional
 public class TeacherApi {
-
+	 
 	@Autowired
 	private ITeacherService teacherService;
 	
@@ -152,5 +151,7 @@ public class TeacherApi {
 
 	}
 	// phan trang tat ca teacher
+	//test
+
 
 }

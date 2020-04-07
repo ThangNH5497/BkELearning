@@ -1,7 +1,6 @@
 package bk.elearning.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,16 +125,8 @@ public class StudentServiceImpl implements IStudentService{
 	@Override
 	public PaginationResult<Student> getPage(int page, int size) {
 		// TODO Auto-generated method stub
-		PaginationResult<Student> pageResult = new PaginationResult<Student>();
-		try {
-			pageResult.setCount(studentRepository.getCount());
-			if (page > 0) {
-				pageResult.setData(studentRepository.getAll((page - 1) * size, size));
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return pageResult;
+		if(page>0) return studentRepository.getPage(page-1, size);
+		else return null;
 	}
 
 	/**
@@ -146,18 +137,8 @@ public class StudentServiceImpl implements IStudentService{
 	@Override
 	public PaginationResult<Student> getSearchPage(String filter, String key, int page, int size) {
 		// TODO Auto-generated method stub
-		PaginationResult<Student> pageResult = new PaginationResult<Student>();
-		try {
-			HashMap<String, String> searchFields=new HashMap<String, String>();
-			searchFields.put(filter, key);
-			pageResult.setCount(studentRepository.getCount(null, searchFields));
-			if (page > 0) {
-				pageResult.setData(studentRepository.search( null,searchFields, (page - 1) * size, size));
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return pageResult;
+		if(page>0) return studentRepository.search(filter, key, page-1, size);
+		return null;
 	}
 	/**
 	 * Xóa du lieu va phan trang du lieu Tham số ids là danh sách id cần xóa
@@ -196,7 +177,7 @@ public class StudentServiceImpl implements IStudentService{
 					if (student.getImage() == null || student.getImage().equals("")) {
 						student.setImage(Util.DEFAULT_USER_IMAGE);
 					}
-					student.setRole(Util.ROLE_TEACHER);
+					student.setRole(Util.ROLE_STUDENT);
 					if (studentRepository.save(student) == 1)
 						success++;
 				} catch (Exception e) {
