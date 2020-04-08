@@ -23,7 +23,7 @@ import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.service.ITeacherService;
 
 @RestController("teacherApi")
-@RequestMapping(path = "/teacher/teacher")
+@RequestMapping(path = "/teacher/api/teacher")
 @Transactional
 public class TeacherApi {
 
@@ -143,7 +143,7 @@ public class TeacherApi {
 	public PaginationResult<Teacher> searchTeachers(@RequestParam(name = "filter") String filter,
 			@RequestParam String key, @RequestParam int page, int size) {
 		try {
-			return teacherService.getSearchPage(filter, key, page, size);
+			return teacherService.getSearchPage( key, page, size);
 		} catch (Exception e) {
 
 		}

@@ -21,7 +21,7 @@ import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.service.ISubjectService;
 
 @RestController("adminSubjectApi")
-@RequestMapping(path = "/api/admin/subject")
+@RequestMapping(path = "/admin/api/subject")
 @Transactional
 public class SubjectApi {
 
@@ -84,10 +84,9 @@ public class SubjectApi {
 
 	// lay du lieu tim kiem va phan trang
 	@GetMapping("/search")
-	public PaginationResult<Subject> searchSubjects(@RequestParam(name = "filter") String filter,
-			@RequestParam String key, @RequestParam int page, int size) {
+	public PaginationResult<Subject> searchSubjects(@RequestParam String key, @RequestParam int page, int size) {
 		try {
-			return subjectService.getSearchPage(filter, key, page, size);
+			return subjectService.getSearchPage(key, page, size);
 		} catch (Exception e) {
 
 		}

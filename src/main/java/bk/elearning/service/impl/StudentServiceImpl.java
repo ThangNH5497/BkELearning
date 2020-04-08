@@ -1,15 +1,19 @@
 package bk.elearning.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import bk.elearning.entity.Course;
 import bk.elearning.entity.Student;
 import bk.elearning.entity.dto.PaginationResult;
+import bk.elearning.entity.relationship.StudentCourse;
 import bk.elearning.repository.IStudentRepository;
 import bk.elearning.service.IStudentService;
 import bk.elearning.utils.FileUpload;
@@ -135,9 +139,9 @@ public class StudentServiceImpl implements IStudentService{
 	 * phần tử cần lấy
 	 */
 	@Override
-	public PaginationResult<Student> getSearchPage(String filter, String key, int page, int size) {
+	public PaginationResult<Student> getSearchPage(String key, int page, int size) {
 		// TODO Auto-generated method stub
-		if(page>0) return studentRepository.search(filter, key, page-1, size);
+		if(page>0) return studentRepository.search(key, page-1, size);
 		return null;
 	}
 	/**
@@ -190,6 +194,25 @@ public class StudentServiceImpl implements IStudentService{
 		return new int[] {success,error};
 
 	}
+
+	@Override
+	public PaginationResult<Student> getPageByCourse(int courseId, int page, int size) {
+		// TODO Auto-generated method stub
+		
+		if(page>0)
+			return studentRepository.getPageByCourse(courseId,page-1,size);
+		return null;
+	}
+
+	@Override
+	public PaginationResult<Student> searchByCourse(int courseId, String key, int page, int size) {
+		// TODO Auto-generated method stub
+		if(page>0)
+			return studentRepository.searchByCourse(courseId,key,page-1,size);
+		return null;
+	}
+
+	
 
 	
 

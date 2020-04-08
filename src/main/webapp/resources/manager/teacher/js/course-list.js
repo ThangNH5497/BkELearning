@@ -1,13 +1,13 @@
 $(document).ready(function() {
 
-	obj=new CourseManagement();
+	obj=new CourseListManagement();
 	$('#sidebar .active').removeClass('active');
-	$('#menu-item-subject').addClass('active');
+	$('#menu-item-course').addClass('active');
 	tableDataEvents();
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'api/teacher/course/page/teacher?');
+	handlePagination($('#pagination'),'teacher/api/course/page?');
 	//search event , file search.js
-	searchEvents('api/teacher/course/search/teacher?');
+	searchEvents('teacher/api/course/search?');
 	
 });
 
@@ -26,6 +26,16 @@ function tableDataEvents()
 		$('#link-back-search').removeClass('hidden');
 		$('#link-current').addClass('hidden');
 	});
+	//btn-student management click
+	$(document).on('click', '.btn-student-management', function () {
+		var courseId=$(this).parents('[dataId]').attr('dataId');
+		window.location.href = rootLocation+"teacher/ql-lop-hoc/ql-sinh-vien?courseId="+courseId;
+	});
+	//selected course
+	$(document).on('click', '.card', function () {
+		$('.card').removeClass('selected');
+		$(this).addClass('selected');
+	});
 }
 function getParametter(paramName)
 {
@@ -35,7 +45,7 @@ function getParametter(paramName)
 	return param;
 }
 
-class CourseManagement extends Base {
+class CourseListManagement extends Base {
 	
     constructor() {
     	super();

@@ -9,184 +9,113 @@
 <link rel="stylesheet"
 	href="<c:url value='/resources/manager/commons/css/dashboard.css' />">
 <link rel="stylesheet"
-	href="<c:url value='/resources/manager/teacher/css/course-management.css' />">
+	href="<c:url value='/resources/manager/commons/css/course-list.css' />">
 <!-- Phan noi dung trang -->
 <div class="wrapper d-flex align-items-stretch">
 
 	<jsp:include page="/WEB-INF/views/manager/teacher/menu.jsp"></jsp:include>
 	<!-- Page Content  -->
 	<div id="content" class="mb-5">
+		<jsp:include page="/WEB-INF/views/manager/commons/topbar.jsp"></jsp:include>
 		<div class=" container-fluid content-container">
 			<div class=" container-fluid d-flex pl-0 ml-0">
-
-				<nav class="navbar navbar-light bg-light pl-0 ml-0">
-
-					<button type="button" id="sidebarCollapse" class="btn btn-primary">
-						<i class="fa fa-bars"></i> <span class="sr-only">Toggle
-							Menu</span>
-					</button>
-				</nav>
 				<nav class="navbar navbar-light bg-light" style="font-weight: 600;"
 					id="link-current">
 
 					<span class="navbar-text"> <i class="fas fa-link"></i> <a
-						class='text-primary' href="<c:url value='/admin/ql-mon-hoc' />">Quản
-							Lý Môn Học</a><span> / Danh Sách Lớp</span>
-					</span>
+						class='text-primary' href="<c:url value='/teacher/ql-lop-hoc' />">Danh
+							Sách Lớp</a></span>
+
 				</nav>
 				<nav class="navbar navbar-light bg-light hidden"
 					style="font-weight: 600;" id='link-back-search'>
-					<span class="navbar-text"> <i class="fas fa-link"></i> <a
-						class='text-primary' href="<c:url value='/admin/ql-mon-hoc' />">Quản
-							Lý Môn Học</a><a class='text-primary'
-						href="javascript:location.reload(true)"> / Danh Sách Lớp</a><span>
-							/ Tìm Kiếm</span>
+					<span class="navbar-text"> <i class="fas fa-link"></i><a
+						class='text-primary' href="javascript:location.reload(true)">Danh
+							Sách Lớp</a><span> / Tìm Kiếm</span>
 					</span>
 				</nav>
 			</div>
 
-			<nav
-				class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-				<!-- Sidebar Toggle (Topbar) -->
-				<button id="sidebarToggleTop"
-					class="btn btn-link d-md-none rounded-circle mr-3">
-					<i class="fa fa-bars"></i>
-				</button>
-				<!-- Topbar Search -->
-
-				<form style="border: none !important;"
-					class="d-flex d-sm-inline-block form-inline  ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-					<div class="input-group ">
-						<input type="text" class="form-control border-0  small"
-							style="border: none !important;" placeholder="Nhập Mã Lớp..."
-							aria-label="Search" aria-describedby="basic-addon2"
-							id='key-search'>
-
-						<div class="input-group-append border-0">
-							<button class="btn btn-primary" type="button" id='btn-search'>
-								<i class="fas fa-search fa-sm"></i>
-							</button>
-						</div>
-					</div>
-
-				</form>
-
-				<!-- type search radio -->
-				<!-- end type search radio -->
-				<div class="d-flex justify-content-end w-100">
-					<button class="btn btn-refresh text-primary btn-control">
-						<i class="fas fa-sync"></i>
-					</button>
-
-				</div>
-				<div class="topbar-divider d-none d-sm-block"></div>
-			</nav>
-			<!-- End of Topbar -->
 
 			<div class="row " id="table-data-body">
 				<!-- Area Chart -->
-				<div class="col-xl-12 col-lg-12 card-container mb-4 hidden"
+				<div class="col-xl-12 col-lg-12  mb-4 hidden"
 					id="row-data-container">
-					<div class="card  h-100">
-						<!-- Card Header - Dropdown -->
-						<div
-							class=" card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h5 class="m-0 font-weight-bold text-primary" field="code"></h5>
-							<div class="d-flex justify-content-end w-50">
+					<div
+						class="w-100 card mb-4 py-3 border-left-primary pl-4 pt-0 pb-0"
+						style="padding-top: 0 !important;">
+						<div class="card-body pb-0 pt-3">
+							<div class="row ">
+								<div class="col-6  p-0 m-0" style="font-weight: 600;"
+									id="link-current">
+									<span class="navbar-text text-primary font-weight-bold d-flex">Mã
+										Lớp
+										<p field="code" class="pl-4">10000</p>
+									</span>
+								</div>
+								<div class="d-flex justify-content-end col-6">
+									<a href="#" class="btn btn-success btn-circle btn-sm mr-3 btn-student-management"> <i
+										class="fas fa-user-cog"></i>
+									</a> <a href="#" class="btn btn-info btn-circle btn-sm mr-3"> <i
+										class="fas fa-sliders-h"></i>
+									</a>
 
-								<button class="btn btn-add-teacher text-primary btn-control"
-									data-toggle="modal" data-target="#modal-teacher">
-									<i class="fas fa-sliders-h"></i>
-								</button>
-								
+								</div>
+							</div>
 
+							<div class="border-top my-3"></div>
+							<div class="row">
+								<div class="col-6 d-block">
+									<div class="row">
+										<div class="col-md-4 font-weight-bold">
+											<label>Mã Học Phần </label>
+										</div>
+										<div class="col-md-8">
+
+											<p class="text-primary" field="subject.code"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-4 font-weight-bold">
+											<label>Tên Lớp</label>
+										</div>
+										<div class="col-md-8">
+
+											<p class="text-primary" field="courseName"></p>
+										</div>
+									</div>
+
+
+								</div>
+								<div class="col-6 d-block">
+									<div class="row">
+										<div class="col-md-4 font-weight-bold">
+											<label>Tên Học Phần </label>
+										</div>
+										<div class="col-md-8">
+
+											<p class="text-primary" field="subject.subjectName"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-4 font-weight-bold">
+											<label>Mô Tả Lớp</label>
+										</div>
+										<div class="col-md-8">
+
+											<p class="text-primary" field="descriptor"></p>
+										</div>
+									</div>
+								</div>
 
 							</div>
 						</div>
-						<!-- Card Body -->
-						<div class="card-body">
-							<div class="container h-100">
-								<div class=" row h-25 d-flex">
-									<div class="col-2 align-self-center">
-										<h6 class="m-0 font-weight-bold text-secondary">Mã Học Phần</h6>
-									</div>
-									<div class="col-9 align-self-center">
-										<h6 class="m-0 font-weight-bold text-primary"
-											field="subject.code"></h6>
-									</div>
-									<div class="col-1 justify-content-center align-self-center">
-
-									</div>
-								</div>
-
-								<div class=" row h-25 d-flex">
-									<div class="col-2 align-self-center">
-										<h6 class="m-0 font-weight-bold text-secondary">Tên Học Phần</h6>
-									</div>
-									<div class="col-9 align-self-center">
-										<h6 class="m-0 font-weight-bold text-primary"
-											field="subject.subjectName"></h6>
-									</div>
-									<div class="col-1 justify-content-center align-self-center">
-									</div>
-								</div>
-								<div class=" row h-25 d-flex">
-									<div class="col-2 align-self-center">
-										<h6 class="m-0 font-weight-bold text-secondary">Tên lớp</h6>
-									</div>
-									<div class="col-9 align-self-center">
-										<h6 class="m-0 font-weight-bold text-primary"
-											field="courseName"></h6>
-									</div>
-									<div class="col-1 justify-content-center align-self-center">
-									</div>
-								</div>
-								<div class=" row h-25 d-flex">
-									<div class="col-2 align-self-center">
-										<h6 class="m-0 font-weight-bold text-secondary">Mô Tả</h6>
-									</div>
-									<div class="col-9 align-self-center">
-										<h6 class="m-0 font-weight-bold text-primary"
-											field="descriptor"></h6>
-									</div>
-									<div class="col-1 justify-content-center align-self-center">
-									</div>
-								</div>
-							</div>
-						</div>
-
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row  w-100 justify-content-end">
-			<nav aria-label="Page navigation">
-
-				<ul class="pagination justify-content-end">
-
-					<li class="page-item disabled"><a class="page-link"
-						id="pagination-title">Hiển Thị 0-0/0</a></li>
-					<li class="page-item disabled" id="prePage"><a
-						class="page-link" tabindex="-1">Previous</a></li>
-					<div id="pagination" style="display: flex;">
-						<li class="page-item page-item-number active "><a
-							class="page-link">1</a></li>
-						<li class="page-item page-item-number hidden"><a
-							class="page-link">2</a></li>
-						<li class="page-item page-item-number hidden"><a
-							class="page-link">3</a></li>
-
-						<li class="page-item page-item-number hidden"><a
-							class="page-link">4</a></li>
-						<li class="page-item page-item-number hidden"><a
-							class="page-link">5</a></li>
-					</div>
-
-					<li class="page-item disabled" id="nextPage"><a
-						class="page-link">Next</a></li>
-				</ul>
-			</nav>
+			<jsp:include page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
 		</div>
 	</div>
 
@@ -307,9 +236,9 @@
 			</div>
 
 		</div>
-		
+
 	</div>
-	
+
 </div>
 
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
@@ -317,7 +246,7 @@
 <script src="<c:url value='/resources/manager/commons/js/search.js' />"></script>
 <script src="<c:url value='/resources/commons/js/pagination.js' />"></script>
 <script
-	src="<c:url value='/resources/manager/teacher/js/course-management.js' />"></script>
+	src="<c:url value='/resources/manager/teacher/js/course-list.js' />"></script>
 <!-- Footer -->
 <script type="text/javascript">
 	(function($) {

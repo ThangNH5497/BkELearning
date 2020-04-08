@@ -22,9 +22,37 @@ public class StudentCourse extends AbstractEntity{
 	@JoinColumn(name = "course_id")
 	private Course course;
 	
-	public StudentCourse(Student student, Course course) {
+	public StudentCourse() {
 		super();
+	}
+
+	public StudentCourse(int id,Student student, Course course) {
+		super(id);
 		this.student = student;
 		this.course = course;
 	}
+
+	public StudentCourse(Student student, Course course) {
+		// TODO Auto-generated constructor stub
+		this.student = student;
+		this.course = course;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	
+	
 }

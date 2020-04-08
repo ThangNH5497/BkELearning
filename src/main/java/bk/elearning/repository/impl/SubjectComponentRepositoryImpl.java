@@ -37,14 +37,15 @@ public class SubjectComponentRepositoryImpl<T> extends AbstractGenericRepository
 	}
 
 	@Override
-	public PaginationResult<T> searchByTeacher(int teacherId, String filter, String key, int start, int size) {
+	public PaginationResult<T> searchByTeacher(int teacherId, String key, int start, int size) {
 		// TODO Auto-generated method stub
 		PaginationResult<T> pageResult = new PaginationResult<T>();
 		try {
 			HashMap<String, Object> constrantFields = new HashMap<String, Object>();
-			constrantFields.put("subject.id", teacherId);
+			constrantFields.put("teacher.id", teacherId);
 			HashMap<String, String> searchFields = new HashMap<String, String>();
-			searchFields.put(filter, key);
+			searchFields.put("code", key);
+			searchFields.put("courseName", key);
 			pageResult.setCount(super.getCount(constrantFields, searchFields));
 
 			pageResult.setData(super.search(constrantFields, searchFields, start * size, size));
@@ -56,14 +57,15 @@ public class SubjectComponentRepositoryImpl<T> extends AbstractGenericRepository
 	}
 
 	@Override
-	public PaginationResult<T> searchBySubject(int subjectId, String filter, String key, int start, int size) {
+	public PaginationResult<T> searchBySubject(int subjectId, String key, int start, int size) {
 		// TODO Auto-generated method stub
 		PaginationResult<T> pageResult = new PaginationResult<T>();
 		try {
 			HashMap<String, Object> constrantFields = new HashMap<String, Object>();
 			constrantFields.put("subject.id", subjectId);
 			HashMap<String, String> searchFields = new HashMap<String, String>();
-			searchFields.put(filter, key);
+			searchFields.put("code", key);
+			searchFields.put("courseName", key);
 			pageResult.setCount(super.getCount(constrantFields, searchFields));
 
 			pageResult.setData(super.search(constrantFields, searchFields, start * size, size));
@@ -73,5 +75,7 @@ public class SubjectComponentRepositoryImpl<T> extends AbstractGenericRepository
 		}
 		return pageResult;
 	}
+
+	
 
 }

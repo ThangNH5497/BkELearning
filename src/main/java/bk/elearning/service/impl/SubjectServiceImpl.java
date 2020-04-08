@@ -86,10 +86,10 @@ public class SubjectServiceImpl implements ISubjectService {
 	}
 
 	@Override
-	public PaginationResult<Subject> getSearchPage(String filter, String key, int page, int size) {
+	public PaginationResult<Subject> getSearchPage( String key, int page, int size) {
 		// TODO Auto-generated method stub
 		if (page > 0)
-			return subjectRepository.search(filter, key, page - 1, size);
+			return subjectRepository.search(key, page - 1, size);
 		return null;
 	}
 

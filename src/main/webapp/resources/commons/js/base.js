@@ -9,7 +9,9 @@ class Base {
     	rootLocation=rootLocation+"/";
     	// for real host
     	// rootLocation = getUrl .protocol + "//" + getUrl.host + "/";
-    	
+    	//init user profile
+    	$('#userDropdown .user-full-name').text(userLoged.fullName);
+    	$('#userDropdown img').attr("src",rootLocation+userLoged.image);
 
     }
 
@@ -56,85 +58,75 @@ class Base {
     //lay tong so teacher
     getCountTeacher()
     {
-    	return this.getData('GET','api/admin/teacher/count');
+    	return this.getData('GET','admin/api/teacher/count');
     }
     //lay theo tung khoang
     getTeachersLimit(start,count)
     {
-    	return this.getData('GET','api/admin/teacher/teachers/'+start+"/"+count);
+    	return this.getData('GET','admin/api/teacher/teachers/'+start+"/"+count);
     }
     //get all teachers
     getAllTeachers()
     {
-    	return this.getData('GET','api/admin/teacher/teachers');
+    	return this.getData('GET','admin/api/teacher/teachers');
     }
     //get teacher by username
     getTeacherByUsername(username)
     {
-    	return this.getData('GET','api/admin/teacher/username/'+username);
+    	return this.getData('GET','admin/api/teacher/username/'+username);
     }
   //get teacher by code
     getTeacherByCode(code)
     {
-    	return this.getData('GET','api/admin/teacher/code/'+code);
+    	return this.getData('GET','admin/api/teacher/code/'+code);
     }
   //get teacher by id
     getTeacherById(id)
     {
-    	return this.getData('GET','api/admin/teacher/id/'+id);
+    	return this.getData('GET','admin/api/teacher/id/'+id);
     }
     
 	////////////////////////////////////////
 
-    //lay tong so student
-    getCountStudent()
-    {
-    	return this.getData('GET','api/admin/student/count');
-    }
-    //lay theo tung khoang
-    getStudentsLimit(start,count)
-    {
-    	return this.getData('GET','api/admin/student/students/'+start+"/"+count);
-    }
     //get all student
     getAllStudents()
     {
-    	return this.getData('GET','api/admin/student/students');
+    	return this.getData('GET','api/student/students');
     }
     //get student by username
     getStudentByUsername(username)
     {
-    	return this.getData('GET','api/admin/student/username/'+username);
+    	return this.getData('GET','api/student/username/'+username);
     }
   //get student by code
     getStudentByCode(code)
     {
-    	return this.getData('GET','api/admin/student/code/'+code);
+    	return this.getData('GET','api/student/code/'+code);
     }
   //get student by id
     getStudentById(id)
     {
-    	return this.getData('GET','api/admin/student/id/'+id);
+    	return this.getData('GET','api/student/id/'+id);
     }
     //////////////////////////////////////////////
   //get subject by code
     getSubjectByCode(code)
     {
-    	return this.getData('GET','api/admin/subject/code/'+code);
+    	return this.getData('GET','admin/api/subject/code/'+code);
     }
     //get subject by id
     getSubjectById(subjectId)
     {
-    	return this.getData('GET','api/admin/subject/id/'+subjectId);
+    	return this.getData('GET','admin/api/subject/id/'+subjectId);
     }
     ///////////////get course////////////////////
     getCourseById(courseId)
     {
-    	return this.getData('GET','api/admin/course/id/'+courseId);
+    	return this.getData('GET','api/course/id/'+courseId);
     }
     getCourseByCode(code)
     {
-    	return this.getData('GET','api/admin/course/code/'+code);
+    	return this.getData('GET','api/course/code/'+code);
     }
     initData(containerId,rowDataId,data)
     {
@@ -242,7 +234,7 @@ class Base {
             contentType : false,
             async:true,
             success : function(data) {
-            	functionHandle(data);
+            	functionHandle(data.msg);
             },
             errorr : function(err) {
             	alert("error : "+err);
@@ -267,5 +259,14 @@ class Base {
     		}
     	}
     	return check;
+    }
+    
+    //get param from url
+    getParam(paramName)
+    {
+    	const queryString = window.location.search;
+    	const urlParams = new URLSearchParams(queryString);
+    	var param = urlParams.get(paramName);
+    	return param;
     }
 }

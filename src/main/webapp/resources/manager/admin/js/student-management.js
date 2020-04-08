@@ -4,20 +4,20 @@ $(document).ready(function() {
 	$('#sidebar .active').removeClass('active');
 	$('#menu-item-student').addClass('active');
 	//file add-user.js
-	addNewUserEvents('student','api/admin/student/add');
+	addNewUserEvents('student','admin/api/student/add');
 	
 	//file edit-user.js
-	editUserEvents('student','api/admin/student/update');
+	editUserEvents('student','api/student/update');
 	
-	userDetailEvents('api/admin/student/id/');
-	deleteEvents("api/admin/student/delete/multiple");
+	userDetailEvents('api/student/id/');
+	deleteEvents("admin/api/student/delete/multiple");
 
 	tableDataEvents();
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'api/admin/student/page?');
+	handlePagination($('#pagination'),'api/student/page?');
 	
 	//search events
-	searchEvents('api/admin/student/search?');
+	searchEvents('api/student/search?');
 	
 });
 var obj;

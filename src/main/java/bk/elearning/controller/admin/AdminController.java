@@ -34,9 +34,9 @@ public class AdminController {
 		return "manager/admin/subject-management";
 	}
 	
-	@RequestMapping("/ql-mon-hoc/mon-hoc")
-	public String detailSubjectManagementView(@RequestParam("id") int id)
+	@RequestMapping("/ql-mon-hoc/danh-sach-lop")
+	public String courseListView(@RequestParam("id") int id)
 	{
-		return "manager/admin/subject-detail";
+		return "manager/admin/course-list";
 	}
 }

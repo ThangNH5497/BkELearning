@@ -32,11 +32,12 @@ public abstract class UserGenericRepositoryImpl<T> extends AbstractGenericReposi
 	}
 
 	@Override
-	public PaginationResult<T> search(String filter, String key, int start, int size) {
+	public PaginationResult<T> search(String key, int start, int size) {
 		PaginationResult<T> pageResult = new PaginationResult<T>();
 		try {
 			HashMap<String, String> searchFields = new HashMap<String, String>();
-			searchFields.put(filter, key);
+			searchFields.put("code", key);
+			searchFields.put("fullName", key);
 			pageResult.setCount(super.getCount(null, searchFields));
 
 			pageResult.setData(super.search(null, searchFields, start * size, size));

@@ -41,7 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		 */
 		// return custom user them truong email,addr
 		return new CustomUserDetails(username, user.getPassword(), enabled, accountNonExpired, credentialsNonExpired,
-				accountNonLocked, grantedAuthorities, user.getId(), user.getCode(), user.getFullName(), user.getRole());
+				accountNonLocked, grantedAuthorities, user.getId(), user.getCode(), user.getFullName(), user.getRole(),user.getImage());
 	}
 
 }

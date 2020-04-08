@@ -17,6 +17,17 @@
 	href="<c:url value='/resources/commons/lib/fontawesome5.12.0/css/all.css' />">
 <link rel="stylesheet"
 	href="<c:url value='/resources/manager/commons/css/dashboard.css' />">
+	
+	<!-- lay user da dang nhap -->
+<script>
+	var userLoged = {
+		role : "${user.role}",
+		fullName : "${user.fullName}",
+		id : "${user.id}",
+		code : "${user.code}",
+		image : "${user.image}"
+	};
+</script>
 </head>
 
 

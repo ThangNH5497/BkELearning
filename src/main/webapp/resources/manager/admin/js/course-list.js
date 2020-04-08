@@ -1,20 +1,20 @@
 $(document).ready(function() {
 
-	obj=new SubjectManagement();
+	obj=new CourseListManagement();
 	$('#sidebar .active').removeClass('active');
 	$('#menu-item-subject').addClass('active');
 	
 	tableDataEvents();
 	
-	var subjectId=getParametter('id');
+	var subjectId=obj.getParam('id');
 	subject['id']=subjectId;
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'api/admin/course/page/subject?subjectId='+subjectId+'&');
+	handlePagination($('#pagination'),'admin/api/course/page/subject?subjectId='+subjectId+'&');
 	//search event , file search.js
-	searchEvents('api/admin/course/search/subject?subjectId='+subjectId+'&');
+	searchEvents('admin/api/course/search/subject?subjectId='+subjectId+'&');
 	addNewCourseEvents();
 	
-	editCourseEvents('api/admin/course/update');
+	editCourseEvents('admin/api/course/update');
 	teacherManagementEvents();
 	onDeleteEvents();
 	removeTeacherEvents();
@@ -36,14 +36,13 @@ function tableDataEvents()
 		$('#link-back-search').removeClass('hidden');
 		$('#link-current').addClass('hidden');
 	});
+	
+	$(document).on('click', '.card', function () {
+		$('.card').removeClass('selected');
+		$(this).addClass('selected');
+	});
 }
-function getParametter(paramName)
-{
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	var param = urlParams.get(paramName);
-	return param;
-}
+
 function validForm(formId,course)
 {
 	var checkValidInput=true;
@@ -95,7 +94,7 @@ function addNewCourseEvents()
 		        formData.append("course", new Blob([JSON.stringify(jsonObject)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"POST","api/admin/course/add");
+		        obj.saveOrUpdate(formData,"POST","admin/api/course/add");
 		        location.reload(true);
 			} catch (e) {
 				// TODO: handle exception
@@ -140,7 +139,7 @@ function editCourseEvents()
 		        formData.append("course", new Blob([JSON.stringify(course)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"PUT","api/admin/course/update");
+		        obj.saveOrUpdate(formData,"PUT","admin/api/course/update");
 		        location.reload(true);
 			} catch (e) {
 				// TODO: handle exception
@@ -196,7 +195,7 @@ function onDeleteEvents()
 		
 			$.ajax({
 	        	method : "DELETE",
-	            url : rootLocation+"api/admin/course/delete/"+courseId,
+	            url : rootLocation+"admin/api/course/delete/"+courseId,
 	            data : "",
 	            dataType : "text",
 				contentType : "application/json; charset=utf-8",
@@ -243,7 +242,7 @@ function teacherManagementEvents()
 	});
 	//teacher code
 	$('#modal-teacher .teacher-code').on('input',function(e){
-	    if($('#modal-edit .teacher-code').val()!="")
+	    if($('#modal-teacher .teacher-code').val()!="")
 	    {
 	    	check=false;
 	    	$('#modal-teacher .btn-submit').addClass('disabled');
@@ -268,7 +267,7 @@ function teacherManagementEvents()
 	        $('#form-teacher .waiting-process').removeClass('hidden');
 	        $('#preview-teacher-container').addClass('hidden');
 	        //get teacher asyn
-	        teacher=obj.getDataAsync("GET",'api/admin/teacher/code/'+teacherCode,function(data){
+	        teacher=obj.getDataAsync("GET",'admin/api/teacher/code/'+teacherCode,function(data){
 	        	$('#form-teacher .waiting-process').addClass('hidden');
 	        	$('#preview-teacher-container').removeClass('hidden');
 	        	if(data!=""&&data!=undefined)
@@ -303,7 +302,7 @@ function teacherManagementEvents()
 		        formData.append("course", new Blob([JSON.stringify(course)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"PUT","api/admin/course/update");
+		        obj.saveOrUpdate(formData,"PUT","admin/api/course/update");
 		        location.reload(true);
 			} catch (e) {
 				// TODO: handle exception
@@ -340,7 +339,7 @@ function removeTeacherEvents()
 		        formData.append("course", new Blob([JSON.stringify(course)], {
 		            type: "application/json"
 		        }));
-				 obj.saveOrUpdate(formData,"PUT","api/admin/course/update");
+				 obj.saveOrUpdate(formData,"PUT","admin/api/course/update");
 			     location.reload(true);
 			} catch (e) {
 				// TODO: handle exception
@@ -351,7 +350,7 @@ function removeTeacherEvents()
 		
 	});
 }
-class SubjectManagement extends Base {
+class CourseListManagement extends Base {
 	
     constructor() {
     	super();

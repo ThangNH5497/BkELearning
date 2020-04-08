@@ -243,16 +243,17 @@ public abstract class AbstractGenericRepository<T> implements IGenericRepository
 			if (searchFields != null && searchFields.size() > 0) {
 				checkSearch = true;
 				if (checkConstraint == true) {
-					hqlQuery.append(" and t.");
+					hqlQuery.append(" and (t.");
 				} else
-					hqlQuery.append(" where t.");
+					hqlQuery.append(" where (t.");
 				int i = 0;
 				for (String key : searchFields.keySet()) {
 					if (i > 0)
-						hqlQuery.append(" and t.");
+						hqlQuery.append(" or t.");
 					hqlQuery.append(key + " like concat('%',:searchField" + String.valueOf(i) + ",'%') ");
 					i++;
 				}
+				hqlQuery.append(")");
 
 			}
 			query = session.createQuery(hqlQuery.toString());
@@ -274,6 +275,7 @@ public abstract class AbstractGenericRepository<T> implements IGenericRepository
 		} catch (Exception e) {
 			// TODO: handle exception
 			session.clear();
+			System.out.println("ex "+e.toString());
 		}
 		return query;
 	}

@@ -26,14 +26,14 @@
 	height: 84vh;
 }
 
-.card-header {
+.card-container .card-header {
 	max-height: 8vh;
 	height: 8vh;
 	min-height: 8vh;
 	padding: 0 16px 0 16px !important;
 }
 
-.card-body {
+.card-container .card-body {
 	padding: 0 !important;
 	max-height: 76vh;
 	height: 76vh;
@@ -66,19 +66,7 @@
     
  
 }
-.navbar-search input
-{
-	borer-top:1px solid !important;
-	border-bottom:1px solid !important;
-	border-left: none !important;
-	border-color:#007BFF !important;
-}
-.select-style select:focus {
-    outline: none;
-}
-/*search*/
 
-/*end search*/
 /*event table*/
 #table-data-body .selected td
 {

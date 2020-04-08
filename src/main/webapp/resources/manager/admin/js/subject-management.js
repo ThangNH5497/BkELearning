@@ -6,15 +6,15 @@ $(document).ready(function() {
 	
 	
 	//file delete.js
-	deleteEvents("api/admin/subject/delete/multiple");
+	deleteEvents("admin/api/subject/delete/multiple");
 	
 	tableDataEvents();
 	
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'api/admin/subject/page?');
+	handlePagination($('#pagination'),'admin/api/subject/page?');
 	
 	//search events
-	searchEvents('api/admin/subject/search?');
+	searchEvents('admin/api/subject/search?');
 	
 	//add events
 	addNewSubjectEvents();
@@ -60,7 +60,7 @@ function tableDataEvents()
 	$(document).on('click', '#table-data-body .btn-subject-detail', function () {
 		//lay id tu phan tử tr
 		var id=$(this).parents('tr[dataId]').attr('dataId');
-		location.href = rootLocation+'admin/ql-mon-hoc/mon-hoc?id='+id;
+		location.href = rootLocation+'admin/ql-mon-hoc/danh-sach-lop?id='+id;
 	});
 }
 function validForm(formId,subject)
@@ -128,7 +128,7 @@ function editSubjectEvents()
 		        formData.append("subject", new Blob([JSON.stringify(subject)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"PUT","api/admin/subject/update");
+		        obj.saveOrUpdate(formData,"PUT","admin/api/subject/update");
 		     // cap nhat lai bang du lieu
 				var fields = $('#table-data-body tr.selected td[field]');
 				for (var i = 0; i < fields.length; i++) 
@@ -191,7 +191,7 @@ function addNewSubjectEvents()
 		        formData.append("subject", new Blob([JSON.stringify(jsonObject)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"POST","api/admin/subject/add");
+		        obj.saveOrUpdate(formData,"POST","admin/api/subject/add");
 		        location.reload(true);
 			} catch (e) {
 				// TODO: handle exception

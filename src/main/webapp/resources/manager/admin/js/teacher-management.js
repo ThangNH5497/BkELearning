@@ -4,21 +4,21 @@ $(document).ready(function() {
 	$('#sidebar .active').removeClass('active');
 	$('#menu-item-teacher').addClass('active');
 
-	addNewUserEvents('teacher','api/admin/teacher/add');
+	addNewUserEvents('teacher','admin/api/teacher/add');
 	
-	editUserEvents('teacher','api/admin/teacher/update');
+	editUserEvents('teacher','admin/api/teacher/update');
 	
-	deleteEvents("api/admin/teacher/delete/multiple");
+	deleteEvents("admin/api/teacher/delete/multiple");
 	
-	userDetailEvents('api/admin/teacher/id/');
+	userDetailEvents('admin/api/teacher/id/');
 	
 	tableDataEvents();
 	
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'api/admin/teacher/page?');
+	handlePagination($('#pagination'),'admin/api/teacher/page?');
 	
 	//search events
-	searchEvents('api/admin/teacher/search?');
+	searchEvents('admin/api/teacher/search?');
 	
 });
 

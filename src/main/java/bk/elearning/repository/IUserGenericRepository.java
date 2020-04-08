@@ -8,5 +8,5 @@ public interface IUserGenericRepository<T> extends IGenericRepository<T>{
 	
 	PaginationResult<T> getPage(int start,int size);
 	
-	PaginationResult<T> search(String filter,String key,int start,int size);
+	PaginationResult<T> search(String key,int start,int size);
 }

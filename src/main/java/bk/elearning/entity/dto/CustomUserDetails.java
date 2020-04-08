@@ -18,15 +18,26 @@ public class CustomUserDetails extends org.springframework.security.core.userdet
 	
 	private String role;
 	
+	private String image;
+	
 	public CustomUserDetails(String username, String password, boolean enabled, boolean accountNonExpired,
 			boolean credentialsNonExpired, boolean accountNonLocked,
-			Collection<? extends GrantedAuthority> authorities,int id,String code,String fullName,String role) {
+			Collection<? extends GrantedAuthority> authorities,int id,String code,String fullName,String role,String image) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 		// TODO Auto-generated constructor stub
 		this.id=id;
 		this.fullName=fullName;
 		this.code=code;
 		this.role=role;
+		this.image=image;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public int getId() {

@@ -13,5 +13,5 @@ public interface IUserGenericService<T> extends IGenericService<T>{
 	public int[] saveFromFile(MultipartFile file);
 	
 	public PaginationResult<T> getPage(int page,int size);
-	public PaginationResult<T> getSearchPage(String filter, String key, int page, int size);
+	public PaginationResult<T> getSearchPage(String key, int page, int size);
 }

@@ -96,7 +96,7 @@ public class UserServiceImpl implements IUserService{
 	}
 
 	@Override
-	public PaginationResult<User> getSearchPage(String filter, String key, int page, int size) {
+	public PaginationResult<User> getSearchPage( String key, int page, int size) {
 		// TODO Auto-generated method stub
 		return null;
 	}

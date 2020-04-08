@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/views/commons/header.jsp"></jsp:include>
+
 <link rel="stylesheet"
 	href="<c:url value='/resources/commons/css/style.css' />">
 <link rel="stylesheet"
@@ -16,56 +17,7 @@
 	<!-- Page Content  -->
 	<div id="content" class="mb-5">
 
-		<!-- Topbar -->
-		<nav
-			class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-			<button type="button" id="sidebarCollapse" class="btn btn-primary">
-				<i class="fa fa-bars"></i> <span class="sr-only">Toggle Menu</span>
-			</button>
-			<!-- Sidebar Toggle (Topbar) -->
-			<button id="sidebarToggleTop"
-				class="btn btn-link d-md-none rounded-circle mr-3">
-				<i class="fa fa-bars"></i>
-			</button>
-			<!-- Topbar Search -->
-
-			<form
-				class="d-flex d-sm-inline-block form-inline  ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-
-				<div class="input-group ">
-					<div class="input-group-append" id='search-filter'>
-
-						<div class="select-style d-flex">
-							<select>
-								<option value='code'>Mã SV</option>
-								<option value='username'>TK</option>
-								<option value='fullName'>Tên</option>
-							</select> <i class="fas fa-caret-down"
-								style="margin-top: 10px; padding-right: 10px;"></i>
-						</div>
-
-					</div>
-
-					<input type="text" class="form-control bg-light  small"
-						placeholder="Search for..." aria-label="Search"
-						aria-describedby="basic-addon2" id='key-search'>
-
-
-
-					<div class="input-group-append">
-						<button class="btn btn-primary" type="button" id='btn-search'>
-							<i class="fas fa-search fa-sm"></i>
-						</button>
-					</div>
-				</div>
-
-			</form>
-			<!-- type search radio -->
-			<!-- end type search radio -->
-			<div class="topbar-divider d-none d-sm-block"></div>
-		</nav>
-		<!-- End of Topbar -->
+		<jsp:include page="/WEB-INF/views/manager/commons/topbar.jsp"></jsp:include>
 
 
 		<div class=" container-fluid ">
@@ -101,32 +53,7 @@
 								<button class="btn btn-refresh text-primary btn-control">
 									<i class="fas fa-sync"></i>
 								</button>
-								<nav aria-label="Page navigation">
-
-									<ul class="pagination justify-content-end">
-
-										<li class="page-item disabled"><a class="page-link"
-											id="pagination-title">Hiển Thị 1-10/20</a></li>
-										<li class="page-item disabled" id="prePage"><a
-											class="page-link" tabindex="-1">Previous</a></li>
-										<div id="pagination" style="display: flex;">
-											<li class="page-item page-item-number active"><a
-												class="page-link">1</a></li>
-											<li class="page-item page-item-number "><a
-												class="page-link">2</a></li>
-											<li class="page-item page-item-number "><a
-												class="page-link">3</a></li>
-
-											<li class="page-item page-item-number "><a
-												class="page-link">4</a></li>
-											<li class="page-item page-item-number "><a
-												class="page-link">5</a></li>
-										</div>
-
-										<li class="page-item disabled" id="nextPage"><a
-											class="page-link">Next</a></li>
-									</ul>
-								</nav>
+								<jsp:include page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
 							</div>
 
 

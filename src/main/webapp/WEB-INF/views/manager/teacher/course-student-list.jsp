@@ -12,39 +12,47 @@
 
 <!-- Phan noi dung trang -->
 <div class="wrapper d-flex align-items-stretch">
-	<jsp:include page="/WEB-INF/views/manager/admin/menu.jsp"></jsp:include>
 
+	<jsp:include page="/WEB-INF/views/manager/admin/menu.jsp"></jsp:include>
 	<!-- Page Content  -->
-	<div id="content" class="mb-5 bg-gray-100">
+	<div id="content" class="mb-5">
+
 		<jsp:include page="/WEB-INF/views/manager/commons/topbar.jsp"></jsp:include>
+
 		<div class=" container-fluid ">
-			<nav class="navbar navbar-light bg-light hidden"
+
+			<nav class="col-10 navbar navbar-light bg-light"
+				style="font-weight: 600;" id="link-current">
+				<span class="navbar-text"> <i class="fas fa-link"></i> <a
+					class='text-primary' href="<c:url value='/teacher/ql-lop-hoc' />">Danh
+						Sách Lớp</a><span> / Danh Sách Sinh Viên</span>
+				</span>
+			</nav>
+			<nav class="col-10 navbar navbar-light bg-light hidden"
 				style="font-weight: 600;" id='link-back-search'>
 				<span class="navbar-text"> <i class="fas fa-link"></i> <a
-					class='text-primary' href="ql-giang-vien">Quản Lý Gảng Viên</a><span>
+					class='text-primary' href="<c:url value='/admin/ql-mon-hoc' />">Danh
+						Sách Lớp</a><a class='text-primary'
+					href="javascript:location.reload(true)"> / Danh Sách Sinh Viên</a><span>
 						/ Tìm Kiếm</span>
 				</span>
 			</nav>
-			
 			<div class="row ">
+
 				<!-- Area Chart -->
 				<div class="col-xl-9 col-lg-8 card-container">
 					<div class="card shadow h-100">
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary">Danh Sách
-								Giảng Viên</h6>
+							<h6 class="m-0 font-weight-bold text-primary course-title"></h6>
 
 							<div class="d-flex">
 								<button class="btn btn-add text-success btn-control"
-									data-toggle="modal" data-target="#modal-add-new">
+									data-toggle="modal" data-target="#modal-add-student">
 									<i class="far fa-plus-square"></i>
 								</button>
-								<button class="btn btn-edit text-primary disabled  btn-control">
-									<i class="fas fa-edit"></i>
-								</button>
-								<button class="btn btn-delete text-danger  btn-control">
+								<button class="btn btn-delete text-danger btn-control">
 									<i class="fas fa-trash"></i>
 								</button>
 								<button class="btn btn-refresh text-primary btn-control">
@@ -57,7 +65,6 @@
 						</div>
 						<!-- Card Body -->
 						<div class="card-body">
-
 							<div class="limiter">
 								<div class="container-table-data">
 									<div class="wrap-table-data">
@@ -86,10 +93,10 @@
 																</div>
 															</th>
 															<th class="table-cell column1">STT</th>
-															<th class="table-cell column2">Mã GV</th>
+															<th class="table-cell column2">Mã SV</th>
 															<th class="table-cell column3">Họ&Tên</th>
-															<th class="table-cell column4">Bộ Môn</th>
-															<th class="table-cell column5">Chức Vụ</th>
+															<th class="table-cell column4">Lớp</th>
+															<th class="table-cell column5">Email</th>
 															<th class="table-cell column6">Ngày Sinh</th>
 
 														</tr>
@@ -101,6 +108,9 @@
 											<div class="table-data-body js-pscroll">
 												<table>
 													<tbody id="table-data-body">
+														<h5 id='data-empty-alert'
+															class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
+															Có Dữ Liệu Khớp</h5>
 														<tr class="table-row body hidden border-bottom border-top"
 															id="row-data-container">
 
@@ -110,16 +120,12 @@
 																		id="check-1"> <label
 																		class="custom-control-label" for="check-1"></label>
 																</div></td>
-															<td class="table-cell column1" field="index">Like a
-																butterfly</td>
-															<td class="table-cell column2" field="code">Like a
-																butterfly</td>
-															<td class="table-cell column3" field="fullName">Boxing</td>
-															<td class="table-cell column4" field="department">9:00
-																AM - 11:00 AM</td>
-															<td class="table-cell column5" field=position>Aaron
-																Chapman</td>
-															<td class="table-cell column6" field="dateOfBirth">10</td>
+															<td class="table-cell column1" field="index"></td>
+															<td class="table-cell column2" field="code"></td>
+															<td class="table-cell column3" field="fullName"></td>
+															<td class="table-cell column4" field="className"></td>
+															<td class="table-cell column5" field=email></td>
+															<td class="table-cell column6" field="dateOfBirth"></td>
 														</tr>
 
 													</tbody>
@@ -178,11 +184,11 @@
 												<div class="border-top my-3"></div>
 												<div class="row">
 													<div class="col-md-4">
-														<label>Mã GV</label>
+														<label>Mã SV</label>
 													</div>
 													<div class="col-md-8">
 
-														<p field="code">KTMT1</p>
+														<p field="code"></p>
 													</div>
 												</div>
 											</div>
@@ -194,7 +200,7 @@
 														<label>Họ&Tên</label>
 													</div>
 													<div class="col-md-8">
-														<p field="fullName">Kshiti Ghelani</p>
+														<p field="fullName"></p>
 													</div>
 												</div>
 											</div>
@@ -205,7 +211,7 @@
 														<label>Email</label>
 													</div>
 													<div class="col-md-8">
-														<p field="email">kshitighelani@gmail.com</p>
+														<p field="email"></p>
 													</div>
 												</div>
 											</div>
@@ -216,7 +222,7 @@
 														<label>SĐT</label>
 													</div>
 													<div class="col-md-8">
-														<p field="phoneNumber">123 456 7890</p>
+														<p field="phoneNumber"></p>
 													</div>
 												</div>
 											</div>
@@ -224,21 +230,10 @@
 												<div class="border-top my-3"></div>
 												<div class="row">
 													<div class="col-md-4">
-														<label>Bộ Môn</label>
+														<label>Lớp </label>
 													</div>
 													<div class="col-md-8">
-														<p field="department">Web Developer and Designer</p>
-													</div>
-												</div>
-											</div>
-											<div>
-												<div class="border-top my-3"></div>
-												<div class="row">
-													<div class="col-md-4">
-														<label>Chức Vụ</label>
-													</div>
-													<div class="col-md-8">
-														<p field="position">Web Developer and Designer</p>
+														<p field="className"></p>
 													</div>
 												</div>
 											</div>
@@ -249,7 +244,7 @@
 														<label>Địa Chỉ</label>
 													</div>
 													<div class="col-md-8">
-														<p field="addr">Web Developer and Designer</p>
+														<p field="addr"></p>
 													</div>
 												</div>
 											</div>
@@ -260,7 +255,7 @@
 														<label>Ngày Sinh</label>
 													</div>
 													<div class="col-md-8">
-														<p field="dateOfBirth">Web Developer and Designer</p>
+														<p field="dateOfBirth"></p>
 													</div>
 												</div>
 											</div>
@@ -286,15 +281,14 @@
 
 </div>
 
-<!-- modal add new teacher -->
-
-<div class="modal fade" id="modal-add-new" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
+<!-- modal add student to course -->
+<div class="modal fade" id="modal-add-student" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thêm Giảng Viên</p>
+				<p class="heading lead">Thêm Sinh Viên Vào Lớp</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -311,51 +305,82 @@
 							Thủ Công</a></li>
 					<li class="nav-item"><a class="nav-link" id="add-exel-tab-btn"
 						data-toggle="tab" href="#add-exel-tab" role="tab"
-						aria-controls="profile" aria-selected="false">Thêm từ Exel</a></li>
+						aria-controls="profile" aria-selected="false">Import file Exel</a></li>
 
 				</ul>
 				<div class="tab-content">
 					<!-- them giang vien thu cong -->
 					<div class="tab-pane fade show active" id="add-one-tab"
 						role="tabpanel" aria-labelledby="home-tab">
-						<div class="form-container" id="form-container-one">
+						<div class="form-container">
 							<div class="form-v4">
 								<div class="form-v4-content">
 									<form class="form-detail" action="#" method="post"
-										id="form-add-step-one">
-										<h2>Thông Tin Giảng Viên Bắt Buộc</h2>
-										<div class="form-group">
-											<div class="form-row form-row-1">
-												<label for="code">Mã GV (*)</label> <input type="text"
-													name="code" class="input-text" required> <label
-													name="code-error" class="error hidden">Mã Gv Tồn
-													Tại</label>
-											</div>
-
-											<div class="form-row form-row-1">
-												<label for="fullName">Họ & Tên (*)</label> <input
-													type="text" name="fullName" class="input-text" required>
-											</div>
-										</div>
-
+										id="form-student">
+										<h2>Thông Tin Sinh Viên</h2>
 										<div class="form-row">
-											<label for="your_email">Username (*)</label> <input
-												type="text" name="username" class="input-text" required>
-											<label name="username-error" class="error hidden">Username
-												Tồn Tại</label>
+											<label for="code">Mã Sinh Viên</label> <input
+												type="text" class=" input-text student-code"
+												name="teacher.code"> <label name="code-error"
+												id="student-code-error" class="error hidden">Mã
+												Sinh Viên Không Tồn Tại</label>
+
 										</div>
-										<div class="form-group">
-											<div class="form-row form-row-1 ">
-												<label for="password">Mật Khẩu Từ 6 ký tự (*)</label> <input
-													type="password" name="password" class="input-text" required>
-												<label name="password-error" class="error hidden">Nhỏ
-													hơn 6 ký tự</label>
-											</div>
-											<div class="form-row form-row-1">
-												<label>Xác Nhận Mật Khẩu (*)</label> <input type="password"
-													class="input-text confirm-password" required> <label
-													name="confirm-password-error" class="error hidden">Xác
-													nhận mật khẩu chưa khớp</label>
+										<div
+											class="waiting-process d-flex justify-content-center pb-4 hidden">
+											<h2 class="message hidden"></h2>
+											<img style="max-width: 32px; max-height: 32px;"
+												src="<c:url value='/resources/commons/image/icon/load-icon.gif' />">
+
+										</div>
+										<!-- student freview -->
+										<div class="container-fluid p-0"
+											id="preview-student-container">
+											<div class="d-flex form-row" style="background: #f8f9fa;"
+												id="preview-student-row">
+												<div class="col-2 p-0">
+													<img field="image"
+														style="height: 132px; width: 132px; max-height: 132px; max-width: 132px;"
+														src="<c:url value='/resources/commons/image/user/default-user.jpg'/>">
+												</div>
+												<div class="col-5 pl-3">
+													<div class="row h-50">
+														<div class="col-md-4 align-self-center">
+															<label>Mã SV</label>
+														</div>
+														<div class="col-md-8 align-self-center">
+															<p class="text-primary" field="code"></p>
+														</div>
+													</div>
+													<div class="row h-50">
+														<div class="col-md-4 align-self-center">
+															<label>Họ&Tên</label>
+														</div>
+														<div class="col-md-8 align-self-center">
+															<p class="text-primary" field="fullName"></p>
+														</div>
+													</div>
+												</div>
+												<div class="col-5 pl-3">
+													<div class="row h-50">
+														<div class="col-md-4 align-self-center">
+															<label>Lớp</label>
+														</div>
+														<div class="col-md-8 align-self-center">
+
+															<p class="text-primary" field="className"></p>
+														</div>
+													</div>
+													<div class="row h-50">
+														<div class="col-md-4 align-self-center">
+															<label>Ngày Sinh</label>
+														</div>
+														<div class="col-md-8 align-self-center">
+
+															<p class="text-primary" field="dateOfBirth"></p>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
 
@@ -367,85 +392,9 @@
 							<div class="d-flex justify-content-center">
 								<a type="button" class="btn  waves-effect btn-cancel"
 									data-dismiss="modal">Hủy</a> <a type="button"
-									class="btn  waves-effect btn-next">Tiếp Tục</a>
+									class="btn  waves-effect btn-submit disabled">Lưu</a>
 							</div>
 						</div>
-
-						<!-- form next step -->
-						<div class="hidden form-container" id="form-container-two">
-							<div class="row">
-								<div class="image-input-container col-sm-2 col-md-2">
-									<form class="form-img">
-										<div class="profile-img">
-											<img class="image-preview"
-												src="<c:url value='/resources/commons/image/user/default-user.jpg' />"
-												alt="" />
-											<div class="file btn btn-lg btn-primary">
-												Change Photo <input type="file" name="file"
-													class="input-file-avatar" />
-											</div>
-										</div>
-									</form>
-								</div>
-								<div class="form-v4 col-sm-10 col-md-10">
-									<div class="form-v4-content">
-										<form class="form-detail" action="#" method="post"
-											id="form-add-step-two">
-
-											<div class="form-group">
-
-												<div class="form-row form-row-1 ">
-													<label for="department">Email</label> <input type="text"
-														name="email" class="input-text">
-												</div>
-												<div class="form-row form-row-1">
-													<label>SĐT</label> <input type="number" name="phoneNumber"
-														class="input-text">
-												</div>
-
-
-											</div>
-
-											<div class="form-group">
-												<div class="form-row form-row-1 ">
-													<label for="department">Địa Chỉ</label> <input type="text"
-														name="addr" class="input-text">
-												</div>
-												<div class="form-row form-row-1">
-													<label for="comfirm-password">Ngày Sinh</label> <input
-														type="date" value="2011-08-19" name="dateOfBirth"
-														class="input-text">
-												</div>
-
-											</div>
-											<div class="form-group">
-												<div class="form-row form-row-1 ">
-													<label for="department">Bộ Môn</label> <input type="text"
-														name="department" class="input-text">
-												</div>
-												<div class="form-row form-row-1">
-													<label for="comfirm-password">Chức Vụ</label> <input
-														type="text" name="position" class="input-text">
-												</div>
-
-											</div>
-
-										</form>
-									</div>
-								</div>
-							</div>
-
-							<!--Footer-->
-							<div class="border-top my-3"></div>
-							<div class="d-flex justify-content-center">
-								<a type="button" class="btn  waves-effect btn-cancel"
-									data-dismiss="modal">Hủy</a> <a type="button"
-									class="btn  waves-effect btn-back">Quay Lại</a> <a
-									type="button" class="btn  waves-effect btn-submit">Lưu</a>
-							</div>
-						</div>
-						<!-- end form next step -->
-						<!-- alert -->
 
 					</div>
 					<!-- ket thuc them giang vien thu cong -->
@@ -457,7 +406,7 @@
 							<div class="form-v4">
 								<div class="form-v4-content">
 									<form class="form-detail" id="form-exel-file">
-										<h2>Thêm Danh Sách Giảng Viên Từ File Exel</h2>
+										<h2>Thêm Danh Sách Sinh Viên Từ File Exel</h2>
 
 										<div
 											class="hidden alert alert-danger alert-dismissible fade show"
@@ -501,109 +450,6 @@
 	</div>
 	<!-- /.modal-dialog -->
 </div>
-
-<!-- end modal save or update -->
-
-
-
-<!-- modal edit -->
-
-<div class="modal fade" id="modal-edit" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
-	<div class="modal-dialog modal-xl">
-		<div class="modal-content">
-			<!--Header-->
-			<div class="modal-header">
-				<p class="heading lead">Sửa Thông Tin Giảng Viên</p>
-
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true" class="white-text">×</span>
-				</button>
-			</div>
-
-			<!--Body-->
-			<div class="modal-body">
-				<div class="form-container">
-					<div class="row">
-						<div class="image-input-container col-sm-2 col-md-2">
-							<form class="form-img">
-								<div class="profile-img">
-									<img class="image-preview"
-										src="<c:url value='/resources/commons/image/user/default-user.jpg' />"
-										alt="" />
-									<div class="file btn btn-lg btn-primary">
-										Change Photo <input type="file" name="file"
-											class="input-file-avatar" />
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="form-v4 col-sm-10 col-md-10">
-							<div class="form-v4-content">
-								<form class="form-detail" action="#" method="post"
-									id="form-edit">
-
-									<div class="form-group">
-
-										<div class="form-row form-row-1 ">
-											<label for="department">Email</label> <input type="text"
-												name="email" class="input-text">
-										</div>
-										<div class="form-row form-row-1">
-											<label>SĐT</label> <input type="number" name="phoneNumber"
-												class="input-text">
-										</div>
-
-
-									</div>
-
-									<div class="form-group">
-										<div class="form-row form-row-1 ">
-											<label for="department">Địa Chỉ</label> <input type="text"
-												name="addr" class="input-text">
-										</div>
-										<div class="form-row form-row-1">
-											<label for="comfirm-password">Ngày Sinh</label> <input
-												type="date" value="2011-08-19" name="dateOfBirth"
-												class="input-text">
-										</div>
-
-									</div>
-									<div class="form-group">
-										<div class="form-row form-row-1 ">
-											<label for="department">Bộ Môn</label> <input type="text"
-												name="department" class="input-text">
-										</div>
-										<div class="form-row form-row-1">
-											<label for="comfirm-password">Chức Vụ</label> <input
-												type="text" name="position" class="input-text">
-										</div>
-
-									</div>
-
-								</form>
-							</div>
-						</div>
-					</div>
-
-					<!--Footer-->
-					<div class="border-top my-3"></div>
-					<div class="d-flex justify-content-center">
-						<a type="button" class="btn  waves-effect btn-cancel"
-							data-dismiss="modal">Hủy</a><a type="button"
-							class="btn  waves-effect btn-submit">Lưu</a>
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<!-- /.modal-content -->
-	</div>
-	<!-- /.modal-dialog -->
-</div>
-
-<!-- end modal edit -->
 
 <!-- modal alert -->
 <div class="modal fade" id="modal-delete-alert" tabindex="-1"
@@ -682,13 +528,12 @@
 <!-- end modal message -->
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>
-<script src="<c:url value='/resources/manager/commons/js/delete.js' />"></script>
 <script src="<c:url value='/resources/commons/js/pagination.js' />"></script>
 <script
 	src="<c:url value='/resources/manager/commons/js/user-management.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/search.js' />"></script>
 <script
-	src="<c:url value='/resources/manager/admin/js/teacher-management.js' />"></script>
+	src="<c:url value='/resources/manager/teacher/js/course-student-list.js' />"></script>
 <!-- Footer -->
 <script type="text/javascript">
 	(function($) {

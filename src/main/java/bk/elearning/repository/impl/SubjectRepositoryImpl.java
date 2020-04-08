@@ -16,12 +16,13 @@ public class SubjectRepositoryImpl extends AbstractGenericRepository<Subject> im
 
 
 	@Override
-	public PaginationResult<Subject> search(String filter, String key, int start, int size) {
+	public PaginationResult<Subject> search(String key, int start, int size) {
 		// TODO Auto-generated method stub
 		PaginationResult<Subject> pageResult = new PaginationResult<Subject>();
 		try {
 			HashMap<String, String> searchFields = new HashMap<String, String>();
-			searchFields.put(filter, key);
+			searchFields.put("code", key);
+			searchFields.put("subjectName", key);
 			pageResult.setCount(super.getCount(null, searchFields));
 
 			pageResult.setData(super.search(null, searchFields, start * size, size));

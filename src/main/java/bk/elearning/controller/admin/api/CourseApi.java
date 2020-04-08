@@ -22,48 +22,14 @@ import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.service.ICourseService;
 
 @RestController("adminCourseApi")
-@RequestMapping(path = "/api/admin/course")
+@RequestMapping(path = "/admin/api/course")
 @Transactional
 public class CourseApi {
 
 	@Autowired
 	private ICourseService courseService;
 
-	// lay tat ca
-	@GetMapping(path = "/courses")
-	public List<Course> getAllCourse() {
-		List<Course> courses = null;
-		try {
-			courses = courseService.getAll();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return courses;
-	}
-
-	// lay theo id
-	@GetMapping(path = "/id/{id}")
-	public Course getCourseById(@PathVariable int id) {
-		Course courses = null;
-		try {
-			courses = courseService.getById(id);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return courses;
-	}
-
-	// lay theo code
-	@GetMapping(path = "/code/{code}")
-	public Course getCourseByCode(@PathVariable String code) {
-		Course course = null;
-		try {
-			course = courseService.getByCode(code);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return course;
-	}
+	
 
 	// xoa theo id
 	@DeleteMapping(path = "/delete/{id}")
@@ -99,7 +65,7 @@ public class CourseApi {
 			if (courseService.update(course) == 1)
 				return "Update Thành Công";
 		} catch (Exception e) {
-			System.out.println("ex : "+e.toString());
+			System.out.println("ex : " + e.toString());
 		}
 
 		return "error . Xin Thử Lại Sau !";
@@ -108,10 +74,10 @@ public class CourseApi {
 
 	// lay du lieu tim kiem va phan trang
 	@GetMapping("/search/subject")
-	public PaginationResult<Course> searchCoursesBySubject(@RequestParam int subjectId,@RequestParam(name = "filter") String filter,
-			@RequestParam String key, @RequestParam int page, int size) {
+	public PaginationResult<Course> searchCoursesBySubject(@RequestParam int subjectId, @RequestParam String key,
+			@RequestParam int page, int size) {
 		try {
-			return courseService.searchBySubject(subjectId,filter, key, page, size);
+			return courseService.searchBySubject(subjectId, key, page, size);
 		} catch (Exception e) {
 
 		}
@@ -121,11 +87,11 @@ public class CourseApi {
 
 	// phan trang tat ca course
 	@GetMapping("/page/subject")
-	public PaginationResult<Course> getPageBySubject(@RequestParam int subjectId,@RequestParam int page,@RequestParam int size) {
+	public PaginationResult<Course> getPageBySubject(@RequestParam int subjectId, @RequestParam int page,
+			@RequestParam int size) {
 		try {
-			//return courseService.getPage(page, size);
-			if(subjectId>0)
-			{
+			// return courseService.getPage(page, size);
+			if (subjectId > 0) {
 				return courseService.getPageBySubject(subjectId, page, size);
 			}
 		} catch (Exception e) {

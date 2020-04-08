@@ -135,14 +135,7 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 	}
 
 	
-	@Override
-	public PaginationResult<Teacher> getSearchPage(String filter, String key, int page, int size) {
-		// TODO Auto-generated method stub
-		
-		if (page > 0)
-			return teacherRepository.search(filter,key,page - 1, size);
-		return null;
-	}
+	
 
 	/**
 	 * Xóa du lieu va phan trang du lieu Tham số ids là danh sách id cần xóa
@@ -193,5 +186,17 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		return new int[] { success, error };
 
 	}
+
+	@Override
+	public PaginationResult<Teacher> getSearchPage(String key, int page, int size) {
+		// TODO Auto-generated method stub
+		if (page > 0)
+			return teacherRepository.search(key,page - 1, size);
+		return null;
+	}
+
+
+
+
 
 }

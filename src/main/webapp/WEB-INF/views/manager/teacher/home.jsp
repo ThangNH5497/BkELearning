@@ -14,7 +14,8 @@
 	<jsp:include page="/WEB-INF/views/manager/teacher/menu.jsp"></jsp:include>
 
 	<!-- Page Content  -->
-	<div id="content" class="mb-5"></div>
+	<div id="content" class="mb-5"><jsp:include
+			page="/WEB-INF/views/manager/commons/topbar.jsp"></jsp:include></div>
 
 	<!-- end content -->
 </div>
