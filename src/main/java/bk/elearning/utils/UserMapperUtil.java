@@ -18,6 +18,13 @@ import org.apache.poi.xssf.usermodel.XSSFShape;
 
 public abstract class UserMapperUtil<T> implements IModelMapper<T> {
 
+	private boolean loadImage;
+	
+	public UserMapperUtil(boolean loadImage) {
+		super();
+		this.loadImage = loadImage;
+	}
+
 	public List<T> mapFields(Sheet sheet, Class<T> clazz) {
 		// TODO Auto-generated method stub
 		List<T> list = new ArrayList<T>();
@@ -62,7 +69,11 @@ public abstract class UserMapperUtil<T> implements IModelMapper<T> {
 				}
 				i++;
 			}
-			mapImages(sheet, list, fieldNames);
+			if(loadImage==true)
+			{
+				mapImages(sheet, list, fieldNames);
+			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

@@ -1,5 +1,6 @@
 package bk.elearning.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -14,8 +15,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @DynamicUpdate
-public class Teacher extends User{
+public class Teacher extends User implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String department;
 	
 	private String position;

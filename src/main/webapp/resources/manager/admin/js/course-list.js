@@ -9,12 +9,11 @@ $(document).ready(function() {
 	var subjectId=obj.getParam('id');
 	subject['id']=subjectId;
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'admin/api/course/page/subject?subjectId='+subjectId+'&');
+	handlePagination($('#pagination'),'api/courses/page/subjects/'+subjectId+'?');
 	//search event , file search.js
-	searchEvents('admin/api/course/search/subject?subjectId='+subjectId+'&');
-	addNewCourseEvents();
-	
-	editCourseEvents('admin/api/course/update');
+	searchEvents('api/courses/subjects/'+subjectId+'/search?');
+	addNewCourseEvents();	
+	editCourseEvents('admin/api/courses');
 	teacherManagementEvents();
 	onDeleteEvents();
 	removeTeacherEvents();
@@ -45,26 +44,16 @@ function tableDataEvents()
 
 function validForm(formId,course)
 {
-	var checkValidInput=true;
-		 var inputs=$('#'+formId+' input[required]');
-		// kiem tra input null
-		for(var i=0;i<inputs.length;i++)
-		{
-			if($(inputs[i]).val()=="") 
-			{
-				$(inputs[i]).addClass('border-danger');
-				checkValidInput=false;
-			}
-			else $(inputs[i]).removeClass('border-danger');
-		}
-		if(checkValidInput==true)
+	var check=obj.validInputs(formId);
+		 
+		if(check==true)
 		{
 			var checkDataExis;
 			// kiem tra ma code ton tai
 			checkDataExis=obj.getCourseByCode($('#'+formId+' input[name="code"]').val());
 			if(checkDataExis!=""&&checkDataExis.code!=course.code)
 			{
-				checkValidInput=false;
+				check=false;
 				//doi mau input
 				$('#'+formId+' input[name="code"]').addClass('border-danger');
 				//hien canh bao
@@ -78,7 +67,7 @@ function validForm(formId,course)
 			
 		}
 			
-	return checkValidInput;
+	return check;
 }
 function addNewCourseEvents()
 {
@@ -94,7 +83,8 @@ function addNewCourseEvents()
 		        formData.append("course", new Blob([JSON.stringify(jsonObject)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"POST","admin/api/course/add");
+		        var data=obj.saveOrUpdate("POST",false,"admin/api/courses",formData,null);
+		        alert(data.msg);
 		        location.reload(true);
 			} catch (e) {
 				// TODO: handle exception
@@ -103,10 +93,6 @@ function addNewCourseEvents()
 			
 		}
 		
-	});
-	// dat lai mau border cho input khi click
-	$('#modal-add-new input').click(this,function(){		
-		$(this).removeClass('border-danger');
 	});
 }
 function editCourseEvents()
@@ -117,10 +103,6 @@ function editCourseEvents()
 	$(document).on('click', '#table-data-body .btn-edit', function () {
 		var courseId=$(this).parents('[dataId]').attr('dataId');
 		course = initFormEdit(courseId);
-	});
-	// event modal edit closed, reset input of form
-	$(document).on('hidden.bs.modal', '#modal-edit', function(e) {
-		resetFormEdit();
 	});
 	// event submit form
 	$('#modal-edit .btn-submit').click(this,function(){
@@ -139,7 +121,8 @@ function editCourseEvents()
 		        formData.append("course", new Blob([JSON.stringify(course)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"PUT","admin/api/course/update");
+		        var data=obj.saveOrUpdate("PUT",false,"admin/api/courses/"+course.id,formData,null);
+		        alert(data.msg);
 		        location.reload(true);
 			} catch (e) {
 				// TODO: handle exception
@@ -154,10 +137,6 @@ function editCourseEvents()
 			alert("Giảng Viên Không Tồn Tại!")
 		}
 	
-	});
-	// dat lai mau border cho input khi click
-	$('#modal-edit input').click(this, function() {
-		$(this).removeClass('border-danger');
 	});
 }
 //khoi tao cac gia tri co san cho form
@@ -179,13 +158,6 @@ function initFormEdit(courseId) {
 	}
 	return course;
 }
-// dat lai cac gia tri ban dau cho form them moi
-function resetForm() {
-	$('.modal input').val("");
-	$('.modal input').removeClass('border-danger');
-	$('.modal .error').addClass('hidden');
-}
-
 function onDeleteEvents()
 {
 	$(document).on('click', '#table-data-body .btn-delete', function () {
@@ -193,19 +165,8 @@ function onDeleteEvents()
 		var courseId=$(this).parents('[dataId]').attr('dataId');
 		$(document).on('click', '#modal-delete-alert .btn-delete-alert-ok', function () {		
 		
-			$.ajax({
-	        	method : "DELETE",
-	            url : rootLocation+"admin/api/course/delete/"+courseId,
-	            data : "",
-	            dataType : "text",
-				contentType : "application/json; charset=utf-8",
-	            success : function(data) {
-	                console.log('delete success : '+data);
-	            },
-	            errorr : function(err) {
-	            	console.log('delete error : '+err);
-	            }
-	        });
+			var data=obj.ajaxCall('DELETE',false,'admin/api/courses/'+courseId,null,null);
+			alert(data.msg);
 			location.reload(true);
 		});
 		
@@ -219,26 +180,27 @@ function teacherManagementEvents()
 	var teacher;
 	$(document).on('click', '#table-data-body .btn-add-teacher', function () {
 		var courseId=$(this).parents('[dataId]').attr('dataId');
-		course = obj.getCourseById(courseId);
-		if(course.teacher!=null&&course.teacher!={}&&course.teacher!=undefined)
-		{
-			//init input
-			$('#modal-teacher input.teacher-code').val(course.teacher.code);
-			//init detail infomation
-			obj.initData('preview-teacher-container','preview-teacher-row',[course.teacher]);
-			teacherCode=course.teacher.code;
+		try {
+			course = obj.getCourseById(courseId);
+			if(course.teacher!=null&&course.teacher!={}&&course.teacher!=undefined&&course.teacher!="")
+			{
+				//init input
+				$('#modal-teacher input.teacher-code').val(course.teacher.code);
+				//init detail infomation
+				obj.initData('preview-teacher-container','preview-teacher-row',[course.teacher]);
+				teacherCode=course.teacher.code;
+			}
+			else
+			{
+				//init input
+				$('#modal-teacher input.teacher-code').val("");
+				//init detail infomation
+				obj.initData('preview-teacher-container','preview-teacher-row',[{}]);
+			}
+		} catch (e) {
+			// TODO: handle exception
 		}
-		else
-		{
-			//init input
-			$('#modal-teacher input.teacher-code').val("");
-			//init detail infomation
-			obj.initData('preview-teacher-container','preview-teacher-row',[{}]);
-		}
-	});
-	// event modal edit closed, reset input of form
-	$(document).on('hidden.bs.modal', '#modal-teacher', function(e) {
-		resetFormEdit();
+		
 	});
 	//teacher code
 	$('#modal-teacher .teacher-code').on('input',function(e){
@@ -267,7 +229,7 @@ function teacherManagementEvents()
 	        $('#form-teacher .waiting-process').removeClass('hidden');
 	        $('#preview-teacher-container').addClass('hidden');
 	        //get teacher asyn
-	        teacher=obj.getDataAsync("GET",'admin/api/teacher/code/'+teacherCode,function(data){
+	        teacher=obj.ajaxCall("GET",true,'api/teachers/code/'+teacherCode,null,function(data){
 	        	$('#form-teacher .waiting-process').addClass('hidden');
 	        	$('#preview-teacher-container').removeClass('hidden');
 	        	if(data!=""&&data!=undefined)
@@ -302,7 +264,8 @@ function teacherManagementEvents()
 		        formData.append("course", new Blob([JSON.stringify(course)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"PUT","admin/api/course/update");
+		        var data=obj.saveOrUpdate("PUT",false,"admin/api/courses/"+course.id,formData,null);
+		        alert(data.msg)
 		        location.reload(true);
 			} catch (e) {
 				// TODO: handle exception
@@ -317,10 +280,6 @@ function teacherManagementEvents()
 			alert("Giảng Viên Không Tồn Tại!")
 		}
 	
-	});
-	// dat lai mau border cho input khi click
-	$('#modal-teacher input').click(this, function() {
-		$(this).removeClass('border-danger');
 	});
 }
 //remove teacher phụ trách lớp
@@ -339,7 +298,7 @@ function removeTeacherEvents()
 		        formData.append("course", new Blob([JSON.stringify(course)], {
 		            type: "application/json"
 		        }));
-				 obj.saveOrUpdate(formData,"PUT","admin/api/course/update");
+				 obj.saveOrUpdate("PUT",false,"admin/api/courses/"+course.id,formData,null);
 			     location.reload(true);
 			} catch (e) {
 				// TODO: handle exception

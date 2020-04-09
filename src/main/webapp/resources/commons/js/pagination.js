@@ -18,7 +18,7 @@ function handlePagination(paginationContainer,url) {
 	
 	try {
 		//lay du lieu
-		var pageData=obj.getData('GET',urlApiData+"page="+currentPage+"&size="+MAX_ITEMS);
+		var pageData=obj.ajaxCall('GET',false,urlApiData+"page="+currentPage+"&size="+MAX_ITEMS,null,null);
 		
 		// tinh tong so trang
 		if (parseInt(pageData.count) % parseInt(MAX_ITEMS) != 0) {
@@ -132,7 +132,7 @@ function updatePagination(currentPage) {
 	}
 	else $('#nextPage').removeClass('disabled');
 	
-	var pageData=obj.getData('GET',urlApiData+"page="+currentPage+"&size="+MAX_ITEMS);
+	var pageData=obj.ajaxCall('GET',false,urlApiData+"page="+currentPage+"&size="+MAX_ITEMS);
 	
 	try {
 		//update pagination-title

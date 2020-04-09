@@ -1,22 +1,13 @@
 /* phần thêm mới user */
 //kiem tra cac input bat buoc khi them moi
-function validInputs(userType)
+function validInputs()
 {
 	var check=obj.validInputs('form-add-step-one');
 		
 		if(check==true)
 		{
-			var checkDataExis;
-			// kiem tra ma code ton tai
-			if(userType=="teacher")
-			{
-				var code=$('#add-one-tab input[name="code"]').val();
-				checkDataExis=obj.getTeacherByCode(code);
-			}
-			else if(userType=="student")
-			{
-				checkDataExis=obj.getStudentByCode($('#add-one-tab input[name="code"]').val());
-			}
+			var checkDataExis=obj.getUserByCode($('#add-one-tab input[name="code"]').val());
+			
 			if(checkDataExis!="")
 			{
 				check=false;
@@ -31,14 +22,7 @@ function validInputs(userType)
 				$('#add-one-tab input[name="code"]').removeClass('border-danger');
 			}
 			// kiem tra username ton tai
-			if(userType=="teacher")
-			{
-				checkDataExis=obj.getStudentByUsername($('#add-one-tab input[name="username"]').val());
-			}
-			else if(userType=="student")
-			{
-				checkDataExis=obj.getStudentByUsername($('#add-one-tab input[name="username"]').val());
-			}
+			checkDataExis=obj.getUserByUsername($('#add-one-tab input[name="username"]').val());
 			if(checkDataExis!="")
 			{
 				check=false;
@@ -91,7 +75,7 @@ function addNewUserEvents(paramName,urlApi)
 	// btn-next step add user
 	$('#modal-add-new .btn-next').click(this,function(){
 		try {
-			if(validInputs(paramName))
+			if(validInputs())
 			{
 				$('#form-container-one').addClass('hidden');
 				$('#form-container-two').removeClass('hidden');
@@ -123,7 +107,8 @@ function addNewUserEvents(paramName,urlApi)
 	            type: "application/json"
 	        }));
 	       
-	        obj.saveOrUpdate(formData,"POST",urlApi);
+	        var msg=obj.saveOrUpdate("POST",false,urlApi,formData,null);
+	        alert(msg.msg);
 	        location.reload(true);
 		} catch (e) {
 			// TODO: handle exception
@@ -131,38 +116,7 @@ function addNewUserEvents(paramName,urlApi)
 		}
 	
 	
-	});
-	// dat lai mau border cho input khi click
-	$('#modal-add-new input').click(this,function(){		
-		$(this).removeClass('border-danger');
-	});
-	// display filename exel when selected
-	 $('#input-file-exel').on('change',this,function(){
-         // get the file name
-         var fileName = $(this).val();
-         // replace the "Choose a file" label
-         $(this).next('#modal-add-new .file-exel-name').html(fileName);
-     });
-	 // prevew image when selected file
-	 $('#modal-add-new .input-file-avatar').on('change',this,function(event){
-		 var reader = new FileReader();
-		 try 
-		 {
-			 if (this.files && this.files[0]) {
-				    var reader = new FileReader();
-				    reader.onload = function(e) {
-				      $('#modal-add-new .image-preview').attr('src', e.target.result);
-				      $('#modal-add-new .image-preview').hide();
-				      $('#modal-add-new .image-preview').fadeIn(650);
-				    }
-				    reader.readAsDataURL(this.files[0]);
-				  }
-		} catch (e) {
-			// TODO: handle exception
-		}
-		 
-	 });
-	 
+	});	 
 	 //upload from file exel
 	 $(document).on('click', '#modal-add-new .btn-submit-file-exel', function () {
 		 //check file not empty
@@ -173,39 +127,22 @@ function addNewUserEvents(paramName,urlApi)
 		{
 			$('#modal-add-new').modal('hide');
 			$('#modal-message').modal({backdrop: 'static', keyboard: false}) ;
-			var message="";
 			try {				
 				var formData = new FormData();	
 				//them file vao data
 		        formData.append('file', $('#modal-add-new #input-file-exel')[0].files[0]);		    
-		        obj.saveOrUpdateAsync(formData,"Post",urlApi+'/file',showMessage);
-				
+		        obj.saveOrUpdate("POST",true,urlApi+'/file',formData,showMessage);		
 			} catch (e) {
 				// TODO: handle exception
-				showMessage("Lỗi : " +e);
+				showMessage({msg:"Lỗi . Xin Vui Lòng Thử Lại!"});
 			}
 		}
-	 });
-	 
-	 $('#alert-file-exel').on('close.bs.alert', function (event) {
-		  event.preventDefault();
-		  $(this).addClass('hidden');
-	 });
-
-	 // even tab select
-		$('#modal-add-new a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-			resetForm();
-		});
-		
-		// event modal add-new close, reset input,reset actionAdd
-		$(document).on('hidden.bs.modal', '#modal-add-new', function(e) {
-			resetForm();
-		});
+	 });	
 		
 }
-function showMessage(message)
+function showMessage(data)
 {
-	$('#modal-message .message').text(message);
+	$('#modal-message .message').text(data.msg);
 	$('#modal-message img').addClass('hidden');
 	$('#modal-message .message').removeClass('hidden');
 	$('#modal-message .btn-ok').removeClass('hidden');
@@ -214,33 +151,17 @@ function showMessage(message)
 		location.reload(true);
 	});
 }
-
-//dat lai cac gia tri ban dau cho form them moi
-function resetForm()
-{
-	$('.modal input').val("");
-	$('.modal input').removeClass('border-danger');
-	$('#input-file-exel').next('#modal-add-new .file-exel-name').html("Chọn File");
-	$('.modal .image-preview').attr('src',rootLocation+"resources/commons/image/user/default-user.jpg");
-	$('.modal .error').addClass('hidden');
-	$('#form-container-one').removeClass('hidden');
-	$('#form-container-two').addClass('hidden');
-	$('.modal .image-preview').attr('src',
-			rootLocation + "resources/commons/image/user/default-user.jpg");
-}
 /*hết phần thêm mới user*/
+
+
 /* Phần chỉnh sửa user*/
 //xu ly cac su kien trong edit user, paramName- ten parametter doi tuong json
-//urlApi-dia chi url cua api,userType loai doi tuong (teacher, student)
+//urlApi-dia chi url cua api loai doi tuong (teacher, student)
 function editUserEvents(paramName, urlApi) {
 	var user;
 	// event modal open
 	$(document).on('show.bs.modal', '#modal-edit', function(e) {
 		user = initFormEdit(paramName);
-	});
-	// event modal edit closed, reset input of form
-	$(document).on('hidden.bs.modal', '#modal-edit', function(e) {
-		resetForm();
 	});
 	// event submit form
 	$('#modal-edit .btn-submit').click(this,function() {
@@ -260,37 +181,14 @@ function editUserEvents(paramName, urlApi) {
 								type : "application/json"
 				}));
 			//update
-			 obj.saveOrUpdate(formData,"PUT",urlApi);
+			 var msg=obj.saveOrUpdate("PUT",false,urlApi+'/'+user.id,formData,null);
+			 alert(msg.msg);
 			 location.reload(true);
 		}
 		catch (err) {
 			alert("Đã Xảy Ra Lỗi : "+err);
 		}
 	});
-	// dat lai mau border cho input khi click
-	$('#modal-edit input').click(this, function() {
-		$(this).removeClass('border-danger');
-	});
-	// prevew image when selected file
-	$('#modal-edit .input-file-avatar').on('change', this, function(event) {
-		try {
-			var reader = new FileReader();
-			if (this.files && this.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					$('#modal-edit .image-preview').attr('src', e.target.result);
-					$('#modal-edit .image-preview').hide();
-					$('#modal-edit .image-preview').fadeIn(650);
-				}
-				reader.readAsDataURL(this.files[0]);
-			}
-		} catch (e) {
-			// TODO: handle exception
-			alert("Lỗi : "+err)
-		}
-		
-	});
-
 }
 //khoi tao cac gia tri co san cho form
 function initFormEdit(paramName) {
@@ -328,7 +226,7 @@ function userDetailEvents(urlApi) {
 		var id=$(this).attr("dataId");
 		$(this).addClass('selected');
 		//lay doi tuong user ko dong bo va xu ly voi ham initUserDetail
-		obj.getDataAsync("GET",urlApi+id,showUserDetail);
+		obj.ajaxCall("GET",true,urlApi+id,null,showUserDetail);
 	});
 
 }

@@ -6,7 +6,7 @@ function searchEvents(rootUrlApi)
 		key=$('#key-search').val();
 
 		$('#link-back-search').removeClass('hidden');
-		url=rootUrlApi+'key='+key+'&';
+		url=rootUrlApi+'q='+key+'&';
 		handlePagination($('#pagination'),url);
 	});
 }

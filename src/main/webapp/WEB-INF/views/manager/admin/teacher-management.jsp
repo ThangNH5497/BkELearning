@@ -501,13 +501,7 @@
 	</div>
 	<!-- /.modal-dialog -->
 </div>
-
-<!-- end modal save or update -->
-
-
-
 <!-- modal edit -->
-
 <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog"
 	aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">

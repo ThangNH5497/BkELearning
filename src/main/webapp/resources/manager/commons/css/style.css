@@ -476,7 +476,7 @@ th, td {
 	background: none;
 	color: red;
 }
-
+/*
 .form-v4-content .form-detail .form-row label.error::after {
 	font-family: "Font Awesome 5 Free";
 	content: "\f057";
@@ -492,7 +492,7 @@ th, td {
 	font-size: 18px;
 	font-weight: 400;
 }
-
+*/
 .form-v4-content .form-detail .input-text {
 	margin-bottom: 27px;
 }

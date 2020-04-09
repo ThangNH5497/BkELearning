@@ -5,9 +5,9 @@ $(document).ready(function() {
 	$('#menu-item-course').addClass('active');
 	tableDataEvents();
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'teacher/api/course/page?');
+	handlePagination($('#pagination'),'api/courses/page/teachers/'+userLoged.id+'?');
 	//search event , file search.js
-	searchEvents('teacher/api/course/search?');
+	searchEvents('api/courses/teachers/'+userLoged.id+'/search?');
 	
 });
 

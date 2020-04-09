@@ -17,9 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 import bk.elearning.entity.Student;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.service.IStudentService;
+import bk.elearning.utils.Message;
 
 @RestController
-@RequestMapping(path = "/api/student")
+@RequestMapping(path = "/api/students")
 @Transactional
 public class StudentApi {
 
@@ -27,7 +28,7 @@ public class StudentApi {
 	private IStudentService studentService;
 
 	// lay tat ca
-	@GetMapping(path = "/students")
+	@GetMapping
 	public List<Student> getAllStudent() {
 		List<Student> students = null;
 		try {
@@ -39,7 +40,7 @@ public class StudentApi {
 	}
 
 	// lay theo id
-	@GetMapping(path = "/id/{id}")
+	@GetMapping(path = "/{id}")
 	public Student getStudentById(@PathVariable int id) {
 		Student students = null;
 		try {
@@ -75,22 +76,20 @@ public class StudentApi {
 	}
 
 	// update
-	@PutMapping("/update")
-	public String updateStudent(@RequestPart("student") Student student,
+	@PutMapping(path = "/{id}")
+	public Message updateStudent(@PathVariable int id,@RequestPart("student") Student student,
 			@RequestPart(name = "file", required = false) MultipartFile file) {
-
+			student.setId(id);
 		try {
 			if (studentService.update(student, file) == 1)
-				return "Update Thành Công";
+				return new Message("Cập Nhật Thành Công ");
 		} catch (Exception e) {
 
 		}
 
-		return "error . Xin Thử Lại Sau !";
+		return new Message("Cập Nhật Thất Bại. Xin Thử Lại!");
 
 	}
-
-
 
 	// phan trang tat ca student
 	@GetMapping("/page")
@@ -104,8 +103,8 @@ public class StudentApi {
 	}
 
 	// phan trang theo mã lớp
-	@GetMapping("/page/course")
-	public PaginationResult<Student> getPageByCourse(@RequestParam int courseId, @RequestParam int page, int size) {
+	@GetMapping("/page/courses/{id}")
+	public PaginationResult<Student> getPageByCourse(@PathVariable(name="id") int courseId, @RequestParam int page, int size) {
 		try {
 			return studentService.getPageByCourse(courseId, page, size);
 		} catch (Exception e) {
@@ -117,7 +116,7 @@ public class StudentApi {
 
 	// lay du lieu tim kiem va phan trang
 	@GetMapping("/search")
-	public PaginationResult<Student> searchStudents(@RequestParam String key, @RequestParam int page, int size) {
+	public PaginationResult<Student> searchStudents(@RequestParam(name="q") String key, @RequestParam int page, int size) {
 		try {
 			return studentService.getSearchPage(key, page, size);
 		} catch (Exception e) {
@@ -128,8 +127,8 @@ public class StudentApi {
 	}
 
 	// tim kiem theo lop
-	@GetMapping("/search/course")
-	public PaginationResult<Student> searchByCourse(@RequestParam int courseId, @RequestParam String key,
+	@GetMapping("/courses/{id}/search")
+	public PaginationResult<Student> searchByCourse(@PathVariable(name="id") int courseId, @RequestParam(name="q") String key,
 			@RequestParam int page, int size) {
 		try {
 			return studentService.searchByCourse(courseId, key, page, size);

@@ -24,7 +24,7 @@ import bk.elearning.service.IStudentService;
 import bk.elearning.utils.Message;
 
 @RestController("adminStudentApi")
-@RequestMapping(path = "/admin/api/student")
+@RequestMapping(path = "/admin/api/students")
 @Transactional
 public class StudentApi {
 
@@ -32,35 +32,38 @@ public class StudentApi {
 	private IStudentService studentService;
 
 	// xoa theo id
-	@DeleteMapping(path = "/delete/{id}")
-	public int deleteStudentById(@PathVariable int id) {
-		return studentService.delete(id);
+	@DeleteMapping(path = "/{id}")
+	public Message deleteStudentById(@PathVariable int id) {
+		if( studentService.delete(id)==1)
+			return new Message("Xóa Thành Công ");
+		return new Message("Xóa Thất Bại.Xin Thử Lại Sau!");
 	}
 
 	// xoa nhieu 1 luc
-	@DeleteMapping(path = "/delete/multiple")
-	public int deleteStudentByIds(@RequestBody ArrayList<Integer> ids) {
-		return studentService.deleteMultiple(ids);
+	@DeleteMapping(path = "/multiple")
+	public Message deleteStudentByIds(@RequestBody ArrayList<Integer> ids) {
+		int success= studentService.deleteMultiple(ids);
+		return new Message("Xóa "+success+" Thành Công .");
 	}
 
 	// tao moi giang vien
-	@PostMapping("/add")
-	public String addNewStudent(@RequestPart("student") Student student,
+	@PostMapping()
+	public Message addNewStudent(@RequestPart("student") Student student,
 			@RequestPart(name = "file", required = false) MultipartFile file) {
 
 		try {
 			if (studentService.save(student, file) == 1)
-				return "Thêm Thành Công";
+				return new Message("Thêm Thành Công ");
 		} catch (Exception e) {
 
 		}
 
-		return "error . Xin Thử Lại Sau !";
+		return new Message("Thêm Thất Bại. Vui Lòng Thử Lại Sau!");
 
 	}
 
 	// them tu file exel
-	@PostMapping("/add/file")
+	@PostMapping("/file")
 	public Message addFromFile(@RequestPart(name = "file", required = true) MultipartFile file) {
 		// first value is success and second value is error
 		int result[] = { 0, 0 };

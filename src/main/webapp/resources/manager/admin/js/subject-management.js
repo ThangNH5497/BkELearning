@@ -4,17 +4,16 @@ $(document).ready(function() {
 	$('#sidebar .active').removeClass('active');
 	$('#menu-item-subject').addClass('active');
 	
-	
 	//file delete.js
-	deleteEvents("admin/api/subject/delete/multiple");
+	deleteEvents("admin/api/subjects/multiple");
 	
 	tableDataEvents();
 	
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'admin/api/subject/page?');
+	handlePagination($('#pagination'),'api/subjects/page?');
 	
 	//search events
-	searchEvents('admin/api/subject/search?');
+	searchEvents('api/subjects/search?');
 	
 	//add events
 	addNewSubjectEvents();
@@ -25,10 +24,6 @@ $(document).ready(function() {
 
 var data=[];
 var obj;
-function t(data)
-{
-	alert(data);}
-// kiem tra du lieu form add-new
 
 // them cac su kien trong table data
 function tableDataEvents()
@@ -53,9 +48,6 @@ function tableDataEvents()
 		$(this).addClass('selected');
 		
 	});
-	$('.modal').on('hidden.bs.modal', function () {
-		resetForm();
-	})
 	//btn detail subject
 	$(document).on('click', '#table-data-body .btn-subject-detail', function () {
 		//lay id tu phan tử tr
@@ -65,51 +57,35 @@ function tableDataEvents()
 }
 function validForm(formId,subject)
 {
-	var checkValidInput=true;
-		 var inputs=$('#'+formId+' input[required]');
-		// kiem tra input null
-		for(var i=0;i<inputs.length;i++)
+	var check=obj.validInputs(formId);
+		
+	if(check==true)
+	{
+		var checkDataExis;
+		// kiem tra ma code ton tai
+		checkDataExis=obj.getSubjectByCode($('#'+formId+' input[name="code"]').val());
+		if(checkDataExis!=""&&checkDataExis.code!=subject.code)
 		{
-			if($(inputs[i]).val()=="") 
-			{
-				$(inputs[i]).addClass('border-danger');
-				checkValidInput=false;
-			}
-			else $(inputs[i]).removeClass('border-danger');
-		}
-		if(checkValidInput==true)
-		{
-			var checkDataExis;
-			// kiem tra ma code ton tai
-			checkDataExis=obj.getSubjectByCode($('#'+formId+' input[name="code"]').val());
-			if(checkDataExis!=""&&checkDataExis.code!=subject.code)
-			{
-				checkValidInput=false;
+			check=false;
 				//doi mau input
-				$('#'+formId+' input[name="code"]').addClass('border-danger');
+			$('#'+formId+' input[name="code"]').addClass('border-danger');
 				//hien canh bao
-				$('#'+formId+' label[name="code-error"]').removeClass('hidden');
-			}
-			else 
-			{
-				$('#'+formId+' label[name="code-error"]').addClass('hidden');
-				$('#'+formId+' input[name="code"]').removeClass('border-danger');
-			}
-			
+			$('#'+formId+' label[name="code-error"]').removeClass('hidden');
 		}
-		
-		
-	return checkValidInput;
+		else 
+		{
+			$('#'+formId+' label[name="code-error"]').addClass('hidden');
+			$('#'+formId+' input[name="code"]').removeClass('border-danger');
+		}
+			
+	}	
+	return check;
 }
 function editSubjectEvents()
 {
 	var subject;
 	$(document).on('show.bs.modal', '#modal-edit', function(e) {
 		subject = initFormEdit();
-	});
-	// event modal edit closed, reset input of form
-	$(document).on('hidden.bs.modal', '#modal-edit', function(e) {
-		resetFormEdit();
 	});
 	// event submit form
 	$('#modal-edit .btn-submit').click(this,function(){
@@ -128,14 +104,16 @@ function editSubjectEvents()
 		        formData.append("subject", new Blob([JSON.stringify(subject)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"PUT","admin/api/subject/update");
-		     // cap nhat lai bang du lieu
+		        var data=obj.saveOrUpdate("PUT",false,"admin/api/subjects/"+subject.id,formData,null);
+		        alert(data.msg);
+		        location.reload(true);
+		        /* cap nhat lai bang du lieu
 				var fields = $('#table-data-body tr.selected td[field]');
 				for (var i = 0; i < fields.length; i++) 
 				{
 					var name = $(fields[i]).attr('field');
 					$(fields[i]).text(subject[name]);
-				}
+				}*/
 			} catch (e) {
 				// TODO: handle exception
 				alert("Lỗi : "+err);
@@ -146,10 +124,7 @@ function editSubjectEvents()
 		}
 	
 	});
-	// dat lai mau border cho input khi click
-	$('#modal-edit input').click(this, function() {
-		$(this).removeClass('border-danger');
-	});
+	
 }
 //khoi tao cac gia tri co san cho form
 function initFormEdit() {
@@ -172,12 +147,6 @@ function initFormEdit() {
 	}
 	return subject;
 }
-// dat lai cac gia tri ban dau cho form them moi
-function resetForm() {
-	$('.modal input').val("");
-	$('.modal input').removeClass('border-danger');
-	$('.modal .error').addClass('hidden');
-}
 function addNewSubjectEvents()
 {
 	// event submit form
@@ -191,7 +160,8 @@ function addNewSubjectEvents()
 		        formData.append("subject", new Blob([JSON.stringify(jsonObject)], {
 		            type: "application/json"
 		        }));
-		        obj.saveOrUpdate(formData,"POST","admin/api/subject/add");
+		        var data=obj.saveOrUpdate("POST",false,"admin/api/subjects",formData,null);
+		        alert(data.msg);
 		        location.reload(true);
 			} catch (e) {
 				// TODO: handle exception
@@ -201,17 +171,11 @@ function addNewSubjectEvents()
 		}
 		
 	});
-	// dat lai mau border cho input khi click
-	$('#modal-add-new input').click(this,function(){		
-		$(this).removeClass('border-danger');
-	});
 }
 class SubjectManagement extends Base {
 	
     constructor() {
     	super();
-
     }
-    
-    
+        
 }

@@ -2,8 +2,6 @@ package bk.elearning.controller.admin.api;
 
 import java.util.ArrayList;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,79 +21,45 @@ import bk.elearning.service.ITeacherService;
 import bk.elearning.utils.Message;
 
 @RestController("adminTeacherApi")
-@RequestMapping(path = "/admin/api/teacher")
-@Transactional
+@RequestMapping(path = "/admin/api/teachers")
 public class TeacherApi {
 
 	@Autowired
 	private ITeacherService teacherService;
 
-	// lay theo id
-	@GetMapping(path = "/id/{id}")
-	public Teacher getTeacherById(@PathVariable int id) {
-		Teacher teacher = null;
-		try {
-			teacher = teacherService.getById(id);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return teacher;
-	}
-
-	// lay theo code
-	@GetMapping(path = "/code/{code}")
-	public Teacher getTeacherByCode(@PathVariable String code) {
-		Teacher teacher = null;
-		try {
-			teacher = teacherService.getByCode(code);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return teacher;
-	}
-
-	// lay theo cuserName
-	@GetMapping(path = "/username/{username}")
-	public Teacher getTeacherByUsername(@PathVariable String username) {
-		Teacher teacher = null;
-		try {
-			teacher = teacherService.getByUsername(username);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return teacher;
-	}
-
 	// xoa theo id
-	@DeleteMapping(path = "/delete/{id}")
-	public int deleteTeacherById(@PathVariable int id) {
-		return teacherService.delete(id);
+	@DeleteMapping(path = "/{id}")
+	public Message deleteTeacherById(@PathVariable int id) {
+		if (teacherService.delete(id) == 1)
+			return new Message("Xóa Thành Công");
+		return new Message("Xóa Thất Bại!");
 	}
 
 	// xoa nhieu 1 luc
-	@DeleteMapping(path = "/delete/multiple")
-	public int deleteTeacherByIds(@RequestBody ArrayList<Integer> ids) {
-		return teacherService.deleteMultiple(ids);
+	@DeleteMapping(path = "/multiple")
+	public Message deleteTeacherByIds(@RequestBody ArrayList<Integer> ids) {
+		int success = teacherService.deleteMultiple(ids);
+		return new Message("Xóa Thành Công " + success);
 	}
 
 	// tao moi giang vien
-	@PostMapping("/add")
-	public String addNewTeacher(@RequestPart("teacher") Teacher teacher,
+	@PostMapping
+	public Message addNewTeacher(@RequestPart("teacher") Teacher teacher,
 			@RequestPart(name = "file", required = false) MultipartFile file) {
 
 		try {
 			if (teacherService.save(teacher, file) == 1)
-				return "Thêm Thành Công";
+				return new Message("Thêm Thành Công ");
 		} catch (Exception e) {
 
 		}
 
-		return "error . Xin Thử Lại Sau !";
+		return new Message("Thêm Thất Bại. Vui Lòng Thử Lại! ");
 
 	}
 
 	// them tu file exel
-	@PostMapping("/add/file")
+	@PostMapping("/file")
 	public Message addFromFile(@RequestPart(name = "file", required = true) MultipartFile file) {
 		// first value is success and second value is error
 		int result[] = { 0, 0 };
@@ -104,50 +68,24 @@ public class TeacherApi {
 		} catch (Exception e) {
 
 		}
-		return new Message("Thành Công : "+result[0]+", Thất Bại : "+result[1]);
+		return new Message("Thành Công : " + result[0] + ", Thất Bại : " + result[1]);
 
 	}
 
 	// update
-	@PutMapping("/update")
-	public String updateTeacher(@RequestPart("teacher") Teacher teacher,
+	@PutMapping("/{id}")
+	public Message updateTeacher(@PathVariable int id, @RequestPart("teacher") Teacher teacher,
 			@RequestPart(name = "file", required = false) MultipartFile file) {
-
+		teacher.setId(id);
 		try {
 			if (teacherService.update(teacher, file) == 1)
-				return "Update Thành Công";
+				return new Message("Cập Nhật Thành Công ");
 		} catch (Exception e) {
 
 		}
 
-		return "error . Xin Thử Lại Sau !";
+		return  new Message("Cập Nhật Thất Bại. Xin Thử Lại Sau!");
 
 	}
-
-	// lay du lieu tim kiem va phan trang
-	@GetMapping("/search")
-	public PaginationResult<Teacher> searchTeachers(@RequestParam String key, @RequestParam int page, int size) {
-		try {
-			return teacherService.getSearchPage(key, page, size);
-		} catch (Exception e) {
-
-		}
-		return null;
-
-	}
-
-	// phan trang tat ca teacher
-	@GetMapping("/page")
-	public PaginationResult<Teacher> getPage(@RequestParam int page, int size) {
-		try {
-			return teacherService.getPage(page, size);
-		} catch (Exception e) {
-
-		}
-		return null;
-
-	}
-	// phan trang tat ca teacher
-	// test
 
 }

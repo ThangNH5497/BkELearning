@@ -1,5 +1,6 @@
 package bk.elearning.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,11 +12,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class User extends AbstractEntity {
+public class User extends AbstractEntity implements Serializable{
 
 	@Column(name = "code", nullable = false, unique = true)
 	private String code;
@@ -38,6 +40,7 @@ public class User extends AbstractEntity {
 	@Column(name = "phone_number")
 	private String phoneNumber;
 
+	@JsonIgnore
 	@Column(name = "role", nullable = false)
 	private String role;
 

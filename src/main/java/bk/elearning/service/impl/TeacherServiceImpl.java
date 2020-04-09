@@ -24,10 +24,10 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 	private ITeacherRepository teacherRepository;
 
 
-
 	@Override
 	public Teacher getById(int id) {
 		// TODO Auto-generated method stub
+		
 		return teacherRepository.getById(id);
 	}
 
@@ -165,7 +165,7 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		int error = 0;
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		if (file != null) {
-			List<Teacher> teachers = FileUpload.processFileExel(file, new TeacherMapperUtil());
+			List<Teacher> teachers = FileUpload.processFileExel(file, new TeacherMapperUtil(true));
 			for (Teacher teacher : teachers) {
 				try {
 

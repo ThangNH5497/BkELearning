@@ -12,11 +12,11 @@
 		<div id="pagination" style="display: flex;">
 			<li class="page-item page-item-number active"><a
 				class="page-link rounded-0">1</a></li>
-			<li class="page-item page-item-number "><a class="page-link">2</a></li>
-			<li class="page-item page-item-number "><a class="page-link">3</a></li>
+			<li class="page-item page-item-number hidden"><a class="page-link">2</a></li>
+			<li class="page-item page-item-number hidden"><a class="page-link">3</a></li>
 
-			<li class="page-item page-item-number "><a class="page-link">4</a></li>
-			<li class="page-item page-item-number "><a
+			<li class="page-item page-item-number hidden"><a class="page-link">4</a></li>
+			<li class="page-item page-item-number hidden"><a
 				class="page-link rounded-0">5</a></li>
 		</div>
 

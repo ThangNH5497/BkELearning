@@ -152,7 +152,7 @@ public class CourseServiceImpl implements ICourseService {
 		int result[] = { 0, 0 };
 		try {
 			if (file != null) {
-				List<Student> students = FileUpload.processFileExel(file, new StudentMapperUtil());
+				List<Student> students = FileUpload.processFileExel(file, new StudentMapperUtil(false));
 				for (Student student : students) {
 					student=studentRepository.getByCode(student.getCode());
 					if(student!=null)

@@ -7,140 +7,206 @@ class Base {
     	// for localhost
     	rootLocation = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
     	rootLocation=rootLocation+"/";
+    	this.InitEventsBase();
     	// for real host
     	// rootLocation = getUrl .protocol + "//" + getUrl.host + "/";
-    	//init user profile
+    	// init user profile
     	$('#userDropdown .user-full-name').text(userLoged.fullName);
     	$('#userDropdown img').attr("src",rootLocation+userLoged.image);
 
     }
 
     InitEventsBase() {
-    	
+
+    	$(document).on('click', 'form input', function () {
+    		$(this).removeClass('border-danger');
+    	});
+    	// modal close
+    	$('.modal').on('hidden.bs.modal', function (e) {
+    		 resetForm();
+    	});
+    	// tab select
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+			resetForm();
+		});
+		// alert close event
+		$('.alert').on('close.bs.alert', function (event) {
+			  event.preventDefault();
+			  $(this).addClass('hidden');
+		 });
+		// preview file name
+		 $('#input-file-exel').change(function(){
+	         // get the file name
+	         var fileName = $(this).val();
+	         // replace the "Choose a file" label
+	         $(this).next('.file-exel-name').html(fileName);
+	     });
+		// prevew image when selected file
+		$('.input-file-avatar').change(function(event) {
+			try {
+				var reader = new FileReader();
+				var container=$(this).parents('.profile-img');
+				if (this.files && this.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						$(container).children('img.image-preview').attr('src', e.target.result);
+						$(container).children('img.image-preview').hide();
+						$(container).children('img.image-preview').fadeIn(650);
+					}
+					reader.readAsDataURL(this.files[0]);
+				}
+			} catch (e) {
+			}
+			
+		});
     }
-    //thuc hien ajax dong bo
-    getData(ajxMethod,ajaxUrl) {
-        var returnData = "";
+   // call ajax
+    ajaxCall(method,async,url,data,functionHandle) {
+        var returnData="";
+        data=JSON.stringify(data);
         $.ajax({
-            method: ajxMethod,
-            url: rootLocation+ajaxUrl,
-            async: false,
-           // dataType : "json",
+            method: method,
+            url: rootLocation+url,
+            async: async,
+            data:data,
+            dataType : "json",
 			contentType : "application/json; charset=utf-8",
-            beforeSend: function () {
-               // $(loadData).show();
-            },
             success: function (data) {
-            	returnData=data;
+            	if(async!=false&&functionHandle!=null&&functionHandle!=undefined)
+            	{
+            		functionHandle(data);
+            	}
+            	else returnData=data;
             },
-            error: function (data) {
-            	
+            error: function (err) {  
+            	if(functionHandle!=null&&functionHandle!=undefined)
+            	{
+            		functionHandle(err);
+            	}
             }
         });
         return returnData;
     }
-    //thuc hien ajax ko dong bo
-    getDataAsync(ajxMethod,ajaxUrl,methodHandle) {
-        $.ajax({
-            method: ajxMethod,
-            url: rootLocation+ajaxUrl,
-            async: true,
-           // dataType : "json",
-			contentType : "application/json; charset=utf-8",
-            success: function (data) {
-            	methodHandle(data);
+    
+    // save or update with file or no
+    saveOrUpdate(method,async,url,data,functionHandle)
+    {
+    	var returnData="";
+ 
+    	$.ajax({
+        	method : method,
+            url : rootLocation+url,
+            data : data,
+            processData : false,
+            contentType : false,
+            async:async,
+            success : function(data) {
+            	if(async!=false&&functionHandle!=null&&functionHandle!=undefined)
+            	{
+            		functionHandle(data);
+            	}
+            	else returnData=data;
             },
-            error: function (data) {
-            	methodHandle(undefined);
+            errorr : function(err) {
+            	if(functionHandle!=null&&functionHandle!=undefined)
+            	{
+            		functionHandle(err);
+            	}
             }
         });
-    }
-    //lay tong so teacher
-    getCountTeacher()
-    {
-    	return this.getData('GET','admin/api/teacher/count');
-    }
-    //lay theo tung khoang
-    getTeachersLimit(start,count)
-    {
-    	return this.getData('GET','admin/api/teacher/teachers/'+start+"/"+count);
-    }
-    //get all teachers
-    getAllTeachers()
-    {
-    	return this.getData('GET','admin/api/teacher/teachers');
-    }
-    //get teacher by username
-    getTeacherByUsername(username)
-    {
-    	return this.getData('GET','admin/api/teacher/username/'+username);
-    }
-  //get teacher by code
-    getTeacherByCode(code)
-    {
-    	return this.getData('GET','admin/api/teacher/code/'+code);
-    }
-  //get teacher by id
-    getTeacherById(id)
-    {
-    	return this.getData('GET','admin/api/teacher/id/'+id);
+    	return returnData;
     }
     
-	////////////////////////////////////////
+    // for user
+    getUserByUsername(username)
+    {
+    	return this.ajaxCall('GET',false,'api/users/username/'+username);
+    }
+    getUserByCode(code)
+    {
+    	return this.ajaxCall('GET',false,'api/users/code/'+code);
+    }
+    getUserById(id)
+    {
+    	return this.ajaxCall('GET',false,'api/users/'+id);
+    }
+    // get all teachers
+    getAllTeachers()
+    {
+    	return this.ajaxCall('GET',false,'api/teachers');
+    }
+    // get teacher by username
+    getTeacherByUsername(username)
+    {
+    	return this.ajaxCall('GET',false,'api/teachers/username/'+username);
+    }
+  // get teacher by code
+    getTeacherByCode(code)
+    {
+    	return this.ajaxCall('GET',false,'api/teachers/code/'+code);
+    }
+  // get teacher by id
+    getTeacherById(id)
+    {
+    	return this.ajaxCall('GET',false,'api/teachers/'+id);
+    }
+    
+	// ///////////////
 
-    //get all student
+    // get all student
     getAllStudents()
     {
-    	return this.getData('GET','api/student/students');
+    	return this.ajaxCall('GET',false,'api/students/students');
     }
-    //get student by username
+    // get student by username
     getStudentByUsername(username)
     {
-    	return this.getData('GET','api/student/username/'+username);
+    	return this.ajaxCall('GET',false,'api/students/username/'+username);
     }
-  //get student by code
+  // get student by code
     getStudentByCode(code)
     {
-    	return this.getData('GET','api/student/code/'+code);
+    	return this.ajaxCall('GET',false,'api/students/code/'+code);
     }
-  //get student by id
+  // get student by id
     getStudentById(id)
     {
-    	return this.getData('GET','api/student/id/'+id);
+    	return this.ajaxCall('GET',false,'api/students/'+id);
     }
-    //////////////////////////////////////////////
-  //get subject by code
+    // ////////////////////////////////////////////
+  // get subject by code
     getSubjectByCode(code)
     {
-    	return this.getData('GET','admin/api/subject/code/'+code);
+    	return this.ajaxCall('GET',false,'api/subjects/code/'+code);
     }
-    //get subject by id
+    // get subject by id
     getSubjectById(subjectId)
     {
-    	return this.getData('GET','admin/api/subject/id/'+subjectId);
+    	return this.ajaxCall('GET',false,'api/subjects/'+subjectId);
     }
-    ///////////////get course////////////////////
+    // /////////////get course////////////////////
     getCourseById(courseId)
     {
-    	return this.getData('GET','api/course/id/'+courseId);
+    	return this.ajaxCall('GET',false,'api/courses/'+courseId);
     }
     getCourseByCode(code)
     {
-    	return this.getData('GET','api/course/code/'+code);
+    	return this.ajaxCall('GET',false,'api/courses/code/'+code);
     }
+    
+    // init data for container data
     initData(containerId,rowDataId,data)
     {
     		$('#'+rowDataId).removeClass('hidden');
     		var html=$('#'+rowDataId).prop('outerHTML');
         	$('#'+containerId).empty();
-        	//hien thi du lieu
+        	// hien thi du lieu
         	if(data.length>0)
         	{
         		$('#data-empty-alert').addClass('hidden');
         		for(var i=0;i<data.length;i++)
             	{
             		$('#'+containerId).append(html);
-            		//dat id du lieu bang id cua data, vi tri 0 la cua hang mau
             		$('#'+rowDataId).attr('dataId',data[i].id);
             		$('#'+rowDataId).removeAttr('id');
             		var keys=Object.keys(data[i]);
@@ -179,12 +245,14 @@ class Base {
 
 
     }
+    
+    // lan theo vi tri du lieu theo ten
     resolve(path, obj) {
         return path.split('.').reduce(function(prev, curr) {
             return prev ? prev[curr] : null
         }, obj || self)
     }
-    //chuyen doi du lieu cac form sang json object
+    // chuyen doi du lieu cac form sang json object
     formToJson(forms)
     {
     var o = {};
@@ -205,43 +273,9 @@ class Base {
     }
     return o;
     };
-    //save or update model
-    saveOrUpdate(data,method,urlApi)
-    {
-    	$.ajax({
-        	method : method,
-            url : rootLocation+urlApi,
-            data : data,
-            processData : false,
-            contentType : false,
-            async:false,
-            success : function(data) {
-                alert(data);
-            },
-            errorr : function(err) {
-            	alert("error : "+err);
-            }
-        });
-    }
-    //xu ly khong dong bộ
-    saveOrUpdateAsync(data,method,urlApi,functionHandle)
-    {
-    	$.ajax({
-        	method : method,
-            url : rootLocation+urlApi,
-            data : data,
-            processData : false,
-            contentType : false,
-            async:true,
-            success : function(data) {
-            	functionHandle(data.msg);
-            },
-            errorr : function(err) {
-            	alert("error : "+err);
-            }
-        });
-    }
-    //valid input
+ 
+   
+    // valid input
     validInputs(formId)
     {
     	var check=true;
@@ -261,7 +295,7 @@ class Base {
     	return check;
     }
     
-    //get param from url
+    // get param from url
     getParam(paramName)
     {
     	const queryString = window.location.search;
@@ -269,4 +303,16 @@ class Base {
     	var param = urlParams.get(paramName);
     	return param;
     }
+    
+}
+// resrt form
+function resetForm()
+{
+	$('.modal input').val("");
+	$('.modal input').removeClass('border-danger');
+	$('#input-file-exel').next('#modal-add-new .file-exel-name').html("Chọn File");
+	$('.modal .image-preview').attr('src',rootLocation+"resources/commons/image/user/default-user.jpg");
+	$('.modal .error').addClass('hidden');
+	$('#form-container-one').removeClass('hidden');
+	$('#form-container-two').addClass('hidden');
 }

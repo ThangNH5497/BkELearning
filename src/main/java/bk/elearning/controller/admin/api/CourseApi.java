@@ -20,85 +20,60 @@ import org.springframework.web.bind.annotation.RestController;
 import bk.elearning.entity.Course;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.service.ICourseService;
+import bk.elearning.utils.Message;
 
 @RestController("adminCourseApi")
-@RequestMapping(path = "/admin/api/course")
+@RequestMapping(path = "/admin/api/courses")
 @Transactional
 public class CourseApi {
 
 	@Autowired
 	private ICourseService courseService;
 
-	
-
 	// xoa theo id
-	@DeleteMapping(path = "/delete/{id}")
-	public int deleteCourseById(@PathVariable int id) {
-		return courseService.delete(id);
+	@DeleteMapping(path = "/{id}")
+	public Message deleteCourseById(@PathVariable int id) {
+		if (courseService.delete(id) == 1)
+			return new Message("Xóa Thành Công!");
+		return new Message("Xóa Thất Bại. Xin Thử Lại!");
 	}
 
 	// xoa nhieu 1 luc
-	@DeleteMapping(path = "/delete/multiple")
-	public int deleteCourseByIds(@RequestBody ArrayList<Integer> ids) {
-		return courseService.deleteMultiple(ids);
+	@DeleteMapping(path = "/multiple")
+	public Message deleteCourseByIds(@RequestBody ArrayList<Integer> ids) {
+		int success = courseService.deleteMultiple(ids);
+		return new Message("Xóa Thành Công " + success + " !");
 	}
 
 	// tao moi course
-	@PostMapping("/add")
-	public String addNewCourse(@RequestPart("course") Course course) {
+	@PostMapping()
+	public Message addNewCourse(@RequestPart("course") Course course) {
 
 		try {
 			if (courseService.save(course) == 1)
-				return "Thêm Thành Công";
+				return new Message("Thêm Thành Công!");
 		} catch (Exception e) {
 
 		}
-		return "error . Xin Thử Lại Sau !";
+		return new Message("Thêm Thất Bại. Xin Thử Lại !");
 
 	}
 
 	// update
-	@PutMapping("/update")
-	public String updateCourse(@RequestPart("course") Course course) {
-
+	@PutMapping("/{id}")
+	public Message updateCourse(@PathVariable(name = "id") int courseId, @RequestPart("course") Course course) {
+		course.setId(courseId);
 		try {
 			if (courseService.update(course) == 1)
-				return "Update Thành Công";
+				return new Message("Cập Nhật Thành Công");
 		} catch (Exception e) {
 			System.out.println("ex : " + e.toString());
 		}
 
-		return "error . Xin Thử Lại Sau !";
+		return new Message("Cập Nhật Thất Bại. Xin Thử Lại Sau!");
 
 	}
 
-	// lay du lieu tim kiem va phan trang
-	@GetMapping("/search/subject")
-	public PaginationResult<Course> searchCoursesBySubject(@RequestParam int subjectId, @RequestParam String key,
-			@RequestParam int page, int size) {
-		try {
-			return courseService.searchBySubject(subjectId, key, page, size);
-		} catch (Exception e) {
-
-		}
-		return null;
-
-	}
-
-	// phan trang tat ca course
-	@GetMapping("/page/subject")
-	public PaginationResult<Course> getPageBySubject(@RequestParam int subjectId, @RequestParam int page,
-			@RequestParam int size) {
-		try {
-			// return courseService.getPage(page, size);
-			if (subjectId > 0) {
-				return courseService.getPageBySubject(subjectId, page, size);
-			}
-		} catch (Exception e) {
-		}
-		return null;
-
-	}
-	// phan trang tat ca course
+	
 
 }

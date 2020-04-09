@@ -19,103 +19,56 @@ import org.springframework.web.bind.annotation.RestController;
 import bk.elearning.entity.Subject;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.service.ISubjectService;
+import bk.elearning.utils.Message;
 
 @RestController("adminSubjectApi")
-@RequestMapping(path = "/admin/api/subject")
-@Transactional
+@RequestMapping(path = "/admin/api/subjects")
 public class SubjectApi {
 
 	@Autowired
 	private ISubjectService subjectService;
 
-	// lay theo id
-	@GetMapping(path = "/id/{id}")
-	public Subject getSubjectById(@PathVariable int id) {
-		Subject subject = null;
-		try {
-			subject = subjectService.getById(id);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return subject;
-	}
-
 	// xoa theo id
-	@DeleteMapping(path = "/delete/{id}")
-	public int deleteSubjectById(@PathVariable int id) {
-		return subjectService.delete(id);
+	@DeleteMapping(path = "/{id}")
+	public Message deleteSubjectById(@PathVariable int id) {
+		if (subjectService.delete(id)==1)
+			return new Message("Xóa Thành Công!");
+		return new Message("Xóa Thất Bại. Xin Thử Lại!");
 	}
 
 	// xoa nhieu 1 luc
-	@DeleteMapping(path = "/delete/multiple")
+	@DeleteMapping(path = "/multiple")
 	public int deleteSubjectByIds(@RequestBody ArrayList<Integer> ids) {
 		return subjectService.deleteMultiple(ids);
 	}
 
 	// tao moi giang vien
-	@PostMapping("/add")
-	public String addNewSubject(@RequestPart("subject") Subject subject) {
+	@PostMapping()
+	public Message addNewSubject(@RequestPart("subject") Subject subject) {
 
 		try {
 			if (subjectService.save(subject) == 1)
-				return "Thêm Thành Công";
+				return new Message("Thêm Thành Công!");
 		} catch (Exception e) {
 
 		}
 
-		return "error . Xin Thử Lại Sau !";
+		return new Message("Thêm Thất Bại. Xin Thử Lại!");
 
 	}
 
 	// update
-	@PutMapping("/update")
-	public String updateSubject(@RequestPart("subject") Subject subject) {
-
+	@PutMapping("/{id}")
+	public Message updateSubject(@PathVariable(name="id") int subjectId,@RequestPart("subject") Subject subject) {
+		
 		try {
+			subject.setId(subjectId);
 			if (subjectService.update(subject) == 1)
-				return "Update Thành Công";
+				return new Message("Cập Nhật Thành Công!");
 		} catch (Exception e) {
 
 		}
-
-		return "error . Xin Thử Lại Sau !";
-
+		return new Message("Cập Nhật Thất Bại. Xin Thử lại!");
 	}
-
-	// lay du lieu tim kiem va phan trang
-	@GetMapping("/search")
-	public PaginationResult<Subject> searchSubjects(@RequestParam String key, @RequestParam int page, int size) {
-		try {
-			return subjectService.getSearchPage(key, page, size);
-		} catch (Exception e) {
-
-		}
-		return null;
-
-	}
-
-	// lay theo code
-	@GetMapping(path = "/code/{code}")
-	public Subject getSubjectByCode(@PathVariable String code) {
-		Subject subject = null;
-		try {
-			subject = subjectService.getByCode(code);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return subject;
-	}
-
-	// phan trang tat ca student
-	@GetMapping("/page")
-	public PaginationResult<Subject> getPage(@RequestParam int page, int size) {
-		try {
-			return subjectService.getPage(page, size);
-		} catch (Exception e) {
-		}
-		return null;
-
-	}
-	// phan trang tat ca student
 
 }

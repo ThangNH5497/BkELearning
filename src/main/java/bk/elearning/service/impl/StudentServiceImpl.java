@@ -173,7 +173,7 @@ public class StudentServiceImpl implements IStudentService{
 		int error = 0;
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		if (file != null) {
-			List<Student> students = FileUpload.processFileExel(file, new StudentMapperUtil());
+			List<Student> students = FileUpload.processFileExel(file, new StudentMapperUtil(true));
 			for (Student student : students) {
 				try {
 					

@@ -4,20 +4,20 @@ $(document).ready(function() {
 	$('#sidebar .active').removeClass('active');
 	$('#menu-item-student').addClass('active');
 	//file add-user.js
-	addNewUserEvents('student','admin/api/student/add');
+	addNewUserEvents('student','admin/api/students');
 	
 	//file edit-user.js
-	editUserEvents('student','api/student/update');
+	editUserEvents('student','api/students');
 	
-	userDetailEvents('api/student/id/');
-	deleteEvents("admin/api/student/delete/multiple");
+	userDetailEvents('api/students/');
+	deleteEvents("admin/api/students/multiple");
 
 	tableDataEvents();
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'api/student/page?');
+	handlePagination($('#pagination'),'api/students/page?');
 	
 	//search events
-	searchEvents('api/student/search?');
+	searchEvents('api/students/search?');
 	
 });
 var obj;
@@ -37,17 +37,11 @@ function tableDataEvents()
 	    }
 	});
 	
-	
-	
-	
 }
 
 class StudentManagement extends Base {
 	
     constructor() {
     	super();
-
-    }
-    
-    
+    }  
 }

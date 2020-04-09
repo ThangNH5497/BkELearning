@@ -7,14 +7,14 @@ $(document).ready(function() {
 	var courseId=obj.getParam('courseId');
 	course=obj.getCourseById(courseId);
 	$('.course-title').text(course.courseName+'-'+course.code);
-	userDetailEvents('api/student/id/');
+	userDetailEvents('api/students/');
 
 	tableDataEvents();
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'api/student/page/course?courseId='+courseId+'&');
+	handlePagination($('#pagination'),'api/students/page/courses/'+courseId+'?');
 	
 	//search events
-	searchEvents('api/student/search/course?courseId='+courseId+'&');
+	searchEvents('api/students/courses/'+courseId+'/search?');
 	removeTeacherEvents();
 	addStudentToCourse();
 	
@@ -40,23 +40,6 @@ function addStudentToCourse()
 	var check=true;
 	var student;
 	
-	// event modal edit closed, reset input of form
-	$(document).on('hidden.bs.modal', '#modal-add-student ', function(e) {
-		resetForm();
-	});
-	//student code check
-	$('#modal-add-student .student-code').on('input',function(e){
-	    if($('#modal-add-student  .student-code').val()!="")
-	    {
-	    	check=false;
-	    	$('#modal-add-student  .btn-submit').addClass('disabled');
-	    }
-	    else
-	    {
-	    	check=true;
-	    	$('#modal-add-student  .btn-submit').removeClass('disabled');
-	    }
-	});
 	$("#modal-add-student  .student-code").bind("input propertychange", function (evt) {
 	    // If it's the propertychange event, make sure it's the value that changed.
 	    if (window.event && event.type == "propertychange" && event.propertyName != "value")
@@ -71,7 +54,7 @@ function addStudentToCourse()
 	        $('#form-student .waiting-process').removeClass('hidden');
 	        $('#preview-student-container').addClass('hidden');
 	        //get teacher asyn
-	        student=obj.getDataAsync("GET",'api/student/code/'+studentCode,function(data){
+	        student=obj.ajaxCall("GET",true,'api/students/code/'+studentCode,null,function(data){
 	        	$('#form-student .waiting-process').addClass('hidden');
 	        	$('#preview-student-container').removeClass('hidden');
 	        	if(data!=""&&data!=undefined)
@@ -99,20 +82,9 @@ function addStudentToCourse()
 		if(check==true&&student!=null&&student!={}&&student!=undefined&&student!="")
 		{
 			try {
-				$.ajax({
-		            method: 'PUT',
-		            url: rootLocation+'teacher/api/course/update/'+course.id+'/student/'+student.id,
-		            async: false,
-					contentType : "application/json; charset=utf-8",
-		            success: function (data) {
-		            	alert(data.msg);
-		            	location.reload(true);
-		            },
-		            error: function (data) {
-		            	alert("update Thất Bại. Vui Lòng Thử Lại!");
-		            }
-		        });
-		        
+				var data=obj.saveOrUpdate('PUT',false,'teacher/api/courses/'+course.id+'/students/'+student.id,null,null);
+				alert(data.msg);
+            	location.reload(true);	        
 			} catch (e) {
 				// TODO: handle exception
 				alert("Lỗi : "+err);
@@ -125,14 +97,6 @@ function addStudentToCourse()
 		{
 			alert("Giảng Viên Không Tồn Tại!")
 		}
-	});
-	/*for exel file*/
-	// display filename exel when selected
-	$('#input-file-exel').on('change',this,function(){
-       // get the file name
-       var fileName = $(this).val();
-       // replace the "Choose a file" label
-       $(this).next('#modal-add-student .file-exel-name').html(fileName);
 	});
 	 //upload from file exel
 	 $(document).on('click', '#modal-add-student .btn-submit-file-exel', function () {
@@ -149,7 +113,7 @@ function addStudentToCourse()
 				var formData = new FormData();	
 				//them file vao data
 		        formData.append('file', $('#modal-add-student #input-file-exel')[0].files[0]);		    
-		        obj.saveOrUpdateAsync(formData,"PUT",'teacher/api/course/update/'+course.id+'/student/file', showMessage);
+		        obj.saveOrUpdate("PUT",true,'teacher/api/courses/'+course.id+'/students/file',formData, showMessage);
 				
 			} catch (e) {
 				// TODO: handle exception
@@ -157,22 +121,8 @@ function addStudentToCourse()
 			}
 		}
 	 });
-	 
-	 $('#alert-file-exel').on('close.bs.alert', function (event) {
-		  event.preventDefault();
-		  $(this).addClass('hidden');
-	 });
-
-	 // even tab select
-		$('#modal-add-student a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-			resetForm();
-		});
-	// dat lai mau border cho input khi click
-	$('#modal-add-student  input').click(this, function() {
-		$(this).removeClass('border-danger');
-	});
 }
-//remove teacher phụ trách lớp
+//remove student form course
 function removeTeacherEvents()
 {
 	//set color for row checked by add class checked
@@ -230,38 +180,15 @@ function removeTeacherEvents()
 					{
 						ids.push($(rowChecked[i]).attr('dataId'));
 					}
-					$.ajax({
-			        	method : "DELETE",
-			            url : rootLocation+'teacher/api/course/'+course.id+'/student',
-			            data : JSON.stringify(ids),
-			            dataType : "json",
-			            async:false,
-						contentType : "application/json; charset=utf-8",
-			            success : function(data) {			               
-			            },
-			            errorr : function(err) {
-			            	alert('Xảy ra lỗi, Vui Lòng Thử Lại Sau!');
-			            }
-			        });
-					//delete row data in table
-					//$(rowChecked).remove();
-					 location.reload(true);
+					var data=obj.ajaxCall('DELETE',false,'teacher/api/courses/'+course.id+'/students',ids,null);
+					alert(data.msg);
+					location.reload(true);
 				});
 			}
 	    }
 	});
 }
-//dat lai cac gia tri ban dau cho form them moi
-function resetForm()
-{
-	$('.modal input').val("");
-	$('.modal input').removeClass('border-danger');
-	$('#input-file-exel').next('#modal-add-student .file-exel-name').html("Chọn File");
-	$('.modal .image-preview').attr('src',rootLocation+"resources/commons/image/user/default-user.jpg");
-	$('.modal .error').addClass('hidden');
-	$('.modal .image-preview').attr('src',
-			rootLocation + "resources/commons/image/user/default-user.jpg");
-}
+
 class StudentManagement extends Base {
 	
     constructor() {

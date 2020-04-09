@@ -60,7 +60,7 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	public User getByCode(String code) {
 		// TODO Auto-generated method stub
-		return null;
+		return userRepository.getByCode(code);
 	}
 
 	@Override

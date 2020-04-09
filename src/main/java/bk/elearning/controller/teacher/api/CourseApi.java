@@ -2,8 +2,6 @@ package bk.elearning.controller.teacher.api;
 
 import java.util.ArrayList;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,15 +22,14 @@ import bk.elearning.service.ICourseService;
 import bk.elearning.utils.Message;
 
 @RestController("teacherCourseApi")
-@RequestMapping(path = "/teacher/api/course")
-@Transactional
+@RequestMapping(path = "/teacher/api/courses")
 public class CourseApi {
 
 	@Autowired
 	private ICourseService courseService;
 
 	// update
-	@PutMapping("/update")
+	@PutMapping
 	public String updateCourse(@RequestPart("course") Course course) {
 
 		try {
@@ -47,7 +44,7 @@ public class CourseApi {
 	}
 
 	// add student
-	@PutMapping("/update/{courseId}/student/{studentId}")
+	@PutMapping("/{courseId}/students/{studentId}")
 	public Message addStudent(@PathVariable int courseId, @PathVariable int studentId) {
 		try {
 
@@ -61,8 +58,8 @@ public class CourseApi {
 	}
 
 	// add student from file
-	@PutMapping("/update/{courseId}/student/file")
-	public Message addStudentFromFile(@PathVariable int courseId, @RequestPart MultipartFile file) {
+	@PutMapping("/{id}/students/file")
+	public Message addStudentFromFile(@PathVariable(name="id") int courseId, @RequestPart MultipartFile file) {
 		try {
 			int result[]= {0,0};
 			result=courseService.addStudent(courseId, file);
@@ -76,51 +73,10 @@ public class CourseApi {
 	}
 
 	// remove student from course
-	@DeleteMapping(path = "/{courseId}/student")
+	@DeleteMapping(path = "/{courseId}/students")
 	public Message removeStudents(@PathVariable int courseId, @RequestBody ArrayList<Integer> ids) {
 		return new Message(courseService.removeStudents(courseId, ids));
 	}
 
-	// lay du lieu tim kiem va phan trang
-	@GetMapping("/search/subject")
-	public PaginationResult<Course> searchCoursesBySubject(@RequestParam String key, @RequestParam int page, int size) {
-		try {
-			CustomUserDetails user = null;
-			user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			return courseService.searchByTeacher(user.getId(), key, page, size);
-		} catch (Exception e) {
-
-		}
-		return null;
-
-	}
-
-	// phan trang tat ca course
-	@GetMapping("/page")
-	public PaginationResult<Course> getPageByTeacher(@RequestParam int page, @RequestParam int size) {
-		try {
-			// return courseService.getPage(page, size);
-			CustomUserDetails user = null;
-			user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			return courseService.getPageByTeacher(user.getId(), page, size);
-
-		} catch (Exception e) {
-		}
-		return null;
-
-	}
-
-	// phan trang tat ca course
-	@GetMapping("/search")
-	public PaginationResult<Course> searchCoursesByTeacher(@RequestParam String key, @RequestParam int page, int size) {
-		try {
-			CustomUserDetails user = null;
-			user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			return courseService.searchByTeacher(user.getId(), key, page, size);
-		} catch (Exception e) {
-
-		}
-		return null;
-
-	}
+	
 }
