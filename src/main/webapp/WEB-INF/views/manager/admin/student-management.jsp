@@ -106,7 +106,7 @@
 														<h5 id='data-empty-alert'
 															class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
 															Có Dữ Liệu Khớp</h5>
-														<tr class="table-row body hidden border-bottom border-top"
+														<tr class="table-row body hidden"
 															id="row-data-container">
 
 															<td class="table-cell column0" field='checkBox'><div

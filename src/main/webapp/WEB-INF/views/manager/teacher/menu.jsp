@@ -27,9 +27,9 @@
 					class="redirect">Lớp Học</span></a></li>
 
 			<li id="menu-item-question"><a
-				href="<c:url value='/teacher/ql-sinh-vien'/>"><span
+				href="<c:url value='/teacher/ql-cau-hoi'/>"><span
 					class="icon fas fa-user-graduate mr-3"></span> <span
-					class="redirect">Sinh Viên</span></a></li>
+					class="redirect">Câu Hỏi</span></a></li>
 
 			<li id="menu-item-exam-paper"><a
 				href="<c:url value='/teacher/ql-mon-hoc'/>"><span

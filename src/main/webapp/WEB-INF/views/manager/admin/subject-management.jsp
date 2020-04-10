@@ -51,10 +51,10 @@
 								<button class="btn btn-edit text-primary disabled  btn-control">
 									<i class="fas fa-edit"></i>
 								</button>
-								<button class="btn btn-delete text-danger">
+								<button class="btn btn-delete text-danger btn-control">
 									<i class="fas fa-trash"></i>
 								</button>
-								<button class="btn btn-refresh text-primary">
+								<button class="btn btn-refresh text-primary btn-control">
 									<i class="fas fa-sync"></i>
 								</button>
 								<jsp:include page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
@@ -108,8 +108,8 @@
 													<tbody id="table-data-body">
 														<h5 id='data-empty-alert'
 															class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
-															Có Dữ Liệu Khớp</h5>
-														<tr class="table-row body hidden border-bottom border-top"
+															Có Dữ Liệu</h5>
+														<tr class="table-row body hidden"
 															id="row-data-container">
 
 															<td class="table-cell column0" field='checkBox'><div

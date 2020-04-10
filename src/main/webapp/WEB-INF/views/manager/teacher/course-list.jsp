@@ -17,6 +17,7 @@
 	<!-- Page Content  -->
 	<div id="content" class="mb-5">
 		<jsp:include page="/WEB-INF/views/manager/commons/topbar.jsp"></jsp:include>
+		<p>Thắng <b>ĐẸP TRAI&nbsp;</b><span style="font-family: &quot;Times New Roman&quot;;">﻿Khoai to</span></p>
 		<div class=" container-fluid content-container">
 			<div class=" container-fluid d-flex pl-0 ml-0">
 				<nav class="navbar navbar-light bg-light" style="font-weight: 600;"

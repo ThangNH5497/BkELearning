@@ -1,0 +1,13 @@
+.wrap-editor ul {
+    list-style-type: circle !important;
+    margin-left: 15px !important;
+}
+.wrap-editor ul li{
+    list-style-type: circle !important;
+    margin-left: 15px !important;
+}
+
+.selected
+{
+	background: #e1e6ed;
+}

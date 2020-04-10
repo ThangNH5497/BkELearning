@@ -18,6 +18,16 @@ public class TeacherController {
 	{		
 		return "manager/teacher/course-list";
 	}
+	@RequestMapping("/ql-cau-hoi")
+	public String questionManagement()
+	{		
+		return "manager/teacher/question-list";
+	}
+	@RequestMapping("/them-cau-hoi")
+	public String addQuestion()
+	{		
+		return "manager/teacher/add-question";
+	}
 	
 	@RequestMapping("/ql-lop-hoc/ql-sinh-vien")
 	public String studentList(@RequestParam("courseId") int courseId)

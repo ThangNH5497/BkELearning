@@ -2,7 +2,7 @@
 	box-sizing: border-box !important;
 }
 #content {
-	background-color: #fafafa;
+	background-color: white;
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
@@ -66,18 +66,6 @@
     
  
 }
-
-/*event table*/
-#table-data-body .selected td
-{
-	background: #facde9;
-}
-#table-data-body .checked td
-{
-	background: #f0ad4e;
-}
-
-/*table*/
 
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
@@ -247,6 +235,8 @@ th, td {
 	
 }
 
+
+
 /*==================================================================
 [ Fix header ]*/
 .table-data {
@@ -285,15 +275,26 @@ th, td {
 }
 
 .table-data td {
-	font-family: Lato-Regular;
-	font-size: 17px;
-	color: #808080;
+	
+	font-size: 16px;
+	
 	line-height: 1.4;
-	font-weight: 600 !important;
+	
+	font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+    color: #5e5d52;
+	
 }
-
+#table-data-body .selected td
+{
+	background: #facde9;
+}
+#table-data-body .checked td
+{
+	background: #f0ad4e;
+	color:white;
+}
 .table-data .table-data-body tr:nth-child(odd) {
-	background-color: #e4f7ef;
+	background-color:#f0f2f5;
 }
 
 /*---------------------------------------------*/
