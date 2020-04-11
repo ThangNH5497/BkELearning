@@ -24,8 +24,8 @@ public class Answer extends AbstractEntity{
 		super();
 	}
 
-	public Answer(String content, boolean isCorrect, Question question) {
-		super();
+	public Answer(int id,String content, boolean isCorrect, Question question) {
+		super(id);
 		this.content = content;
 		this.isCorrect = isCorrect;
 		this.question = question;

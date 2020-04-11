@@ -13,6 +13,7 @@ import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.repository.ITeacherRepository;
 import bk.elearning.service.IPaginationResultService;
 import bk.elearning.service.ITeacherService;
+import bk.elearning.utils.Constant;
 import bk.elearning.utils.FileUpload;
 import bk.elearning.utils.TeacherMapperUtil;
 import bk.elearning.utils.Util;
@@ -43,9 +44,9 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		// TODO Auto-generated method stub
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		t.setPassword(passwordEncoder.encode(t.getPassword()));
-		t.setRole(Util.ROLE_TEACHER);
+		t.setRole(Constant.ROLE_TEACHER);
 		if (t.getImage() == "")
-			t.setImage(Util.DEFAULT_USER_IMAGE);
+			t.setImage(Constant.DEFAULT_USER_IMAGE);
 		t.setCourses(null);
 		return teacherRepository.save(t);
 	}
@@ -57,18 +58,20 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		// TODO Auto-generated method stub
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		t.setPassword(passwordEncoder.encode(t.getPassword()));
-		t.setRole(Util.ROLE_TEACHER);
+		t.setRole(Constant.ROLE_TEACHER);
 
 		t.setCourses(null);
 		if (file != null) {
-
-			String filePath = "resources/commons/image/user/user-" + t.getCode() + "."
-					+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.') + 1);
-			t.setImage(FileUpload.saveFile(file, filePath));
+			String filePath=FileUpload.saveFile(file,Constant.UPLOAD_USER_DIR);
+			if(filePath!=null)
+			{
+				t.setImage(filePath);
+			}
+			else t.setImage(Constant.DEFAULT_USER_IMAGE);
 		}
 		// dat hinh anh default
 		else
-			t.setImage(Util.DEFAULT_USER_IMAGE);
+			t.setImage(Constant.DEFAULT_USER_IMAGE);
 		return teacherRepository.save(t);
 	}
 
@@ -100,9 +103,13 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		teacherUpdate.setFullName(teacher.getFullName());
 		teacherUpdate.setPosition(teacher.getPosition());
 		if (file != null) {
-			String filePath = "resources/commons/image/user/user-" + teacher.getCode() + "."
-					+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.') + 1);
-			teacherUpdate.setImage(FileUpload.saveFile(file, filePath));
+			String filePath=FileUpload.saveFile(file,Constant.UPLOAD_USER_DIR);
+			if(filePath!=null)
+			{
+				teacherUpdate.setImage(filePath);
+			}
+			else teacherUpdate.setImage(Constant.DEFAULT_USER_IMAGE);
+			
 		}
 		return teacherRepository.update(teacherUpdate);
 	}
@@ -171,9 +178,9 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 
 					teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
 					if (teacher.getImage() == null || teacher.getImage().equals("")) {
-						teacher.setImage(Util.DEFAULT_USER_IMAGE);
+						teacher.setImage(Constant.DEFAULT_USER_IMAGE);
 					}
-					teacher.setRole(Util.ROLE_TEACHER);
+					teacher.setRole(Constant.ROLE_TEACHER);
 					if (teacherRepository.save(teacher) == 1)
 						success++;
 				} catch (Exception e) {

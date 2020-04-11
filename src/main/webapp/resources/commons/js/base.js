@@ -1,5 +1,9 @@
 var rootLocation;
 
+const STATUS_SUCCESS=800;
+
+const STATUS_ERROR=900;
+
 class Base {
 	
     constructor() {
@@ -22,27 +26,27 @@ class Base {
     		$(this).removeClass('border-danger');
     	});
     	// modal close
-    	$('.modal').on('hidden.bs.modal', function (e) {
+    	$(document).on('hidden.bs.modal', '.modal-reset', function (e){
     		 resetForm();
     	});
     	// tab select
-		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    	$(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e){
 			resetForm();
 		});
 		// alert close event
-		$('.alert').on('close.bs.alert', function (event) {
-			  event.preventDefault();
+    	$(document).on('close.bs.alert', '.alert', function (e){
+			  e.preventDefault();
 			  $(this).addClass('hidden');
 		 });
 		// preview file name
-		 $('#input-file-exel').change(function(){
+    	$(document).on('change', '#input-file-exel', function (e){
 	         // get the file name
 	         var fileName = $(this).val();
 	         // replace the "Choose a file" label
 	         $(this).next('.file-exel-name').html(fileName);
 	     });
 		// prevew image when selected file
-		$('.input-file-avatar').change(function(event) {
+    	$(document).on('change', '.input-file-avatar', function (event){
 			try {
 				var reader = new FileReader();
 				var container=$(this).parents('.profile-img');

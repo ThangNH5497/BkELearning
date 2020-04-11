@@ -113,8 +113,8 @@ public abstract class UserMapperUtil<T> implements IModelMapper<T> {
 					String code=BeanUtils.getProperty(object, "code");
 					if (checkType == true&&object!=null&&code!=null&&code!="") {
 						String rootPath = FileUpload.context.getRealPath("/");
-						String filePath = "resources/commons/image/user/user-"+code+"."+ ext;
-						filePath = FileUpload.createUniqueFileName(filePath);
+						String filePath = "image."+ ext;
+						filePath = FileUpload.createUniqueFileName(Constant.UPLOAD_USER_DIR+filePath);
 						FileOutputStream out = new FileOutputStream(rootPath + filePath);
 						byte[] data = pict.getData(); 
 						out.write(data);

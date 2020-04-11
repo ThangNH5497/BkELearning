@@ -42,7 +42,7 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	public int save(User t) {
 		// TODO Auto-generated method stub
-		return 0;
+		return userRepository.save(t);
 	}
 
 	@Override

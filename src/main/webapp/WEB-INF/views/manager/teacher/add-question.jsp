@@ -8,7 +8,8 @@
 	href="<c:url value='/resources/manager/commons/css/style.css' />">
 <link rel="stylesheet"
 	href="<c:url value='/resources/manager/commons/css/dashboard.css' />">
-
+<link rel="stylesheet"
+	href="<c:url value='/resources/commons/lib/summernote/summernote-audio.css' />">
 <link rel="stylesheet"
 	href="<c:url value='/resources/commons/lib/summernote/summernote-bs4.min.css' />">
 <link rel="stylesheet"
@@ -30,11 +31,34 @@
 					class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm "><i
 					class="fas fa-file-import fa-sm text-white-50"></i> Import Câu Hỏi</a>
 			</div>
+			
 			<!-- table -->
 			<div class="question-wrap">
-				<div class="d-flex row">
+			<form>
+				
+				<div class="form-group row">
+					<label for="inputPassword" class="col-2 col-form-label">Mã Câu Hỏi</label>
+					<div class="col-9">
+						<input type="text" class="form-control" id="inputCode"
+							placeholder="code">
+					</div>
+					<div class="col-1"></div>
+				</div>
+			</form>
+			<form class="mt-3">
+
+				<div class="form-group row">
+					<label for="inputName" class="col-2 col-form-label">Tên Câu Hỏi</label>
+					<div class="col-9">
+						<input type="text" class="form-control" id="inputName"
+							placeholder="name">
+					</div>
+					<div class="col-1"></div>
+				</div>
+			</form>
+				<div class="d-flex row question">
 					<label class="col-2 text-lg">Nội Dung Câu Hỏi</label>
-					<div class="col-9 wrap-editor">
+					<div class="col-9 wrap-editor ">
 						<div class="question-editor"></div>
 					</div>
 				</div>
@@ -42,7 +66,7 @@
 				<div id='wrap-answer'>
 					<div id='answer-sample' class='hidden'>
 						<div class="d-flex row mt-4 answer">
-							<label class="col-2 answer-number">Câu Trả Lời </label>
+							<label class="col-2 ">Câu Trả Lời </label>
 							<div class="wrap-editor col-9">
 								<div class="answer-editor"></div>
 							</div>
@@ -56,7 +80,7 @@
 						</div>
 					</div>
 					<div class="d-flex row mt-4 answer">
-						<label class="col-2 answer-number">Câu Trả Lời</label>
+						<label class="col-2 ">Câu Trả Lời</label>
 						<div class="wrap-editor col-9">
 							<div class="answer-editor"></div>
 						</div>
@@ -69,7 +93,7 @@
 						</div>
 					</div>
 					<div class="d-flex row mt-4 answer">
-						<label class="col-2 answer-number">Câu Trả Lời</label>
+						<label class="col-2 ">Câu Trả Lời</label>
 						<div class="wrap-editor col-9">
 							<div class="answer-editor"></div>
 						</div>
@@ -82,7 +106,7 @@
 						</div>
 					</div>
 					<div class="d-flex row mt-4 answer">
-						<label class="col-2 answer-number">Câu Trả Lời</label>
+						<label class="col-2 ">Câu Trả Lời</label>
 						<div class="wrap-editor col-9">
 							<div class="answer-editor"></div>
 						</div>
@@ -95,7 +119,7 @@
 						</div>
 					</div>
 					<div class="d-flex row mt-4 answer">
-						<label class="col-2 answer-number">Câu Trả Lời</label>
+						<label class="col-2 ">Câu Trả Lời</label>
 						<div class="wrap-editor col-9">
 							<div class="answer-editor"></div>
 						</div>
@@ -119,7 +143,8 @@
 					</div>
 				</div>
 				<div class='row d-flex justify-content-center'>
-					<button type="button" class="btn btn-success btn-submit">Lưu Câu Hỏi</button>
+					<button type="button" class="btn btn-success btn-submit">Lưu
+						Câu Hỏi</button>
 				</div>
 
 			</div>
@@ -136,7 +161,9 @@
 <script
 	src="<c:url value='/resources/commons/lib/summernote/summernote-bs4.min.js' />"></script>
 <script
-	src="<c:url value='/resources/manager/teacher/js/text-editor.js' />"></script>
+	src="<c:url value='/resources/commons/lib/summernote/summernote-bs4.min.js' />"></script>
+<script
+	src="<c:url value='/resources/manager/teacher/js/add-question.js' />"></script>
 
 
 <!-- Footer -->

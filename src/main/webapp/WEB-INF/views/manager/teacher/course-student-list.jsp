@@ -282,7 +282,7 @@
 </div>
 
 <!-- modal add student to course -->
-<div class="modal fade" id="modal-add-student" tabindex="-1"
+<div class="modal modal-reset fade" id="modal-add-student" tabindex="-1"
 	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
@@ -452,7 +452,7 @@
 </div>
 
 <!-- modal alert -->
-<div class="modal fade" id="modal-delete-alert" tabindex="-1"
+<div class="modal modal-reset fade" id="modal-delete-alert" tabindex="-1"
 	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
@@ -488,7 +488,7 @@
 <!-- end modal alert -->
 
 <!-- modal message -->
-<div class="modal fade" id="modal-message" tabindex="-1" role="dialog"
+<div class="modal modal-reset fade" id="modal-message" tabindex="-1" role="dialog"
 	aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">

@@ -155,7 +155,7 @@
 
 <!-- modal add new subject-->
 
-<div class="modal fade" id="modal-add-new" tabindex="-1" role="dialog"
+<div class="modal modal-reset fade" id="modal-add-new" tabindex="-1" role="dialog"
 	aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
@@ -216,7 +216,7 @@
 </div>
 <!-- modal edit -->
 
-<div class="modal fade" id="modal-edit" tabindex="-1" role="dialog"
+<div class="modal modal-reset fade" id="modal-edit" tabindex="-1" role="dialog"
 	aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
@@ -278,7 +278,7 @@
 <!-- end modal edit -->
 
 <!-- modal alert -->
-<div class="modal fade" id="modal-delete-alert" tabindex="-1"
+<div class="modal modal-reset fade" id="modal-delete-alert" tabindex="-1"
 	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">

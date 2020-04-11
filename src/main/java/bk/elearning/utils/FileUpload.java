@@ -30,16 +30,34 @@ public class FileUpload implements ServletContextAware {
 		return context;
 	}
 
-	public static String saveFile(MultipartFile file, String filePath) {
+	public static String saveFile(MultipartFile file, String dir) {
+		String path=null;
 		try {
-			filePath=createUniqueFileName(filePath);
-			File fileSave = new File(context.getRealPath("/") +filePath );
+			String rootPath = context.getRealPath("/");
+			path=createUniqueFileName(dir+file.getOriginalFilename());
+			File fileSave = new File(rootPath+path);
 			file.transferTo(fileSave);
-			return filePath;
 		} catch (Exception e) {
 			// TODO: handle exception
+			path=null;
 		}
-		return Util.DEFAULT_USER_IMAGE;
+		return path;
+	}
+	//delete file
+	public static boolean deleteFile(String path)
+	{
+		try {
+			File file= new File(context.getRealPath("/")+path);
+			if(file.delete())                      
+			{  
+				return true;
+			} 
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("ex file delete: "+e.toString());
+		}
+		 
+		return false;
 	}
 
 	public static <T> List<T> processFileExel(MultipartFile file, IModelMapper<T> mapper) {
@@ -68,15 +86,17 @@ public class FileUpload implements ServletContextAware {
 	 * Nếu tồn tại thêm số vào cuối file
 	 * return new filePath
 	 */
-	public static String createUniqueFileName(String filePath) {
+	public static String createUniqueFileName(String path) {
 		try {
-			String rootPath = context.getRealPath("/");
-			String ext = filePath.substring(filePath.lastIndexOf('.') + 1);
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
+			String ext = path.substring(path.lastIndexOf('.') + 1);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS");
 			// Output "Wed Sep 26 14:23:28 EST 2012"
 			String time = format.format(Util.getDate());
-			filePath = filePath.substring(0, filePath.lastIndexOf('.'))+"-" +time+ "." + ext;
-			return filePath;
+			path = path.substring(0, path.lastIndexOf('.'))+"-" +time+ "." + ext;
+			//sleep 1ms Certainly not duplicates
+			Thread.sleep(1);
+			return path;	
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

@@ -5,6 +5,12 @@ public class Constant {
 	public static final int MAX_RESULT=0;
 	public static final int FIRST_RESULT=0;
 	
+	public static final int STATUS_SUCCESS=800;
+	
+	public static final int STATUS_ERROR=900;
+	
+	public final static String DEFAULT_USER_IMAGE="resources/commons/image/user/default-user.jpg";
+	
 	public static final String ROLE_ADMIN="ROLE_ADMIN";
 	
 	public static final String ROLE_TEACHER="ROLE_TEACHER";
@@ -14,4 +20,8 @@ public class Constant {
 	public static final String MSG_STUDENT_EXIS="Sinh Viên Đã Tồn Tại Trong Lớp";
 	
 	public static final String MSG_ERROR="Đã Xảy Ra Lỗi!";
+	
+	public static final String UPLOAD_USER_DIR="resources/commons/upload/user/";
+	
+	public static final String UPLOAD_QESTION_DIR="resources/commons/upload/question/";
 }

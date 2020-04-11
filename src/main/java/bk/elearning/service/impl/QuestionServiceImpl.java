@@ -3,14 +3,23 @@ package bk.elearning.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.text.StringEscapeUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import bk.elearning.entity.Answer;
 import bk.elearning.entity.Question;
+import bk.elearning.repository.IQuestionRepository;
 import bk.elearning.service.IQuestionService;
+import bk.elearning.utils.Constant;
+import bk.elearning.utils.FileUpload;
 
 @Service
 public class QuestionServiceImpl implements IQuestionService{
 
+	@Autowired
+	IQuestionRepository questionRepository;
 	@Override
 	public Question getById(int id) {
 		// TODO Auto-generated method stub
@@ -27,9 +36,17 @@ public class QuestionServiceImpl implements IQuestionService{
 
 
 	@Override
-	public int save(Question t) {
+	public int save(Question question) {
 		// TODO Auto-generated method stub
-		return 0;
+		//encode html to java string
+		question.setContent(StringEscapeUtils.escapeHtml4(question.getContent()));
+		//encode answer to java string
+		for (Answer answer : question.getAnswers()) {
+			answer.setContent(StringEscapeUtils.escapeHtml4(answer.getContent()));
+			answer.setQuestion(question);
+		}
+		
+		return questionRepository.save(question);
 	}
 
 	@Override
@@ -54,6 +71,31 @@ public class QuestionServiceImpl implements IQuestionService{
 	public int deleteMultiple(ArrayList<Integer> ids) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+
+	/**
+	 * save file
+	 * @return: path of file upload
+	 * @param 'file' : file to upload
+	 */
+	@Override
+	public String uploadFile(MultipartFile file) {
+		// TODO Auto-generated method stub
+		String path=FileUpload.saveFile(file, Constant.UPLOAD_QESTION_DIR);
+		return path;
+	}
+
+	/**
+	 * delete file by path
+	 * @return: path of file upload
+	 * @param 'file' : file to upload
+	 */
+	@Override
+	public boolean deleteFile(String path) {
+		// TODO Auto-generated method stub
+		path=path.replaceAll("\"", "");
+		return FileUpload.deleteFile(path);
 	}
 
 

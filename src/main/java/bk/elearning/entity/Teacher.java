@@ -1,6 +1,5 @@
 package bk.elearning.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -15,8 +14,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @DynamicUpdate
-public class Teacher extends User implements Serializable{
+public class Teacher extends User{
 	
+
 	/**
 	 * 
 	 */
@@ -30,7 +30,9 @@ public class Teacher extends User implements Serializable{
 	@OneToMany(mappedBy="teacher",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Course> courses;
 	
-	
+	@JsonIgnore
+	@OneToMany(mappedBy="teacher",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<Question> questions;
 	
 	public Teacher() {
 		super();
@@ -46,12 +48,13 @@ public class Teacher extends User implements Serializable{
 	}
 
 	public Teacher(String code, String username, String password, String fullName, String email, String addr,
-			String phoneNumber, Date dateOfBirth, String image, String role,String department, String position, Set<Course> courses) {
+			String phoneNumber, Date dateOfBirth, String image, String role,String department, String position, Set<Course> courses,Set<Question> questions) {
 		super(code, username, password, fullName, email, addr, phoneNumber, dateOfBirth, image, role);
 		// TODO Auto-generated constructor stub
 		this.department = department;
 		this.position = position;
 		this.courses = courses;
+		this.questions=questions;
 	}
 
 	public String getDepartment() {
@@ -76,6 +79,14 @@ public class Teacher extends User implements Serializable{
 
 	public void setCourses(Set<Course> courses) {
 		this.courses = courses;
+	}
+
+	public Set<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(Set<Question> questions) {
+		this.questions = questions;
 	}
 	
 }

@@ -1,21 +1,18 @@
 package bk.elearning.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import bk.elearning.entity.Course;
 import bk.elearning.entity.Student;
 import bk.elearning.entity.dto.PaginationResult;
-import bk.elearning.entity.relationship.StudentCourse;
 import bk.elearning.repository.IStudentRepository;
 import bk.elearning.service.IStudentService;
+import bk.elearning.utils.Constant;
 import bk.elearning.utils.FileUpload;
 import bk.elearning.utils.StudentMapperUtil;
 import bk.elearning.utils.Util;
@@ -45,9 +42,9 @@ public class StudentServiceImpl implements IStudentService{
 		// TODO Auto-generated method stub
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		t.setPassword(passwordEncoder.encode(t.getPassword()));
-		t.setRole(Util.ROLE_STUDENT);
+		t.setRole(Constant.ROLE_STUDENT);
 		if (t.getImage() == "")
-			t.setImage(Util.DEFAULT_USER_IMAGE);
+			t.setImage(Constant.DEFAULT_USER_IMAGE);
 		t.setStudentCourses(null);
 		return studentRepository.save(t);
 	}
@@ -59,17 +56,20 @@ public class StudentServiceImpl implements IStudentService{
 		// TODO Auto-generated method stub
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		t.setPassword(passwordEncoder.encode(t.getPassword()));
-		t.setRole(Util.ROLE_STUDENT);
+		t.setRole(Constant.ROLE_STUDENT);
 
 		t.setStudentCourses(null);
 		if (file != null) {
-			String filePath = "resources/commons/image/user/user-" + t.getCode() + "."
-					+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.') + 1);
-			t.setImage(FileUpload.saveFile(file, filePath));
+			String filePath=FileUpload.saveFile(file,Constant.UPLOAD_USER_DIR);
+			if(filePath!=null)
+			{
+				t.setImage(filePath);
+			}
+			else t.setImage(Constant.DEFAULT_USER_IMAGE);
 		}
 		// dat hinh anh default
 		else
-			t.setImage(Util.DEFAULT_USER_IMAGE);
+			t.setImage(Constant.DEFAULT_USER_IMAGE);
 		return studentRepository.save(t);
 	}
 
@@ -100,9 +100,12 @@ public class StudentServiceImpl implements IStudentService{
 		studentUpdate.setFullName(student.getFullName());
 		studentUpdate.setClassName(student.getClassName());
 		if (file != null) {
-			String filePath = "resources/commons/image/user/user-" + student.getCode() + "."
-					+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.') + 1);
-			studentUpdate.setImage(FileUpload.saveFile(file, filePath));
+			String filePath=FileUpload.saveFile(file,Constant.UPLOAD_USER_DIR);
+			if(filePath!=null)
+			{
+				studentUpdate.setImage(filePath);
+			}
+			else studentUpdate.setImage(Constant.DEFAULT_USER_IMAGE);
 		}
 		return studentRepository.update(studentUpdate);
 	}
@@ -179,9 +182,9 @@ public class StudentServiceImpl implements IStudentService{
 					
 					student.setPassword(passwordEncoder.encode(student.getPassword()));
 					if (student.getImage() == null || student.getImage().equals("")) {
-						student.setImage(Util.DEFAULT_USER_IMAGE);
+						student.setImage(Constant.DEFAULT_USER_IMAGE);
 					}
-					student.setRole(Util.ROLE_STUDENT);
+					student.setRole(Constant.ROLE_STUDENT);
 					if (studentRepository.save(student) == 1)
 						success++;
 				} catch (Exception e) {

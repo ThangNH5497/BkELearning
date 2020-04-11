@@ -19,6 +19,18 @@
 	<!-- Add support for conversion, formatting and validation support -->
 	<mvc:annotation-driven />
 	<!-- Configures Interceptors -->
+	<mvc:interceptors>
+	<!-- kich hoat task -->
+
+		<!-- This XML will intercept all URIs <bean class="vn.nongsanquehuong.interceptor.AuthInterceptor"></bean> -->
+
+		<!-- This XML will apply interceptor to only configured URIs -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**"></mvc:mapping>
+			<mvc:exclude-mapping path="/api/**" />
+			<bean class="bk.elearning.interceptor.AuthInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 	<context:component-scan
 		base-package="bk.elearning" />
 	<mvc:resources mapping="/resources/**"
