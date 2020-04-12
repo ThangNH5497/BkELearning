@@ -88,7 +88,7 @@
 															<th class="table-cell column1">STT</th>
 															<th class="table-cell column2">Mã GV</th>
 															<th class="table-cell column3">Họ&Tên</th>
-															<th class="table-cell column4">Bộ Môn</th>
+															<th class="table-cell column4 ">Bộ Môn</th>
 															<th class="table-cell column5">Chức Vụ</th>
 															<th class="table-cell column6">Ngày Sinh</th>
 
@@ -110,16 +110,12 @@
 																		id="check-1"> <label
 																		class="custom-control-label" for="check-1"></label>
 																</div></td>
-															<td class="table-cell column1" field="index">Like a
-																butterfly</td>
-															<td class="table-cell column2" field="code">Like a
-																butterfly</td>
-															<td class="table-cell column3" field="fullName">Boxing</td>
-															<td class="table-cell column4" field="department">9:00
-																AM - 11:00 AM</td>
-															<td class="table-cell column5" field=position>Aaron
-																Chapman</td>
-															<td class="table-cell column6" field="dateOfBirth">10</td>
+															<td class="table-cell column1" field="index"></td>
+															<td class="table-cell column2" field="code"></td>
+															<td class="table-cell column3" field="fullName"></td>
+															<td class="table-cell column4 text-truncate" field="department"></td>
+															<td class="table-cell column5" field='position'></td>
+															<td class="table-cell column6" field="dateOfBirth"></td>
 														</tr>
 
 													</tbody>

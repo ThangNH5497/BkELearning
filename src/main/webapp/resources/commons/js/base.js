@@ -197,7 +197,11 @@ class Base {
     {
     	return this.ajaxCall('GET',false,'api/courses/code/'+code);
     }
-    
+    //////////////questions/////////////////////////
+    getQuestionById(questionId)
+    {
+    	return this.ajaxCall('GET',false,'teacher/api/questions/'+questionId);
+    }
     // init data for container data
     initData(containerId,rowDataId,data)
     {
@@ -217,22 +221,28 @@ class Base {
             		var fields=$('#'+containerId+' [dataId='+data[i].id+'] [field]');
             		for(var j=0;j<fields.length;j++)
             		{
-            			var fieldAttr=$(fields[j]).attr('field');
-            			var value=this.resolve(fieldAttr,data[i]);
-            			if(fieldAttr=="image")
-            			{
-            				$(fields[j]).attr('src',rootLocation+value);
-            			}
-            			else if(fieldAttr=="index")
-            			{
-            				$(fields[j]).text(parseInt(i)+1);
-            			}
-            			else if(fieldAttr=='checkBox')
-            			{
-            				$(fields[j]).children().children('input').attr('id','check-'+i);
-            				$(fields[j]).children().children('label.custom-control-label').attr('for','check-'+i);
-            			}
-            			else $(fields[j]).text(value);
+            			try {
+            				var fieldAttr=$(fields[j]).attr('field');
+                			var value=resolve(fieldAttr,data[i]);
+                			if(fieldAttr=="image")
+                			{
+                				$(fields[j]).attr('src',rootLocation+value);
+                			}
+                			else if(fieldAttr=="index")
+                			{
+                				$(fields[j]).text(parseInt(i)+1);
+                			}
+                			else if(fieldAttr=='checkBox')
+                			{
+                				$(fields[j]).children().children('input').attr('id','check-'+i);
+                				$(fields[j]).children().children('label.custom-control-label').attr('for','check-'+i);
+                			}
+                			else $(fields[j]).html(value);
+						} catch (e) {
+							// TODO: handle exception
+							console.log(e);
+						}
+            			
       	 
             		}
             	
@@ -250,12 +260,6 @@ class Base {
 
     }
     
-    // lan theo vi tri du lieu theo ten
-    resolve(path, obj) {
-        return path.split('.').reduce(function(prev, curr) {
-            return prev ? prev[curr] : null
-        }, obj || self)
-    }
     // chuyen doi du lieu cac form sang json object
     formToJson(forms)
     {
@@ -308,6 +312,12 @@ class Base {
     	return param;
     }
     
+}
+//lan theo vi tri du lieu theo ten
+function  resolve(path, obj) {
+    return path.split('.').reduce(function(prev, curr) {
+        return prev ? prev[curr] : null
+    }, obj || self)
 }
 // resrt form
 function resetForm()

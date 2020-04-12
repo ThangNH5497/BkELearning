@@ -1,0 +1,32 @@
+.column4 {
+	width: 15%;
+	max-width: 200px !important;
+}
+.column4 img{
+	display: none;
+}
+
+.column0 {
+	width: 5%;
+	padding-left: 10px;
+}
+.column1 {
+	width: 7%;
+}
+
+.column2 {
+	width: 10%;
+}
+
+.column3 {
+	width: 15%;
+}
+
+.column4 {
+	width: 53%;
+}
+
+.column5 {
+	width: 10%;
+}
+

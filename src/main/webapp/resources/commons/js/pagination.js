@@ -12,10 +12,11 @@ var currentPage=1;
 var urlApiData;
 //count
 var count=0;
-function handlePagination(paginationContainer,url) {
+var functionHandle;
+function handlePagination(paginationContainer,url,functionHandle) {
 	urlApiData=url;
 	currentPage=1;
-	
+	this.functionHandle=functionHandle;
 	try {
 		//lay du lieu
 		var pageData=obj.ajaxCall('GET',false,urlApiData+"page="+currentPage+"&size="+MAX_ITEMS,null,null);
@@ -159,6 +160,6 @@ function updatePagination(currentPage) {
 }
 function updateTableData(currentPage,data)
 {	
-	obj.initData('table-data-body','row-data-container',data);
+	functionHandle('table-data-body','row-data-container',data);
 	
 }

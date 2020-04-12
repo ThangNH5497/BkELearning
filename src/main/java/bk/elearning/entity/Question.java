@@ -44,7 +44,7 @@ public class Question extends AbstractEntity {
 	@JoinColumn(name = "teacher_id")
 	private Teacher teacher;
 
-	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Answer> answers;
 
 	public Question() {

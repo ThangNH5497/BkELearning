@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import bk.elearning.entity.Answer;
 import bk.elearning.entity.Question;
+import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.repository.IQuestionRepository;
 import bk.elearning.service.IQuestionService;
 import bk.elearning.utils.Constant;
@@ -23,7 +24,18 @@ public class QuestionServiceImpl implements IQuestionService{
 	@Override
 	public Question getById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		Question question=questionRepository.getById(id);
+		if(question!=null)
+		{
+			question.setContent(StringEscapeUtils.unescapeHtml4(question.getContent()));
+			//encode answer to java string
+			for (Answer answer : question.getAnswers()) {
+				answer.setContent(StringEscapeUtils.unescapeHtml4(answer.getContent()));
+				answer.setQuestion(question);
+			}
+		}
+		
+		return question;
 	}
 
 
@@ -99,5 +111,22 @@ public class QuestionServiceImpl implements IQuestionService{
 	}
 
 
+	@Override
+	public PaginationResult<Question> getByTeacher(int teacherId, int page, int size) {
+		// TODO Auto-generated method stub
+		if(page>0)
+		{
+			PaginationResult<Question> result= questionRepository.findByTeacher(teacherId,page-1,size);
+			for (Question question : result.getData()) {
+				question.setContent(StringEscapeUtils.unescapeHtml4(question.getContent()));
+				for (Answer answer : question.getAnswers()) {
+					answer.setContent(StringEscapeUtils.unescapeHtml4(answer.getContent()));
+				}
+			}
+			return result;
+		}
+			
+		return null;
+	}
 
 }

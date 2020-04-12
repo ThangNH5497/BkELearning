@@ -6,6 +6,7 @@ import bk.elearning.entity.Question;
 import bk.elearning.repository.IQuestionRepository;
 
 @Repository
-public class QuestionRepositoryImpl extends AbstractGenericRepository<Question> implements IQuestionRepository{
+public class QuestionRepositoryImpl extends SubjectComponentRepositoryImpl<Question> implements IQuestionRepository{
 
+	
 }
