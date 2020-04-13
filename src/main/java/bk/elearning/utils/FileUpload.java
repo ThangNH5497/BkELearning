@@ -39,6 +39,7 @@ public class FileUpload implements ServletContextAware {
 			file.transferTo(fileSave);
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.out.println("ex savefile : "+e.toString());
 			path=null;
 		}
 		return path;

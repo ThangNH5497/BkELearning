@@ -15,6 +15,8 @@ public class Answer extends AbstractEntity{
 	@Column(name = "is_correct")
 	boolean isCorrect;
 	
+	private float weight;
+	
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name = "question_id")
@@ -24,11 +26,12 @@ public class Answer extends AbstractEntity{
 		super();
 	}
 
-	public Answer(int id,String content, boolean isCorrect, Question question) {
+	public Answer(int id,String content,float weight, boolean isCorrect, Question question) {
 		super(id);
 		this.content = content;
 		this.isCorrect = isCorrect;
 		this.question = question;
+		this.weight=weight;
 	}
 
 	public String getContent() {
@@ -53,6 +56,14 @@ public class Answer extends AbstractEntity{
 
 	public void setQuestion(Question question) {
 		this.question = question;
+	}
+
+	public float getWeight() {
+		return weight;
+	}
+
+	public void setWeight(float weight) {
+		this.weight = weight;
 	}
 	
 	

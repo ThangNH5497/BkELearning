@@ -20,6 +20,8 @@ public class Question extends AbstractEntity {
 	private String name;
 
 	private int level;
+	
+	private String type;
 
 	@Column(name = "content", columnDefinition = "TEXT", nullable = false)
 	private String content;
@@ -30,7 +32,6 @@ public class Question extends AbstractEntity {
 	private QuestionCategory questionCategory;
 
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "subject_id")
 	private Subject subject;
 
@@ -40,7 +41,6 @@ public class Question extends AbstractEntity {
 	private ExamPaper examPaper;
 
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "teacher_id")
 	private Teacher teacher;
 
@@ -51,13 +51,14 @@ public class Question extends AbstractEntity {
 		super();
 	}
 
-	public Question(String code, String name, int level, String content, QuestionCategory questionCategory,
+	public Question(String code, String name, int level,String type, String content, QuestionCategory questionCategory,
 			Subject subject, ExamPaper examPaper, List<Answer> answers, Teacher teacher) {
 		super();
 		this.code = code;
 		this.name = name;
 		this.level = level;
 		this.content = content;
+		this.type=type;
 		this.questionCategory = questionCategory;
 		this.subject = subject;
 		this.examPaper = examPaper;
@@ -65,7 +66,7 @@ public class Question extends AbstractEntity {
 		this.teacher = teacher;
 	}
 
-	public Question(int id, String code, String name, int level, String content, QuestionCategory questionCategory,
+	public Question(int id, String code, String name, int level,String type, String content, QuestionCategory questionCategory,
 			Subject subject, ExamPaper examPaper, List<Answer> answers, Teacher teacher) {
 		super(id);
 		this.code = code;
@@ -77,6 +78,7 @@ public class Question extends AbstractEntity {
 		this.examPaper = examPaper;
 		this.answers = answers;
 		this.teacher = teacher;
+		this.type=type;
 	}
 
 	public String getCode() {
@@ -151,4 +153,13 @@ public class Question extends AbstractEntity {
 		this.teacher = teacher;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	
 }

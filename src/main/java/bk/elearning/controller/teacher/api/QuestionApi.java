@@ -1,5 +1,7 @@
 package bk.elearning.controller.teacher.api;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -84,6 +86,27 @@ public class QuestionApi {
 
 		}
 		return new Message(Constant.STATUS_ERROR, "Thêm Thất Bại. Vui Lòng Thử Lại! ");
+	}
+	
+	@DeleteMapping(path = "/multiple")
+	public Message deleteMultiple(@RequestBody ArrayList<Integer> ids) {
+		int status = Constant.STATUS_SUCCESS;
+		
+		try {
+			CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
+					.getPrincipal();
+			if(user!=null)
+			{
+				int success=questionService.deleteMultiple(ids);
+					return new Message(status, "Xóa Thành Công "+success+" Câu Hỏi !");
+			}
+			
+		} catch (Exception e) {
+
+		}
+
+		return new Message(status, "Xóa Thất Bại");
+
 	}
 
 	@DeleteMapping(path = "/file-multimedia")

@@ -21,15 +21,12 @@
 		<div class="container-fluid">
 
 			<div
-				class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800">Ngân Hàng Câu Hỏi</h1>
+				class="d-flex align-items-center justify-content-between mb-4 row">
+				<h1 class="col-8 h5 mb-0 text-gray-600">Ngân Hàng Câu Hỏi</h1>
 				<a href="<c:url value='/teacher/them-cau-hoi'/>"
-					class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-					class="fas fa-plus fa-sm text-white-50"></i>Thêm Câu Hỏi</a> <a
-					href="#"
-					class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-					class="fas fa-file-import fa-sm text-white-50"></i> Import Câu Hỏi</a>
-			</div>
+					class=" col-1 d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+					class="fas fa-plus fa-sm text-white-50"></i>Thêm</a>
+					</div>
 			<!-- table -->
 			<!-- Area Chart -->
 			<div class="col-xl-12 col-lg-12 card-container">
@@ -41,9 +38,6 @@
 							hỏi</h6>
 
 						<div class="d-flex">
-							<button class="btn btn-edit text-primary disabled  btn-control">
-								<i class="fas fa-edit"></i>
-							</button>
 							<button class="btn btn-delete text-danger btn-control">
 								<i class="fas fa-trash"></i>
 							</button>
@@ -110,8 +104,16 @@
 														<td class="table-cell column1" field="index"></td>
 														<td class="table-cell column2" field="code"></td>
 														<td class="table-cell column3" field="name"></td>
-														<td class="table-cell column4 text-truncate"
-															field="content"></td>
+														<td class="table-cell column4">
+															<div class="d-flex">
+																<div class="text-truncate d-flex" field="content"></div>
+																<div class="pl-1 div-truncate"
+																	style="font-weight: bold;">
+																	<span>...</span>
+																</div>
+															</div>
+
+														</td>
 														<td class="table-cell column5">
 															<button
 																class="btn btn-view text-success justify-content-center"
@@ -150,7 +152,7 @@
 <!-- modal view -->
 <div class="modal modal-reset fade" id="modal-view" tabindex="-1"
 	role="dialog" aria-labelledby="edit" aria-hidden="true">
-	<div class="modal-dialog modal-xl">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
@@ -163,16 +165,81 @@
 			</div>
 
 			<!--Body-->
-			<div class="modal-body">
-				<div class="form-container">
-					<div class="" id='question-container'></div>
+			<div class="modal-body pl-0 pr-0 pt-0">
+				<div class="" id='question-detail-container'>
+					<div class="descriptor row p-4">
+						<div class="col-6 row d-flex">
+							<span class='text-gray-600  col-6'>Mã Câu Hỏi</span> <span
+								class='text-primary  col-6' field='code'></span>
+						</div>
+						<div class="col-6 row d-flex">
+							<span class='text-gray-600  col-6'>Tên Câu Hỏi</span> <span
+								class='text-primary  col-6' field='name'></span>
+						</div>
+					</div>
+					<div class="descriptor row p-4">
+						<div class="col-6 row d-flex">
+							<div class="col-6">
+								<span class='text-gray-600 '>Môn Học</span>
+							</div>
+							<div class="col-6">
+								<span class='text-primary ' field='subject.subjectName'></span>
+							</div>
+
+						</div>
+						<div class="col-6 row d-flex">
+							<span class='text-gray-600  col-6'>Người Tạo</span> <span
+								class='text-primary  col-6' field='teacher.fullName'></span>
+						</div>
+					</div>
+					<div class="descriptor row p-4">
+						<div class="col-6 row d-flex">
+							<span class='text-gray-600  col-6'>Độ Khó</span> <span
+								class='text-primary  col-6' field='level'></span>
+						</div>
+						<div class="col-6 row d-flex">
+							<span class='text-gray-600  col-6'>Loại Câu Hỏi</span> <span
+								class='text-primary  col-6' field='type'></span>
+						</div>
+					</div>
+					<div class="m-3 p-4" style="background: #d2f4fa;">
+						<div class=" justify-content-center d-block">
+							<div class="w-100 d-block" field='content'></div>
+						</div>
+						<div class="row mt-3">
+							<span class='text-lg' style="font-weight: 900;">Câu Trả
+								Lời</span>
+						</div>
+
+						<div class='w-100' id='question-detail-answer' field='answer'>
+							<div class='w-100 hidden' id='answer-sample'>
+								<div class='row pl-4 pr-4 mt-3'>
+									<div class="col-1 text-primary">
+										<i class="fas fa-hand-point-right"></i>
+									</div>
+									<div class='col-10 d-flex'>
+
+										<div answerField='content' class='align-self-center'></div>
+										<div
+											class='hidden text-success d-flex justify-content-start pl-3'
+											answerField='correct'>
+											<i class="fas fa-check align-self-center"></i>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<!--Footer-->
+				</div>
+				<div>
 					<div class="border-top my-3"></div>
 					<div class="d-flex justify-content-center">
 						<a type="button" class="btn  waves-effect btn-cancel"
-							data-dismiss="modal">Hủy</a><a type="button"
-							class="btn  waves-effect btn-submit">Lưu</a>
+							data-dismiss="modal">Đóng</a><a type="button"
+							class="btn  waves-effect btn-submit">Chỉnh Sửa</a>
 					</div>
 				</div>
 			</div>
@@ -183,10 +250,47 @@
 	<!-- /.modal-dialog -->
 </div>
 
+<!-- modal alert -->
+<div class="modal modal-reset fade" id="modal-delete-alert"
+	tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header bg-warning">
+				<p class="heading lead">Cảnh Báo</p>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+			<div class="modal-body border-top my-3">
+				<div class="message">Bạn Có Muốn Tiếp Tục Xóa ?</div>
+
+				<div class="border-top my-3"></div>
+				<div class="d-flex justify-content-center">
+					<a type="button" class="btn  waves-effect btn-cancel"
+						data-dismiss="modal">Hủy</a><a type="button"
+						class="btn  waves-effect btn-delete-alert-ok">OK</a>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+
+</div>
+
+<!-- end modal alert -->
+
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>
 <script src="<c:url value='/resources/commons/js/pagination.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/search.js' />"></script>
+<script src="<c:url value='/resources/manager/commons/js/delete.js' />"></script>
 <script
 	src="<c:url value='/resources/manager/teacher/js/question-list.js' />"></script>
 <!-- Footer -->

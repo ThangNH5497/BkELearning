@@ -1,5 +1,6 @@
 C:\Users\ThangNH\eclipse-workspace\BkELearning\src\main\java\bk\elearning\service\ISubjectService.java
 C:\Users\ThangNH\eclipse-workspace\BkELearning\src\main\java\bk\elearning\utils\FileUpload.java
+C:\Users\ThangNH\eclipse-workspace\BkELearning\src\main\java\bk\elearning\repository\impl\QuestionRepositoryImpl.java
 C:\Users\ThangNH\eclipse-workspace\BkELearning\src\main\java\bk\elearning\service\ICourseService.java
 C:\Users\ThangNH\eclipse-workspace\BkELearning\src\main\java\bk\elearning\entity\AbstractEntity.java
 C:\Users\ThangNH\eclipse-workspace\BkELearning\src\main\java\bk\elearning\service\IGenericService.java
@@ -71,6 +72,7 @@ C:\Users\ThangNH\eclipse-workspace\BkELearning\src\main\java\bk\elearning\contro
 C:\Users\ThangNH\eclipse-workspace\BkELearning\src\main\java\bk\elearning\service\IStudentService.java
 C:\Users\ThangNH\eclipse-workspace\BkELearning\src\main\java\bk\elearning\entity\Answer.java
 C:\Users\ThangNH\eclipse-workspace\BkELearning\src\main\java\bk\elearning\entity\Subject.java
+C:\Users\ThangNH\eclipse-workspace\BkELearning\src\main\java\bk\elearning\controller\teacher\api\QuestionApi.java
 C:\Users\ThangNH\eclipse-workspace\BkELearning\src\main\java\bk\elearning\service\IAnswerService.java
 C:\Users\ThangNH\eclipse-workspace\BkELearning\src\main\java\bk\elearning\repository\IAnswerRepository.java
 C:\Users\ThangNH\eclipse-workspace\BkELearning\src\main\java\bk\elearning\controller\teacher\api\CourseApi.java

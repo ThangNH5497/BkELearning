@@ -1,11 +1,7 @@
-.column4 {
-	width: 15%;
-	max-width: 200px !important;
+table td
+{
+	box-sizing: border-box;
 }
-.column4 img{
-	display: none;
-}
-
 .column0 {
 	width: 5%;
 	padding-left: 10px;
@@ -23,10 +19,23 @@
 }
 
 .column4 {
-	width: 53%;
+	width: 50% !important;;
+	max-width: 50% !important;
+	margin:0px !important;	
 }
 
 .column5 {
-	width: 10%;
+	width: 12%;
 }
+
+
+.column4 img,.column4 iframe,.column4 audio,.column4 video,.column4 table,.column4 ul,.column4 ol{
+	display: none;
+}
+
+table
+{
+	table-layout: fixed;
+}
+
 

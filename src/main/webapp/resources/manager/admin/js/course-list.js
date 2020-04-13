@@ -9,7 +9,7 @@ $(document).ready(function() {
 	var subjectId=obj.getParam('id');
 	subject['id']=subjectId;
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'api/courses/page/subjects/'+subjectId+'?');
+	handlePagination($('#pagination'),'api/courses/page/subjects/'+subjectId+'?',obj.initData);
 	//search event , file search.js
 	searchEvents('api/courses/subjects/'+subjectId+'/search?');
 	addNewCourseEvents();	

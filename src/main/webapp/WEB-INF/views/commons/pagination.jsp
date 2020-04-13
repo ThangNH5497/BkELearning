@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <nav aria-label="Page navigation">
-
 	<ul class="pagination justify-content-end">
 
 		<li class="page-item disabled"><a class="page-link"

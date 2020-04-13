@@ -12,6 +12,7 @@ import bk.elearning.entity.Answer;
 import bk.elearning.entity.Question;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.repository.IQuestionRepository;
+import bk.elearning.repository.ISubjectRepository;
 import bk.elearning.service.IQuestionService;
 import bk.elearning.utils.Constant;
 import bk.elearning.utils.FileUpload;
@@ -21,6 +22,8 @@ public class QuestionServiceImpl implements IQuestionService{
 
 	@Autowired
 	IQuestionRepository questionRepository;
+	@Autowired
+	ISubjectRepository subjectRepository;
 	@Override
 	public Question getById(int id) {
 		// TODO Auto-generated method stub
@@ -52,6 +55,15 @@ public class QuestionServiceImpl implements IQuestionService{
 		// TODO Auto-generated method stub
 		//encode html to java string
 		question.setContent(StringEscapeUtils.escapeHtml4(question.getContent()));
+		if(question.getSubject()!=null)
+		{
+			if(question.getSubject().getId()<=0) question.setSubject(null);
+			else if(subjectRepository.getById(question.getSubject().getId())==null)
+			{
+				return 0;
+			}
+		}
+		else question.setSubject(null);
 		//encode answer to java string
 		for (Answer answer : question.getAnswers()) {
 			answer.setContent(StringEscapeUtils.escapeHtml4(answer.getContent()));
@@ -81,8 +93,16 @@ public class QuestionServiceImpl implements IQuestionService{
 
 	@Override
 	public int deleteMultiple(ArrayList<Integer> ids) {
-		// TODO Auto-generated method stub
-		return 0;
+		int success=0;
+		try {
+			for (int i = 0; i < ids.size(); i++) {
+				questionRepository.delete(ids.get(i));
+				success++;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return success;
 	}
 
 
@@ -128,5 +148,8 @@ public class QuestionServiceImpl implements IQuestionService{
 			
 		return null;
 	}
+
+
+
 
 }

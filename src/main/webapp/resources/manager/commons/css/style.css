@@ -1,6 +1,9 @@
 *{
 	box-sizing: border-box !important;
 }
+p {
+   word-wrap: break-word !important;
+}
 #content {
 	background-color: white;
 	margin: 0px;

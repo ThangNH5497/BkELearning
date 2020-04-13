@@ -18,6 +18,7 @@ bk\elearning\repository\IUserGenericRepository.class
 bk\elearning\controller\admin\api\CourseApi.class
 bk\elearning\service\IAnswerService.class
 bk\elearning\repository\IExamRepository.class
+bk\elearning\repository\impl\QuestionRepositoryImpl.class
 bk\elearning\service\IQuestionService.class
 bk\elearning\entity\dto\CustomUserDetails.class
 bk\elearning\repository\ITeacherRepository.class
@@ -48,6 +49,7 @@ bk\elearning\service\IExamService.class
 bk\elearning\utils\IModelMapper.class
 bk\elearning\entity\Teacher.class
 bk\elearning\utils\StudentMapperUtil.class
+bk\elearning\controller\teacher\api\QuestionApi.class
 bk\elearning\utils\UserMapperUtil.class
 bk\elearning\controller\web\api\CourseApi.class
 bk\elearning\utils\FileUpload.class

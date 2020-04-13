@@ -1,5 +1,7 @@
 package bk.elearning.service;
 
+import java.util.ArrayList;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import bk.elearning.entity.Question;
@@ -13,5 +15,7 @@ public interface IQuestionService extends IGenericService<Question> {
 	boolean deleteFile(String path);
 	
 	PaginationResult<Question> getByTeacher(int teacherId,int page,int size);
+
+	
 
 }

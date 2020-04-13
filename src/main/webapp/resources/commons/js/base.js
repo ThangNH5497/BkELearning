@@ -223,7 +223,7 @@ class Base {
             		{
             			try {
             				var fieldAttr=$(fields[j]).attr('field');
-                			var value=resolve(fieldAttr,data[i]);
+                			var value=this.resolve(fieldAttr,data[i]);
                 			if(fieldAttr=="image")
                 			{
                 				$(fields[j]).attr('src',rootLocation+value);
@@ -311,14 +311,14 @@ class Base {
     	var param = urlParams.get(paramName);
     	return param;
     }
-    
+  //lan theo vi tri du lieu theo ten
+    resolve(path, obj) {
+        return path.split('.').reduce(function(prev, curr) {
+            return prev ? prev[curr] : null
+        }, obj || self)
+    }
 }
-//lan theo vi tri du lieu theo ten
-function  resolve(path, obj) {
-    return path.split('.').reduce(function(prev, curr) {
-        return prev ? prev[curr] : null
-    }, obj || self)
-}
+
 // resrt form
 function resetForm()
 {

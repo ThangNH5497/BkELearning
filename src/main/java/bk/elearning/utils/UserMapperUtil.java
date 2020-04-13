@@ -129,6 +129,7 @@ public abstract class UserMapperUtil<T> implements IModelMapper<T> {
 
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.out.println("exception : "+e.toString());
 		}
 
 	}

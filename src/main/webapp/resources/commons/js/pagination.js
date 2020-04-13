@@ -12,11 +12,11 @@ var currentPage=1;
 var urlApiData;
 //count
 var count=0;
-var functionHandle;
-function handlePagination(paginationContainer,url,functionHandle) {
+var callBack;
+function handlePagination(paginationContainer,url,callBack) {
 	urlApiData=url;
 	currentPage=1;
-	this.functionHandle=functionHandle;
+	this.callBack=callBack;
 	try {
 		//lay du lieu
 		var pageData=obj.ajaxCall('GET',false,urlApiData+"page="+currentPage+"&size="+MAX_ITEMS,null,null);
@@ -49,13 +49,15 @@ function handlePagination(paginationContainer,url,functionHandle) {
 		addEvents();
 	} catch (e) {
 		// TODO: handle exception
+		console.log(e);
 	}
 	
 }
 function addEvents() {
 
+	
 	// click
-	$('#pagination .page-item').click(this,function(){
+	$(document).on('click', '#pagination .page-item', function (e){
 		currentPage=$(this).text();
 		prePage=$('#pagination .active a').text();
 		if(currentPage!=prePage)
@@ -66,7 +68,7 @@ function addEvents() {
 	});
 	
 	//prePage
-	$('#prePage').click(this,function(){
+	$(document).on('click', '#prePage', function (e){
 		if(currentPage>1)
 		{
 			currentPage=currentPage-1;
@@ -75,8 +77,9 @@ function addEvents() {
 		// update du lieu trong table
 		
 	});
+	
 	//nextPage
-	$('#nextPage').click(this,function(){
+	$(document).on('click', '#nextPage', function (e){
 		if(currentPage<lastPage)
 		{
 			currentPage=parseInt(currentPage)+1;
@@ -160,6 +163,13 @@ function updatePagination(currentPage) {
 }
 function updateTableData(currentPage,data)
 {	
-	functionHandle('table-data-body','row-data-container',data);
+	obj.initData('table-data-body','row-data-container',data);
+	try {
+		callBack();
+	} catch (e) {
+		// TODO: handle exception
+	}
+	
+	
 	
 }
