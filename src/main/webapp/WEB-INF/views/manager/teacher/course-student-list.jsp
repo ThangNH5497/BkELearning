@@ -58,7 +58,9 @@
 								<button class="btn btn-refresh text-primary btn-control">
 									<i class="fas fa-sync"></i>
 								</button>
-								<jsp:include page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
+								<div id='pagination'><jsp:include
+										page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
+								</div>
 							</div>
 
 
@@ -319,11 +321,10 @@
 										id="form-student">
 										<h2>Thông Tin Sinh Viên</h2>
 										<div class="form-row">
-											<label for="code">Mã Sinh Viên</label> <input
-												type="text" class=" input-text student-code"
-												name="teacher.code"> <label name="code-error"
-												id="student-code-error" class="error hidden">Mã
-												Sinh Viên Không Tồn Tại</label>
+											<label for="code">Mã Sinh Viên</label> <input type="text"
+												class=" input-text student-code" name="teacher.code">
+											<label name="code-error" id="student-code-error"
+												class="error hidden">Mã Sinh Viên Không Tồn Tại</label>
 
 										</div>
 										<div
@@ -452,8 +453,8 @@
 </div>
 
 <!-- modal alert -->
-<div class="modal modal-reset fade" id="modal-delete-alert" tabindex="-1"
-	role="dialog" aria-labelledby="edit" aria-hidden="true">
+<div class="modal modal-reset fade" id="modal-delete-alert"
+	tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<!--Header-->
@@ -488,8 +489,8 @@
 <!-- end modal alert -->
 
 <!-- modal message -->
-<div class="modal modal-reset fade" id="modal-message" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
+<div class="modal modal-reset fade" id="modal-message" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<!--Header-->

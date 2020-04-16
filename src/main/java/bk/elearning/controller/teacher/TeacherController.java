@@ -19,11 +19,16 @@ public class TeacherController {
 		return "manager/teacher/course-list";
 	}
 	@RequestMapping("/ql-cau-hoi")
-	public String questionManagement()
+	public String questionManagement(@RequestParam String subject,@RequestParam String level,@RequestParam String type)
 	{		
 		return "manager/teacher/question-list";
 	}
-	@RequestMapping("/them-cau-hoi")
+	@RequestMapping("/ql-cau-hoi/cap-nhat")
+	public String editQuestion(@RequestParam(name="id") int questionId)
+	{		
+		return "manager/teacher/edit-question";
+	}
+	@RequestMapping("/ql-cau-hoi/them-cau-hoi")
 	public String addQuestion()
 	{		
 		return "manager/teacher/add-question";

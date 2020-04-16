@@ -1,6 +1,7 @@
 package bk.elearning.utils;
 
 import java.io.FileOutputStream;
+import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,13 +20,25 @@ import org.apache.poi.xssf.usermodel.XSSFShape;
 public abstract class UserMapperUtil<T> implements IModelMapper<T> {
 
 	private boolean loadImage;
-	
+	private final Class<T> clazz;
+
+	public UserMapperUtil() {
+		this.clazz = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass())
+				.getActualTypeArguments()[0];
+	}
+
+	public Class<T> getClazz() {
+		return clazz;
+	}
+
 	public UserMapperUtil(boolean loadImage) {
 		super();
 		this.loadImage = loadImage;
+		this.clazz = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass())
+				.getActualTypeArguments()[0];
 	}
 
-	public List<T> mapFields(Sheet sheet, Class<T> clazz) {
+	public List<T> mapFields(Sheet sheet) {
 		// TODO Auto-generated method stub
 		List<T> list = new ArrayList<T>();
 		try {
@@ -133,5 +146,6 @@ public abstract class UserMapperUtil<T> implements IModelMapper<T> {
 		}
 
 	}
+
 
 }

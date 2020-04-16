@@ -7,6 +7,6 @@ function searchEvents(rootUrlApi)
 
 		$('#link-back-search').removeClass('hidden');
 		url=rootUrlApi+'q='+key+'&';
-		handlePagination($('#pagination'),url);
+		handlePagination('pagination','table-data-body','row-data-container',url);
 	});
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.web.multipart.MultipartFile;
 
 import bk.elearning.entity.Question;
+import bk.elearning.entity.Subject;
 import bk.elearning.entity.Teacher;
 import bk.elearning.entity.dto.PaginationResult;
 
@@ -15,6 +16,14 @@ public interface IQuestionService extends IGenericService<Question> {
 	boolean deleteFile(String path);
 	
 	PaginationResult<Question> getByTeacher(int teacherId,int page,int size);
+
+	int[] importFromFile(MultipartFile file, Subject subject);
+
+	PaginationResult<Question> searchByFilter(int teacherId, String subjectId, String type, String level, String key,
+			int page, int size);
+
+	PaginationResult<Question> getByFilter(int teacherId, String subjectId, String type, String level, int page,
+			int size);
 
 	
 

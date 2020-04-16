@@ -25,7 +25,7 @@
 						/ Tìm Kiếm</span>
 				</span>
 			</nav>
-			
+
 			<div class="row ">
 				<!-- Area Chart -->
 				<div class="col-xl-9 col-lg-8 card-container">
@@ -50,7 +50,10 @@
 								<button class="btn btn-refresh text-primary btn-control">
 									<i class="fas fa-sync"></i>
 								</button>
-								<jsp:include page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
+								<div id='pagination'><jsp:include
+										page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
+								</div>
+
 							</div>
 
 
@@ -113,7 +116,8 @@
 															<td class="table-cell column1" field="index"></td>
 															<td class="table-cell column2" field="code"></td>
 															<td class="table-cell column3" field="fullName"></td>
-															<td class="table-cell column4 text-truncate" field="department"></td>
+															<td class="table-cell column4 text-truncate"
+																field="department"></td>
 															<td class="table-cell column5" field='position'></td>
 															<td class="table-cell column6" field="dateOfBirth"></td>
 														</tr>
@@ -284,8 +288,8 @@
 
 <!-- modal add new teacher -->
 
-<div class="modal modal-reset fade" id="modal-add-new" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
+<div class="modal modal-reset fade" id="modal-add-new" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<!--Header-->
@@ -498,8 +502,8 @@
 	<!-- /.modal-dialog -->
 </div>
 <!-- modal edit -->
-<div class="modal modal-reset fade" id="modal-edit" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
+<div class="modal modal-reset fade" id="modal-edit" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<!--Header-->
@@ -596,8 +600,8 @@
 <!-- end modal edit -->
 
 <!-- modal alert -->
-<div class="modal modal-reset fade" id="modal-delete-alert" tabindex="-1"
-	role="dialog" aria-labelledby="edit" aria-hidden="true">
+<div class="modal modal-reset fade" id="modal-delete-alert"
+	tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<!--Header-->
@@ -632,8 +636,8 @@
 <!-- end modal alert -->
 
 <!-- modal message -->
-<div class="modal modal-reset fade" id="modal-message" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
+<div class="modal modal-reset fade" id="modal-message" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<!--Header-->

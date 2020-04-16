@@ -10,7 +10,7 @@ $(document).ready(function() {
 	tableDataEvents();
 	
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'api/subjects/page?');
+	handlePagination('pagination','table-data-body','row-data-container','api/subjects/page?');
 	
 	//search events
 	searchEvents('api/subjects/search?');

@@ -17,7 +17,7 @@ public class TeacherMapperUtil extends UserMapperUtil<Teacher> implements IModel
 	@Override
 	public List<Teacher> mapToModel(Sheet sheet) {
 		// TODO Auto-generated method stub
-		List<Teacher> list = mapFields(sheet, Teacher.class);	
+		List<Teacher> list = mapFields(sheet);	
 		return list;
 	}
 

@@ -15,7 +15,6 @@ import bk.elearning.service.IStudentService;
 import bk.elearning.utils.Constant;
 import bk.elearning.utils.FileUpload;
 import bk.elearning.utils.StudentMapperUtil;
-import bk.elearning.utils.Util;
 
 @Service
 public class StudentServiceImpl implements IStudentService{

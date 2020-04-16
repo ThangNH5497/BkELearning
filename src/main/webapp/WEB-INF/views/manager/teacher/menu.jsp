@@ -27,7 +27,7 @@
 					class="redirect">Lớp Học</span></a></li>
 
 			<li id="menu-item-question"><a
-				href="<c:url value='/teacher/ql-cau-hoi'/>"><span
+				href="<c:url value='/teacher/ql-cau-hoi?subject=ALL&level=ALL&type=ALL'/>"><span
 					class="icon fas fa-user-graduate mr-3"></span> <span
 					class="redirect">Câu Hỏi</span></a></li>
 

@@ -38,4 +38,22 @@ table
 	table-layout: fixed;
 }
 
+.selected
+{
+	background: #e1e6ed !important;
+}
 
+
+#modal-select-subject .table-responsive{
+	height: 50vh;
+	min-height: 50vh;
+	max-height: 50vh;
+	overflow: auto;
+}
+#table-data-body-subject tr:nth-child(odd) {
+	background-color:#f0f2f5;
+}
+#pagination-subject li
+{
+	color :#858796 !important;
+}

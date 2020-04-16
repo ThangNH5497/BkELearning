@@ -13,7 +13,7 @@ $(document).ready(function() {
 	userDetailEvents('api/teachers/');
 	
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'api/teachers/page?');
+	handlePagination('pagination','table-data-body','row-data-container','api/teachers/page?');
 	
 	//search events
 	searchEvents('api/teachers/search?');

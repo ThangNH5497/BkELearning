@@ -141,7 +141,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row  w-100 justify-content-end">
+		<div class="row  w-100 justify-content-end" id='pagination'>
 			<jsp:include page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
 		</div>
 	</div>

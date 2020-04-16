@@ -14,7 +14,7 @@ $(document).ready(function() {
 
 	tableDataEvents();
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'api/students/page?');
+	handlePagination('pagination','table-data-body','row-data-container','api/students/page?');
 	
 	//search events
 	searchEvents('api/students/search?');

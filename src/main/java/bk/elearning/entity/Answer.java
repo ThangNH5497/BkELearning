@@ -1,5 +1,6 @@
 package bk.elearning.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -17,7 +18,7 @@ public class Answer extends AbstractEntity{
 	
 	private float weight;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JsonIgnore
 	@JoinColumn(name = "question_id")
 	private Question question;

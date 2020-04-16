@@ -183,6 +183,7 @@ public abstract class AbstractGenericRepository<T> implements IGenericRepository
 		} catch (Exception e) {
 			// TODO: handle exception
 			(this.sessionFactory.getCurrentSession()).clear();
+			System.out.println(e.toString());
 		}
 		this.sessionFactory.getCurrentSession().clear();
 		return list;
@@ -197,6 +198,7 @@ public abstract class AbstractGenericRepository<T> implements IGenericRepository
 			count = (Long) queryBuild(constrantFields, searchFields, hqlQuery).uniqueResult();
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.out.println(e.toString());
 		}
 		return count;
 	}
@@ -218,6 +220,7 @@ public abstract class AbstractGenericRepository<T> implements IGenericRepository
 			list = query.list();
 		} catch (Exception e) {
 			// TODO: handle exceptio
+			System.out.println(e.toString());
 		}
 		return list;
 	}

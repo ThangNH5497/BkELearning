@@ -17,7 +17,6 @@
 	<!-- Page Content  -->
 	<div id="content" class="mb-5">
 		<jsp:include page="/WEB-INF/views/manager/commons/topbar.jsp"></jsp:include>
-		<p>Thắng <b>ĐẸP TRAI&nbsp;</b><span style="font-family: &quot;Times New Roman&quot;;">﻿Khoai to</span></p>
 		<div class=" container-fluid content-container">
 			<div class=" container-fluid d-flex pl-0 ml-0">
 				<nav class="navbar navbar-light bg-light" style="font-weight: 600;"
@@ -115,7 +114,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row  w-100 justify-content-end">
+		<div class="row  w-100 justify-content-end" id='pagination'>
 			<jsp:include page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
 		</div>
 	</div>

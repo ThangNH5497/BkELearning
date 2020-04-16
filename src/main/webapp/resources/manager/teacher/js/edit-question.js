@@ -10,7 +10,6 @@ $(document).ready(function() {
 	//search events
 	searchEvents('api/subjects/search?');
 	eventsHandle();
-	importFromFile();
 	uploadQuestionEvents();
 });
 //nếu chưa submit thì xóa các file đã tải lên trước khi rời.
@@ -19,22 +18,68 @@ const ONE_CHOICE="ONE_CHOICE";
 const MULTIPLE_CHOICE="MULTIPLE_CHOICE";
 const FILL_WORD="FILL_WORD";
 const FILE_IMAGE="FILE_IMAGE";
-const FILE_AUDIO="FILE_AUDIO"
+const FILE_AUDIO="FILE_AUDIO";
+var question;
 function init()
 {
-	$('#question-editor').summernote('reset');
-	$('#question-editor').summernote('destroy');
-	
-	var answers=$('.answer');
-	
-	for (var i = 1; i < answers.length; i++) {
-		$(answers[i]).remove();
+	question=obj.getQuestionById(obj.getParam('id'));
+	//init question subject input
+	try {
+		$('#question-subject').attr('subjectId',question.subject.id);
+		$('#question-subject').val(question.subject.code+'-'+question.subject.subjectName);
+	} catch (e) {
+		// TODO: handle exception
 	}
-	$('.answer-editor').summernote('destroy');
+	//init type question
+	$('#question-type option').each(function() {
+	    if($(this).val() == question.type) {
+	        $(this).prop("selected", true);
+	    }
+	});
+	//init level
+	$('#question-level option').each(function() {
+	    if(parseInt($(this).val()) == question.level) {
+	        $(this).prop("selected", true);
+	    }
+	});
+	//init name
+	$('#inputName').val(question.name);
+	
+	//init editor
 	initContentEditor();
 	//default show 4 answer first
-	for (var i = 0; i < 4; i++) {
-		addAnswerEditor();
+	for (var i = 0; i < question.answers.length; i++) {
+		addAnswerEditor(question.answers[i].content);
+	}
+	
+	//init choose answer true
+	var checkBox=$('.answer .answer-check input[type="checkbox"]');
+	var qWeight=$('.answer .answer-weight');
+	switch (question.type) {
+	
+		case 'ONE_CHOICE':
+		{
+			$('.answer .answer-weight').addClass('hidden');
+			$('.answer .answer-check').removeClass('hidden');
+			for (var i = 0; i < question.answers.length; i++) {
+				if(question.answers[i].correct==true)
+					$(checkBox[parseInt(i)+1]).prop('checked',true);
+			}
+			break;
+		}
+		case 'MULTIPLE_CHOICE':
+		{
+			$('.answer .answer-check').addClass('hidden');
+			$('.answer .answer-weight').removeClass('hidden');
+			for (var i = 0; i < question.answers.length; i++) {
+				var o= $(qWeight[parseInt(i)+1]).find('option[value="'+parseFloat(question.answers[i].weight)+'"]');
+				 o.prop("selected", true);
+			}
+			break;
+		}
+
+		default:
+			break;
 	}
 }
 //xử lý các sự kiện trong trang
@@ -65,11 +110,7 @@ function eventsHandle()
 	});
 	//click btn select subject
 	$(document).on('click', '.btn-select-subject', function () {
-		$('#modal-select-subject #btn-submit-subject').removeClass('hidden');
-		$('#modal-select-subject #btn-select-file').addClass('hidden');
-		$('#modal-select-subject #btn-next-step').addClass('hidden');
 		//open modal select subject
-		$(document).off('click', '#modal-select-subject .btn-submit', function () {});
 		$('#modal-select-subject').modal('show');
 		//add event button
 	});
@@ -81,29 +122,9 @@ function eventsHandle()
 		//close modal
 		$('#modal-select-subject').modal('hide');
 	});
-	//click btn import
-	//open modal import
-	$(document).on('click', '.btn-import', function () {
-		$('#modal-select-subject #btn-submit-subject').addClass('hidden');
-		$('#modal-select-subject #btn-select-file').removeClass('hidden');
-		$('#modal-select-subject #btn-next-step').removeClass('hidden');
-		$('#modal-select-subject').modal('show');
-	});
-	//btn next step
-	$(document).on('click', '#btn-next-step', function () {	
-		$('#question-subject').val('Không Chọn');
-		$('#question-subject').attr('subjectId','');
-		$('#modal-select-subject').modal('hide');
-		$('#modal-file').modal('show');
-	});
-	//open modal select file import
-	$(document).on('click', '#btn-select-file', function () {	
-		$('#modal-select-subject').modal('hide');
-		$('#modal-file').modal('show');
-	});
-	$(document).on('click', '.btn-import', function () {
-		$('#modal-select-subject').modal('show');
-	});
+
+
+
 	//table select subject click
 	$(document).on('click', '#table-data-body [dataId]', function () {
 		$('.btn-edit').removeClass('disabled');
@@ -147,41 +168,12 @@ function eventsHandle()
 			break;
 		}
 	});
-	
+	//reload
+	$(document).on('click', '.btn-reload', function () {
+		 window.location.reload(true);
+	});
 }
-function importFromFile()
-{
-	//upload from file exel
-	 $(document).on('click', '#modal-file .btn-submit-file-exel', function () {
-		 //check file not empty
-		if ($('#input-file-exel').get(0).files.length === 0) {
-			   $('#alert-file-exel').removeClass('hidden');
-		}
-		else
-		{
-			$('#modal-file').modal('hide');
-			$('#modal-message').modal({backdrop: 'static', keyboard: false}) ;
-			var message="";
-			try {				
-				var formData = new FormData();	
-				var subjctId=$('#question-subject').attr('subjectId');
-				var subject={
-						id:subjctId
-				}
-				//them file vao data
-		        formData.append('file', $('#modal-file #input-file-exel')[0].files[0]);	
-		        formData.append("subject", new Blob([JSON.stringify(subject)], {
-		            type: "application/json"
-		        }));
-		        obj.saveOrUpdate("POST",true,'teacher/api/questions/import',formData, obj.showMessage);
-				
-			} catch (e) {
-				// TODO: handle exception
-				obj.showMessage("Lỗi : " +e);
-			}
-		}
-	 });
-}
+
 function updateEditors()
 {
 	//update all editor answer
@@ -200,6 +192,11 @@ function updateEditors()
 //khowir tao editor content
 function initContentEditor()
 {
+	 //init content
+	// $('#question-editor').summernote('pasteHTML', );
+	 $('#question-editor').summernote('reset');  // may not be required.
+	 $('#question-editor').summernote('destroy');
+	 $('#question-editor').html(question.content);
 	 $('#question-editor').summernote({
 			height:200,
 			
@@ -231,11 +228,14 @@ function initContentEditor()
 				['view', ['fullscreen', 'codeview', 'help']],
 			]
 		});
+	 
 }
 // editor answer init
-function initAnswerEditor(answerEditor)
+function initAnswerEditor(answerEditor,content)
 {	
-		 $(answerEditor).summernote({
+	 $(answerEditor).summernote('destroy');
+	 $(answerEditor).html(content);
+	 $(answerEditor).summernote({
 				height:100,	 
 				toolbar: [
 					['style', ['style']],
@@ -247,15 +247,17 @@ function initAnswerEditor(answerEditor)
 					['view', ['fullscreen', 'codeview', 'help']],
 				]
 			});
+		// $(answerEditor).summernote('pasteHTML',content);
+		
 }
-function addAnswerEditor()
+function addAnswerEditor(content)
 {
 	var answerHtml=$('#answer-sample').html();
 	//$('#wrap-answer').append(answerHtml);
 	$(answerHtml).appendTo("#wrap-answer").hide().fadeIn(300);
 	updateEditors();
 	var numEditor=$('.answer-editor').length;
-	initAnswerEditor($($('.answer-editor')[numEditor-1]));
+	initAnswerEditor($($('.answer-editor')[numEditor-1]),content);
 }
 //upload file
 function uploadFile(type,files)
@@ -313,86 +315,83 @@ function deleteFile(target)
 function uploadQuestionEvents()
 {
 	$(document).on('click', '#btn-submit-question', function () {
-
-		var question={
-				//code: "",
-				name: "",
-				type: "",
-				level: "",
-				content: "",
-				subject: {},
-				answers: []
-		}
 		if(validInput()==true)
 		{
-			try {
-				//question.code=$('#inputCode').val();
-				question.name=$('#inputName').val();
-				question.level=$("#question-level option:selected").val();
-				question.type=$("#question-type option:selected").val();
-				//gán môn học
-				var subjectId=$('#question-subject').attr('subjectId');
-				if(subjectId!=0&&subjectId!=null&&subjectId!=undefined)
-				{
-					question.subject.id=subjectId;
-				}
-				//lấy nội dung câu hỏi
-				question.content = $('#question-editor').summernote('code');
-				
-				if(question.type!=FILL_WORD)
-				{
-					var answers=$('.answer-editor');
-					var checkBox=$('.answer .answer-check input[type="checkbox"]');
-					var qWeight=$('.answer .answer-weight option:selected');
-					//bỏ qua 1 là phần tử mẫu html
-					for (var i = 1; i < answers.length; i++) {
-						var answer={
-								content : $(answers[i]).summernote('code'),
-								correct : false,
-								weight : 0
-						}
-						switch (question.type) {
-						case ONE_CHOICE:
+			$('#modal-alert').modal('show');
+		}
+
+	});
+	//btn alert ok
+	$(document).on('click', '#modal-alert .btn-submit', function () {
+		try {
+			$('#modal-alert').modal('hide');
+			//question.code=$('#inputCode').val();
+			question.name=$('#inputName').val();
+			question.level=$("#question-level option:selected").val();
+			question.type=$("#question-type option:selected").val();
+			//gán môn học
+			var subjectId=$('#question-subject').attr('subjectId');
+			if(subjectId!=0&&subjectId!=null&&subjectId!=undefined)
+			{
+				question.subject={id:subjectId};
+			}
+			//lấy nội dung câu hỏi
+			question.content = $('#question-editor').summernote('code');
+			question.answers=[];
+			if(question.type!=FILL_WORD)
+			{
+				var answers=$('.answer-editor');
+				var checkBox=$('.answer .answer-check input[type="checkbox"]');
+				var qWeight=$('.answer .answer-weight option:selected');
+				//bỏ qua 1 là phần tử mẫu html
+				for (var i = 1; i < answers.length; i++) {
+					var answer={
+							content : $(answers[i]).summernote('code'),
+							correct : false,
+							weight : 0
+					}
+					switch (question.type) {
+					case ONE_CHOICE:
+					{
+						if($(checkBox[i]).prop('checked')==true) 
 						{
-							if($(checkBox[i]).prop('checked')==true) 
-							{
-								answer.correct=true;
-								answer.weight=1;
-							}
-							break;
+							answer.correct=true;
+							answer.weight=1;
 						}
-							
-						case MULTIPLE_CHOICE:
+						break;
+					}
+						
+					case MULTIPLE_CHOICE:
+					{
+						var weight=parseFloat($(qWeight[i]).val());
+						if(weight>0)
 						{
-							var weight=parseFloat($(qWeight[i]).val());
-							if(weight>0)
-							{
-								answer.correct=true;
-							}
-							answer.weight=weight;
-							break;
+							answer.correct=true;
 						}
-						default:
-							break;
-						}
-						question.answers.push(answer);
-					}		
-				}
-				
-					
-				//	var str = msg.msg.replace(/\\"/g,'\"');
-				//save to server
-				var message=obj.ajaxCall('POST',false,'teacher/api/questions',question,null);
-				
-				alert(message.msg);
-				
-			} catch (e) {
-				// TODO: handle exception
-				
-				alert('Đã Xảy Ra Lỗi . Xin thử Lại!');
+						answer.weight=weight;
+						break;
+					}
+					default:
+						break;
+					}
+					question.answers.push(answer);
+				}		
 			}
 			
-			reload();
+				
+			//	var str = msg.msg.replace(/\\"/g,'\"');
+			//save to server
+			var message=obj.ajaxCall('PUT',false,'teacher/api/questions',question,null);
+			
+			alert(message.msg);
+			
+			 //window.history.back();
+			window.location.href=rootLocation+'teacher/ql-cau-hoi?subject=ALL&level=ALL&type=ALL';
+			
+		} catch (e) {
+			// TODO: handle exception
+			
+			alert('Đã Xảy Ra Lỗi . Xin thử Lại!');
 		}
 	});
 }
@@ -478,13 +477,7 @@ function validInput()
 	return check;
 	
 }
-//reload page
-function reload()
-{
-	$('input[required]').val("");
-	init();
 
-}
 var obj;
 class Question extends Base {
 	

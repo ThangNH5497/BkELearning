@@ -9,7 +9,7 @@
 
 .selected
 {
-	background: #e1e6ed;
+	background: #e1e6ed !important;
 }
 
 #modal-select-subject .table-responsive{
@@ -26,4 +26,20 @@
 	color :#858796 !important;
 }
 
-/*check box*/
+/*editor*/
+.wrap-editor
+{
+	/*border:1px solid #4BB543;*/
+	border:1px solid gray;
+	border-radius: 5px;
+	padding: 0 3px;
+	
+}
+.wrap-editor .note-editor
+{
+	border:none !important;
+}
+#btn-next-step
+{
+	background: #FFCC00  !important;
+}

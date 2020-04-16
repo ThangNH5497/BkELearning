@@ -16,7 +16,7 @@ import bk.elearning.service.ITeacherService;
 import bk.elearning.utils.Constant;
 import bk.elearning.utils.FileUpload;
 import bk.elearning.utils.TeacherMapperUtil;
-import bk.elearning.utils.Util;
+import bk.elearning.utils.UserMapperUtil;
 
 @Service
 public class TeacherServiceImpl implements ITeacherService, IPaginationResultService<Teacher> {
@@ -172,7 +172,14 @@ public class TeacherServiceImpl implements ITeacherService, IPaginationResultSer
 		int error = 0;
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		if (file != null) {
-			List<Teacher> teachers = FileUpload.processFileExel(file, new TeacherMapperUtil(true));
+			List<Teacher> teachers=null;
+			try {
+				 teachers = FileUpload.processFileExel(file, new TeacherMapperUtil(true));
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println(e.toString());
+			}
+			
 			for (Teacher teacher : teachers) {
 				try {
 

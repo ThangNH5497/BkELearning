@@ -5,7 +5,7 @@ $(document).ready(function() {
 	$('#menu-item-course').addClass('active');
 	tableDataEvents();
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'api/courses/page/teachers/'+userLoged.id+'?');
+	handlePagination('pagination','table-data-body','row-data-container','api/courses/page/teachers/'+userLoged.id+'?');
 	//search event , file search.js
 	searchEvents('api/courses/teachers/'+userLoged.id+'/search?');
 	

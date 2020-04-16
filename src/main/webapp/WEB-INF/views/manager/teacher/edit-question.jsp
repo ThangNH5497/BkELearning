@@ -142,11 +142,13 @@
 		<div class="container-fluid">
 			<div
 				class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h4 mb-0 text-gray-600">Thêm Câu Hỏi</h1>
-
-				<a href="#"
-					class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn-import"><i
-					class="fas fa-file-import fa-sm text-white-50"></i> Import Câu Hỏi</a>
+				<h1 class="h4 mb-0 text-gray-600">Chỉnh Sửa Câu Hỏi</h1>
+				<a href="#" class="btn btn-reload btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                     <i class="fas fa-redo"></i>
+                    </span>
+                    <span class="text">Reset</span>
+                  </a>
 			</div>
 			<!-- filter -->
 			<div class="card mb-4 py-3 border-left-info">
@@ -372,14 +374,15 @@
 	<!-- /.modal-dialog -->
 </div>
 <!-- modal choose file -->
-<!-- modal add student to course -->
-<div class="modal modal-reset fade" id="modal-file" tabindex="-1"
-	role="dialog" aria-labelledby="edit" aria-hidden="true">
-	<div class="modal-dialog modal-xl">
+
+<!-- modal alert -->
+<div class="modal modal-reset fade" id="modal-alert"
+	tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<!--Header-->
-			<div class="modal-header">
-				<p class="heading lead">Import Câu Hỏi</p>
+			<div class="modal-header bg-success">
+				<p class="heading lead">Xác Nhận</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -388,89 +391,25 @@
 			</div>
 
 			<!--Body-->
-			<div class="modal-body">
-				<div class="form-container">
-					<div class="form-v4">
-						<div class="form-v4-content">
-							<form class="form-detail" id="form-exel-file">
-								<h2>Import Câu Hỏi Từ File Exel</h2>
+			<div class="modal-body border-top my-3">
+				<div class="message">Bạn Có Muốn Tiếp Tục Lưu Thay Đổi ?</div>
 
-								<div
-									class="hidden alert alert-danger alert-dismissible fade show"
-									role="alert" id='alert-file-exel'>
-									<strong>Cảnh Báo !</strong> Bạn Chưa Chọn File.
-									<button type="button" class="close" data-dismiss="alert"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="custom-file">
-									<input type="file" class="custom-file-input file-input"
-										id="input-file-exel"
-										accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-									<label class="custom-file-label file-exel-name"
-										for="customFile">Chọn file</label>
-								</div>
-							</form>
-						</div>
-					</div>
-					<!--Footer-->
-					<div class="border-top my-3"></div>
-					<div class="d-flex justify-content-center">
-						<a type="button" class="btn  waves-effect btn-cancel"
-							data-dismiss="modal">Hủy</a> <a type="button"
-							class="btn  waves-effect btn-submit-file-exel">Tải Lên</a>
-					</div>
+				<div class="border-top my-3"></div>
+				<div class="d-flex justify-content-center">
+					<a type="button" class="btn  waves-effect btn-cancel"
+						data-dismiss="modal">Hủy</a><a type="button"
+						class="btn  waves-effect btn-submit">OK</a>
 				</div>
-
 			</div>
-			<!-- end them giang vien tu file exel -->
-		</div>
 
+		</div>
+		<!-- /.modal-content -->
 	</div>
 	<!-- /.modal-dialog -->
+
 </div>
 
-<!-- /.modal-dialog -->
-<!-- end modal message --><!-- modal message -->
-<div class="modal modal-reset fade" id="modal-message" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<!--Header-->
-			<div class="modal-header">
-				<p class="heading lead">Đang Xử Lý...</p>
-
-			</div>
-
-			<!--Body-->
-			<div class="modal-body">
-				<div class="form-container message-container">
-					<div class="border-top my-3"></div>
-					<div class="waiting-process d-flex justify-content-center">
-						<h2 class="message hidden"></h2>
-						<img style="max-width: 48px; max-height: 48px;"
-							src="<c:url value='/resources/commons/image/icon/load-icon.gif' />">
-
-					</div>
-					<!--Footer-->
-					<div class="border-top my-3"></div>
-					<div class="d-flex justify-content-center">
-						<a type="button" style="margin: 0 !important;"
-							class="btn hidden waves-effect btn-ok">OK</a>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-
-
-	</div>
-	<!-- /.modal-content -->
-</div>
-<!-- /.modal-dialog -->
-<!-- end modal message -->
+<!-- end modal alert -->
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>
 <script src="<c:url value='/resources/commons/js/pagination.js' />"></script>
@@ -482,7 +421,7 @@
 <script
 	src="<c:url value='/resources/commons/lib/summernote/summernote-audio.js' />"></script>
 <script
-	src="<c:url value='/resources/manager/teacher/js/add-question.js' />"></script>
+	src="<c:url value='/resources/manager/teacher/js/edit-question.js' />"></script>
 
 
 <!-- Footer -->

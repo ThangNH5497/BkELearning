@@ -57,7 +57,9 @@
 								<button class="btn btn-refresh text-primary btn-control">
 									<i class="fas fa-sync"></i>
 								</button>
-								<jsp:include page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
+								<div id='pagination'><jsp:include
+										page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
+								</div>
 							</div>
 
 

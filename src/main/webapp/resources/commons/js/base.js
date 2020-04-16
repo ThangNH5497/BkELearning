@@ -317,6 +317,18 @@ class Base {
             return prev ? prev[curr] : null
         }, obj || self)
     }
+    //show message
+    showMessage(data)
+    {
+    	$('#modal-message .message').text(data.msg);
+    	$('#modal-message img').addClass('hidden');
+    	$('#modal-message .message').removeClass('hidden');
+    	$('#modal-message .btn-ok').removeClass('hidden');
+    	$('#modal-message .btn-ok').click(this,function(){
+    		//refresh page
+    		location.reload(true);
+    	});
+    }
 }
 
 // resrt form

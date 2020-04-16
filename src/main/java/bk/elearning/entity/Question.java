@@ -10,17 +10,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@DynamicUpdate
 public class Question extends AbstractEntity {
-
-	private String code;
 
 	private String name;
 
 	private int level;
-	
+
 	private String type;
 
 	@Column(name = "content", columnDefinition = "TEXT", nullable = false)
@@ -44,21 +45,21 @@ public class Question extends AbstractEntity {
 	@JoinColumn(name = "teacher_id")
 	private Teacher teacher;
 
-	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Answer.class, orphanRemoval = true)
 	private List<Answer> answers;
 
 	public Question() {
 		super();
 	}
 
-	public Question(String code, String name, int level,String type, String content, QuestionCategory questionCategory,
+	public Question(String name, int level, String type, String content, QuestionCategory questionCategory,
 			Subject subject, ExamPaper examPaper, List<Answer> answers, Teacher teacher) {
 		super();
-		this.code = code;
+
 		this.name = name;
 		this.level = level;
 		this.content = content;
-		this.type=type;
+		this.type = type;
 		this.questionCategory = questionCategory;
 		this.subject = subject;
 		this.examPaper = examPaper;
@@ -66,10 +67,9 @@ public class Question extends AbstractEntity {
 		this.teacher = teacher;
 	}
 
-	public Question(int id, String code, String name, int level,String type, String content, QuestionCategory questionCategory,
+	public Question(int id, String name, int level, String type, String content, QuestionCategory questionCategory,
 			Subject subject, ExamPaper examPaper, List<Answer> answers, Teacher teacher) {
 		super(id);
-		this.code = code;
 		this.name = name;
 		this.level = level;
 		this.content = content;
@@ -78,15 +78,7 @@ public class Question extends AbstractEntity {
 		this.examPaper = examPaper;
 		this.answers = answers;
 		this.teacher = teacher;
-		this.type=type;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
+		this.type = type;
 	}
 
 	public String getName() {
@@ -161,5 +153,4 @@ public class Question extends AbstractEntity {
 		this.type = type;
 	}
 
-	
 }

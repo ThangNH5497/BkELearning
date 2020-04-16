@@ -11,7 +11,7 @@ $(document).ready(function() {
 
 	tableDataEvents();
 	//lay du lieu trang va phan trang
-	handlePagination($('#pagination'),'api/students/page/courses/'+courseId+'?');
+	handlePagination('pagination','table-data-body','row-data-container','api/students/page/courses/'+courseId+'?');
 	
 	//search events
 	searchEvents('api/students/courses/'+courseId+'/search?');
@@ -113,11 +113,11 @@ function addStudentToCourse()
 				var formData = new FormData();	
 				//them file vao data
 		        formData.append('file', $('#modal-add-student #input-file-exel')[0].files[0]);		    
-		        obj.saveOrUpdate("PUT",true,'teacher/api/courses/'+course.id+'/students/file',formData, showMessage);
+		        obj.saveOrUpdate("PUT",true,'teacher/api/courses/'+course.id+'/students/file',formData, obj.showMessage);
 				
 			} catch (e) {
 				// TODO: handle exception
-				showMessage("Lỗi : " +e);
+				obj.showMessage("Lỗi : " +e);
 			}
 		}
 	 });

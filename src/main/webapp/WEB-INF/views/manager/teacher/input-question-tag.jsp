@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="d-flex row mt-4 answer">
 	<div class='col-2'>
-		<label class="row w-100 answer-index">Đáp Án </label>
+		<label class="answer-index">Đáp Án </label>
 		<div class="form-group col-12 d-flex answer-check">
 			<span>Đúng</span>
 			<div class="custom-control custom-checkbox ml-3 ">
