@@ -17,7 +17,7 @@ public interface IQuestionService extends IGenericService<Question> {
 	
 	PaginationResult<Question> getByTeacher(int teacherId,int page,int size);
 
-	int[] importFromFile(MultipartFile file, Subject subject);
+	int[] importFromFile(MultipartFile file, Subject subject, String rootUrl);
 
 	PaginationResult<Question> searchByFilter(int teacherId, String subjectId, String type, String level, String key,
 			int page, int size);

@@ -5,7 +5,6 @@ $(document).ready(function() {
 	$('#menu-item-question').addClass('active');
 	$('#modal-select-subject ul.pagination').addClass('pagination-sm');
 	init();
-	//search events
 	
 	tableDataEvents();
 	filterEventHandle();
@@ -211,24 +210,13 @@ function tableDataEvents()
 				}
 			}
 			$('#question-detail-answer').append(answerHtmlContainer);
-			var imgs=$('#modal-view img');
-			for (var i = 0; i < imgs.length; i++) {
-				var src=$(imgs[i]).attr('src');
-				if(src.indexOf(rootLocation)<0)
-				{
-					src=src.substring(1);
-					$(imgs[i]).attr('src',rootLocation+src);
-				}
-			}
 			$('#modal-view').modal('show');
 			
+		
 		} catch (e) {
 			// TODO: handle exception
-			alert('Có Lỗi Không Xác Định : '+e);
-		}
 			
-		
-		
+		}	
 	});
 	//edit btn click
 	$(document).on('click', '.btn-edit', function () {

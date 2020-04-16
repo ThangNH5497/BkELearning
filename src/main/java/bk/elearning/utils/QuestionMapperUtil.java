@@ -31,10 +31,18 @@ public class QuestionMapperUtil implements IModelMapper<Question> {
 	private final String VIDEO_FIELD = "video";
 	private final String AUDIO_FIELD = "audio";
 	private final String CONTENT_FIELD = "content";
-	
+	private String rootUrl;
 	@Autowired
 	private EnvUtil envUtil;
 	
+	public String getRootUrl() {
+		return rootUrl;
+	}
+
+	public void setRootUrl(String rootUrl) {
+		this.rootUrl = rootUrl;
+	}
+
 	public List<Question> mapFields(Sheet sheet) {
 		// TODO Auto-generated method stub
 		List<Question> list = new ArrayList<Question>();
@@ -178,7 +186,7 @@ public class QuestionMapperUtil implements IModelMapper<Question> {
 						String hostname= InetAddress.getLocalHost().getHostName();
 						String addr=InetAddress.getLocalHost().getHostAddress();
 						
-						String appendContent=StringEscapeUtils.escapeHtml4("<p style=\"text-align: center; \"><img src='/"+filePath+"'></p>");
+						String appendContent=StringEscapeUtils.escapeHtml4("<p style=\"text-align: center; \"><img src='"+rootUrl+"/"+filePath+"'></p>");
 						question.setContent(question.getContent()+appendContent);
 					}
 

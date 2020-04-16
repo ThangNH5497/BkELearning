@@ -419,26 +419,26 @@ function validInput()
 		var type=$("#question-type option:selected").val();
 		if (type!=FILL_WORD)
 		{
-			$('.note-editor').removeClass('border-danger');
+			$('.note-editor').parents('.wrap-editor').removeClass('border-danger');
 			var answerEditors=$('.answer-editor');
 			//check question empty
 			if($('#question-editor').summernote('isEmpty'))
 			{
 				$(window).scrollTop($('#question-editor').offset().top-100);
-				$('.question .note-editor').addClass('border-danger');
+				$('.question .note-editor').parents('.wrap-editor').addClass('border-danger');
 				check=false;
 			}
 			//check answer 
 			else
 			{
-				$('.question .note-editor').removeClass('border-danger');
+				$('.question .note-editor').parents('.wrap-editor').removeClass('border-danger');
 				for (var i = 1; i < answerEditors.length; i++) {
 					if($(answerEditors[i]).summernote('isEmpty'))						
 					{
 						var container=$(answerEditors[i]).parents('.answer');
 						var answerNote=$(container).find('.note-editor');
 						$(window).scrollTop($(answerNote).offset().top-100);
-						$(answerNote).addClass('border-danger');
+						$(answerNote).parents('.wrap-editor').addClass('border-danger');
 						check=false;
 						break;
 						

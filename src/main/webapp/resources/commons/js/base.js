@@ -63,6 +63,7 @@ class Base {
 			}
 			
 		});
+    	
     }
    // call ajax
     ajaxCall(method,async,url,data,functionHandle) {

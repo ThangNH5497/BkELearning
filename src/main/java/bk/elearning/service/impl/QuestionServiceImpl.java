@@ -183,7 +183,7 @@ public class QuestionServiceImpl implements IQuestionService {
 	}
 
 	@Override
-	public int[] importFromFile(MultipartFile file, Subject subject) {
+	public int[] importFromFile(MultipartFile file, Subject subject,String rootUrl) {
 		// TODO Auto-generated method stub
 		int success = 0;
 		int error = 0;
@@ -194,6 +194,7 @@ public class QuestionServiceImpl implements IQuestionService {
 			if (file != null && user != null) {
 				Teacher teacher = new Teacher();
 				teacher.setId(user.getId());
+				mapper.setRootUrl(rootUrl);
 				List<Question> questions = FileUpload.processFileExel(file, mapper);
 				subject = subjectRepository.getById(subject.getId());
 				for (Question question : questions) {

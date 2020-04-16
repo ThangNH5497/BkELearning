@@ -10,7 +10,6 @@
 	href="<c:url value='/resources/manager/commons/css/dashboard.css' />">
 <link rel="stylesheet"
 	href="<c:url value='/resources/manager/commons/css/question-list.css' />">
-
 <!-- Phan noi dung trang -->
 <div class="wrapper d-flex align-items-stretch">
 	<jsp:include page="/WEB-INF/views/manager/teacher/menu.jsp"></jsp:include>
@@ -242,10 +241,10 @@
 
 
 <!-- modal view -->
-<div class="modal modal-reset fade" id="modal-view" tabindex="-1"
-	role="dialog" aria-labelledby="edit" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
+<div class="modal fade" id="modal-view" tabindex="-1" "
+	role="dialog" aria-labelledby="edit" aria-hidden="true" >
+	<div class="modal-dialog modal-lg" >
+		<div class="modal-content" style="min-height: 50vh;">
 			<!--Header-->
 			<div class="modal-header">
 				<p class="heading lead">Chi Tiết Câu Hỏi</p>
@@ -330,8 +329,7 @@
 					<div class="border-top my-3"></div>
 					<div class="d-flex justify-content-center">
 						<a type="button" class="btn  waves-effect btn-cancel"
-							data-dismiss="modal">Đóng</a><a type="button"
-							class="btn  waves-effect btn-submit">Chỉnh Sửa</a>
+							data-dismiss="modal" style="margin-left: 10% !important;">Đóng</a>
 					</div>
 				</div>
 			</div>
@@ -379,7 +377,7 @@
 <!-- end modal alert -->
 
 <!-- modal select subject -->
-<div class="modal modal-reset fade" id="modal-select-subject"
+<div class="modal  fade" id="modal-select-subject"
 	tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -476,28 +474,8 @@
 	src="<c:url value='/resources/manager/teacher/js/question-list.js' />"></script>
 <!-- Footer -->
 <script type="text/javascript">
-	$('#sidebar .active').removeClass('active');
-	$('#menu-item-home').addClass('active');
-	(function($) {
 
-		"use strict";
-
-		var fullHeight = function() {
-
-			$('.js-fullheight').css('height', $(window).height());
-			$(window).resize(function() {
-				$('.js-fullheight').css('height', $(window).height());
-			});
-
-		};
-		fullHeight();
-
-		$('#sidebarCollapse').on('click', function() {
-			$('#sidebar').toggleClass('active');
-
-		});
-
-	})(jQuery);
+	
 </script>
 
 <jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>

@@ -2,6 +2,8 @@ package bk.elearning.controller.teacher.api;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -120,6 +122,7 @@ public class QuestionApi {
 	public Message uploadFile(@RequestPart(name = "file", required = true) MultipartFile file) {
 
 		try {
+			
 			String path = questionService.uploadFile(file);
 			if (path != null)
 				return new Message(Constant.STATUS_SUCCESS, path);
@@ -138,10 +141,11 @@ public class QuestionApi {
 	 */
 	@PostMapping(path = "/import")
 	public Message importFromFile(@RequestPart(name = "file", required = true) MultipartFile file,
-			@RequestPart(name = "subject", required = false) Subject subject) {
+			@RequestPart(name = "subject", required = false) Subject subject,HttpServletRequest req) {
 		int result[] = { 0, 0 };
 		try {
-			result = questionService.importFromFile(file, subject);
+			 String rootUrl= req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath();
+			result = questionService.importFromFile(file, subject,rootUrl);
 			return new Message(Constant.STATUS_SUCCESS, "Import Thành Công " + result[0] + ", Thất Bại " + result[1]);
 		} catch (Exception e) {
 
