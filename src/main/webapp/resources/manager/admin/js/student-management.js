@@ -17,7 +17,9 @@ $(document).ready(function() {
 	handlePagination('pagination','table-data-body','row-data-container','api/students/page?');
 	
 	//search events
-	searchEvents('api/students/search?');
+	searchEvents('key-search','btn-search','api/students/search?');
+	//for xs
+	searchEvents('key-search-xs','btn-search-xs','api/students/search?');
 	
 });
 var obj;

@@ -27,21 +27,26 @@
 					class="fas fa-plus fa-sm text-white-50"></i>Thêm</a>
 			</div>
 			<!-- filter -->
-			<nav class="navbar navbar-expand-lg navbar-light bg-white mb-4" id='filetr'>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarSupportedContent"
-					aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
+			<nav class="navbar navbar-expand-lg navbar-light bg-white mb-4"
+				id='filetr'>
+			
+				<div class="custom-menu ">
+					<button id="sidebarCollapse"
+						class="btn btn-link mr-3 navbar-toggler text-primary border-0"
+						data-toggle="collapse" data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<i class="fa fa-bars"></i>
+					</button>
+				</div>
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<div class="row d-flex w-100">
-						<div class="d-block col-md-12 col-lg-4 filter-item" id="filter-subject">
+						<div class="d-block col-md-12 col-lg-4 filter-item"
+							id="filter-subject">
 							<h6 class="m-0 font-weight-bold text-primary col-9">Môn Học</h6>
 							<div class="input-group col-lg-11 col-md-12 d-flex mt-3">
-								<input class="form-control" type="text" 
-									val='ALL'  readonly>
+								<input class="form-control" type="text" val='ALL' readonly>
 								<div class="input-group-append border-0 dropdown">
 									<button
 										class="btn btn-outline-primary btn-select-subject dropdown-toggle"
@@ -52,19 +57,19 @@
 										aria-labelledby="dropdownMenuButton">
 										<a class="dropdown-item" href="#" value='ALL'>Tất Cả</a>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#"  value=''>Tìm Môn Học</a>
+										<a class="dropdown-item" href="#" value=''>Tìm Môn Học</a>
 
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="d-block col-md-12 col-lg-4 filter-item" id="filter-type" >
+						<div class="d-block col-md-12 col-lg-4 filter-item"
+							id="filter-type">
 							<h6 class="m-0 font-weight-bold text-primary col-9">Loại Câu
 								Hỏi</h6>
 							<div class="input-group col-lg-11 col-md-12 d-flex mt-3">
-								<input class="form-control" type="text" val='ALL'
-									 readonly>
+								<input class="form-control" type="text" val='ALL' readonly>
 								<div class="input-group-append border-0 dropdown">
 									<button
 										class="btn btn-outline-primary btn-select-subject dropdown-toggle"
@@ -73,23 +78,26 @@
 									<div
 										class="dropdown-menu dropdown-menu-right dropdown-menu-w-100"
 										aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item" href="#"  value='ALL'>Tất Cả</a>
+										<a class="dropdown-item" href="#" value='ALL'>Tất Cả</a>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#"  value='ONE_CHOICE'>Một Đáp Án</a>
+										<a class="dropdown-item" href="#" value='ONE_CHOICE'>Một
+											Đáp Án</a>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#"  value='MULTIPLE_CHOICE'>Nhiều Đáp Án</a>
+										<a class="dropdown-item" href="#" value='MULTIPLE_CHOICE'>Nhiều
+											Đáp Án</a>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#"  value='FILL_WORD'>Điền Từ</a>
+										<a class="dropdown-item" href="#" value='FILL_WORD'>Điền
+											Từ</a>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="d-block col-md-12 col-lg-4 filter-item" id="filter-level">
+						<div class="d-block col-md-12 col-lg-4 filter-item"
+							id="filter-level">
 							<h6 class="m-0 font-weight-bold text-primary col-9">Độ Khó</h6>
 							<div class="input-group col-lg-11 col-md-12 d-flex mt-3">
-								<input class="form-control" type="text"
-									val='ALL'  readonly >
+								<input class="form-control" type="text" val='ALL' readonly>
 								<div class="input-group-append border-0 dropdown">
 									<button
 										class="btn btn-outline-primary btn-select-subject dropdown-toggle"
@@ -123,9 +131,10 @@
 					<!-- Card Header - Dropdown -->
 					<div
 						class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-						<h6 class="m-0 font-weight-bold text-primary">Danh Sách Câu
-							hỏi</h6>
-
+						<h6
+							class="m-0 font-weight-bold text-primary text-responsive-lg d-none d-sm-block"">Danh
+							Sách Câu hỏi</h6>
+						<div class="m-0"></div>
 						<div class="d-flex">
 							<button class="btn btn-delete text-danger btn-control">
 								<i class="fas fa-trash"></i>
@@ -133,9 +142,7 @@
 							<button class="btn btn-refresh text-primary btn-control">
 								<i class="fas fa-sync"></i>
 							</button>
-							<div id='pagination'><jsp:include
-									page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
-							</div>	
+
 						</div>
 
 
@@ -183,7 +190,9 @@
 										<div class="table-data-body js-pscroll">
 											<table>
 												<tbody id="table-data-body">
-
+													<h5 id='data-empty-alert'
+														class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
+														Có Dữ Liệu</h5>
 													<tr class="table-row body hidden" id="row-data-container">
 
 														<td class="table-cell column0" field='checkBox'><div
@@ -223,6 +232,10 @@
 												</tbody>
 											</table>
 										</div>
+
+										<div id='pagination' class='bg-white p-2 border-top'><jsp:include
+												page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -242,8 +255,9 @@
 
 <!-- modal view -->
 <div class="modal fade" id="modal-view" tabindex="-1" "
-	role="dialog" aria-labelledby="edit" aria-hidden="true" >
-	<div class="modal-dialog modal-lg" >
+	role="dialog"
+	aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content" style="min-height: 50vh;">
 			<!--Header-->
 			<div class="modal-header">
@@ -377,8 +391,8 @@
 <!-- end modal alert -->
 
 <!-- modal select subject -->
-<div class="modal  fade" id="modal-select-subject"
-	tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+<div class="modal  fade" id="modal-select-subject" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<!--Header-->
@@ -474,7 +488,6 @@
 	src="<c:url value='/resources/manager/teacher/js/question-list.js' />"></script>
 <!-- Footer -->
 <script type="text/javascript">
-
 	
 </script>
 

@@ -11,7 +11,9 @@ $(document).ready(function() {
 	//lay du lieu trang va phan trang
 	handlePagination('pagination','table-data-body','row-data-container','api/courses/page/subjects/'+subjectId+'?',obj.initData);
 	//search event , file search.js
-	searchEvents('api/courses/subjects/'+subjectId+'/search?');
+	searchEvents('key-search','btn-search','api/courses/subjects/'+subjectId+'/search?');
+	//for xs
+	searchEvents('key-search-xs','btn-search-xs','api/courses/subjects/'+subjectId+'/search?');
 	addNewCourseEvents();	
 	editCourseEvents('admin/api/courses');
 	teacherManagementEvents();
@@ -31,7 +33,7 @@ function tableDataEvents()
 	$(document).on('click', '.btn-refresh', function () {
 		location.reload();
 	});
-	$(document).on('click', '#btn-search', function () {
+	$(document).on('click', '#btn-search,#btn-search-xs', function () {
 		$('#link-back-search').removeClass('hidden');
 		$('#link-current').addClass('hidden');
 	});

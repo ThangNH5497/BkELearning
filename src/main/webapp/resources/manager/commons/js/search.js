@@ -1,9 +1,9 @@
 var key;
-function searchEvents(rootUrlApi)
+function searchEvents(inputId,buttonId,rootUrlApi)
 {
 	//get key
-	$(document).on('click', '#btn-search', function () {
-		key=$('#key-search').val();
+	$(document).on('click', '#'+buttonId, function () {
+		key=$('#'+inputId).val();
 
 		$('#link-back-search').removeClass('hidden');
 		url=rootUrlApi+'q='+key+'&';

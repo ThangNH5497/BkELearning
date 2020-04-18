@@ -23,6 +23,9 @@ import bk.elearning.utils.Constant;
 @Controller
 public class AuthController {
 
+	@Autowired
+	IUserService s;
+	
 	@RequestMapping(value = { "/login" })
 	public String login(@RequestParam(value = "error", required = false) final String error, final Model model,
 			HttpServletRequest httpServletRequest) {

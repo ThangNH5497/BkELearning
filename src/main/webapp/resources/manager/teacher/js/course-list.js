@@ -7,7 +7,10 @@ $(document).ready(function() {
 	//lay du lieu trang va phan trang
 	handlePagination('pagination','table-data-body','row-data-container','api/courses/page/teachers/'+userLoged.id+'?');
 	//search event , file search.js
-	searchEvents('api/courses/teachers/'+userLoged.id+'/search?');
+	
+	searchEvents('key-search','btn-search','api/courses/teachers/'+userLoged.id+'/search?');
+	//for xs
+	searchEvents('key-search-xs','btn-search-xs','api/courses/teachers/'+userLoged.id+'/search?');
 	
 });
 
@@ -22,7 +25,7 @@ function tableDataEvents()
 	$(document).on('click', '.btn-refresh', function () {
 		location.reload();
 	});
-	$(document).on('click', '#btn-search', function () {
+	$(document).on('click', '#btn-search,#btn-search-xs', function () {
 		$('#link-back-search').removeClass('hidden');
 		$('#link-current').addClass('hidden');
 	});

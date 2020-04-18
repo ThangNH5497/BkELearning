@@ -18,8 +18,8 @@
 	<div id="content" class="mb-5">
 		<jsp:include page="/WEB-INF/views/manager/commons/topbar.jsp"></jsp:include>
 		<div class=" container-fluid content-container">
-			<div class=" container-fluid d-flex pl-0 ml-0">
-				<nav class="navbar navbar-light bg-light" style="font-weight: 600;"
+			<div class=" container-fluid d-flex pl-0 ml-0 bg-light">
+				<nav class="navbar navbar-light " style="font-weight: 600;"
 					id="link-current">
 
 					<span class="navbar-text"> <i class="fas fa-link"></i> <a
@@ -36,7 +36,9 @@
 				</nav>
 			</div>
 
-
+			<h5 id='data-empty-alert'
+				class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
+				Có Dữ Liệu</h5>
 			<div class="row " id="table-data-body">
 				<!-- Area Chart -->
 				<div class="col-xl-12 col-lg-12  mb-4 hidden"
@@ -54,8 +56,9 @@
 									</span>
 								</div>
 								<div class="d-flex justify-content-end col-6">
-									<a href="#" class="btn btn-success btn-circle btn-sm mr-3 btn-student-management"> <i
-										class="fas fa-user-cog"></i>
+									<a href="#"
+										class="btn btn-success btn-circle btn-sm mr-3 btn-student-management">
+										<i class="fas fa-user-cog"></i>
 									</a> <a href="#" class="btn btn-info btn-circle btn-sm mr-3"> <i
 										class="fas fa-sliders-h"></i>
 									</a>
@@ -124,8 +127,8 @@
 
 <!-- modal add new Class-->
 
-<div class="modal modal-reset fade" id="modal-add-new" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
+<div class="modal modal-reset fade" id="modal-add-new" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<!--Header-->
@@ -185,8 +188,8 @@
 </div>
 <!-- modal edit -->
 
-<div class="modal modal-reset fade" id="modal-edit" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
+<div class="modal modal-reset fade" id="modal-edit" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<!--Header-->

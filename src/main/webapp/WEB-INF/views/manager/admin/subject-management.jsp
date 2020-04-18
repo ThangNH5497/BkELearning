@@ -40,9 +40,9 @@
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary">Danh Sách Môn
+							<h6 class="m-0 font-weight-bold text-primary text-responsive-lg d-none d-sm-block"">Danh Sách Môn
 								Học</h6>
-
+							<div class="m-0"></div>
 							<div class="d-flex">
 								<button class="btn btn-add text-success btn-control"
 									data-toggle="modal" data-target="#modal-add-new">
@@ -57,9 +57,7 @@
 								<button class="btn btn-refresh text-primary btn-control">
 									<i class="fas fa-sync"></i>
 								</button>
-								<div id='pagination'><jsp:include
-										page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
-								</div>
+								
 							</div>
 
 
@@ -111,8 +109,7 @@
 														<h5 id='data-empty-alert'
 															class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
 															Có Dữ Liệu</h5>
-														<tr class="table-row body hidden"
-															id="row-data-container">
+														<tr class="table-row body hidden" id="row-data-container">
 
 															<td class="table-cell column0" field='checkBox'><div
 																	class="custom-control custom-checkbox">
@@ -137,6 +134,9 @@
 													</tbody>
 												</table>
 											</div>
+											<div id='pagination' class="p-2 border-top bg-white w-100"><jsp:include
+													page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -157,8 +157,8 @@
 
 <!-- modal add new subject-->
 
-<div class="modal modal-reset fade" id="modal-add-new" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
+<div class="modal modal-reset fade" id="modal-add-new" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<!--Header-->
@@ -218,8 +218,8 @@
 </div>
 <!-- modal edit -->
 
-<div class="modal modal-reset fade" id="modal-edit" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
+<div class="modal modal-reset fade" id="modal-edit" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<!--Header-->
@@ -280,8 +280,8 @@
 <!-- end modal edit -->
 
 <!-- modal alert -->
-<div class="modal modal-reset fade" id="modal-delete-alert" tabindex="-1"
-	role="dialog" aria-labelledby="edit" aria-hidden="true">
+<div class="modal modal-reset fade" id="modal-delete-alert"
+	tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<!--Header-->
@@ -325,27 +325,6 @@
 <script
 	src="<c:url value='/resources/manager/admin/js/subject-management.js' />"></script>
 <!-- Footer -->
-<script type="text/javascript">
-	(function($) {
 
-		"use strict";
-
-		var fullHeight = function() {
-
-			$('.js-fullheight').css('height', $(window).height());
-			$(window).resize(function() {
-				$('.js-fullheight').css('height', $(window).height());
-			});
-
-		};
-		fullHeight();
-
-		$('#sidebarCollapse').on('click', function() {
-			$('#sidebar').toggleClass('active');
-
-		});
-
-	})(jQuery);
-</script>
 
 <jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>

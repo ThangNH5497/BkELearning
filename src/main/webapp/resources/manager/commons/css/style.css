@@ -16,7 +16,7 @@ p {
 }
 .btn-control i
 {
-	font-size: 20px;
+	font-size: max(1.1vw,14px) !important;
 }
 
 .hidden {
@@ -25,21 +25,16 @@ p {
 
 .card-container {
 	min-height: 84vh;
-	max-height: 84vh;
-	height: 84vh;
 }
 
 .card-container .card-header {
-	max-height: 8vh;
-	height: 8vh;
+
 	min-height: 8vh;
 	padding: 0 16px 0 16px !important;
 }
 
 .card-container .card-body {
 	padding: 0 !important;
-	max-height: 76vh;
-	height: 76vh;
 	min-height: 76vh;
 }
 
@@ -172,20 +167,13 @@ iframe {
 
 .wrap-table-data {
 	width: 100%;
-	min-height: 76vh;
-	max-height: 76vh;
-	height: 76vh;
 }
-.wrap-table-data .table-data
-{
-	min-height: 76vh;
-	max-height: 76vh;
-	height: 76vh;
-}
+
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*/
 .table-data {
 	background-color: #fff;
+	min-height: 76vh;
 }
 
 table {
@@ -230,12 +218,13 @@ th, td {
 .table-data-head th {
 	padding-top: 16px;
 	padding-right: 0px !important;
+	font-size: max(1.1vw ,15px) !important;
 }
 
 .table-data-body td {
 	padding-top: 16px;
 	padding-bottom: 16px;
-	
+	font-size: max(0.95vw ,13px) !important;
 }
 
 
@@ -252,8 +241,6 @@ th, td {
 	width: 100%;
 	top: 0;
 	left: 0;
-	max-height: 8vh !important;
-	height: 8vh !important;
 	min-height: 8vh !important;
 	background: #6c7ae0;
 }
@@ -261,10 +248,7 @@ th, td {
 .table-data-body {
 	width: 100%;
 	overflow: auto;
-	max-height: 70vh !important;
-	height: 70vh !important;
-	min-height: 70vh !important;
-	
+	min-height: 76vh;
 }
 
 /*==================================================================
@@ -328,7 +312,7 @@ th, td {
 /*profile user*/
 .user-profile {
 	overflow: auto;
-	max-height: 76vh;
+	max-height: 84vh;
 }
 
 .profile-tab label {
@@ -649,7 +633,7 @@ th, td {
 /* Responsive */
 @media screen and (max-width: 991px) {
 	.form-v4-content {
-		margin: 180px 20px;
+		margin: 70px 0px;
 		flex-direction: column;
 		-o-flex-direction: column;
 		-ms-flex-direction: column;
@@ -692,4 +676,12 @@ th, td {
 }
 /*end css add from file exel tab*/
 /*end modal*/
-
+.text-responsive-lg
+{
+	font-size: max(1vw,15px) !important;
+}
+/*card detail*/
+.card-detail
+{
+	font-size: max(0.95vw,13px) !important;
+}

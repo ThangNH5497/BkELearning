@@ -19,11 +19,11 @@
 	<div id="content" class="mb-5">
 		<jsp:include page="/WEB-INF/views/manager/commons/topbar.jsp"></jsp:include>
 		<div class=" container-fluid content-container">
-			<div class=" container-fluid d-flex pl-0 ml-0 row">
+			<div class=" container-fluid d-flex pl-0 ml-0 row bg-light">
 				<nav class="col-10 navbar navbar-light bg-light"
-					style="font-weight: 600;" id="link-current">
+					style="font-weight: 600; font-size: max(1.2vw,12px);" id="link-current" >
 
-					<span class="navbar-text"> <i class="fas fa-link"></i> <a
+					<span class="navbar-text"> <i class="fas fa-link"></i> <a 
 						class='text-primary' href="<c:url value='/admin/ql-mon-hoc' />">Quản
 							Lý Môn Học</a><span> / Danh Sách Lớp</span>
 					</span>
@@ -49,7 +49,9 @@
 				</div>
 				<div class="topbar-divider d-none d-sm-block"></div>
 			</div>
-
+			<h5 id='data-empty-alert'
+				class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
+				Có Dữ Liệu</h5>
 
 			<div class="row " id="table-data-body">
 				<!-- Area Chart -->
@@ -60,8 +62,8 @@
 						style="padding-top: 0 !important;">
 						<div class="card-body pb-0 pt-3">
 							<div class="row ">
-								<div class="col-6  p-0 m-0"
-									style="font-weight: 600;" id="link-current">
+								<div class="col-6  p-0 m-0" style="font-weight: 600;"
+									id="link-current">
 									<span class="navbar-text text-primary font-weight-bold d-flex">Mã
 										Lớp
 										<p field="code" class="pl-4">10000</p>
@@ -151,8 +153,8 @@
 
 <!-- modal add new Class-->
 
-<div class="modal modal-reset fade" id="modal-add-new" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
+<div class="modal modal-reset fade" id="modal-add-new" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<!--Header-->
@@ -212,8 +214,8 @@
 </div>
 <!-- modal edit -->
 
-<div class="modal fade modal-reset" id="modal-edit" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
+<div class="modal fade modal-reset" id="modal-edit" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<!--Header-->
@@ -271,8 +273,8 @@
 <!-- end modal edit -->
 
 <!--  modal add teacher to course -->
-<div class="modal fade modal-reset" id="modal-teacher" tabindex="-1" role="dialog"
-	aria-labelledby="edit" aria-hidden="true">
+<div class="modal fade modal-reset" id="modal-teacher" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<!--Header-->
@@ -379,8 +381,8 @@
 
 
 <!-- modal alert -->
-<div class="modal fade modal-reset" id="modal-delete-alert" tabindex="-1"
-	role="dialog" aria-labelledby="edit" aria-hidden="true">
+<div class="modal fade modal-reset" id="modal-delete-alert"
+	tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<!--Header-->

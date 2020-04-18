@@ -225,8 +225,40 @@ function userDetailEvents(urlApi) {
 		$('#table-data-body .selected').removeClass('selected');
 		var id=$(this).attr("dataId");
 		$(this).addClass('selected');
-		//lay doi tuong user ko dong bo va xu ly voi ham initUserDetail
-		obj.ajaxCall("GET",true,urlApi+id,null,showUserDetail);
+		if(!($("#card-detail"). is(":hidden")))
+		{
+			//lay doi tuong user ko dong bo va xu ly voi ham initUserDetail
+			obj.ajaxCall("GET",true,urlApi+id,null,showUserDetail);
+		}
+			
+	});
+	$(document).on('click', '.btn-view', function () {
+		var id=$('#table-data-body .selected[dataId]').attr("dataId");
+		if(($("#card-detail"). is(":hidden")))
+		{			//lay doi tuong user ko dong bo va xu ly voi ham initUserDetail
+			obj.ajaxCall("GET",true,urlApi+id,null,function(user)
+			{
+				try {
+					$('#user-detail-img-lg').attr('src',
+							rootLocation + "resources/commons/image/user/default-user.jpg");
+					if (user != {}&&user!=undefined&&user!=""&&user!=null&&user!=[]) {
+						// load anh
+						$('#user-detail-img-lg').removeClass('hidden');
+						$('#user-detail-img-lg').attr("src", rootLocation + user.image);
+						obj.initData('user-detail-lg', 'user-detail-row-lg', [ user ]);
+						
+					} else {
+
+						obj.initData('user-detail-lg', 'user-detail-row-lg', []);
+					}
+					$('#modal-view').modal('show');
+				} catch (e) {
+					// TODO: handle exception
+					alert('có Lỗi Xảy ra!')
+				}
+			});
+		}
+			
 	});
 
 }

@@ -8,6 +8,10 @@ $(document).ready(function() {
 	
 	tableDataEvents();
 	filterEventHandle();
+	searchEvents('key-search','btn-search',rootApiSearch);
+	//for xs
+	searchEvents('key-search-xs','btn-search-xs',rootApiSearch);
+	
 	searchSubject();
 });
 
@@ -19,7 +23,7 @@ var filterType;
 var filterLevel;
 var FILTER_ALL="ALL";
 var rootApiGet;
-var rootAptSearch;
+var rootApiSearch;
 //init 
 function init()
 {
@@ -111,7 +115,6 @@ function init()
 	rootApiSearch='teacher/api/questions/search/teachers/'+teacherId+'/subjects/'+filterSubject+'/types/'+filterType+'/levels/'+filterLevel+'?'
 	//lay du lieu trang va phan trang
 	handlePagination('pagination','table-data-body','row-data-container',rootApiGet,replaceImg);
-	searchEvents(rootApiSearch);
 	//lay du lieu trang va phan trang tim kiem mon hoc cho filter
 	handlePagination('pagination-subject','table-data-body-subject','row-data-container-subject','api/subjects/page?');
 	deleteEvents("teacher/api/questions/multiple");

@@ -40,14 +40,19 @@
 			<div class="row ">
 
 				<!-- Area Chart -->
-				<div class="col-xl-9 col-lg-8 card-container">
+				<div class="col-xl-9 col-lg-9 col-md-12 card-container">
 					<div class="card shadow h-100">
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary course-title"></h6>
-
+							<h6
+								class="m-0 font-weight-bold text-primary text-responsive-lg d-none d-sm-block course-title"></h6>
+							<div class="m-0"></div>
 							<div class="d-flex">
+								<button
+									class="btn btn-view text-info btn-control d-block d-lg-none">
+									<i class="far fa-eye"></i>
+								</button>
 								<button class="btn btn-add text-success btn-control"
 									data-toggle="modal" data-target="#modal-add-student">
 									<i class="far fa-plus-square"></i>
@@ -58,9 +63,7 @@
 								<button class="btn btn-refresh text-primary btn-control">
 									<i class="fas fa-sync"></i>
 								</button>
-								<div id='pagination'><jsp:include
-										page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
-								</div>
+
 							</div>
 
 
@@ -112,7 +115,7 @@
 													<tbody id="table-data-body">
 														<h5 id='data-empty-alert'
 															class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
-															Có Dữ Liệu Khớp</h5>
+															Có Dữ Liệu</h5>
 														<tr class="table-row body hidden border-bottom border-top"
 															id="row-data-container">
 
@@ -133,6 +136,9 @@
 													</tbody>
 												</table>
 											</div>
+											<div id='pagination' class='bg-white p-2 border-top'><jsp:include
+													page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -143,28 +149,15 @@
 				</div>
 
 				<!-- Pie Chart -->
-				<div class="col-xl-3 col-lg-4 card-container">
+				<div
+					class="col-xl-3 col-lg-3 d-none d-lg-block card-container card-detail"
+					id='card-detail'>
 					<div class="card shadow h-100">
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 							<h6 class="m-0 font-weight-bold text-primary">Chi Tiết</h6>
-							<div class="dropdown no-arrow">
-								<a class="dropdown-toggle" href="#" role="button"
-									id="dropdownMenuLink" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false"> <i
-									class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-								</a>
-								<div
-									class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-									aria-labelledby="dropdownMenuLink">
-									<div class="dropdown-header">Dropdown Header:</div>
-									<a class="dropdown-item" href="#">Action</a> <a
-										class="dropdown-item" href="#">Another action</a>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#">Something else here</a>
-								</div>
-							</div>
+							
 						</div>
 						<!-- Card Body -->
 						<div class="card-body">
@@ -527,6 +520,141 @@
 </div>
 <!-- /.modal-dialog -->
 <!-- end modal message -->
+<div class="modal fade" id="modal-view" tabindex="-1" role="dialog"
+	aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<p class="heading lead">Thông Tin Giảng Viên</p>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+			<div class="modal-body">
+				<div class="form-container">
+					<div class="row">
+						<div class="container-fluid user-profile h-100"
+							style="max-height: none !important;">
+							<div class="row ">
+								<div class="col-md-12">
+									<div class="profile-img">
+										<img class='hidden' field="image" id="user-detail-img-lg"
+											style="width: 100%; max-height: 20vh;" src="" alt="" />
+									</div>
+								</div>
+							</div>
+							<div class="tab-content profile-tab">
+								<div class="tab-pane fade show active" id="user-detail-lg"
+									role="tabpanel" aria-labelledby="home-tab">
+									<div id="user-detail-row-lg" class="hidden">
+										<div>
+											<div class="border-top my-3"></div>
+											<div class="row">
+												<div class="col-md-4">
+													<label>Mã SV</label>
+												</div>
+												<div class="col-md-8">
+
+													<p field="code"></p>
+												</div>
+											</div>
+										</div>
+
+										<div>
+											<div class="border-top my-3"></div>
+											<div class="row">
+												<div class="col-md-4">
+													<label>Họ&Tên</label>
+												</div>
+												<div class="col-md-8">
+													<p field="fullName"></p>
+												</div>
+											</div>
+										</div>
+										<div>
+											<div class="border-top my-3"></div>
+											<div class="row">
+												<div class="col-md-4">
+													<label>Email</label>
+												</div>
+												<div class="col-md-8">
+													<p field="email"></p>
+												</div>
+											</div>
+										</div>
+										<div>
+											<div class="border-top my-3"></div>
+											<div class="row">
+												<div class="col-md-4">
+													<label>SĐT</label>
+												</div>
+												<div class="col-md-8">
+													<p field="phoneNumber"></p>
+												</div>
+											</div>
+										</div>
+										<div>
+											<div class="border-top my-3"></div>
+											<div class="row">
+												<div class="col-md-4">
+													<label>Lớp </label>
+												</div>
+												<div class="col-md-8">
+													<p field="className"></p>
+												</div>
+											</div>
+										</div>
+										<div>
+											<div class="border-top my-3"></div>
+											<div class="row">
+												<div class="col-md-4">
+													<label>Địa Chỉ</label>
+												</div>
+												<div class="col-md-8">
+													<p field="addr"></p>
+												</div>
+											</div>
+										</div>
+										<div>
+											<div class="border-top my-3"></div>
+											<div class="row">
+												<div class="col-md-4">
+													<label>Ngày Sinh</label>
+												</div>
+												<div class="col-md-8">
+													<p field="dateOfBirth"></p>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+					<!--Footer-->
+					<div class="border-top my-3"></div>
+					<div class="d-flex justify-content-center">
+						<a type="button" class="btn  waves-effect btn-cancel"
+							style="margin-left: 10%" data-dismiss="modal">Đóng</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>
 <script src="<c:url value='/resources/commons/js/pagination.js' />"></script>
@@ -536,27 +664,6 @@
 <script
 	src="<c:url value='/resources/manager/teacher/js/course-student-list.js' />"></script>
 <!-- Footer -->
-<script type="text/javascript">
-	(function($) {
 
-		"use strict";
-
-		var fullHeight = function() {
-
-			$('.js-fullheight').css('height', $(window).height());
-			$(window).resize(function() {
-				$('.js-fullheight').css('height', $(window).height());
-			});
-
-		};
-		fullHeight();
-
-		$('#sidebarCollapse').on('click', function() {
-			$('#sidebar').toggleClass('active');
-
-		});
-
-	})(jQuery);
-</script>
 
 <jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>

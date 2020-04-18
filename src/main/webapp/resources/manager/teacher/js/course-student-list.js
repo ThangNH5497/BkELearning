@@ -14,7 +14,10 @@ $(document).ready(function() {
 	handlePagination('pagination','table-data-body','row-data-container','api/students/page/courses/'+courseId+'?');
 	
 	//search events
-	searchEvents('api/students/courses/'+courseId+'/search?');
+	searchEvents('key-search','btn-search','api/students/courses/'+courseId+'/search?');
+	//for xs
+	searchEvents('key-search-xs','btn-search-xs','api/students/courses/'+courseId+'/search?');
+	
 	removeTeacherEvents();
 	addStudentToCourse();
 	
@@ -30,7 +33,7 @@ function tableDataEvents()
 	});
 
 	//show back link
-	$(document).on('click', '#btn-search', function () {
+	$(document).on('click', '#btn-search,#btn-search-xs', function () {
 		$('#link-back-search').removeClass('hidden');
 		$('#link-current').addClass('hidden');
 	});

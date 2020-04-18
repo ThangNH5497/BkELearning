@@ -13,8 +13,9 @@ $(document).ready(function() {
 	handlePagination('pagination','table-data-body','row-data-container','api/subjects/page?');
 	
 	//search events
-	searchEvents('api/subjects/search?');
-	
+	searchEvents('key-search','btn-search','api/subjects/search?');
+	//for xs
+	searchEvents('key-search-xs','btn-search-xs','api/subjects/search?');
 	//add events
 	addNewSubjectEvents();
 	//edit events

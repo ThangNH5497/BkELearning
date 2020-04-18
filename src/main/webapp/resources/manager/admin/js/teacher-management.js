@@ -16,8 +16,9 @@ $(document).ready(function() {
 	handlePagination('pagination','table-data-body','row-data-container','api/teachers/page?');
 	
 	//search events
-	searchEvents('api/teachers/search?');
-	
+	searchEvents('key-search','btn-search','api/teachers/search?');
+	//for xs
+	searchEvents('key-search-xs','btn-search-xs','api/teachers/search?');
 	tableDataEvents();
 	
 });
