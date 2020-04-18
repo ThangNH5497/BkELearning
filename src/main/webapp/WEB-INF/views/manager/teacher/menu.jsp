@@ -31,10 +31,6 @@
 					class="icon fas fa-user-graduate mr-3"></span> <span
 					class="redirect">Câu Hỏi</span></a></li>
 
-			<li id="menu-item-exam-paper"><a
-				href="<c:url value='/teacher/ql-mon-hoc'/>"><span
-					class="icon fas fa-book-open mr-3"></span> <span class="redirect">Môn
-						Học</span></a></li>
 			<li><a href="#"><span class="icon fa fa-sticky-note mr-3"></span>
 					<span class="redirect">Thông Tin</span></a></li>
 
@@ -46,20 +42,7 @@
 
 		</ul>
 
-		<div class="mb-5">
-			<!-- 
-				<h3 class="h6 mb-3">Subscribe for newsletter</h3>
-				<form action="#" class="subscribe-form">
-					<div class="form-group d-flex">
-						<div class="icon">
-							<span class="icon-paper-plane"></span>
-						</div>
-						<input type="text" class="form-control"
-							placeholder="Enter Email Address">
-					</div>
-				</form>
-				 -->
-		</div>
+
 
 		<div class="footer"></div>
 

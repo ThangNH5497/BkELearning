@@ -487,8 +487,4 @@
 <script
 	src="<c:url value='/resources/manager/teacher/js/question-list.js' />"></script>
 <!-- Footer -->
-<script type="text/javascript">
-	
-</script>
-
 <jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>
