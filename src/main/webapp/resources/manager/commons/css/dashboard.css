@@ -193,8 +193,22 @@ span.redirect
 	padding-left:5px;
 }
 
-@media ( max-width : 991.98px) {
-	#sidebarCollapse span.icon {
-		display: none;
-	}
+#pageSubmenu li:hover a
+{
+	background:#e1e6eb !important;
+}
+#pageSubmenu  span
+{
+	padding:0px !important;
+}
+
+#pageSubmenu a:hover span
+{
+	color:#4e73df !important;
+}
+
+#pageSubmenu a
+{
+	font-size: 14px !important;
+	
 }

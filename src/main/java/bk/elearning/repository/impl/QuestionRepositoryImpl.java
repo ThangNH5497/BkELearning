@@ -37,7 +37,8 @@ public class QuestionRepositoryImpl extends SubjectComponentRepositoryImpl<Quest
 		try {
 			HashMap<String, Object> constrantFields = new HashMap<String, Object>();
 			constrantFields.put("teacher.id", teacherId);
-			if (!subjectId.equals("ALL")) {
+			
+			if (!(subjectId.equals("ALL")||subjectId.equals("NONE"))) {
 				constrantFields.put("subject.id", Integer.parseInt(subjectId));
 			}
 

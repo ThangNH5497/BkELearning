@@ -34,6 +34,18 @@ public class AdminController {
 		return "manager/admin/subject-management";
 	}
 	
+	@RequestMapping("/ql-cau-hoi/kho-chung")
+	public String getQuestionListViewCommon(@RequestParam String subject,@RequestParam String level,@RequestParam String type)
+	{
+		return "manager/admin/question-list-common";
+	}
+	
+	@RequestMapping("/ql-cau-hoi/kho-giang-vien")
+	public String getQuestionListViewTeacher(@RequestParam String teacher,@RequestParam String subject,@RequestParam String level,@RequestParam String type)
+	{
+		return "manager/admin/question-list-teacher";
+	}
+	
 	@RequestMapping("/ql-mon-hoc/danh-sach-lop")
 	public String courseListView(@RequestParam("id") int id)
 	{

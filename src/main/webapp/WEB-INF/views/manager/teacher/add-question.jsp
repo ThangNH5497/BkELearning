@@ -29,114 +29,41 @@
 					class="btn btn-link rounded-circle mr-3">
 					<i class="fa fa-bars"></i>
 				</button>
-				</div>
-				<!-- Topbar Search -->
-				<!-- Topbar Navbar -->
-				<ul class="navbar-nav ml-auto">
+			</div>
+			<!-- Topbar Search -->
+			<!-- Topbar Navbar -->
+			<ul class="navbar-nav ml-auto">
 
-					<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-					<li class="nav-item dropdown no-arrow d-sm-none"><a
-						class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-					</a> <!-- Dropdown - Messages -->
-						<div
-							class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-							aria-labelledby="searchDropdown">
-							<form class="form-inline mr-auto w-100 navbar-search">
-								<div class="input-group">
-									<input type="text" class="form-control bg-light border-0 small"
-										placeholder="Search for..." aria-label="Search"
-										aria-describedby="basic-addon2">
-									<div class="input-group-append">
-										<button class="btn btn-primary" type="button">
-											<i class="fas fa-search fa-sm"></i>
-										</button>
-									</div>
-								</div>
-							</form>
-						</div></li>
+				<div class="topbar-divider d-none d-sm-block"></div>
 
-					<!-- Nav Item - Alerts -->
-					<li class="nav-item dropdown no-arrow mx-1"><a
-						class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
-							<span class="badge badge-danger badge-counter">3+</span>
-					</a> <!-- Dropdown - Alerts -->
-						<div
-							class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-							aria-labelledby="alertsDropdown">
-							<h6 class="dropdown-header">Alerts Center</h6>
-							<a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="mr-3">
-									<div class="icon-circle bg-primary">
-										<i class="fas fa-file-alt text-white"></i>
-									</div>
-								</div>
-								<div>
-									<div class="small text-gray-500">December 12, 2019</div>
-									<span class="font-weight-bold">A new monthly report is
-										ready to download!</span>
-								</div>
-							</a> <a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="mr-3">
-									<div class="icon-circle bg-success">
-										<i class="fas fa-donate text-white"></i>
-									</div>
-								</div>
-								<div>
-									<div class="small text-gray-500">December 7, 2019</div>
-									$290.29 has been deposited into your account!
-								</div>
-							</a> <a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="mr-3">
-									<div class="icon-circle bg-warning">
-										<i class="fas fa-exclamation-triangle text-white"></i>
-									</div>
-								</div>
-								<div>
-									<div class="small text-gray-500">December 2, 2019</div>
-									Spending Alert: We've noticed unusually high spending for your
-									account.
-								</div>
-							</a> <a class="dropdown-item text-center small text-gray-500"
-								href="#">Show All Alerts</a>
-						</div></li>
+				<!-- Nav Item - User Information -->
+				<li class="nav-item dropdown no-arrow"><a
+					class="nav-link dropdown-toggle" href="#" id="userDropdown"
+					data-toggle="dropdown"><img
+						style="max-height: 60px; max-width: 60px;"
+						class="img-profile rounded-circle"
+						src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
+						<span
+						class="mr-2 d-none d-lg-inline text-gray-600 small user-full-name">Tài
+							Khoản</span> </a> <!-- Dropdown - User Information -->
+					<div
+						class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+						aria-labelledby="userDropdown">
+						<a class="dropdown-item" href="#"> <i
+							class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập Nhật
+							Thông Tin
+						</a> <a class="dropdown-item" href="#"> <i
+							class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
+							Khẩu
+						</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="<c:url value='/logout'/>" > <i
+							class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+							Logout
+						</a>
+					</div></li>
 
-
-
-					<div class="topbar-divider d-none d-sm-block"></div>
-
-					<!-- Nav Item - User Information -->
-					<li class="nav-item dropdown no-arrow"><a
-						class="nav-link dropdown-toggle" href="#" id="userDropdown"
-						data-toggle="dropdown"><img
-							style="max-height: 60px; max-width: 60px;"
-							class="img-profile rounded-circle"
-							src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
-							<span
-							class="mr-2 d-none d-lg-inline text-gray-600 small user-full-name">Tài
-								Khoản</span> </a> <!-- Dropdown - User Information -->
-						<div
-							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-							aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="#"> <i
-								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập Nhật
-								Thông Tin
-							</a> <a class="dropdown-item" href="#"> <i
-								class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
-								Khẩu
-							</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#" data-toggle="modal"
-								data-target="#logoutModal"> <i
-								class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-								Logout
-							</a>
-						</div></li>
-
-				</ul>
+			</ul>
 		</nav>
 		<!-- End of Topbar -->
 		<div class="container-fluid">
@@ -144,24 +71,28 @@
 				class="d-sm-flex align-items-center justify-content-between mb-4">
 				<h1 class="h4 mb-0 text-gray-600">Thêm Câu Hỏi</h1>
 
-				<a href="#"
-					class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn-import"><i
-					class="fas fa-file-import fa-sm text-white-50"></i> Import Câu Hỏi</a>
+				<div class='justify-content-end d-flex'>
+					<a href="<c:url value='/teacher/ql-cau-hoi?subject=ALL&level=ALL&type=ALL'/>"
+						class=" btn btn-sm btn-info shadow-sm btn-import"><i
+						class="fas fa-list fa-sm text-white-50"></i> Danh Sách Câu
+						Hỏi</a> <a href="#"
+						class="ml-3 btn btn-sm btn-primary shadow-sm btn-import"><i
+						class="fas fa-file-import fa-sm text-white-50"></i> Import Câu Hỏi</a>
+				</div>
+
+
 			</div>
 			<!-- filter -->
 			<div class="card mb-4 py-3 border-left-info">
 				<div class="card-body">
 					<h5 class="mb-4 font-weight-bold text-primary col-12 text-center">Thông
 						Tin Câu Hỏi</h5>
-					<div id="question-infor">
+					<div id="question-infor mt-3">
 						<div class="row">
-							<div class='col-2'>
-								<label>Môn Học</label>
-							</div>
-
-							<div class="input-group col-9 mt-3">
-								<input class="form-control" type="text" placeholder="Không Chọn"
-									subjectId='' id="question-subject" readonly>
+							<label class='col-2 col-form-label'>Môn Học (*)</label>
+							<div class="input-group col-9">
+								<input class="form-control" type="text" subjectId=''
+									id="question-subject" readonly>
 								<div class="input-group-append border-0">
 									<button class="btn btn-outline-primary btn-select-subject"
 										type="button">Chọn</button>
@@ -170,9 +101,21 @@
 							<div class="col-1"></div>
 
 						</div>
+
+						<form class=" ">
+							<div class="form-group row mt-3">
+								<label for="inputName" class="col-2 col-form-label">Tên
+									Câu Hỏi (*)</label>
+								<div class="col-9">
+									<input type="text" class="form-control" id="inputName" required>
+								</div>
+								<div class="col-1"></div>
+							</div>
+						</form>
+
 						<div class="row mt-3">
 							<div class='col-2'>
-								<label>Loại Câu Hỏi</label>
+								<label>Loại Câu Hỏi (*)</label>
 							</div>
 
 							<div class="form-group col-9">
@@ -186,7 +129,7 @@
 
 						<div class="row">
 							<div class='col-2'>
-								<label>Độ Khó</label>
+								<label>Độ Khó (*)</label>
 							</div>
 
 							<div class="form-group col-9">
@@ -197,30 +140,8 @@
 								</select>
 							</div>
 						</div>
-						<!--  
-				<form>
-					<div class="form-group row">
-						<label for="inputPassword" class="col-2 col-form-label">Mã
-							Câu Hỏi</label>
-						<div class="col-9">
-							<input type="text" class="form-control" id="inputCode" required
-								placeholder="code">
-						</div>
-						<div class="col-1"></div>
-					</div>
-				</form>-->
-						<form>
 
-							<div class="form-group row">
-								<label for="inputName" class="col-2 col-form-label">Tên
-									Câu Hỏi</label>
-								<div class="col-9">
-									<input type="text" class="form-control" id="inputName" required
-										placeholder="name">
-								</div>
-								<div class="col-1"></div>
-							</div>
-						</form>
+
 					</div>
 				</div>
 			</div>
@@ -359,9 +280,10 @@
 							class="btn  waves-effect btn-submit disabled"
 							id='btn-submit-subject'>Chọn</a> <a type="button"
 							class="btn  waves-effect btn-submit disabled hidden"
-							style="margin-right: 10%;" id='btn-select-file'>Chọn</a> <a
+							id='btn-select-file'>Chọn</a>
+						<!--  <a
 							type="button" class="btn  waves-effect btn-next hidden"
-							id='btn-next-step'>Bỏ Qua</a>
+							id='btn-next-step'>Bỏ Qua</a> -->
 
 					</div>
 				</div>

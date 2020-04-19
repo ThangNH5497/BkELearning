@@ -12,7 +12,7 @@
 	href="<c:url value='/resources/manager/commons/css/question-list.css' />">
 <!-- Phan noi dung trang -->
 <div class="wrapper d-flex align-items-stretch">
-	<jsp:include page="/WEB-INF/views/manager/teacher/menu.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/manager/admin/menu.jsp"></jsp:include>
 
 	<!-- Page Content  -->
 	<div id="content" class="mb-5">
@@ -21,9 +21,9 @@
 
 			<div
 				class="d-flex align-items-center justify-content-between mb-4 row">
-				<h1 class="col-8 h5 mb-0 text-gray-600">Ngân Hàng Câu Hỏi</h1>
+				<h1 class="col-8 h5 mb-0 text-gray-600">Ngân Hàng Câu Hỏi Chung</h1>
 				<a href="<c:url value='/teacher/ql-cau-hoi/them-cau-hoi'/>"
-					class=" col-1 btn btn-sm btn-primary shadow-sm"><i
+					class=" col-1  btn btn-sm btn-primary shadow-sm"><i
 					class="fas fa-plus fa-sm text-white-50"></i>Thêm</a>
 			</div>
 			<!-- filter -->

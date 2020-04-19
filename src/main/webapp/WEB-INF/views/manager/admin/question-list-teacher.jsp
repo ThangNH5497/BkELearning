@@ -12,7 +12,7 @@
 	href="<c:url value='/resources/manager/commons/css/question-list.css' />">
 <!-- Phan noi dung trang -->
 <div class="wrapper d-flex align-items-stretch">
-	<jsp:include page="/WEB-INF/views/manager/teacher/menu.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/manager/admin/menu.jsp"></jsp:include>
 
 	<!-- Page Content  -->
 	<div id="content" class="mb-5">
@@ -21,7 +21,8 @@
 
 			<div
 				class="d-flex align-items-center justify-content-between mb-4 row">
-				<h1 class="col-8 h5 mb-0 text-gray-600">Ngân Hàng Câu Hỏi</h1>
+				<h1 class="col-8 h5 mb-0 text-gray-600">Ngân Hàng Câu Hỏi Giảng
+					Viên</h1>
 				<a href="<c:url value='/teacher/ql-cau-hoi/them-cau-hoi'/>"
 					class=" col-1 btn btn-sm btn-primary shadow-sm"><i
 					class="fas fa-plus fa-sm text-white-50"></i>Thêm</a>
@@ -29,7 +30,7 @@
 			<!-- filter -->
 			<nav class="navbar navbar-expand-lg navbar-light bg-white mb-4"
 				id='filetr'>
-			
+
 				<div class="custom-menu ">
 					<button id="sidebarCollapse"
 						class="btn btn-link mr-3 navbar-toggler text-primary border-0"
@@ -42,7 +43,30 @@
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<div class="row d-flex w-100">
-						<div class="d-block col-md-12 col-lg-4 filter-item"
+						<div class="d-block col-md-12 col-lg-3 filter-item"
+							id="filter-teacher">
+							<h6 class="m-0 font-weight-bold text-primary col-9">Giảng Viên</h6>
+							<div class="input-group col-lg-11 col-md-12 d-flex mt-3">
+								<input class="form-control" type="text" val='ALL' readonly>
+								<div class="input-group-append border-0 dropdown">
+									<button
+										class="btn btn-outline-primary btn-select-subject dropdown-toggle"
+										id="dropdownMenuButton" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false" type="button">Chọn</button>
+									<div
+										class="dropdown-menu dropdown-menu-right dropdown-menu-w-100"
+										aria-labelledby="dropdownMenuButton">
+										<a class="dropdown-item" href="#" value='ALL'>Tất Cả</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="#" value=''>Tìm Môn Học</a>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="d-block col-md-12 col-lg-3 filter-item"
 							id="filter-subject">
 							<h6 class="m-0 font-weight-bold text-primary col-9">Môn Học</h6>
 							<div class="input-group col-lg-11 col-md-12 d-flex mt-3">
@@ -64,7 +88,7 @@
 							</div>
 						</div>
 
-						<div class="d-block col-md-12 col-lg-4 filter-item"
+						<div class="d-block col-md-12 col-lg-3 filter-item"
 							id="filter-type">
 							<h6 class="m-0 font-weight-bold text-primary col-9">Loại Câu
 								Hỏi</h6>
@@ -93,7 +117,7 @@
 							</div>
 						</div>
 
-						<div class="d-block col-md-12 col-lg-4 filter-item"
+						<div class="d-block col-md-12 col-lg-3 filter-item"
 							id="filter-level">
 							<h6 class="m-0 font-weight-bold text-primary col-9">Độ Khó</h6>
 							<div class="input-group col-lg-11 col-md-12 d-flex mt-3">

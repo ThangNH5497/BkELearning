@@ -41,9 +41,6 @@
 					class="redirect">Đăng Xuất</span></a></li>
 
 		</ul>
-
-
-
 		<div class="footer"></div>
 
 	</div>

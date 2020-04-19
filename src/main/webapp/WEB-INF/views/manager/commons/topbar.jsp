@@ -4,16 +4,15 @@
 
 <nav
 	class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-	
+
 	<div class="custom-menu">
-		<button id="sidebarCollapse"
-		class="btn btn-link rounded-circle mr-3">
-		<i class="fa fa-bars"></i>
-	</button>
+		<button id="sidebarCollapse" class="btn btn-link rounded-circle mr-3">
+			<i class="fa fa-bars"></i>
+		</button>
 	</div>
-	
+
 	<!-- Topbar Search -->
-	<form
+	<form id='search-form'
 		class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 		<div class="input-group">
 			<input id="key-search" type="text"
@@ -32,7 +31,7 @@
 	<ul class="navbar-nav ml-auto">
 
 		<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-		<li class="nav-item dropdown no-arrow d-sm-none"><a
+		<li class="nav-item dropdown no-arrow d-sm-none" id='search-xs'><a
 			class="nav-link dropdown-toggle" href="#" id="searchDropdown"
 			role="button" data-toggle="dropdown" aria-haspopup="true"
 			aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
@@ -46,7 +45,7 @@
 							placeholder="Nhập Mã Hoặc Tên..." aria-label="Search"
 							aria-describedby="basic-addon2" id='key-search-xs'>
 						<div class="input-group-append">
-							<button class="btn btn-primary" type="button" id='btn-search-xs'> 
+							<button class="btn btn-primary" type="button" id='btn-search-xs'>
 								<i class="fas fa-search fa-sm"></i>
 							</button>
 						</div>
@@ -77,8 +76,7 @@
 					Khẩu
 				</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#" data-toggle="modal"
-					data-target="#logoutModal"> <i
+				<a class="dropdown-item" href="<c:url value='/logout'/>"> <i
 					class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 					Logout
 				</a>

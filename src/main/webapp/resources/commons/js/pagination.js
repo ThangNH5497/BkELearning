@@ -23,33 +23,36 @@ function handlePagination(paginationId,dataContainerId,rowDataContainerId,url,ca
 	try {
 		//lay du lieu
 		var pageData=obj.ajaxCall('GET',false,object.urlApiData+"page="+object.currentPage+"&size="+MAX_ITEMS,null,null);
-		
-		// tinh tong so trang
-		if (parseInt(pageData.count) % parseInt(MAX_ITEMS) != 0) {
-			object.lastPage = (parseInt(pageData.count) / parseInt(MAX_ITEMS)) + 1;
+		if(pageData!=""&&pageData!=null&&pageData!=undefined)
+		{
+			// tinh tong so trang
+			if (parseInt(pageData.count) % parseInt(MAX_ITEMS) != 0) {
+				object.lastPage = (parseInt(pageData.count) / parseInt(MAX_ITEMS)) + 1;
 
-		} else
-			object.lastPage = (parseInt(pageData.count) / parseInt(MAX_ITEMS));
-		object.lastPage = parseInt(object.lastPage);
-		
-		if(object.lastPage==0) object.lastPage=1;
-		//khoi tao pagination
-		var pages=$('#'+object.paginationId+' .page-item-number');
-		$(pages).removeClass('hidden');
-		$('#'+object.paginationId+' .active').removeClass('active');
-		$(pages[0]).addClass('active');
-		//danh so va loai bo nhung trang hien thi du thua neu co
-		for (var i = 0; i < TOTAL_PAGE_SHOW; i++) {
-			$(pages[i]).children().text(parseInt(i)+1);
-			if(parseInt(i)+1>object.lastPage)
-			{
-				$(pages[i]).addClass('hidden');
+			} else
+				object.lastPage = (parseInt(pageData.count) / parseInt(MAX_ITEMS));
+			object.lastPage = parseInt(object.lastPage);
+			
+			if(object.lastPage==0) object.lastPage=1;
+			//khoi tao pagination
+			var pages=$('#'+object.paginationId+' .page-item-number');
+			$(pages).removeClass('hidden');
+			$('#'+object.paginationId+' .active').removeClass('active');
+			$(pages[0]).addClass('active');
+			//danh so va loai bo nhung trang hien thi du thua neu co
+			for (var i = 0; i < TOTAL_PAGE_SHOW; i++) {
+				$(pages[i]).children().text(parseInt(i)+1);
+				if(parseInt(i)+1>object.lastPage)
+				{
+					$(pages[i]).addClass('hidden');
+				}
+					
 			}
-				
+			updatePagination(object);
+			// add events
+			addEvents(object);
 		}
-		updatePagination(object);
-		// add events
-		addEvents(object);
+		
 	} catch (e) {
 		// TODO: handle exception
 		console.log(e);

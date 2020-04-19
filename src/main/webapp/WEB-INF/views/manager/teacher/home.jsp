@@ -22,6 +22,8 @@
 
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <!-- Footer -->
-
+<script src="<c:url value='/resources/commons/js/base.js' />"></script>
+<script
+	src="<c:url value='/resources/manager/teacher/js/home.js' />"></script>
 
 <jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>

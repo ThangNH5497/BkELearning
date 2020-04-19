@@ -71,7 +71,7 @@ function eventsHandle()
 	$(document).on('click', '.btn-select-subject', function () {
 		$('#modal-select-subject #btn-submit-subject').removeClass('hidden');
 		$('#modal-select-subject #btn-select-file').addClass('hidden');
-		$('#modal-select-subject #btn-next-step').addClass('hidden');
+		//$('#modal-select-subject #btn-next-step').addClass('hidden');
 		//open modal select subject
 		$(document).off('click', '#modal-select-subject .btn-submit', function () {});
 		$('#modal-select-subject').modal('show');
@@ -90,7 +90,7 @@ function eventsHandle()
 	$(document).on('click', '.btn-import', function () {
 		$('#modal-select-subject #btn-submit-subject').addClass('hidden');
 		$('#modal-select-subject #btn-select-file').removeClass('hidden');
-		$('#modal-select-subject #btn-next-step').removeClass('hidden');
+	//	$('#modal-select-subject #btn-next-step').removeClass('hidden');
 		$('#modal-select-subject').modal('show');
 	});
 	//btn next step
@@ -413,11 +413,25 @@ function validInput()
 			$(inputRequire[i]).addClass('border-danger');
 			$(window).scrollTop($(inputRequire[i]).offset().top-100);
 			check=false;
+			
 			break;
 		}
 		else $(inputRequire[i]).removeClass('border-danger');
 		
 	}
+	
+	if($('#question-subject').attr('subjectId')==''||parseInt($('#question-subject').attr('subjectId'))<=0)
+	{
+		$(window).scrollTop($('#question-subject').offset().top-100);
+		$('#question-subject').addClass('border-danger');
+		
+		check=false;
+	}
+	else
+	{
+		$('#question-subject').removeClass('border-danger');
+	}
+	
 	if(check==true)
 	{
 		//check content empty
@@ -431,6 +445,7 @@ function validInput()
 			{
 				$(window).scrollTop($('#question-editor').offset().top-100);
 				$('.question .note-editor').parents('.wrap-editor').addClass('border-danger');
+				alert('Nội Dung Câu Hỏi Trống');
 				check=false;
 			}
 			//check answer 
@@ -445,6 +460,7 @@ function validInput()
 						$(window).scrollTop($(answerNote).offset().top-100);
 						$(answerNote).parents('.wrap-editor').addClass('border-danger');
 						check=false;
+						alert('Nội Dung Câu Trả Lời Bị Trống');
 						break;
 						
 					}
@@ -478,6 +494,10 @@ function validInput()
 				}
 			}
 		}
+	}
+	else
+	{
+		alert('Thông Tin Câu Hỏi Chưa Đầy Đủ !');
 	}
 	return check;
 	
