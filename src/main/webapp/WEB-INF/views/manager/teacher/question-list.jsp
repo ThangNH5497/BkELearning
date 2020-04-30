@@ -485,6 +485,8 @@
 <script src="<c:url value='/resources/manager/commons/js/search.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/delete.js' />"></script>
 <script
+	src="<c:url value='/resources/manager/commons/js/question-list-base.js' />"></script>
+<script
 	src="<c:url value='/resources/manager/teacher/js/question-list.js' />"></script>
 <!-- Footer -->
 <jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>

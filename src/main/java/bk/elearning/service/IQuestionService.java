@@ -19,11 +19,18 @@ public interface IQuestionService extends IGenericService<Question> {
 
 	int[] importFromFile(MultipartFile file, Subject subject, String rootUrl);
 
-	PaginationResult<Question> searchByFilter(int teacherId, String subjectId, String type, String level, String key,
+	PaginationResult<Question> searchByTeacherAndFilter(String teacherId, String subjectId, String type, String level, String key,
 			int page, int size);
 
-	PaginationResult<Question> getByFilter(int teacherId, String subjectId, String type, String level, int page,
+	PaginationResult<Question> getByTeacherAndFilter(String teacherId, String subjectId, String type, String level, int page,
 			int size);
+
+	PaginationResult<Question> getByBankTypeAndFilter(String subjectId, String type, String level, int page, int size);
+
+	PaginationResult<Question> searchByBankTypeAndFilter(String subjectId, String type, String level,String key, int page,
+			int size);
+
+	int copyToPublicRepo(ArrayList<Integer> ids);
 
 	
 

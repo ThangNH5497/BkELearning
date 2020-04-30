@@ -6,6 +6,17 @@ public class Message {
 	
 	private String msg;
 	
+	private Object data;
+	
+	
+
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
+	}
 
 	public String getMsg() {
 		return msg;
@@ -33,6 +44,12 @@ public class Message {
 		super();
 		this.msg=msg;
 		this.status=status;
+	}
+	public Message(int status,String msg,Object data) {
+		super();
+		this.msg=msg;
+		this.status=status;
+		this.data=data;
 	}
 	
 }

@@ -36,7 +36,7 @@
 					class="icon fas fa-book-open mr-3"></span> <span class="redirect">Môn
 						Học</span></a></li>
 			<!-- href="<c:url value='/admin/ql-cau-hoi'/>"-->
-			<li id="menu-item-subject"><a data-toggle="collapse"
+			<li id="menu-item-question"><a data-toggle="collapse"
 				data-target="#pageSubmenu" aria-expanded="false"
 				aria-controls="pageSubmenu"><span
 					class="icon fas fa-book-open mr-3"></span> <span class="redirect">Câu
@@ -44,8 +44,8 @@
 
 			<!-- collapse -->
 			<ul class="collapse list-unstyled bg-white rounded" id="pageSubmenu">
-				<li><a href="<c:url value='/admin/ql-cau-hoi/kho-chung?subject=ALL&level=ALL&type=ALL'/>" class="text-gray-600 text-sm  rounded"><span class="redirect ml-4">Kho Chung</span></a></li>
-				<li><a href="<c:url value='/admin/ql-cau-hoi/kho-giang-vien?teacher=ALL&subject=ALL&level=ALL&type=ALL'/>" class="text-gray-600 text-sm  rounded"> <span class="redirect ml-4">Kho Giảng Viên</span></a></li>
+				<li><a href="<c:url value='/admin/ql-cau-hoi/kho-chung?subject=ALL&level=ALL&type=ALL'/>" id='question-bank-common-menu' class="text-gray-600 text-sm  rounded"><span class="redirect ml-4">Kho Chung</span></a></li>
+				<li><a href="<c:url value='/admin/ql-cau-hoi/kho-giang-vien?teacher=ALL&subject=ALL&level=ALL&type=ALL'/>" id='question-bank-teacher-menu' class="text-gray-600 text-sm  rounded"> <span class="redirect ml-4">Kho Giảng Viên</span></a></li>
 			</ul>
 			<!-- end collapse -->
 

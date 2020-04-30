@@ -16,10 +16,27 @@
 
 		};
 		fullHeight();
-
+		if($('#sidebar').hasClass("active"))
+		{
+			
+			$('#content').css('width','100%');
+		}
+		else
+		{
+			$('#content').css('width','calc(100% - 240px)');
+		}
 		$('#sidebarCollapse').on('click', function() {
 			$('#sidebar').toggleClass('active');
-
+			console.log('aaaaaaaaaaaaaaaaa');
+			if($('#sidebar').hasClass("active"))
+			{
+				
+				$('#content').css('width','100%');
+			}
+			else
+			{
+				$('#content').css('width','calc(100% - 240px)');
+			}
 		});
 
 	})(jQuery);

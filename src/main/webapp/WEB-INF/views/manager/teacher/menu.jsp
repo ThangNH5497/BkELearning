@@ -30,7 +30,12 @@
 				href="<c:url value='/teacher/ql-cau-hoi?subject=ALL&level=ALL&type=ALL'/>"><span
 					class="icon fas fa-user-graduate mr-3"></span> <span
 					class="redirect">Câu Hỏi</span></a></li>
-
+					
+			<li id="menu-item-exam-paper"><a
+				href="<c:url value='/teacher/ql-de-thi/them-moi'/>"><span
+					class="icon fas fa-user-graduate mr-3"></span> <span
+					class="redirect">Đề Thi</span></a></li>
+					
 			<li><a href="#"><span class="icon fa fa-sticky-note mr-3"></span>
 					<span class="redirect">Thông Tin</span></a></li>
 

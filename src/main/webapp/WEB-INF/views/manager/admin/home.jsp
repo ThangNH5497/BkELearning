@@ -99,7 +99,7 @@
 							</div>
 							<p>Quản Lý các kho câu hỏi cho các bài thi và môn học</p>
 							<a target="_blank" rel="nofollow"
-								href="<c:url value='/admin/ql-mon-hoc'/>">Đi Đến →</a>
+								href="<c:url value='/admin/ql-cau-hoi/kho-chung?subject=ALL&level=ALL&type=ALL'/>">Đi Đến →</a>
 						</div>
 					</div>
 				</div>

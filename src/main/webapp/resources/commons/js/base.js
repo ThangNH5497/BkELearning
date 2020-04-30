@@ -64,6 +64,28 @@ class Base {
 			
 		});
     	
+    	//checkbox table data
+    	//set color for row checked by add class checked
+    	$(document).on('click', '#table-data-body input[type="checkbox"]', function () {
+    		 var a=$(this).parents('tr');
+             if($(this).prop("checked") == true){
+                 $(this).parents('tr').addClass('checked');
+             }
+             else if($(this).prop("checked") == false){
+            	 $(this).parents('tr').removeClass('checked');
+             }
+         });
+    	 //check-all
+    	 $('#select-all').click(function(){
+    		 $('#table-data-body tr[dataId] input[type="checkbox"]').prop('checked',true);
+    		 $('#table-data-body tr[dataId]').addClass('checked');
+         });
+    	 //de check-all
+    	 $('#deselect-all').click(function(){
+    		 $('#table-data-body input[type="checkbox"]').prop('checked',false);
+    		 $('#table-data-body tr').removeClass('checked');
+         });
+    	
     }
    // call ajax
     ajaxCall(method,async,url,data,functionHandle) {
@@ -201,7 +223,17 @@ class Base {
     //////////////questions/////////////////////////
     getQuestionById(questionId)
     {
-    	return this.ajaxCall('GET',false,'teacher/api/questions/'+questionId);
+    	return this.ajaxCall('GET',false,'manager/api/questions/'+questionId);
+    }
+    
+    //for exampaper api
+    getExamPaperByCode(code)
+    {
+    	return this.ajaxCall('GET',false,'api/exampapers/codes/'+code);
+    }
+    getExamPaperById(id)
+    {
+    	return this.ajaxCall('GET',false,'api/exampapers/'+id);
     }
     // init data for container data
     initData(containerId,rowDataId,data)

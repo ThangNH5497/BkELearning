@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import bk.elearning.entity.relationship.ExamInfo;
+
 @Entity
 public class Exam extends AbstractEntity {
 
@@ -34,15 +36,16 @@ public class Exam extends AbstractEntity {
 	@JoinColumn(name = "subject_id")
 	private Subject subject;
 
-	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<ExamPaper> examPaper;
+	@JsonIgnore
+	@OneToMany(mappedBy="exam",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<ExamInfo> examInfos;
 
 	public Exam() {
 		super();
 	}
 
 	public Exam(String code, String examName, String descriptor, Date timeStart, Date timeEnd, Subject subject,
-			Set<ExamPaper> examPaper) {
+			Set<ExamInfo> examInfos) {
 		super();
 		this.code = code;
 		this.examName = examName;
@@ -50,7 +53,7 @@ public class Exam extends AbstractEntity {
 		this.timeStart = timeStart;
 		this.timeEnd = timeEnd;
 		this.subject = subject;
-		this.examPaper = examPaper;
+		this.examInfos = examInfos;
 	}
 
 	public String getCode() {
@@ -102,12 +105,14 @@ public class Exam extends AbstractEntity {
 		this.subject = subject;
 	}
 
-	public Set<ExamPaper> getExamPaper() {
-		return examPaper;
+	public Set<ExamInfo> getExamInfos() {
+		return examInfos;
 	}
 
-	public void setExamPaper(Set<ExamPaper> examPaper) {
-		this.examPaper = examPaper;
+	public void setExamInfos(Set<ExamInfo> examInfos) {
+		this.examInfos = examInfos;
 	}
+
+	
 
 }

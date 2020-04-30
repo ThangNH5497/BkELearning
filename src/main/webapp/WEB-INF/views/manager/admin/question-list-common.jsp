@@ -21,15 +21,22 @@
 
 			<div
 				class="d-flex align-items-center justify-content-between mb-4 row">
-				<h1 class="col-8 h5 mb-0 text-gray-600">Ngân Hàng Câu Hỏi Chung</h1>
-				<a href="<c:url value='/teacher/ql-cau-hoi/them-cau-hoi'/>"
-					class=" col-1  btn btn-sm btn-primary shadow-sm"><i
-					class="fas fa-plus fa-sm text-white-50"></i>Thêm</a>
+				<h1 class="col-5 h5 mb-0 text-gray-600">Ngân Hàng Câu Hỏi Chung</h1>
+
+				<div class='col-7 justify-content-end d-flex'>
+					<a
+						href="<c:url value='/admin/ql-cau-hoi/kho-giang-vien?teacher=ALL&subject=ALL&level=ALL&type=ALL'/>"
+						class=" btn btn-sm btn-info shadow-sm btn-import"><i
+						class="fas fa-copy fa-sm text-white-50 mr-2"></i>Thêm Từ Kho Giảng Viên</a>
+					<a href="<c:url value='/admin/ql-cau-hoi/them-cau-hoi'/>"
+						class="ml-3 mr-3 btn btn-sm btn-primary shadow-sm"><i
+						class="fas fa-plus fa-sm text-white-50 mr-2"></i>Thêm</a>
+				</div>
 			</div>
 			<!-- filter -->
 			<nav class="navbar navbar-expand-lg navbar-light bg-white mb-4"
 				id='filetr'>
-			
+
 				<div class="custom-menu ">
 					<button id="sidebarCollapse"
 						class="btn btn-link mr-3 navbar-toggler text-primary border-0"
@@ -485,6 +492,8 @@
 <script src="<c:url value='/resources/manager/commons/js/search.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/delete.js' />"></script>
 <script
-	src="<c:url value='/resources/manager/teacher/js/question-list.js' />"></script>
+	src="<c:url value='/resources/manager/commons/js/question-list-base.js' />"></script>
+<script
+	src="<c:url value='/resources/manager/admin/js/question-list-common.js' />"></script>
 <!-- Footer -->
 <jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>

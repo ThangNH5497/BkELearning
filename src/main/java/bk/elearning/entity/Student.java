@@ -19,6 +19,11 @@ import bk.elearning.entity.relationship.StudentCourse;
 @DynamicUpdate
 public class Student extends User{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name="class_name")
 	private String className;
 	

@@ -23,9 +23,6 @@
 				class="d-flex align-items-center justify-content-between mb-4 row">
 				<h1 class="col-8 h5 mb-0 text-gray-600">Ngân Hàng Câu Hỏi Giảng
 					Viên</h1>
-				<a href="<c:url value='/teacher/ql-cau-hoi/them-cau-hoi'/>"
-					class=" col-1 btn btn-sm btn-primary shadow-sm"><i
-					class="fas fa-plus fa-sm text-white-50"></i>Thêm</a>
 			</div>
 			<!-- filter -->
 			<nav class="navbar navbar-expand-lg navbar-light bg-white mb-4"
@@ -43,7 +40,7 @@
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<div class="row d-flex w-100">
-						<div class="d-block col-md-12 col-lg-3 filter-item"
+						<div class="d-block col-md-12 col-lg-6 filter-item mt-3"
 							id="filter-teacher">
 							<h6 class="m-0 font-weight-bold text-primary col-9">Giảng Viên</h6>
 							<div class="input-group col-lg-11 col-md-12 d-flex mt-3">
@@ -58,7 +55,7 @@
 										aria-labelledby="dropdownMenuButton">
 										<a class="dropdown-item" href="#" value='ALL'>Tất Cả</a>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#" value=''>Tìm Môn Học</a>
+										<a class="dropdown-item" href="#" value=''>Tìm Giảng Viên</a>
 
 									</div>
 								</div>
@@ -66,7 +63,7 @@
 						</div>
 
 
-						<div class="d-block col-md-12 col-lg-3 filter-item"
+						<div class="d-block col-md-12 col-lg-6 filter-item mt-3"
 							id="filter-subject">
 							<h6 class="m-0 font-weight-bold text-primary col-9">Môn Học</h6>
 							<div class="input-group col-lg-11 col-md-12 d-flex mt-3">
@@ -88,7 +85,7 @@
 							</div>
 						</div>
 
-						<div class="d-block col-md-12 col-lg-3 filter-item"
+						<div class="d-block col-md-12 col-lg-6 filter-item mt-3"
 							id="filter-type">
 							<h6 class="m-0 font-weight-bold text-primary col-9">Loại Câu
 								Hỏi</h6>
@@ -117,7 +114,7 @@
 							</div>
 						</div>
 
-						<div class="d-block col-md-12 col-lg-3 filter-item"
+						<div class="d-block col-md-12 col-lg-6 filter-item mt-3"
 							id="filter-level">
 							<h6 class="m-0 font-weight-bold text-primary col-9">Độ Khó</h6>
 							<div class="input-group col-lg-11 col-md-12 d-flex mt-3">
@@ -160,8 +157,8 @@
 							Sách Câu hỏi</h6>
 						<div class="m-0"></div>
 						<div class="d-flex">
-							<button class="btn btn-delete text-danger btn-control">
-								<i class="fas fa-trash"></i>
+							<button class="btn btn-copy text-success btn-control">
+								<i class="fas fa-copy"></i>
 							</button>
 							<button class="btn btn-refresh text-primary btn-control">
 								<i class="fas fa-sync"></i>
@@ -244,11 +241,7 @@
 																style="box-shadow: none;">
 																<i class="far fa-eye"></i>
 															</button>
-															<button
-																class="btn btn-edit text-primary justify-content-center"
-																style="box-shadow: none;">
-																<i class="far fa-edit"></i>
-															</button>
+															
 														</td>
 
 													</tr>
@@ -379,29 +372,28 @@
 </div>
 
 <!-- modal alert -->
-<div class="modal modal-reset fade" id="modal-delete-alert"
+<div class="modal modal-reset fade" id="modal-alert"
 	tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<!--Header-->
-			<div class="modal-header bg-warning">
-				<p class="heading lead">Cảnh Báo</p>
+			<div class="modal-header bg-info">
+				<p class="heading lead">Xác Nhận</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true" class="white-text">×</span>
 				</button>
 			</div>
-
 			<!--Body-->
 			<div class="modal-body border-top my-3">
-				<div class="message">Bạn Có Muốn Tiếp Tục Xóa ?</div>
+				<div class="message"></div>
 
 				<div class="border-top my-3"></div>
 				<div class="d-flex justify-content-center">
 					<a type="button" class="btn  waves-effect btn-cancel"
 						data-dismiss="modal">Hủy</a><a type="button"
-						class="btn  waves-effect btn-delete-alert-ok">OK</a>
+						class="btn  waves-effect btn-alert-ok btn-submit" data-dismiss="modal">OK</a>
 				</div>
 			</div>
 
@@ -501,7 +493,96 @@
 	</div>
 	<!-- /.modal-dialog -->
 </div>
-<!-- modal choose file -->
+<!-- modal select teacher-->
+
+<!-- modal select subject -->
+<div class="modal  fade" id="modal-select-teacher" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<p class="heading lead">Chọn Giảng Viên</p>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+			<div class="modal-body pl-0 pr-0 pt-0">
+				<div class="">
+
+					<!-- End of Topbar -->
+					<!-- table -->
+					<nav
+						class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+						<form
+							class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+							<div class="input-group">
+								<input id="key-search-teacher" type="text"
+									class="form-control bg-light border-0 small"
+									placeholder="Nhập Mã Hoặc Tên..." aria-label="Search"
+									aria-describedby="basic-addon2">
+								<div class="input-group-append">
+									<button class="btn " type="button" id="btn-search-teacher"
+										style="background: #33b5e5; border-color: #33b5e5">
+										<i class="fas fa-search fa-sm text-white"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+					</nav>
+					<div class="table-responsive pl-3 pr-3  w-100">
+						<table class="table table-bordered w-100" 
+							cellspacing="0">
+							<!--  
+							<thead>
+								<tr>
+									<th class='column-0'>STT</th>
+									<th class='column-1'>Mã Môn Học</th>
+									<th class='column-2'>Tên Môn Học</th>
+								</tr>
+							</thead>
+							-->
+							<tbody id="table-data-body-teacher">
+								<tr id="row-data-container-teacher">
+									<td class='column-0' field='index'></td>
+									<td class='column-1' field='code'></td>
+									<td class='column-2' field='fullName'></td>
+								</tr>
+
+
+							</tbody>
+						</table>
+
+					</div>
+					<div class="p-4" id='pagination-teacher'>
+						<jsp:include page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
+					</div>
+
+					<!-- end table -->
+					<!-- pagination -->
+
+					<!-- end pagination -->
+				</div>
+				<div>
+					<div class="border-top my-3"></div>
+					<div class="d-flex justify-content-center">
+						<a type="button" class="btn  waves-effect btn-cancel"
+							data-dismiss="modal">Hủy</a><a type="button"
+							class="btn  waves-effect btn-submit disabled">Chọn</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- end modal select teacher -->
 
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>
@@ -509,6 +590,8 @@
 <script src="<c:url value='/resources/manager/commons/js/search.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/delete.js' />"></script>
 <script
-	src="<c:url value='/resources/manager/teacher/js/question-list.js' />"></script>
+	src="<c:url value='/resources/manager/commons/js/question-list-base.js' />"></script>
+	<script
+	src="<c:url value='/resources/manager/admin/js/question-list-teacher.js' />"></script>
 <!-- Footer -->
 <jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>

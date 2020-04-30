@@ -63,6 +63,8 @@ public class QuestionServiceImpl implements IQuestionService {
 	public int save(Question question) {
 		// TODO Auto-generated method stub
 		// encode html to java string
+		if(question.getTeacher()==null) question.setBankType(Constant.BANK_TYPE_PUBLIC);
+		else question.setBankType(Constant.BANK_TYPE_PRIVATE);
 		question.setContent(StringEscapeUtils.escapeHtml4(question.getContent()));
 		if (question.getSubject() != null) {
 			if (question.getSubject().getId() <= 0)
@@ -191,16 +193,27 @@ public class QuestionServiceImpl implements IQuestionService {
 			CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
 					.getPrincipal();
 
-			if (file != null && user != null) {
-				Teacher teacher = new Teacher();
-				teacher.setId(user.getId());
+			if (file != null ) {
+				Teacher teacher=null ;
+				if(user!=null&&user.getRole().equals(Constant.ROLE_TEACHER))
+				{
+					teacher = new Teacher();
+					teacher.setId(user.getId());
+				}
+				
 				mapper.setRootUrl(rootUrl);
 				List<Question> questions = FileUpload.processFileExel(file, mapper);
 				subject = subjectRepository.getById(subject.getId());
 				for (Question question : questions) {
 					try {
+						if(teacher!=null)
+						{
+							question.setTeacher(teacher);
+							question.setBankType(Constant.BANK_TYPE_PRIVATE);
+						}
+						else question.setBankType(Constant.BANK_TYPE_PUBLIC);
 						question.setSubject(subject);
-						question.setTeacher(teacher);
+						
 						questionRepository.save(question);
 						success++;
 					} catch (Exception e) {
@@ -219,12 +232,12 @@ public class QuestionServiceImpl implements IQuestionService {
 	}
 
 	@Override
-	public PaginationResult<Question> searchByFilter(int teacherId, String subjectId, String type, String level,
+	public PaginationResult<Question> searchByTeacherAndFilter(String teacherId, String subjectId, String type, String level,
 			String key, int page, int size) {
 		// TODO Auto-generated method stub
 		try {
-			if (teacherId > 0 && page > 0) {
-				PaginationResult<Question> result = questionRepository.searchByFilter(teacherId, subjectId, type, level,
+			if (page > 0) {
+				PaginationResult<Question> result = questionRepository.searchByTeacherAndFilter(teacherId, subjectId, type, level,
 						key, page - 1, size);
 				for (Question question : result.getData()) {
 					question.setContent(StringEscapeUtils.unescapeHtml4(question.getContent()));
@@ -242,11 +255,11 @@ public class QuestionServiceImpl implements IQuestionService {
 	}
 
 	@Override
-	public PaginationResult<Question> getByFilter(int teacherId, String subjectId, String type, String level, int page,
+	public PaginationResult<Question> getByTeacherAndFilter(String teacherId, String subjectId, String type, String level, int page,
 			int size) {
 		try {
-			if (teacherId > 0 && page > 0) {
-				PaginationResult<Question> result = questionRepository.getByFilter(teacherId, subjectId, type, level,
+			if (page > 0) {
+				PaginationResult<Question> result = questionRepository.getByTeacherAndFilter(teacherId, subjectId, type, level,
 						page - 1, size);
 				for (Question question : result.getData()) {
 					question.setContent(StringEscapeUtils.unescapeHtml4(question.getContent()));
@@ -262,6 +275,89 @@ public class QuestionServiceImpl implements IQuestionService {
 		}
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public PaginationResult<Question> getByBankTypeAndFilter(String subjectId, String type, String level, int page,
+			int size) {
+		// TODO Auto-generated method stub
+		try {
+			if (page > 0) {
+				PaginationResult<Question> result = questionRepository.getByBankTypeAndFilter(subjectId, type, level,
+						page - 1, size);
+				for (Question question : result.getData()) {
+					question.setContent(StringEscapeUtils.unescapeHtml4(question.getContent()));
+					for (Answer answer : question.getAnswers()) {
+						answer.setContent(StringEscapeUtils.unescapeHtml4(answer.getContent()));
+					}
+				}
+				return result;
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PaginationResult<Question> searchByBankTypeAndFilter( String subjectId, String type, String level,String key,
+			int page, int size) {
+		// TODO Auto-generated method stub
+		try {
+			if (page > 0) {
+				PaginationResult<Question> result = questionRepository.searchByBankTypeAndFilter(subjectId, type, level,
+						key, page - 1, size);
+				for (Question question : result.getData()) {
+					question.setContent(StringEscapeUtils.unescapeHtml4(question.getContent()));
+					for (Answer answer : question.getAnswers()) {
+						answer.setContent(StringEscapeUtils.unescapeHtml4(answer.getContent()));
+					}
+				}
+				return result;
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+	@Override
+	public int copyToPublicRepo(ArrayList<Integer> ids) {
+		// TODO Auto-generated method stub
+		int success=0;
+		try {
+			for (Integer integer : ids) {
+				Question question=questionRepository.getById(integer);
+				if(question!=null)
+				{
+					Question qCopy=new Question();
+					qCopy.setBankType(Constant.BANK_TYPE_PUBLIC);
+					qCopy.setName(question.getName());
+					qCopy.setLevel(question.getLevel());
+					qCopy.setSubject(question.getSubject());
+					qCopy.setContent(question.getContent());
+					qCopy.setType(question.getType());
+					qCopy.setAnswers(new ArrayList<Answer>());
+					for (Answer answer : question.getAnswers()) {
+						Answer aCopy=new Answer();
+						aCopy.setContent(answer.getContent());
+						aCopy.setWeight(answer.getWeight());
+						aCopy.setCorrect(answer.isCorrect());
+						aCopy.setQuestion(qCopy);
+						qCopy.getAnswers().add(aCopy);
+					}
+					questionRepository.save(qCopy);
+				}
+				success++;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return success;
 	}
 
 }

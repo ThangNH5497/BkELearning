@@ -1,4 +1,4 @@
-package bk.elearning.controller.teacher.api;
+package bk.elearning.controller.manager.api;
 
 import java.util.ArrayList;
 
@@ -27,8 +27,8 @@ import bk.elearning.service.IQuestionService;
 import bk.elearning.utils.Constant;
 import bk.elearning.utils.Message;
 
-@RestController("teacherQuestionApi")
-@RequestMapping(path = "teacher/api/questions")
+@RestController("managerQuestionApi")
+@RequestMapping(path = "manager/api/questions")
 public class QuestionApi {
 
 	@Autowired
@@ -60,10 +60,37 @@ public class QuestionApi {
 
 	// lấy theo bộ lọc
 	@GetMapping("/page/teachers/{teacherId}/subjects/{subjectId}/types/{type}/levels/{level}")
-	public PaginationResult<Question> getByFilter(@PathVariable int teacherId, @PathVariable String subjectId,
+	public PaginationResult<Question> getByTeacherAndFilter(@PathVariable String teacherId, @PathVariable String subjectId,
 			@PathVariable String type, @PathVariable String level, @RequestParam int page, int size) {
 		try {
-			return questionService.getByFilter(teacherId, subjectId, type, level, page, size);
+			return questionService.getByTeacherAndFilter(teacherId, subjectId, type, level, page, size);
+		} catch (Exception e) {
+
+		}
+		return null;
+
+	}
+
+	// lấy danh sách câu hỏi chung theo bộ lọc
+	@GetMapping("/page/subjects/{subjectId}/types/{type}/levels/{level}")
+	public PaginationResult<Question> getByBankTypeAndFilter(@PathVariable String subjectId, @PathVariable String type,
+			@PathVariable String level, @RequestParam int page, int size) {
+		try {
+			return questionService.getByBankTypeAndFilter(subjectId, type, level, page, size);
+		} catch (Exception e) {
+
+		}
+		return null;
+
+	}
+
+	// lấy danh sách câu hỏi chung theo bộ lọc
+	@GetMapping("/search/subjects/{subjectId}/types/{type}/levels/{level}")
+	public PaginationResult<Question> searchByBankTypeAndFilter(@PathVariable String subjectId,
+			@PathVariable String type, @PathVariable String level, @RequestParam(name = "q") String key,
+			@RequestParam int page, int size) {
+		try {
+			return questionService.searchByBankTypeAndFilter(subjectId, type, level, key, page, size);
 		} catch (Exception e) {
 
 		}
@@ -73,10 +100,11 @@ public class QuestionApi {
 
 	// tìm theo theo bộ lọc
 	@GetMapping("/search/teachers/{teacherId}/subjects/{subjectId}/types/{type}/levels/{level}")
-	public PaginationResult<Question> searchByFilter(@PathVariable int teacherId, @PathVariable String subjectId,
-			@PathVariable String type, @PathVariable String level, @RequestParam(name="q") String key,@RequestParam int page, int size) {
+	public PaginationResult<Question> searchByTeacherAndFilter(@PathVariable String teacherId, @PathVariable String subjectId,
+			@PathVariable String type, @PathVariable String level, @RequestParam(name = "q") String key,
+			@RequestParam int page, int size) {
 		try {
-			return questionService.searchByFilter(teacherId, subjectId, type, level,key, page, size);
+			return questionService.searchByTeacherAndFilter(teacherId, subjectId, type, level, key, page, size);
 		} catch (Exception e) {
 
 		}
@@ -94,9 +122,9 @@ public class QuestionApi {
 				Teacher teacher = new Teacher();
 				teacher.setId(user.getId());
 				question.setTeacher(teacher);
-				if (questionService.save(question) == 1)
-					return new Message(Constant.STATUS_SUCCESS, "Thêm Thành Công ");
 			}
+			if (questionService.save(question) == 1)
+				return new Message(Constant.STATUS_SUCCESS, "Thêm Thành Công ");
 
 		} catch (Exception e) {
 
@@ -104,32 +132,18 @@ public class QuestionApi {
 		return new Message(Constant.STATUS_ERROR, "Thêm Thất Bại. Vui Lòng Thử Lại! ");
 
 	}
-	
+
 	@PutMapping
 	public Message updateQuestion(@RequestBody Question question) {
 		try {
-				if (questionService.update(question) == 1)
-					return new Message(Constant.STATUS_SUCCESS, "Update Thành Công ");
-			
+			if (questionService.update(question) == 1)
+				return new Message(Constant.STATUS_SUCCESS, "Update Thành Công ");
+
 		} catch (Exception e) {
 
 		}
 		return new Message(Constant.STATUS_ERROR, "Update Thất Bại. Vui Lòng Thử Lại! ");
 
-	}
-
-	@PostMapping(path = "/file-multimedia")
-	public Message uploadFile(@RequestPart(name = "file", required = true) MultipartFile file) {
-
-		try {
-			
-			String path = questionService.uploadFile(file);
-			if (path != null)
-				return new Message(Constant.STATUS_SUCCESS, path);
-		} catch (Exception e) {
-
-		}
-		return new Message(Constant.STATUS_ERROR, "Thêm Thất Bại. Vui Lòng Thử Lại! ");
 	}
 
 	/**
@@ -141,11 +155,12 @@ public class QuestionApi {
 	 */
 	@PostMapping(path = "/import")
 	public Message importFromFile(@RequestPart(name = "file", required = true) MultipartFile file,
-			@RequestPart(name = "subject", required = false) Subject subject,HttpServletRequest req) {
+			@RequestPart(name = "subject", required = false) Subject subject, HttpServletRequest req) {
 		int result[] = { 0, 0 };
 		try {
-			 String rootUrl= req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath();
-			result = questionService.importFromFile(file, subject,rootUrl);
+			String rootUrl = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort()
+					+ req.getContextPath();
+			result = questionService.importFromFile(file, subject, rootUrl);
 			return new Message(Constant.STATUS_SUCCESS, "Import Thành Công " + result[0] + ", Thất Bại " + result[1]);
 		} catch (Exception e) {
 

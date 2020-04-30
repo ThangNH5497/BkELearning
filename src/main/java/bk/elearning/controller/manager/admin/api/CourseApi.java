@@ -1,6 +1,7 @@
-package bk.elearning.controller.admin.api;
+package bk.elearning.controller.manager.admin.api;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -16,59 +17,63 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
-import bk.elearning.entity.Subject;
+import bk.elearning.entity.Course;
 import bk.elearning.entity.dto.PaginationResult;
-import bk.elearning.service.ISubjectService;
+import bk.elearning.service.ICourseService;
 import bk.elearning.utils.Message;
 
-@RestController("adminSubjectApi")
-@RequestMapping(path = "/admin/api/subjects")
-public class SubjectApi {
+@RestController("adminCourseApi")
+@RequestMapping(path = "/admin/api/courses")
+@Transactional
+public class CourseApi {
 
 	@Autowired
-	private ISubjectService subjectService;
+	private ICourseService courseService;
 
 	// xoa theo id
 	@DeleteMapping(path = "/{id}")
-	public Message deleteSubjectById(@PathVariable int id) {
-		if (subjectService.delete(id)==1)
+	public Message deleteCourseById(@PathVariable int id) {
+		if (courseService.delete(id) == 1)
 			return new Message("Xóa Thành Công!");
 		return new Message("Xóa Thất Bại. Xin Thử Lại!");
 	}
 
 	// xoa nhieu 1 luc
 	@DeleteMapping(path = "/multiple")
-	public int deleteSubjectByIds(@RequestBody ArrayList<Integer> ids) {
-		return subjectService.deleteMultiple(ids);
+	public Message deleteCourseByIds(@RequestBody ArrayList<Integer> ids) {
+		int success = courseService.deleteMultiple(ids);
+		return new Message("Xóa Thành Công " + success + " !");
 	}
 
-	// tao moi giang vien
+	// tao moi course
 	@PostMapping()
-	public Message addNewSubject(@RequestPart("subject") Subject subject) {
+	public Message addNewCourse(@RequestPart("course") Course course) {
 
 		try {
-			if (subjectService.save(subject) == 1)
+			if (courseService.save(course) == 1)
 				return new Message("Thêm Thành Công!");
 		} catch (Exception e) {
 
 		}
-
-		return new Message("Thêm Thất Bại. Xin Thử Lại!");
+		return new Message("Thêm Thất Bại. Xin Thử Lại !");
 
 	}
 
 	// update
 	@PutMapping("/{id}")
-	public Message updateSubject(@PathVariable(name="id") int subjectId,@RequestPart("subject") Subject subject) {
-		
+	public Message updateCourse(@PathVariable(name = "id") int courseId, @RequestPart("course") Course course) {
+		course.setId(courseId);
 		try {
-			subject.setId(subjectId);
-			if (subjectService.update(subject) == 1)
-				return new Message("Cập Nhật Thành Công!");
+			if (courseService.update(course) == 1)
+				return new Message("Cập Nhật Thành Công");
 		} catch (Exception e) {
-
+			System.out.println("ex : " + e.toString());
 		}
-		return new Message("Cập Nhật Thất Bại. Xin Thử lại!");
+
+		return new Message("Cập Nhật Thất Bại. Xin Thử Lại Sau!");
+
 	}
+
+	
 
 }

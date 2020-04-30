@@ -1,25 +1,5 @@
 function deleteEvents(urlApi)
 {
-	//set color for row checked by add class checked
-	$(document).on('click', '#table-data-body input[type="checkbox"]', function () {
-		 var a=$(this).parents('tr');
-         if($(this).prop("checked") == true){
-             $(this).parents('tr').addClass('checked');
-         }
-         else if($(this).prop("checked") == false){
-        	 $(this).parents('tr').removeClass('checked');
-         }
-     });
-	 //select-all
-	 $('#select-all').click(function(){
-		 $('#table-data-body tr[dataId] input[type="checkbox"]').prop('checked',true);
-		 $('#table-data-body tr[dataId]').addClass('checked');
-     });
-	 //de select-all
-	 $('#deselect-all').click(function(){
-		 $('#table-data-body input[type="checkbox"]').prop('checked',false);
-		 $('#table-data-body tr').removeClass('checked');
-     });
 	// btn-delete click
 	$('.btn-delete').on('click', function() {
 

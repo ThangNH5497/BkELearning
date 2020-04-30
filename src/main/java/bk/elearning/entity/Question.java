@@ -1,6 +1,7 @@
 package bk.elearning.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +15,8 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import bk.elearning.entity.relationship.ExamPaperInfo;
+
 @Entity
 @DynamicUpdate
 public class Question extends AbstractEntity {
@@ -23,6 +26,8 @@ public class Question extends AbstractEntity {
 	private int level;
 
 	private String type;
+	
+	private String bankType;
 
 	@Column(name = "content", columnDefinition = "TEXT", nullable = false)
 	private String content;
@@ -36,10 +41,9 @@ public class Question extends AbstractEntity {
 	@JoinColumn(name = "subject_id")
 	private Subject subject;
 
-	@ManyToOne
 	@JsonIgnore
-	@JoinColumn(name = "exam_paper_id")
-	private ExamPaper examPaper;
+	@OneToMany(mappedBy="question",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<ExamPaperInfo> examPaperInfos;
 
 	@ManyToOne
 	@JoinColumn(name = "teacher_id")
@@ -47,38 +51,55 @@ public class Question extends AbstractEntity {
 
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Answer.class, orphanRemoval = true)
 	private List<Answer> answers;
+	
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private QuestionCategory category;
 
 	public Question() {
 		super();
 	}
 
-	public Question(String name, int level, String type, String content, QuestionCategory questionCategory,
-			Subject subject, ExamPaper examPaper, List<Answer> answers, Teacher teacher) {
+	public Question(String name, int level, String type,String bankType, String content, QuestionCategory questionCategory,
+			Subject subject, ExamPaper examPaper, Set<ExamPaperInfo> examPaperInfos, Teacher teacher,List<Answer> answers,QuestionCategory category) {
 		super();
 
 		this.name = name;
 		this.level = level;
 		this.content = content;
 		this.type = type;
+		this.bankType=bankType;
 		this.questionCategory = questionCategory;
 		this.subject = subject;
-		this.examPaper = examPaper;
+		this.examPaperInfos = examPaperInfos;
 		this.answers = answers;
 		this.teacher = teacher;
+		this.category=category;
 	}
 
-	public Question(int id, String name, int level, String type, String content, QuestionCategory questionCategory,
-			Subject subject, ExamPaper examPaper, List<Answer> answers, Teacher teacher) {
+	public Question(int id, String name, int level, String type,String bankType, String content, QuestionCategory questionCategory,
+			Subject subject, Set<ExamPaperInfo> examPaperInfos, List<Answer> answers, Teacher teacher,QuestionCategory category) {
 		super(id);
 		this.name = name;
 		this.level = level;
 		this.content = content;
 		this.questionCategory = questionCategory;
 		this.subject = subject;
-		this.examPaper = examPaper;
+		this.examPaperInfos = examPaperInfos;
 		this.answers = answers;
 		this.teacher = teacher;
 		this.type = type;
+		this.bankType=bankType;
+		this.category=category;
+	}
+
+	
+	public String getBankType() {
+		return bankType;
+	}
+
+	public void setBankType(String bankType) {
+		this.bankType = bankType;
 	}
 
 	public String getName() {
@@ -121,12 +142,14 @@ public class Question extends AbstractEntity {
 		this.subject = subject;
 	}
 
-	public ExamPaper getExamPaper() {
-		return examPaper;
+	
+
+	public Set<ExamPaperInfo> getExamPaperInfos() {
+		return examPaperInfos;
 	}
 
-	public void setExamPaper(ExamPaper examPaper) {
-		this.examPaper = examPaper;
+	public void setExamPaperInfos(Set<ExamPaperInfo> examPaperInfos) {
+		this.examPaperInfos = examPaperInfos;
 	}
 
 	public List<Answer> getAnswers() {
@@ -153,4 +176,12 @@ public class Question extends AbstractEntity {
 		this.type = type;
 	}
 
+	public QuestionCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(QuestionCategory category) {
+		this.category = category;
+	}
+	
 }

@@ -1,11 +1,8 @@
-package bk.elearning.controller.admin;
+package bk.elearning.controller.manager.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import bk.elearning.utils.FileUpload;
-import bk.elearning.utils.Util;
 
 @Controller
 @RequestMapping("/admin")
@@ -38,6 +35,18 @@ public class AdminController {
 	public String getQuestionListViewCommon(@RequestParam String subject,@RequestParam String level,@RequestParam String type)
 	{
 		return "manager/admin/question-list-common";
+	}
+	
+	@RequestMapping("/ql-cau-hoi/kho-chung/cap-nhat")
+	public String editQuestionView(@RequestParam int id)
+	{
+		return "manager/admin/edit-question";
+	}
+	
+	@RequestMapping("/ql-cau-hoi/them-cau-hoi")
+	public String addQuestionView()
+	{
+		return "manager/admin/add-question";
 	}
 	
 	@RequestMapping("/ql-cau-hoi/kho-giang-vien")

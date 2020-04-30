@@ -1,4 +1,4 @@
-package bk.elearning.controller.admin.api;
+package bk.elearning.controller.manager.admin.api;
 
 import java.util.ArrayList;
 import java.util.List;

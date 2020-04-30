@@ -48,11 +48,11 @@ function handlePagination(paginationId,dataContainerId,rowDataContainerId,url,ca
 				}
 					
 			}
-			updatePagination(object);
-			// add events
-			addEvents(object);
+			
 		}
-		
+		updatePagination(object);
+		// add events
+		addEvents(object);
 	} catch (e) {
 		// TODO: handle exception
 		console.log(e);

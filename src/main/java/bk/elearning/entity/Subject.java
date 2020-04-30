@@ -28,7 +28,7 @@ public class Subject extends AbstractEntity{
 	private List<Course> courses;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="subject",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="subject",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<Question> questions;
 	
 	@JsonIgnore

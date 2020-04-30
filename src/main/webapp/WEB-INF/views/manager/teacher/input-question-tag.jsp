@@ -64,7 +64,7 @@
 	</div>
 
 	<div class="wrap-editor col-9">
-		<div class="answer-editor"></div>
+		<div class="answer-editor" ></div>
 	</div>
 	<div class="col-1 justify-content-start">
 

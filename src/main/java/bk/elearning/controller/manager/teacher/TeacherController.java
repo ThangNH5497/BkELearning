@@ -1,4 +1,4 @@
-package bk.elearning.controller.teacher;
+package bk.elearning.controller.manager.teacher;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,5 +44,17 @@ public class TeacherController {
 	public String detailSubjectManagementView(@RequestParam("id") int id)
 	{
 		return "manager/teacher/course-detail";
+	}
+
+	@RequestMapping("/ql-de-thi/them-moi")
+	public String getAddExamPaperView()
+	{
+		return "manager/teacher/add-exampaper";
+	}
+	
+	@RequestMapping("/ql-de-thi/chinh-sua")
+	public String getEditExamPaperView(@RequestParam(name="id") int id)
+	{
+		return "manager/teacher/edit-exampaper";
 	}
 }
