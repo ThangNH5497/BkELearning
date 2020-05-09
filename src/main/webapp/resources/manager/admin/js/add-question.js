@@ -14,7 +14,7 @@ $(document).ready(function() {
 	eventsHandle();
 	initEditor(FLAG_ADD,'manager/api/questions/file-multimedia');
 	importFromFile('manager/api/questions/import');
-	uploadQuestionHandle("POST",'admin/api/questions',function(){
+	uploadQuestionHandle("POST",'manager/api/questions',function(){
 		reload();
 	});
 });

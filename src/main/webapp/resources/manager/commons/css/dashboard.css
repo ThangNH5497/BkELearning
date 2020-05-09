@@ -115,6 +115,10 @@ body {
 	#sidebar.active {
 		margin-left: 0;
 	}
+	#content
+	{
+		width: 100% !important;
+	}
 }
 
 #sidebar .custom-menu {

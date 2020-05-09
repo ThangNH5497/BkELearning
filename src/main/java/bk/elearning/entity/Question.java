@@ -26,80 +26,48 @@ public class Question extends AbstractEntity {
 	private int level;
 
 	private String type;
-	
-	private String bankType;
+
 
 	@Column(name = "content", columnDefinition = "TEXT", nullable = false)
 	private String content;
 
-	@ManyToOne
 	@JsonIgnore
-	@JoinColumn(name = "question_category_id")
-	private QuestionCategory questionCategory;
-
-	@ManyToOne
-	@JoinColumn(name = "subject_id")
-	private Subject subject;
-
-	@JsonIgnore
-	@OneToMany(mappedBy="question",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private Set<ExamPaperInfo> examPaperInfos;
-
-	@ManyToOne
-	@JoinColumn(name = "teacher_id")
-	private Teacher teacher;
+	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<ExamPaperInfo> examPaperInfos;
 
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Answer.class, orphanRemoval = true)
 	private List<Answer> answers;
-	
-	@ManyToOne
+
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "category_id")
-	private QuestionCategory category;
+	private Category category;
 
 	public Question() {
 		super();
 	}
 
-	public Question(String name, int level, String type,String bankType, String content, QuestionCategory questionCategory,
-			Subject subject, ExamPaper examPaper, Set<ExamPaperInfo> examPaperInfos, Teacher teacher,List<Answer> answers,QuestionCategory category) {
+	public Question(String name, int level, String type, String content, ExamPaper examPaper,
+			Set<ExamPaperInfo> examPaperInfos, List<Answer> answers,Category category) {
 		super();
-
 		this.name = name;
 		this.level = level;
 		this.content = content;
 		this.type = type;
-		this.bankType=bankType;
-		this.questionCategory = questionCategory;
-		this.subject = subject;
 		this.examPaperInfos = examPaperInfos;
 		this.answers = answers;
-		this.teacher = teacher;
-		this.category=category;
+		this.category = category;
 	}
 
-	public Question(int id, String name, int level, String type,String bankType, String content, QuestionCategory questionCategory,
-			Subject subject, Set<ExamPaperInfo> examPaperInfos, List<Answer> answers, Teacher teacher,QuestionCategory category) {
+	public Question(int id, String name, int level, String type,String content,
+			Set<ExamPaperInfo> examPaperInfos, List<Answer> answers,Category category) {
 		super(id);
 		this.name = name;
 		this.level = level;
 		this.content = content;
-		this.questionCategory = questionCategory;
-		this.subject = subject;
 		this.examPaperInfos = examPaperInfos;
 		this.answers = answers;
-		this.teacher = teacher;
 		this.type = type;
-		this.bankType=bankType;
-		this.category=category;
-	}
-
-	
-	public String getBankType() {
-		return bankType;
-	}
-
-	public void setBankType(String bankType) {
-		this.bankType = bankType;
+		this.category = category;
 	}
 
 	public String getName() {
@@ -118,6 +86,15 @@ public class Question extends AbstractEntity {
 		this.level = level;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
 	public String getContent() {
 		return content;
 	}
@@ -125,24 +102,6 @@ public class Question extends AbstractEntity {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
-	public QuestionCategory getQuestionCategory() {
-		return questionCategory;
-	}
-
-	public void setQuestionCategory(QuestionCategory questionCategory) {
-		this.questionCategory = questionCategory;
-	}
-
-	public Subject getSubject() {
-		return subject;
-	}
-
-	public void setSubject(Subject subject) {
-		this.subject = subject;
-	}
-
-	
 
 	public Set<ExamPaperInfo> getExamPaperInfos() {
 		return examPaperInfos;
@@ -160,28 +119,13 @@ public class Question extends AbstractEntity {
 		this.answers = answers;
 	}
 
-	public Teacher getTeacher() {
-		return teacher;
-	}
-
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public QuestionCategory getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(QuestionCategory category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
+
 	
 }

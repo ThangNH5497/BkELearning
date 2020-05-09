@@ -42,7 +42,8 @@
 					<div class="row d-flex w-100">
 						<div class="d-block col-md-12 col-lg-6 filter-item mt-3"
 							id="filter-teacher">
-							<h6 class="m-0 font-weight-bold text-primary col-9">Giảng Viên</h6>
+							<h6 class="m-0 font-weight-bold text-primary col-9">Giảng
+								Viên</h6>
 							<div class="input-group col-lg-11 col-md-12 d-flex mt-3">
 								<input class="form-control" type="text" val='ALL' readonly>
 								<div class="input-group-append border-0 dropdown">
@@ -241,7 +242,7 @@
 																style="box-shadow: none;">
 																<i class="far fa-eye"></i>
 															</button>
-															
+
 														</td>
 
 													</tr>
@@ -305,13 +306,13 @@
 								<span class='text-gray-600 '>Môn Học</span>
 							</div>
 							<div class="col-6">
-								<span class='text-primary ' field='subject.subjectName'></span>
+								<span class='text-primary ' field='category.subject.subjectName'></span>
 							</div>
 
 						</div>
 						<div class="col-6 row d-flex">
 							<span class='text-gray-600  col-6'>Người Tạo</span> <span
-								class='text-primary  col-6' field='teacher.fullName'></span>
+								class='text-primary  col-6' field='category.user.fullName'></span>
 						</div>
 					</div>
 					<div class="descriptor row p-4">
@@ -372,8 +373,8 @@
 </div>
 
 <!-- modal alert -->
-<div class="modal modal-reset fade" id="modal-alert"
-	tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+<div class="modal modal-reset fade" id="modal-alert" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<!--Header-->
@@ -393,7 +394,8 @@
 				<div class="d-flex justify-content-center">
 					<a type="button" class="btn  waves-effect btn-cancel"
 						data-dismiss="modal">Hủy</a><a type="button"
-						class="btn  waves-effect btn-alert-ok btn-submit" data-dismiss="modal">OK</a>
+						class="btn  waves-effect btn-alert-ok btn-submit"
+						data-dismiss="modal">OK</a>
 				</div>
 			</div>
 
@@ -483,7 +485,10 @@
 					<div class="d-flex justify-content-center">
 						<a type="button" class="btn  waves-effect btn-cancel"
 							data-dismiss="modal">Hủy</a><a type="button"
-							class="btn  waves-effect btn-submit disabled">Chọn</a>
+							class="btn  waves-effect btn-submit disabled"
+							id='btn-select-subject'>Chọn</a> <a type="button"
+							class="btn  waves-effect btn-submit disabled hidden"
+							id='btn-select-subject-copy'>Tiếp Tục</a>
 					</div>
 				</div>
 			</div>
@@ -493,6 +498,54 @@
 	</div>
 	<!-- /.modal-dialog -->
 </div>
+
+<!-- modal select category for copy -->
+<div class="modal  fade" id="modal-select-category" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<p class="heading lead">Chọn Danh Mục</p>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+
+			<div class="modal-body p-4">
+				<div class="row mt-3">
+					<div class='col-2'>
+						<label>Danh Mục (*)</label>
+					</div>
+
+					<div class="form-group col-9">
+						<select class="form-control" id="question-category">
+							<!-- <option value=''>Chương 1</option> -->
+						</select>
+					</div>
+				</div>
+				<div>
+					<div class="border-top my-3"></div>
+					<div class="d-flex justify-content-center">
+						<a type="button" class="btn waves-effect btn-cancel"
+							data-dismiss="modal">Hủy</a><a type="button"
+							class="btn  waves-effect btn-submit">Xác Nhận</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+<!-- end modal select category -->
+
 <!-- modal select teacher-->
 
 <!-- modal select subject -->
@@ -535,8 +588,7 @@
 						</form>
 					</nav>
 					<div class="table-responsive pl-3 pr-3  w-100">
-						<table class="table table-bordered w-100" 
-							cellspacing="0">
+						<table class="table table-bordered w-100" cellspacing="0">
 							<!--  
 							<thead>
 								<tr>
@@ -572,7 +624,7 @@
 					<div class="d-flex justify-content-center">
 						<a type="button" class="btn  waves-effect btn-cancel"
 							data-dismiss="modal">Hủy</a><a type="button"
-							class="btn  waves-effect btn-submit disabled">Chọn</a>
+							class="btn  waves-effect btn-submit disabled">Tiếp Tục</a>
 					</div>
 				</div>
 			</div>
@@ -583,6 +635,55 @@
 	<!-- /.modal-dialog -->
 </div>
 <!-- end modal select teacher -->
+<!-- modal select category-->
+<div class="modal modal-reset fade" id="modal-add-category" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<p class="heading lead">Thêm Danh Mục</p>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+			<div class="modal-body">
+				<div class="form-container">
+					<div class="form-v4">
+						<div class="form-v4-content">
+							<form class="form-detail" action="#" method="post"
+								id="form-add-new">
+								<h2>Thông Tin Danh Mục</h2>
+
+								<div class="form-row">
+									<label for="code">Tên Danh Mục (*)</label> <input type="text"
+										name="name" class="input-text" required> <label
+										name="name-error" class="error hidden">Tên Danh Mục Trống</label>
+
+								</div>
+
+							</form>
+						</div>
+					</div>
+					<!--Footer-->
+					<div class="border-top my-3"></div>
+					<div class="d-flex justify-content-center">
+						<a type="button" class="btn  waves-effect btn-cancel"
+							data-dismiss="modal">Hủy</a> <a type="button"
+							class="btn  waves-effect btn-submit">Thêm</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
 
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>
@@ -591,7 +692,7 @@
 <script src="<c:url value='/resources/manager/commons/js/delete.js' />"></script>
 <script
 	src="<c:url value='/resources/manager/commons/js/question-list-base.js' />"></script>
-	<script
+<script
 	src="<c:url value='/resources/manager/admin/js/question-list-teacher.js' />"></script>
 <!-- Footer -->
 <jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>

@@ -12,10 +12,12 @@ public interface IQuestionRepository extends IGenericRepository<Question>,ISubje
 			int size);
 	
 
-	PaginationResult<Question> getByBankTypeAndFilter(String subjectId, String type, String level, int i, int size);
+	PaginationResult<Question> getPublicQuestion(String subjectId, String type, String level, int i, int size);
 
-	PaginationResult<Question> searchByBankTypeAndFilter(String subjectId, String type, String level, String key, int i,
+	PaginationResult<Question> searchPublicQuestion(String subjectId, String type, String level, String key, int i,
 			int size);
+
+
 	
 
 }

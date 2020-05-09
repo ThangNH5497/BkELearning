@@ -1,6 +1,7 @@
 package bk.elearning.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,25 +29,24 @@ public class Subject extends AbstractEntity{
 	private List<Course> courses;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="subject",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	private List<Question> questions;
-	
-	@JsonIgnore
 	@OneToMany(mappedBy="subject",fetch = FetchType.LAZY)
 	private List<Exam> exams;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="subject",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<Category> category;
 
 	public Subject() {
 		super();
 	}
 
-	public Subject(String code, String subjectName, String descriptor, List<Course> courses, List<Question> questions,
+	public Subject(String code, String subjectName, String descriptor, List<Course> courses,
 			List<Exam> exams) {
 		super();
 		this.code = code;
 		this.subjectName = subjectName;
 		this.descriptor = descriptor;
 		this.courses = courses;
-		this.questions = questions;
 		this.exams = exams;
 	}
 
@@ -82,20 +82,20 @@ public class Subject extends AbstractEntity{
 		this.courses = courses;
 	}
 
-	public List<Question> getQuestions() {
-		return questions;
-	}
-
-	public void setQuestions(List<Question> questions) {
-		this.questions = questions;
-	}
-
 	public List<Exam> getExams() {
 		return exams;
 	}
 
 	public void setExams(List<Exam> exams) {
 		this.exams = exams;
+	}
+
+	public Set<Category> getCategory() {
+		return category;
+	}
+
+	public void setCategory(Set<Category> category) {
+		this.category = category;
 	}
 	
 	

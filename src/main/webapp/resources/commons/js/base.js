@@ -235,6 +235,12 @@ class Base {
     {
     	return this.ajaxCall('GET',false,'api/exampapers/'+id);
     }
+    
+    //for category
+    getCategoryBySubject(subjectId)
+    {
+    	return this.ajaxCall('GET',false,'manager/api/categorys/subjects/'+subjectId);
+    }
     // init data for container data
     initData(containerId,rowDataId,data)
     {

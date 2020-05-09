@@ -81,7 +81,32 @@
 						<div class="col-1"></div>
 
 					</div>
+
+
+					<div class="form-group row mt-3">
+						<label for="inputName" class="col-2 col-form-label">Tên
+							Câu Hỏi</label>
+						<div class="col-9">
+							<input type="text" class="form-control" id="inputName" required
+								placeholder="name">
+						</div>
+						<div class="col-1"></div>
+					</div>
+
+
 					<div class="row mt-3">
+						<div class='col-2'>
+							<label>Danh Mục (*)</label>
+						</div>
+
+						<div class="form-group col-9">
+							<select class="form-control" id="question-category">
+								<!-- <option value=''>Chương 1</option> -->
+							</select>
+						</div>
+					</div>
+
+					<div class="row">
 						<div class='col-2'>
 							<label>Loại Câu Hỏi</label>
 						</div>
@@ -108,30 +133,7 @@
 							</select>
 						</div>
 					</div>
-					<!--  
-				<form>
-					<div class="form-group row">
-						<label for="inputPassword" class="col-2 col-form-label">Mã
-							Câu Hỏi</label>
-						<div class="col-9">
-							<input type="text" class="form-control" id="inputCode" required
-								placeholder="code">
-						</div>
-						<div class="col-1"></div>
-					</div>
-				</form>-->
-					<form>
 
-						<div class="form-group row">
-							<label for="inputName" class="col-2 col-form-label">Tên
-								Câu Hỏi</label>
-							<div class="col-9">
-								<input type="text" class="form-control" id="inputName" required
-									placeholder="name">
-							</div>
-							<div class="col-1"></div>
-						</div>
-					</form>
 				</div>
 			</div>
 		</div>
@@ -269,9 +271,7 @@
 							class="btn  waves-effect btn-submit disabled"
 							id='btn-submit-subject'>Chọn</a> <a type="button"
 							class="btn  waves-effect btn-submit disabled hidden"
-							style="margin-right: 10%;" id='btn-select-file'>Chọn</a> <a
-							type="button" class="btn  waves-effect btn-next hidden"
-							id='btn-next-step'>Bỏ Qua</a>
+							style="margin-right: 10%;" id='btn-select-subject-import'>Tiếp Tục</a>
 
 					</div>
 				</div>

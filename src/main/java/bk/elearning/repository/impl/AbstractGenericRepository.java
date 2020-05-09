@@ -280,6 +280,7 @@ public abstract class AbstractGenericRepository<T> implements IGenericRepository
 			session.clear();
 			System.out.println("ex "+e.toString());
 		}
+
 		return query;
 	}
 

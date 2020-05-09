@@ -27,7 +27,7 @@
 		}
 		$('#sidebarCollapse').on('click', function() {
 			$('#sidebar').toggleClass('active');
-			console.log('aaaaaaaaaaaaaaaaa');
+
 			if($('#sidebar').hasClass("active"))
 			{
 				

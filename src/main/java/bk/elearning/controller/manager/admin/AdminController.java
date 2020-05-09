@@ -60,4 +60,10 @@ public class AdminController {
 	{
 		return "manager/admin/course-list";
 	}
+	
+	@RequestMapping("/ql-danh-muc")
+	public String getCategoryView(@RequestParam(required = false,name="subject") Integer subjectId)
+	{
+		return "manager/admin/category-list";
+	}
 }

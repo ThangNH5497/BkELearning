@@ -15,11 +15,13 @@ function initEditor(flag,urlApi)
 		question=obj.getQuestionById(obj.getParam('id'));
 		//init question subject input
 		try {
-			$('#question-subject').attr('subjectId',question.subject.id);
-			$('#question-subject').val(question.subject.code+'-'+question.subject.subjectName);
+			$('#question-subject').attr('subjectId',question.category.subject.id);
+			$('#question-subject').val(question.category.subject.code+'-'+question.category.subject.subjectName);
 		} catch (e) {
 			// TODO: handle exception
 		}
+		showCategory('question-category',$('#question-subject').attr('subjectId'));
+		$('#question-category option[value='+question.category.id+']').prop('selected', true);
 		//init type question
 		$('#question-type option').each(function() {
 		    if($(this).val() == question.type) {
@@ -248,7 +250,7 @@ function initAnswerEditor(answerEditor,content)
 function validInput()
 {
 	
-	var inputRequire=$('input[required]');
+	var inputRequire=$('#question-info input[required]');
 	var check=true;
 	for (var i = 0; i < inputRequire.length; i++) {
 		if($(inputRequire[i]).val()=="")
@@ -270,11 +272,19 @@ function validInput()
 		
 		check=false;
 	}
-	else
+	else if($('#question-category option:selected').val()==""
+		||$('#question-category option:selected').val()==undefined
+		||$('#question-category option:selected').val()==null)
 	{
 		$('#question-subject').removeClass('border-danger');
+		$(window).scrollTop($('#question-category').offset().top-100);
+		$('#question-category').addClass('border-danger');
+		check=false;
 	}
-	
+	else
+	{
+		$('#question-category').removeClass('border-danger');
+	}
 	if(check==true)
 	{
 		//check content empty
@@ -368,11 +378,9 @@ function uploadQuestionHandle(method,urlApi,successFunction)
 			question.name=$('#inputName').val();
 			question.level=$("#question-level option:selected").val();
 			question.type=$("#question-type option:selected").val();
-			//gán môn học
-			var subjectId=$('#question-subject').attr('subjectId');
-			if(subjectId!=0&&subjectId!=null&&subjectId!=undefined)
-			{
-				question.subject={id:subjectId};
+
+			question.category={
+					id:$('#question-category option:selected').val()
 			}
 			//lấy nội dung câu hỏi
 			question.content = $('#question-editor').summernote('code');
@@ -455,10 +463,13 @@ function importFromFile(urlApi)
 			$('#modal-message').modal({backdrop: 'static', keyboard: false}) ;
 			var message="";
 			try {				
-				var formData = new FormData();	
+				var formData = new FormData();
+				var category={
+						id:$('#modal-select-category option:selected').val()
+				}
 				//them file vao data
 		        formData.append('file', $('#modal-file #input-file-exel')[0].files[0]);	
-		        formData.append("subject", new Blob([JSON.stringify(subject)], {
+		        formData.append("category", new Blob([JSON.stringify(category)], {
 		            type: "application/json"
 		        }));
 		        obj.saveOrUpdate("POST",true,urlApi,formData, obj.showMessage);
@@ -475,6 +486,8 @@ function importFromFile(urlApi)
 function eventsHandle()
 {
 	removeAnswerEditor();
+	createCategoryEvent();
+	
 	//add answer editor
 	$(document).on('click', '.btn-add-answer', function () {
 		addAnswerEditor();
@@ -483,7 +496,7 @@ function eventsHandle()
 	//click btn select subject
 	$(document).on('click', '.btn-select-subject', function () {
 		$('#modal-select-subject #btn-submit-subject').removeClass('hidden');
-		$('#modal-select-subject #btn-select-file').addClass('hidden');
+		$('#modal-select-subject #btn-select-subject-import').addClass('hidden');
 		//$('#modal-select-subject #btn-next-step').addClass('hidden');
 		//open modal select subject
 		$(document).off('click', '#modal-select-subject .btn-submit', function () {});
@@ -495,33 +508,50 @@ function eventsHandle()
 		$('#question-subject').val($('#table-data-body .selected [field=code]').text()+' - '
 								  +$('#table-data-body .selected [field=subjectName]').text());
 		$('#question-subject').attr('subjectId',$('#table-data-body .selected').attr('dataId'));
+		//init category of subject
+		showCategory('question-category',$('#table-data-body .selected').attr('dataId'));
 		//close modal
 		$('#modal-select-subject').modal('hide');
 	});
+	
 	//click btn import
 	//open modal import
 	$(document).on('click', '.btn-import', function () {
 		$('#modal-select-subject #btn-submit-subject').addClass('hidden');
-		$('#modal-select-subject #btn-select-file').removeClass('hidden');
+		$('#modal-select-subject #btn-select-subject-import').removeClass('hidden');
 	//	$('#modal-select-subject #btn-next-step').removeClass('hidden');
 		$('#modal-select-subject').modal('show');
 	});
 	//open modal select file import
-	$(document).on('click', '#btn-select-file', function () {
+	$(document).on('click', '#btn-select-subject-import', function () {
 		var id=$('#table-data-body .selected').attr("dataId");
 		if(id!=""&&id!=undefined&&id!=null)
 		{
 			$('#modal-select-subject').modal('hide');
-			$('#modal-file').modal('show');
 			subject={id:id};
+			showCategory('question-category-import',id);
+			setTimeout(function(){
+				$('#modal-select-category').modal('show');
+			}, 500);
+			
 		}
 		else alert('Chọn Môn Học Trước !');
 		
 	});
-	$(document).on('click', '.btn-import', function () {
-		$('#modal-select-subject').modal('show');
+	//select file after select category
+	$(document).on('click', '#modal-select-category .btn-submit', function (e) {
+		if($('#modal-select-category option:selected').val()!=''
+			&& $('#modal-select-category option:selected').val()!='add-category')
+		{
+			$('#modal-select-category').modal('hide');
+			setTimeout(function(){
+				$('#modal-file').modal('show');
+			}, 500);
+		}
+		else alert('Vui Lòng Chọn Danh Mục Câu Hỏi .');
 	});
 	
+	//reload page
 	$(document).on('click', '.btn-reload', function () {
 		window.location.reload(true);
 	});
@@ -568,4 +598,104 @@ function eventsHandle()
 		}
 	});
 	
+}
+function createCategoryEvent()
+{
+	var redirectModal=false;
+	// add new category
+	$('#question-category').change(function() {
+		if($(this).val()=='add-category')			
+		{
+			$('#modal-add-category').modal('show');
+		}
+	});
+	$('#question-category-import').change(function() {
+		if($(this).val()=='add-category')			
+		{
+			redirectModal=true;
+			$('#modal-select-category').modal('hide');
+			setTimeout(function(){ 
+				$('#modal-add-category').modal('show');
+			}, 500);
+			
+			
+		}
+	});
+	$(document).on('click', '#modal-add-category .btn-submit', function () {
+		try {
+			
+			if($('#modal-add-category input').val()=="")
+			{
+				$('#modal-add-category input').addClass('border-danger');
+				$('#modal-add-category input').addClass('border-danger');
+				$('#modal-add-category label[name=name-error]').removeClass('hidden');
+				
+			}
+			else {
+				$('#modal-add-category').modal('hide');
+				$('#modal-add-category input').removeClass('border-danger');
+				$('#modal-add-category label[name=name-error]').addClass('hidden');
+				
+				var category={
+						name:$('#modal-add-category input').val(),
+				}
+				if(redirectModal==true)
+				{
+					category.subject={
+						id:$('#modal-select-subject tr.selected').attr('dataId')
+					}
+				}
+				else
+				{
+					category.subject={
+							id:$('#question-subject').attr('subjectId')
+						}
+				}
+				var message=obj.ajaxCall('POST',false,'manager/api/categorys',category,null);
+				alert(message.msg);
+				//reload category 
+				$('#modal-add-category').modal('hide');
+				
+				if(redirectModal==true)
+				{
+					redirectModal=false;
+					showCategory('question-category-import',category.subject.id);
+					setTimeout(function(){ 
+						$('#modal-select-category').modal('show');
+					}, 500);
+				}
+			}
+		} catch (e) {
+			// TODO: handle exception
+			alert('Có Lỗi Xảy Ra . Vui Lòng Thử Lại !');
+		}
+		
+	});
+	$(document).on('hidden.bs.modal', '#modal-add-category', function () {
+		var id=$('#question-subject').attr('subjectId');
+		//init category of subject
+		showCategory('question-category',id);
+	});
+}
+
+function showCategory(containerId,subjectId)
+{
+	$('#'+containerId).empty();
+	var rowHtml="<option value='add-category'>Thêm Danh Mục</option>";
+	$('#'+containerId).append(rowHtml);
+	var categorys=obj.getCategoryBySubject(subjectId);
+	if(categorys!=null&&categorys!=""&&categorys!=undefined)
+	{
+		for (var i = 0; i < categorys.length; i++) {
+			if(i==0)
+				rowHtml="<option selected value='"+categorys[i].id+"'>"+categorys[i].name+"</option>";
+			else rowHtml="<option value='"+categorys[i].id+"'>"+categorys[i].name+"</option>";
+			$('#'+containerId).append(rowHtml);
+		}
+	}
+	else
+	{
+		var rowHtml="<option class='hidden' selected value=''>Không Có Danh Mục Cho Môn Học</option>";
+		$('#'+containerId).append(rowHtml);
+	}
 }

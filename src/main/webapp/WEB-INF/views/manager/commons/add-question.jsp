@@ -66,7 +66,7 @@
 			<div class="card-body">
 				<h5 class="mb-4 font-weight-bold text-primary col-12 text-center">Thông
 					Tin Câu Hỏi</h5>
-				<div id="question-infor mt-3">
+				<div id="question-info">
 					<div class="row">
 						<label class='col-2 col-form-label'>Môn Học (*)</label>
 						<div class="input-group col-9">
@@ -91,8 +91,20 @@
 							<div class="col-1"></div>
 						</div>
 					</form>
-
+					
 					<div class="row mt-3">
+						<div class='col-2'>
+							<label>Danh Mục (*)</label>
+						</div>
+
+						<div class="form-group col-9">
+							<select class="form-control" id="question-category">
+								<!-- <option value=''>Chương 1</option> -->
+							</select>
+						</div>
+					</div>
+
+					<div class="row">
 						<div class='col-2'>
 							<label>Loại Câu Hỏi (*)</label>
 						</div>
@@ -259,10 +271,8 @@
 							class="btn  waves-effect btn-submit disabled"
 							id='btn-submit-subject'>Chọn</a> <a type="button"
 							class="btn  waves-effect btn-submit disabled hidden"
-							id='btn-select-file'>Chọn</a>
-						<!--  <a
-							type="button" class="btn  waves-effect btn-next hidden"
-							id='btn-next-step'>Bỏ Qua</a> -->
+							id='btn-select-subject-import'>Tiếp Tục</a>
+
 
 					</div>
 				</div>
@@ -409,3 +419,96 @@
 </div>
 
 <!-- end modal alert -->
+<div class="modal modal-reset fade" id="modal-add-category" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<p class="heading lead">Thêm Danh Mục</p>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+			<div class="modal-body">
+				<div class="form-container">
+					<div class="form-v4">
+						<div class="form-v4-content">
+							<form class="form-detail" action="#" method="post"
+								id="form-add-new">
+								<h2>Thông Tin Danh Mục</h2>
+
+								<div class="form-row">
+									<label for="code">Tên Danh Mục (*)</label> <input type="text"
+										name="name" class="input-text" required> <label
+										name="name-error" class="error hidden">Tên Danh Mục Trống</label>
+
+								</div>
+
+							</form>
+						</div>
+					</div>
+					<!--Footer-->
+					<div class="border-top my-3"></div>
+					<div class="d-flex justify-content-center">
+						<a type="button" class="btn  waves-effect btn-cancel"
+							data-dismiss="modal">Hủy</a> <a type="button"
+							class="btn  waves-effect btn-submit">Thêm</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+
+<!-- modal select category -->
+<div class="modal  fade" id="modal-select-category" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<p class="heading lead">Chọn Danh Mục</p>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+
+			<div class="modal-body p-4">
+				<div class="row mt-3">
+					<div class='col-2'>
+						<label>Danh Mục (*)</label>
+					</div>
+
+					<div class="form-group col-9">
+						<select class="form-control" id="question-category-import">
+							<!-- <option value=''>Chương 1</option> -->
+						</select>
+					</div>
+				</div>
+				<div>
+					<div class="border-top my-3"></div>
+					<div class="d-flex justify-content-center">
+						<a type="button" class="btn waves-effect btn-cancel"
+							data-dismiss="modal">Hủy</a><a type="button"
+							class="btn  waves-effect btn-submit">Xác Nhận</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<!-- /.modal-content -->
+</div>

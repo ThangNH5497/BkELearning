@@ -57,4 +57,10 @@ public class TeacherController {
 	{
 		return "manager/teacher/edit-exampaper";
 	}
+	
+	@RequestMapping("/ql-danh-muc")
+	public String getCategoryView(@RequestParam(required = false,name="subject") Integer subjectId)
+	{
+		return "manager/teacher/category-list";
+	}
 }

@@ -209,7 +209,7 @@
 																	class="custom-control-label" for="check-1"></label>
 															</div></td>
 														<td class="table-cell column1" field="index"></td>
-														<td class="table-cell column2" field="subject.subjectName"></td>
+														<td class="table-cell column2" field="category.subject.subjectName"></td>
 														<td class="table-cell column3" field="name"></td>
 														<td class="table-cell column4">
 															<div class="d-flex">
@@ -295,13 +295,13 @@
 								<span class='text-gray-600 '>Môn Học</span>
 							</div>
 							<div class="col-6">
-								<span class='text-primary ' field='subject.subjectName'></span>
+								<span class='text-primary ' field='category.subject.subjectName'></span>
 							</div>
 
 						</div>
 						<div class="col-6 row d-flex">
 							<span class='text-gray-600  col-6'>Người Tạo</span> <span
-								class='text-primary  col-6' field='teacher.fullName'></span>
+								class='text-primary  col-6' field='category.user.fullName'></span>
 						</div>
 					</div>
 					<div class="descriptor row p-4">

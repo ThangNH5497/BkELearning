@@ -18,9 +18,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import bk.elearning.entity.Category;
 import bk.elearning.entity.Question;
-import bk.elearning.entity.Subject;
-import bk.elearning.entity.Teacher;
 import bk.elearning.entity.dto.CustomUserDetails;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.service.IQuestionService;
@@ -73,10 +72,10 @@ public class QuestionApi {
 
 	// lấy danh sách câu hỏi chung theo bộ lọc
 	@GetMapping("/page/subjects/{subjectId}/types/{type}/levels/{level}")
-	public PaginationResult<Question> getByBankTypeAndFilter(@PathVariable String subjectId, @PathVariable String type,
+	public PaginationResult<Question> getPublicQuestion(@PathVariable String subjectId, @PathVariable String type,
 			@PathVariable String level, @RequestParam int page, int size) {
 		try {
-			return questionService.getByBankTypeAndFilter(subjectId, type, level, page, size);
+			return questionService.getPublicQuestion(subjectId, type, level, page, size);
 		} catch (Exception e) {
 
 		}
@@ -86,11 +85,11 @@ public class QuestionApi {
 
 	// lấy danh sách câu hỏi chung theo bộ lọc
 	@GetMapping("/search/subjects/{subjectId}/types/{type}/levels/{level}")
-	public PaginationResult<Question> searchByBankTypeAndFilter(@PathVariable String subjectId,
+	public PaginationResult<Question> searchPublicQuestion(@PathVariable String subjectId,
 			@PathVariable String type, @PathVariable String level, @RequestParam(name = "q") String key,
 			@RequestParam int page, int size) {
 		try {
-			return questionService.searchByBankTypeAndFilter(subjectId, type, level, key, page, size);
+			return questionService.searchPublicQuestion(subjectId, type, level, key, page, size);
 		} catch (Exception e) {
 
 		}
@@ -115,14 +114,12 @@ public class QuestionApi {
 	@PostMapping
 	public Message createQuestion(@RequestBody Question question) {
 		try {
-			// user loged (teacher)
-			CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
-					.getPrincipal();
-			if (user.getRole().equals(Constant.ROLE_TEACHER)) {
-				Teacher teacher = new Teacher();
-				teacher.setId(user.getId());
-				question.setTeacher(teacher);
-			}
+			/*
+			 * // user loged (teacher) CustomUserDetails user = (CustomUserDetails)
+			 * SecurityContextHolder.getContext().getAuthentication() .getPrincipal(); if
+			 * (user.getRole().equals(Constant.ROLE_TEACHER)) { Teacher teacher = new
+			 * Teacher(); teacher.setId(user.getId()); question.setTeacher(teacher); }
+			 */
 			if (questionService.save(question) == 1)
 				return new Message(Constant.STATUS_SUCCESS, "Thêm Thành Công ");
 
@@ -155,12 +152,12 @@ public class QuestionApi {
 	 */
 	@PostMapping(path = "/import")
 	public Message importFromFile(@RequestPart(name = "file", required = true) MultipartFile file,
-			@RequestPart(name = "subject", required = false) Subject subject, HttpServletRequest req) {
+			@RequestPart(name = "category", required = false) Category category, HttpServletRequest req) {
 		int result[] = { 0, 0 };
 		try {
 			String rootUrl = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort()
 					+ req.getContextPath();
-			result = questionService.importFromFile(file, subject, rootUrl);
+			result = questionService.importFromFile(file, category, rootUrl);
 			return new Message(Constant.STATUS_SUCCESS, "Import Thành Công " + result[0] + ", Thất Bại " + result[1]);
 		} catch (Exception e) {
 

@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
+import bk.elearning.entity.Category;
 import bk.elearning.entity.Question;
+import bk.elearning.entity.Teacher;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.service.IQuestionService;
 import bk.elearning.utils.Constant;
@@ -27,10 +30,10 @@ public class QuestionApi {
 	
 
 	@PostMapping(path = "/copy")
-	public Message copyToPublicRepo(@RequestBody ArrayList<Integer> ids) {
+	public Message copyToPublicRepo(@RequestPart("ids") ArrayList<Integer> ids,@RequestPart("category") Category category) {
 		try {
 			// user loged (teacher)
-			int success=questionService.copyToPublicRepo(ids) ;
+			int success=questionService.copyToPublicRepo(ids,category) ;
 			return new Message(Constant.STATUS_SUCCESS, "Sao Chép Thành Công "+String.valueOf(success)+" , Thất Bại "+String.valueOf(ids.size()-success));
 
 		} catch (Exception e) {

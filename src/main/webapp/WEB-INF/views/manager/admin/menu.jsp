@@ -46,6 +46,7 @@
 			<ul class="collapse list-unstyled bg-white rounded" id="pageSubmenu">
 				<li><a href="<c:url value='/admin/ql-cau-hoi/kho-chung?subject=ALL&level=ALL&type=ALL'/>" id='question-bank-common-menu' class="text-gray-600 text-sm  rounded"><span class="redirect ml-4">Kho Chung</span></a></li>
 				<li><a href="<c:url value='/admin/ql-cau-hoi/kho-giang-vien?teacher=ALL&subject=ALL&level=ALL&type=ALL'/>" id='question-bank-teacher-menu' class="text-gray-600 text-sm  rounded"> <span class="redirect ml-4">Kho Giảng Viên</span></a></li>
+				<li><a href="<c:url value='/admin/ql-danh-muc'/>"  class="text-gray-600 text-sm  rounded"> <span class="redirect ml-4" id='category-list'>QL Danh Mục</span></a></li>
 			</ul>
 			<!-- end collapse -->
 

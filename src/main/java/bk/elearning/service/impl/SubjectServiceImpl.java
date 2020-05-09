@@ -34,7 +34,6 @@ public class SubjectServiceImpl implements ISubjectService {
 		// TODO Auto-generated method stub
 		t.setCourses(null);
 		t.setExams(null);
-		t.setQuestions(null);
 		return subjectRepository.save(t);
 	}
 

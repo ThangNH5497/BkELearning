@@ -4,6 +4,9 @@ $(document).ready(function() {
 	$('#modal-select-subject ul.pagination').addClass('pagination-sm');
 	$('#sidebar .active').removeClass('active');
 	$('#menu-item-question').addClass('active');
+	$('#pageSubmenu').collapse('show');
+	$('#question-list').addClass('text-primary');
+	
 	//lay du lieu trang va phan trang
 	handlePagination('pagination','table-data-body','row-data-container','api/subjects/page?');
 	//search events

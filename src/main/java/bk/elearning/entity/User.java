@@ -2,11 +2,15 @@ package bk.elearning.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -50,6 +54,10 @@ public class User extends AbstractEntity implements Serializable{
 	private Date dateOfBirth;
 
 	private String image;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<Category> category;
 
 	/*
 	 * @JsonIgnore
@@ -62,6 +70,9 @@ public class User extends AbstractEntity implements Serializable{
 	 */
 	public User() {
 
+	}
+	public User(int id) {
+		super(id);
 	}
 
 	public User(String code, String username, String password, String fullName, String email, String addr,
@@ -172,5 +183,12 @@ public class User extends AbstractEntity implements Serializable{
 	public void setRole(String role) {
 		this.role = role;
 	}
+	public Set<Category> getCategory() {
+		return category;
+	}
+	public void setCategory(Set<Category> category) {
+		this.category = category;
+	}
 
+	
 }

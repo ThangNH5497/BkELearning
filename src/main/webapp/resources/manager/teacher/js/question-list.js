@@ -4,6 +4,8 @@ $(document).ready(function() {
 	$('#sidebar .active').removeClass('active');
 	$('#menu-item-question').addClass('active');
 	$('#modal-select-subject ul.pagination').addClass('pagination-sm');
+	$('#pageSubmenu').collapse('show');
+	$('#question-list').addClass('text-primary');
 	init();
 	
 	tableDataEvents();
