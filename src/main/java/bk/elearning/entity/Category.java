@@ -28,16 +28,19 @@ public class Category extends AbstractEntity {
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	private String bankType;
+	
 	@ManyToOne
 	@JoinColumn(name = "subject_id")
 	private Subject subject;
 
-	public Category(int id, String name, List<Question> questions, User user, Subject subject) {
+	public Category(int id, String name, List<Question> questions, User user, Subject subject,String bankType) {
 		super(id);
 		this.name = name;
 		this.questions = questions;
 		this.user = user;
 		this.subject = subject;
+		this.bankType=bankType;
 	}
 
 	public Category() {
@@ -76,4 +79,13 @@ public class Category extends AbstractEntity {
 		this.subject = subject;
 	}
 
+	public String getBankType() {
+		return bankType;
+	}
+
+	public void setBankType(String bankType) {
+		this.bankType = bankType;
+	}
+
+	
 }

@@ -1,7 +1,11 @@
 package bk.elearning.repository;
 
+import java.util.ArrayList;
+
 import bk.elearning.entity.Question;
+import bk.elearning.entity.dto.CustomUserDetails;
 import bk.elearning.entity.dto.PaginationResult;
+import bk.elearning.entity.dto.QuestionFilter;
 
 public interface IQuestionRepository extends IGenericRepository<Question>,ISubjectComponentRepository<Question>{
 
@@ -16,6 +20,9 @@ public interface IQuestionRepository extends IGenericRepository<Question>,ISubje
 
 	PaginationResult<Question> searchPublicQuestion(String subjectId, String type, String level, String key, int i,
 			int size);
+
+
+	ArrayList<Question> getRandomQuestion(QuestionFilter filter, CustomUserDetails user);
 
 
 	

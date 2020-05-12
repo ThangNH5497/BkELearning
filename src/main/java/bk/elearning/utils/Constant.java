@@ -19,9 +19,9 @@ public class Constant {
 	
 	public static final String ROLE_STUDENT="ROLE_STUDENT";
 	
-	public static final String BANK_TYPE_PUBLIC="PUBLIC";
+	public static final String BANK_TYPE_ADMIN="BANK_ADMIN";
 	
-	public static final String BANK_TYPE_PRIVATE="PRIVATE";
+	public static final String BANK_TYPE_TEACHER="BANK_TEACHER";
 	
 	public static final String MSG_STUDENT_EXIS="Sinh Viên Đã Tồn Tại Trong Lớp";
 	

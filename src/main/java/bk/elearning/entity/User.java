@@ -23,6 +23,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User extends AbstractEntity implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "code", nullable = false, unique = true)
 	private String code;
 
@@ -58,6 +63,10 @@ public class User extends AbstractEntity implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy="user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Category> category;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<ExamPaper> examPapers;
 
 	/*
 	 * @JsonIgnore
@@ -104,6 +113,15 @@ public class User extends AbstractEntity implements Serializable{
 		this.role = role;
 	}
 
+	
+	
+	
+	public Set<ExamPaper> getExamPapers() {
+		return examPapers;
+	}
+	public void setExamPapers(Set<ExamPaper> examPapers) {
+		this.examPapers = examPapers;
+	}
 	public String getCode() {
 		return code;
 	}

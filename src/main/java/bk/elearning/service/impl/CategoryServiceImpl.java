@@ -41,6 +41,9 @@ public class CategoryServiceImpl implements ICategoryService{
 			if(user!=null&&t.getSubject()!=null)
 			{
 				t.setUser(new User(user.getId()));
+				if(user.getRole().equals(Constant.ROLE_ADMIN)) t.setBankType(Constant.BANK_TYPE_ADMIN);
+				else if(user.getRole().equals(Constant.ROLE_TEACHER)) t.setBankType(Constant.BANK_TYPE_TEACHER);
+				else return 0;
 			}
 			categoryRepo.save(t);
 			return 1;

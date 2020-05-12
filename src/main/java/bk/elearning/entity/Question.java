@@ -10,12 +10,13 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import bk.elearning.entity.relationship.ExamPaperInfo;
+import bk.elearning.entity.relationship.ExamPaperQuestion;
 
 @Entity
 @DynamicUpdate
@@ -33,7 +34,7 @@ public class Question extends AbstractEntity {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<ExamPaperInfo> examPaperInfos;
+	private Set<ExamPaperQuestion> examPaperQuestions;
 
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Answer.class, orphanRemoval = true)
 	private List<Answer> answers;
@@ -45,26 +46,22 @@ public class Question extends AbstractEntity {
 	public Question() {
 		super();
 	}
-
-	public Question(String name, int level, String type, String content, ExamPaper examPaper,
-			Set<ExamPaperInfo> examPaperInfos, List<Answer> answers,Category category) {
-		super();
-		this.name = name;
-		this.level = level;
-		this.content = content;
-		this.type = type;
-		this.examPaperInfos = examPaperInfos;
-		this.answers = answers;
-		this.category = category;
-	}
-
-	public Question(int id, String name, int level, String type,String content,
-			Set<ExamPaperInfo> examPaperInfos, List<Answer> answers,Category category) {
+	
+	public Question(int id, String name, int level, String type,String content) {
 		super(id);
 		this.name = name;
 		this.level = level;
 		this.content = content;
-		this.examPaperInfos = examPaperInfos;
+		this.type = type;
+	}
+
+	public Question(int id, String name, int level, String type,String content,
+			Set<ExamPaperQuestion> examPaperQuestions, List<Answer> answers,Category category) {
+		super(id);
+		this.name = name;
+		this.level = level;
+		this.content = content;
+		this.examPaperQuestions = examPaperQuestions;
 		this.answers = answers;
 		this.type = type;
 		this.category = category;
@@ -103,12 +100,12 @@ public class Question extends AbstractEntity {
 		this.content = content;
 	}
 
-	public Set<ExamPaperInfo> getExamPaperInfos() {
-		return examPaperInfos;
+	public Set<ExamPaperQuestion> getExamPaperQuestions() {
+		return examPaperQuestions;
 	}
 
-	public void setExamPaperInfos(Set<ExamPaperInfo> examPaperInfos) {
-		this.examPaperInfos = examPaperInfos;
+	public void setExamPaperQuestions(Set<ExamPaperQuestion> examPaperQuestions) {
+		this.examPaperQuestions = examPaperQuestions;
 	}
 
 	public List<Answer> getAnswers() {

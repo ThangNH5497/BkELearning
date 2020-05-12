@@ -64,7 +64,7 @@ public class CategoryRepositoryImpl extends AbstractGenericRepository<Category> 
 		return null;
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public ArrayList<Category> getBySubject(int subjectId,int userId) {
 		// TODO Auto-generated method stub

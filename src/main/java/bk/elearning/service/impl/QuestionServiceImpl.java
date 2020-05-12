@@ -15,6 +15,7 @@ import bk.elearning.entity.Question;
 import bk.elearning.entity.User;
 import bk.elearning.entity.dto.CustomUserDetails;
 import bk.elearning.entity.dto.PaginationResult;
+import bk.elearning.entity.dto.QuestionFilter;
 import bk.elearning.repository.IAnswerRepository;
 import bk.elearning.repository.IQuestionRepository;
 import bk.elearning.repository.ISubjectRepository;
@@ -64,13 +65,10 @@ public class QuestionServiceImpl implements IQuestionService {
 		// encode html to java string
 		CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
-		if(user!=null)
-		{
+		if (user != null&&question.getCategory()!=null) {
+			
 			question.getCategory().setUser(new User(user.getId()));
 			question.setContent(StringEscapeUtils.escapeHtml4(question.getContent()));
-			if (question.getCategory() == null) {
-				return 0;
-			}
 			for (
 
 			Answer answer : question.getAnswers()) {
@@ -81,7 +79,7 @@ public class QuestionServiceImpl implements IQuestionService {
 			return questionRepository.save(question);
 		}
 		return 0;
-		
+
 	}
 
 	@Override
@@ -194,22 +192,20 @@ public class QuestionServiceImpl implements IQuestionService {
 			CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
 					.getPrincipal();
 
-			if (file != null&&category!=null) {
-				if (user != null) {
-					mapper.setRootUrl(rootUrl);
-					List<Question> questions = FileUpload.processFileExel(file, mapper);
-					for (Question question : questions) {
-						try {
-							question.setCategory(category);
-							questionRepository.save(question);
-							success++;
-						} catch (Exception e) {
-							// TODO: handle exception
-						}
-
+			if (file != null && category != null && user != null) {
+				mapper.setRootUrl(rootUrl);
+				List<Question> questions = FileUpload.processFileExel(file, mapper);
+				for (Question question : questions) {
+					try {
+						question.setCategory(category);
+						questionRepository.save(question);
+						success++;
+					} catch (Exception e) {
+						// TODO: handle exception
 					}
-					error = questions.size() - success;
+
 				}
+				error = questions.size() - success;
 
 			}
 
@@ -296,8 +292,8 @@ public class QuestionServiceImpl implements IQuestionService {
 		// TODO Auto-generated method stub
 		try {
 			if (page > 0) {
-				PaginationResult<Question> result = questionRepository.searchPublicQuestion(subjectId, type, level,
-						key, page - 1, size);
+				PaginationResult<Question> result = questionRepository.searchPublicQuestion(subjectId, type, level, key,
+						page - 1, size);
 				for (Question question : result.getData()) {
 					question.setContent(StringEscapeUtils.unescapeHtml4(question.getContent()));
 					for (Answer answer : question.getAnswers()) {
@@ -314,7 +310,7 @@ public class QuestionServiceImpl implements IQuestionService {
 	}
 
 	@Override
-	public int copyToPublicRepo(ArrayList<Integer> ids,Category category) {
+	public int copyToPublicRepo(ArrayList<Integer> ids, Category category) {
 		// TODO Auto-generated method stub
 		int success = 0;
 		try {
@@ -346,5 +342,26 @@ public class QuestionServiceImpl implements IQuestionService {
 
 		return success;
 	}
+
+	@Override
+	public ArrayList<Question> getRandomQuestion(QuestionFilter filter) {
+		// TODO Auto-generated method stub
+		CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		if(filter!=null&&user!=null) {
+			ArrayList<Question> questions= questionRepository.getRandomQuestion(filter,user);
+			for (Question question : questions) {
+				question.setContent(StringEscapeUtils.unescapeHtml4(question.getContent()));
+				for (Answer answer : question.getAnswers()) {
+					answer.setContent(StringEscapeUtils.unescapeHtml4(answer.getContent()));
+				}
+			}
+			return questions;
+		}
+		return null;
+		
+	}
+
+	
 
 }

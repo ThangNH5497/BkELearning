@@ -120,7 +120,8 @@
 												<span>...</span>
 											</div>
 										</div>
-										<div class="row col-lg-2 col-md-3 justify-content-between d-flex">
+										<div
+											class="row col-lg-2 col-md-3 justify-content-between d-flex">
 											<button class="m-0 btn btn-view text-info btn-control col-3">
 												<i class="far fa-eye"></i>
 											</button>
@@ -130,7 +131,7 @@
 											</button>
 											<div class="form-group m-0 col-6">
 												<div>
-													<input class="form-control" type="text">
+													<input class="form-control question-grade" type="text">
 												</div>
 											</div>
 
@@ -141,22 +142,60 @@
 							</div>
 						</div>
 					</div>
+					<div class="card mt-3">
+						<div class="card-body p-2 mt-1 mb-1">
+							<div class='row d-flex'>
+								<div class="d-flex col-lg-10 col-md-9 align-self-center">
 
+								</div>
+								<div
+									class="row col-lg-2 col-md-3 justify-content-between d-flex">
+									<label class='col-6'>Tổng </label>
+									<div class="form-group m-0 col-6">
+										<div>
+											<input class="form-control question-grade-sum" type="text"
+												readonly>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
 					<!-- button add question -->
 					<div class="d-flex w-100 justify-content-between mt-4">
 						<a href="#" class="btn btn-primary btn-icon-split btn-sm"> <span
 							class="icon text-white-50"> <i class="fas fa-cut"></i>
 						</span> <span class="text">Trang Mới</span>
 						</a>
-						<div class="dropdown">
-							<button class="btn btn-success dropdown-toggle btn-sm"
-								type="button" id="dropdownMenuButton" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false">Thêm Câu Hỏi</button>
-							<div class="dropdown-menu dropdown-menu-right"
-								aria-labelledby="dropdownMenuButton">
-								<a class="dropdown-item" href="#">Thêm Mới</a> <a
-									class="dropdown-item btn-select-question" href="#">Ngân
-									Hàng Câu hỏi</a> <a class="dropdown-item" href="#">Ngẫu Nhiên</a>
+
+						<div class='d-flex'>
+
+							<div class="dropdown mr-4">
+								<button class="btn btn-success dropdown-toggle btn-sm"
+									type="button" id="dropdownMenuButton" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">Nâng Cao</button>
+								<div class="dropdown-menu dropdown-menu-right"
+									aria-labelledby="dropdownMenuButton">
+									<a
+										class="dropdown-item btn-question-shuffle"
+										href="#">Đảo Câu Hỏi</a> <a class="dropdown-item btn-answer-shuffle"
+										href="#">Đảo Đáp Án</a>
+								</div>
+							</div>
+
+							<div class="dropdown">
+								<button class="btn btn-success dropdown-toggle btn-sm"
+									type="button" id="dropdownMenuButton" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">Thêm Câu
+									Hỏi</button>
+								<div class="dropdown-menu dropdown-menu-right"
+									aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item btn-select-question" href="#">Ngân
+										Hàng Câu hỏi</a> <a class="dropdown-item btn-random-question"
+										href="#">Ngẫu Nhiên</a>
+								</div>
 							</div>
 						</div>
 
@@ -467,13 +506,13 @@
 								<span class='text-gray-600 '>Môn Học</span>
 							</div>
 							<div class="col-6">
-								<span class='text-primary ' field='subject.subjectName'></span>
+								<span class='text-primary ' field='category.subject.subjectName'></span>
 							</div>
 
 						</div>
 						<div class="col-6 row d-flex">
 							<span class='text-gray-600  col-6'>Người Tạo</span> <span
-								class='text-primary  col-6' field='teacher.fullName'></span>
+								class='text-primary  col-6' field='category.user.fullName'></span>
 						</div>
 					</div>
 					<div class="descriptor row p-4">
@@ -533,5 +572,196 @@
 	<!-- /.modal-dialog -->
 </div>
 
+<!-- modal select random -->
+<div class="modal fade" id="modal-random-question" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content" style="min-height: 50vh;">
+			<!--Header-->
+			<div class="modal-header">
+				<p class="heading lead">Lấy Ngẫu Nhiên Câu Hỏi</p>
 
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+			<div class="modal-body pl-0 pr-0 pt-0">
+				<div class='filter-content' style="min-height: 50vh;">
+					<div class="form-group row mt-4 px-4">
+						<label for="inputName" class="col-3 col-form-label">Số
+							Lượng Câu Hỏi</label>
+						<div class="col-9">
+							<input type="text" class="form-control" id="input-question"
+								required>
+						</div>
+						<div class="col-1"></div>
+					</div>
+
+					<div class="form-group row px-4">
+						<label for="inputName" class="col-3 col-form-label">Môn
+							Học</label> <label for="inputName"
+							class="col-9 col-form-label text-primary subject"></label>
+						<div class="col-1"></div>
+					</div>
+
+					<div class="form-group row px-4">
+						<label for="inputName" class="col-3 col-form-label">Kho
+							Giảng Viên</label> <label for="inputName"
+							class="col-9 col-form-label text-primary user"></label>
+						<div class="col-1"></div>
+					</div>
+
+					<div class='d-flex px-4 pb-4'>
+						<div class='col-3 align-self-center p-0'>
+							<label for="inputName" class="col-form-label">Bộ Lọc</label>
+						</div>
+						<div class="dropdown col-3 pl-0 pr-4"
+							id='random-question-filter-level'>
+							<button class="btn btn-secondary dropdown-toggle mt-4 mb-4 w-100"
+								type="button" data-toggle="dropdown">
+								<span class="dropdown-text"> Độ Khó</span> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu pl-1">
+								<li><div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input check-all"
+											id="level-check-all" value='ALL'> <label
+											class="custom-control-label" for="level-check-all">Chọn
+											Tất Cả</label>
+									</div></li>
+								<li><div class="dropdown-divider"></div></li>
+								<li><div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="level-check-1" value='0'> <label
+											class="custom-control-label" for="level-check-1">Dễ</label>
+									</div></li>
+								<li><div class="dropdown-divider"></div></li>
+								<li><div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="level-check-2" value='1'> <label
+											class="custom-control-label" for="level-check-2">Trung
+											Bình</label>
+									</div></li>
+								<li><div class="dropdown-divider"></div></li>
+								<li><div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="level-check-3" value='2'> <label
+											class="custom-control-label" for="level-check-3">Khó</label>
+									</div></li>
+							</ul>
+						</div>
+						<div class="dropdown col-3 pl-0 pr-4"
+							id='random-question-filter-type'>
+							<button class="btn btn-secondary dropdown-toggle mt-4 mb-4 w-100"
+								type="button" data-toggle="dropdown">
+								<span class="dropdown-text"> Loại Câu Hỏi</span> <span
+									class="caret"></span>
+							</button>
+							<ul class="dropdown-menu pl-1">
+								<li><div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input check-all"
+											id="type-check-all" value='ALL'> <label
+											class="custom-control-label" for="type-check-all">Chọn
+											Tất Cả</label>
+									</div></li>
+								<li><div class="dropdown-divider"></div></li>
+								<li><div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="type-check-1" value='ONE_CHOICE'> <label
+											class="custom-control-label" for="type-check-1">Một
+											Đáp Án</label>
+									</div></li>
+								<li><div class="dropdown-divider"></div></li>
+								<li><div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="type-check-2" value='MULTIPLE_CHOICE'> <label
+											class="custom-control-label" for="type-check-2">Nhiều
+											Đáp Án</label>
+									</div></li>
+								<li><div class="dropdown-divider"></div></li>
+								<li><div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="type-check-3" value='FILL_WORD'> <label
+											class="custom-control-label" for="type-check-3">Điền
+											Từ</label>
+									</div></li>
+							</ul>
+						</div>
+						<div class="dropdown col-3 pl-0 pr-4">
+							<button class="btn btn-secondary dropdown-toggle mt-4 mb-4 w-100"
+								type="button" data-toggle="dropdown">
+								<span class="dropdown-text">Danh Mục</span> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu pl-1"
+								id='random-question-filter-category'>
+								<li><div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input check-all"
+											id="category-check-all" value="ALL"> <label
+											class="custom-control-label" for="category-check-all">Chọn
+											Tất Cả</label>
+									</div></li>
+
+								<li id='category-item-sample' class='hidden'><div
+										class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input"
+											id="category-check-sample"> <label
+											class="custom-control-label" for="category-check-sample"></label>
+									</div></li>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div class="border-top my-3"></div>
+					<div class="d-flex justify-content-center">
+						<a type="button" class="btn  waves-effect btn-cancel"
+							data-dismiss="modal">Đóng</a> <a type="button"
+							class="btn  waves-effect btn-submit" id='btn-submit-subject'>Lấy
+							Câu Hỏi</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- modal-delete-alert -->
+<div class="modal modal-reset fade" id="modal-delete-alert"
+	tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header bg-warning">
+				<p class="heading lead">Cảnh Báo</p>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+			<div class="modal-body border-top my-3">
+				<div class="message">Bạn Có Muốn Tiếp Tục Xóa Câu Hỏi Khỏi Đề
+					Thi ?</div>
+
+				<div class="border-top my-3"></div>
+				<div class="d-flex justify-content-center">
+					<a type="button" class="btn  waves-effect btn-cancel"
+						data-dismiss="modal">Hủy</a><a type="button"
+						class="btn  waves-effect btn-submit">Xóa</a>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+
+</div>
 

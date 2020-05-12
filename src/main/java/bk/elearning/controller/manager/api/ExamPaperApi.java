@@ -2,6 +2,7 @@ package bk.elearning.controller.manager.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +30,19 @@ public class ExamPaperApi {
 
 		}
 		return new Message(Constant.STATUS_ERROR, "Thêm Thất Bại. Vui Lòng Thử Lại! ");
+
+	}
+	
+	@PutMapping
+	public Message updateExampaper(@RequestBody ExamPaper examPaper) {
+		try {
+			// user loged (teacher)
+			if(examPaperService.update(examPaper)==1)
+				return new Message(Constant.STATUS_SUCCESS, "Cập Nhật Thành Công ! ");
+		} catch (Exception e) {
+
+		}
+		return new Message(Constant.STATUS_ERROR, "Cập Nhật Thất Bại. Vui Lòng Thử Lại! ");
 
 	}
 }

@@ -10,6 +10,8 @@ var teacher={};
 var subject={};
 function initEditor(flag,urlApi)
 {
+	
+	
 	if(flag==FLAG_EDIT)
 	{
 		question=obj.getQuestionById(obj.getParam('id'));

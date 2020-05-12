@@ -515,60 +515,6 @@ th, td {
 	border: 1px solid #53c83c !important;
 }
 
-.form-v4-content .form-detail .form-checkbox {
-	margin-top: 1px;
-	position: relative;
-}
-
-.form-v4-content .form-detail .form-checkbox input {
-	position: absolute;
-	opacity: 0;
-}
-
-.form-v4-content .form-detail .form-checkbox .checkmark {
-	position: absolute;
-	top: 13px;
-	left: 0;
-	height: 15px;
-	width: 15px;
-	border: 1px solid #ccc;
-	cursor: pointer;
-}
-
-.form-v4-content .form-detail .form-checkbox .checkmark::after {
-	content: "";
-	position: absolute;
-	left: 5px;
-	top: 1px;
-	width: 3px;
-	height: 8px;
-	border: 1px solid #3786bd;
-	border-width: 0 2px 2px 0;
-	-webkit-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	-o-transform: rotate(45deg);
-	-moz-transform: rotate(45deg);
-	transform: rotate(45deg);
-	display: none;
-}
-
-.form-v4-content .form-detail .form-checkbox input:checked ~ .checkmark::after
-	{
-	display: block;
-}
-
-.form-v4-content .form-detail .form-checkbox p {
-	margin-left: 34px;
-	color: #333;
-	font-size: 14px;
-	font-weight: 600;
-}
-
-.form-v4-content .form-detail .form-checkbox .text {
-	font-weight: 700;
-	color: #3786bd;
-	text-decoration: underline;
-}
 
 .form-v4-content .form-detail .register {
 	background: #3786bd;
@@ -685,3 +631,4 @@ th, td {
 {
 	font-size: max(0.95vw,13px) !important;
 }
+

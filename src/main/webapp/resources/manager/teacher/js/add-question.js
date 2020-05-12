@@ -5,7 +5,7 @@ $(document).ready(function() {
 	$('#sidebar .active').removeClass('active');
 	$('#menu-item-question').addClass('active');
 	$('#pageSubmenu').collapse('show');
-	$('#question-list').addClass('text-primary');
+	$('#menu-add-question').addClass('text-primary');
 	
 	//lay du lieu trang va phan trang
 	handlePagination('pagination','table-data-body','row-data-container','api/subjects/page?');
@@ -36,9 +36,7 @@ function reload()
 	$('.answer-editor').summernote('destroy');
 	initEditor("",'manager/api/questions/file-multimedia');
 	//default show 4 answer first
-	for (var i = 0; i < 4; i++) {
-		addAnswerEditor("");
-	}
+	
 
 }
 var obj;

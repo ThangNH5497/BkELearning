@@ -8,4 +8,9 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicUpdate
 public class Admin extends User{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 }

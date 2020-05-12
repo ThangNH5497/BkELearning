@@ -22,6 +22,7 @@ import bk.elearning.entity.Category;
 import bk.elearning.entity.Question;
 import bk.elearning.entity.dto.CustomUserDetails;
 import bk.elearning.entity.dto.PaginationResult;
+import bk.elearning.entity.dto.QuestionFilter;
 import bk.elearning.service.IQuestionService;
 import bk.elearning.utils.Constant;
 import bk.elearning.utils.Message;
@@ -59,8 +60,9 @@ public class QuestionApi {
 
 	// lấy theo bộ lọc
 	@GetMapping("/page/teachers/{teacherId}/subjects/{subjectId}/types/{type}/levels/{level}")
-	public PaginationResult<Question> getByTeacherAndFilter(@PathVariable String teacherId, @PathVariable String subjectId,
-			@PathVariable String type, @PathVariable String level, @RequestParam int page, int size) {
+	public PaginationResult<Question> getByTeacherAndFilter(@PathVariable String teacherId,
+			@PathVariable String subjectId, @PathVariable String type, @PathVariable String level,
+			@RequestParam int page, int size) {
 		try {
 			return questionService.getByTeacherAndFilter(teacherId, subjectId, type, level, page, size);
 		} catch (Exception e) {
@@ -85,9 +87,8 @@ public class QuestionApi {
 
 	// lấy danh sách câu hỏi chung theo bộ lọc
 	@GetMapping("/search/subjects/{subjectId}/types/{type}/levels/{level}")
-	public PaginationResult<Question> searchPublicQuestion(@PathVariable String subjectId,
-			@PathVariable String type, @PathVariable String level, @RequestParam(name = "q") String key,
-			@RequestParam int page, int size) {
+	public PaginationResult<Question> searchPublicQuestion(@PathVariable String subjectId, @PathVariable String type,
+			@PathVariable String level, @RequestParam(name = "q") String key, @RequestParam int page, int size) {
 		try {
 			return questionService.searchPublicQuestion(subjectId, type, level, key, page, size);
 		} catch (Exception e) {
@@ -99,11 +100,24 @@ public class QuestionApi {
 
 	// tìm theo theo bộ lọc
 	@GetMapping("/search/teachers/{teacherId}/subjects/{subjectId}/types/{type}/levels/{level}")
-	public PaginationResult<Question> searchByTeacherAndFilter(@PathVariable String teacherId, @PathVariable String subjectId,
-			@PathVariable String type, @PathVariable String level, @RequestParam(name = "q") String key,
-			@RequestParam int page, int size) {
+	public PaginationResult<Question> searchByTeacherAndFilter(@PathVariable String teacherId,
+			@PathVariable String subjectId, @PathVariable String type, @PathVariable String level,
+			@RequestParam(name = "q") String key, @RequestParam int page, int size) {
 		try {
 			return questionService.searchByTeacherAndFilter(teacherId, subjectId, type, level, key, page, size);
+		} catch (Exception e) {
+
+		}
+		return null;
+
+	}
+
+	// tìm theo theo bộ lọc
+	@PostMapping("/random")
+	public ArrayList<Question> getRandomQuestion(@RequestBody QuestionFilter filter) {
+		try {
+			return questionService.getRandomQuestion(filter);
+			
 		} catch (Exception e) {
 
 		}
@@ -114,12 +128,6 @@ public class QuestionApi {
 	@PostMapping
 	public Message createQuestion(@RequestBody Question question) {
 		try {
-			/*
-			 * // user loged (teacher) CustomUserDetails user = (CustomUserDetails)
-			 * SecurityContextHolder.getContext().getAuthentication() .getPrincipal(); if
-			 * (user.getRole().equals(Constant.ROLE_TEACHER)) { Teacher teacher = new
-			 * Teacher(); teacher.setId(user.getId()); question.setTeacher(teacher); }
-			 */
 			if (questionService.save(question) == 1)
 				return new Message(Constant.STATUS_SUCCESS, "Thêm Thành Công ");
 

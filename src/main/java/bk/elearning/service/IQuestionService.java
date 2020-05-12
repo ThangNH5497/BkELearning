@@ -9,6 +9,7 @@ import bk.elearning.entity.Question;
 import bk.elearning.entity.Subject;
 import bk.elearning.entity.Teacher;
 import bk.elearning.entity.dto.PaginationResult;
+import bk.elearning.entity.dto.QuestionFilter;
 
 public interface IQuestionService extends IGenericService<Question> {
 
@@ -33,5 +34,7 @@ public interface IQuestionService extends IGenericService<Question> {
 			int size);
 
 	public int copyToPublicRepo(ArrayList<Integer> ids, Category category);
+
+	ArrayList<Question> getRandomQuestion(QuestionFilter filter);
 
 }

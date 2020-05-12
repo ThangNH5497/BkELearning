@@ -1,5 +1,7 @@
 package bk.elearning.entity;
 
+import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,61 +11,82 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-import bk.elearning.entity.relationship.ExamInfo;
-import bk.elearning.entity.relationship.ExamPaperInfo;
+import bk.elearning.entity.relationship.ExamPaperQuestion;
 
 @Entity
-@Table(name="exam_paper")
-public class ExamPaper extends AbstractEntity{
+@Table(name = "exampaper")
+public class ExamPaper extends AbstractEntity implements Serializable{
 
-	@Column(name="code",unique = true)
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Column(name = "code", unique = true)
 	private String code;
-	
-	@Column(name="name")
-	private String name;
 
-	
-	@ManyToOne
-	@JoinColumn(name = "teacher_id")
-	private Teacher teacher;
-	
-	@ManyToOne
-	@JoinColumn(name = "subject_id")
-	private Subject subject;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy="examPaper",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private Set<ExamPaperInfo> examPaperInfos;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy="examPaper",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private Set<ExamInfo> examInfos;
+	@Column(name = "name")
+	private String name;
 
 	private String bankType;
 	
-	private String descriptor;
+	@Column(name = "crate_at")
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date createAt;
 	
+	@Column(name = "update_at")
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date updateAt;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "subject_id")
+	private Subject subject;
+
+	
+	@OneToMany(mappedBy = "examPaper", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = ExamPaperQuestion.class, orphanRemoval = true)
+	@OrderBy("questionOrder ASC")
+	private Set<ExamPaperQuestion> examPaperQuestions;
+
+	private String descriptor;
+
 	public ExamPaper() {
 		super();
 	}
 
-	public ExamPaper(String code, String name,  Teacher teacher,Subject subject, Set<ExamPaperInfo> examPaperInfos,Set<ExamInfo> examInfos,String bankType,String descriptor) {
+	public ExamPaper(String code, String name, User user, Subject subject, Set<ExamPaperQuestion> examPaperQuestions,
+			String bankType, String descriptor, Date createAt, Date updateAt) {
 		super();
 		this.code = code;
 		this.name = name;
-		this.teacher = teacher;
-		this.examPaperInfos = examPaperInfos;
-		this.examInfos=examInfos;
-		this.bankType=bankType;
-		this.descriptor=descriptor;
-		this.subject=subject;
+		this.user = user;
+		this.examPaperQuestions = examPaperQuestions;
+		this.bankType = bankType;
+		this.descriptor = descriptor;
+		this.subject = subject;
+		this.createAt=createAt;
+		this.updateAt=updateAt;
 	}
-	
-	
+	public ExamPaper(int id,String code, String name,String descriptor, Date createAt, Date updateAt) {
+		super(id);
+		this.code = code;
+		this.name = name;
+		this.descriptor = descriptor;
+		this.createAt=createAt;
+		this.updateAt=updateAt;
+	}
 
 	public Subject getSubject() {
 		return subject;
@@ -81,9 +104,6 @@ public class ExamPaper extends AbstractEntity{
 		this.code = code;
 	}
 
-	
-
-
 	public String getName() {
 		return name;
 	}
@@ -91,30 +111,21 @@ public class ExamPaper extends AbstractEntity{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 
-	public Teacher getTeacher() {
-		return teacher;
+	public User getUser() {
+		return user;
 	}
 
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public Set<ExamPaperInfo> getExamPaperInfos() {
-		return examPaperInfos;
+	public Set<ExamPaperQuestion> getExamPaperQuestions() {
+		return examPaperQuestions;
 	}
 
-	public void setExamPaperInfos(Set<ExamPaperInfo> examPaperInfos) {
-		this.examPaperInfos = examPaperInfos;
-	}
-
-	public Set<ExamInfo> getExamInfos() {
-		return examInfos;
-	}
-
-	public void setExamInfos(Set<ExamInfo> examInfos) {
-		this.examInfos = examInfos;
+	public void setExamPaperQuestions(Set<ExamPaperQuestion> examPaperQuestions) {
+		this.examPaperQuestions = examPaperQuestions;
 	}
 
 	public String getBankType() {
@@ -131,6 +142,26 @@ public class ExamPaper extends AbstractEntity{
 
 	public void setDescriptor(String descriptor) {
 		this.descriptor = descriptor;
+	}
+
+	public Date getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
+	}
+
+	public Date getUpdateAt() {
+		return updateAt;
+	}
+
+	public void setUpdateAt(Date updateAt) {
+		this.updateAt = updateAt;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 }
