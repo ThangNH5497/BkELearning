@@ -27,9 +27,12 @@ public class Answer extends AbstractEntity{
 	@JoinColumn(name = "question_id")
 	private Question question;
 
-	@JsonIgnore
-	@OneToOne(mappedBy = "answer",fetch = FetchType.LAZY)
-    private ExamPaperQuestionAnswer examPaperQuestionAnswer;
+	/*
+	 * @JsonIgnore
+	 * 
+	 * @OneToOne(mappedBy = "answer",fetch = FetchType.LAZY) private
+	 * ExamPaperQuestionAnswer examPaperQuestionAnswer;
+	 */
 	
 	public Answer() {
 		super();
@@ -75,13 +78,14 @@ public class Answer extends AbstractEntity{
 		this.weight = weight;
 	}
 
-	public ExamPaperQuestionAnswer getExamPaperQuestionAnswer() {
-		return examPaperQuestionAnswer;
-	}
-
-	public void setExamPaperQuestionAnswer(ExamPaperQuestionAnswer examPaperQuestionAnswer) {
-		this.examPaperQuestionAnswer = examPaperQuestionAnswer;
-	}
+	/*
+	 * public ExamPaperQuestionAnswer getExamPaperQuestionAnswer() { return
+	 * examPaperQuestionAnswer; }
+	 * 
+	 * public void setExamPaperQuestionAnswer(ExamPaperQuestionAnswer
+	 * examPaperQuestionAnswer) { this.examPaperQuestionAnswer =
+	 * examPaperQuestionAnswer; }
+	 */
 	
 	
 }

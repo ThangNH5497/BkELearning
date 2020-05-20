@@ -39,7 +39,7 @@ public class ExamPaperServiceImpl implements IExamPaperService {
 				
 				for(int i=0;i<answers.size();i++)
 				{
-					answers.set(i, epq.getExamPaperQuestionAnswers().get(i).getAnswer());
+				//	answers.set(i, epq.getExamPaperQuestionAnswers().get(i).getAnswer());
 					answers.get(i).setContent(StringEscapeUtils.unescapeHtml4(answers.get(i).getContent()));
 					/*
 					for(int j=i;j<answers.size();j++)
@@ -109,12 +109,12 @@ public class ExamPaperServiceImpl implements IExamPaperService {
 			examPaperUpdate.getExamPaperQuestions().clear();
 			for (ExamPaperQuestion exq : examPaper.getExamPaperQuestions()) {
 				exq.setExamPaper(examPaperUpdate);
+				/*
 				exq.getExamPaperQuestionAnswers().clear();
-				int j=1;
 				for (ExamPaperQuestionAnswer exqa : exq.getExamPaperQuestionAnswers()) {
 					exqa.setExamPaperQuestion(exq);					
 				}
-				
+				*/
 				examPaperUpdate.getExamPaperQuestions().add(exq);
 			}
 			examPaperUpdate.setUpdateAt(Util.getDate());

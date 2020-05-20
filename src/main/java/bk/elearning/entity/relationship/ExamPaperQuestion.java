@@ -47,8 +47,9 @@ public class ExamPaperQuestion extends AbstractEntity implements Serializable{
 	@Column(name = "question_grade")
 	private float questionGrade;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "examPaperQuestion", cascade = CascadeType.ALL, 
-			fetch = FetchType.EAGER,targetEntity = ExamPaperQuestionAnswer.class, orphanRemoval = true)
+			fetch = FetchType.LAZY,targetEntity = ExamPaperQuestionAnswer.class, orphanRemoval = true)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@OrderBy("answerOrder ASC")
 	private List<ExamPaperQuestionAnswer> examPaperQuestionAnswers;

@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import bk.elearning.entity.AbstractEntity;
 import bk.elearning.entity.Answer;
 
@@ -24,11 +26,13 @@ public class ExamPaperQuestionAnswer extends AbstractEntity implements Serializa
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "exampaper_question_id")
 	private ExamPaperQuestion examPaperQuestion;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@JsonIgnore
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "answer_id", referencedColumnName = "id")
 	private Answer answer;
 	

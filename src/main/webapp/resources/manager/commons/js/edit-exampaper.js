@@ -490,6 +490,21 @@ function saveExamPaperEvent()
 				  });
 			  }
 			  examPaper.examPaperQuestions=examPaperQuestions;*/
+			/*
+			  for (var i = 0; i < examPaper.examPaperQuestions.length; i++) {
+				  examPaper.examPaperQuestions.examPaperQuestionAnswers=[];
+				  for (var j = 0; j <  examPaper.examPaperQuestions[i].question.answers.length; j++) {
+					  examPaper.examPaperQuestions[i].examPaperQuestionAnswers.push({
+						  answer:examPaper.examPaperQuestions[i].question.answers[j],
+						  answerOrder:parseInt(j)+1
+					  })
+				}
+			  }
+			  */
+			var grades=$('[dataId] .question-grade' );
+			 for (var i = 0; i < examPaper.examPaperQuestions.length; i++) {
+				 examPaper.examPaperQuestions[i].questionGrade=$(grades[i]).val();
+			 }
 			  var msg=obj.ajaxCall('PUT',false,'manager/api/exampapers',examPaper,null);
 			  alert(msg.msg);
 		}
