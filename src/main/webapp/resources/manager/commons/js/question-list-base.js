@@ -71,15 +71,19 @@ function tableDataEvents() {
 	// btn view
 	$(document).on('click', '#table-data-body .btn-view', function() {
 		var questionId = $(this).parents('[dataId]').attr('dataId');
-		viewQuestion(questionId);
-		$('#modal-view').modal('show');
+		var question = obj.getQuestionById(questionId);
+		if(question!=null&&question!=undefined&&question!="") {
+			viewQuestion(question);
+			$('#modal-view').modal('show');
+		}
+		
 	});
 
 }
-function viewQuestion(questionId) {
+function viewQuestion(question) {
 	// btn view
 	try {
-		var question = obj.getQuestionById(questionId);
+		
 		var container = $('#question-detail-container');
 		var fields = $('#question-detail-container [field]');
 

@@ -17,6 +17,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import bk.elearning.entity.relationship.ExamPaperQuestion;
+import bk.elearning.entity.relationship.ExamQuestion;
 
 @Entity
 @DynamicUpdate
@@ -34,6 +35,10 @@ public class Question extends AbstractEntity {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<ExamQuestion> examQuestions;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = ExamPaperQuestion.class, orphanRemoval = true)
 	private Set<ExamPaperQuestion> examPaperQuestions;
 
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Answer.class, orphanRemoval = true)
@@ -56,12 +61,12 @@ public class Question extends AbstractEntity {
 	}
 
 	public Question(int id, String name, int level, String type,String content,
-			Set<ExamPaperQuestion> examPaperQuestions, List<Answer> answers,Category category) {
+			Set<ExamQuestion> examQuestions, List<Answer> answers,Category category) {
 		super(id);
 		this.name = name;
 		this.level = level;
 		this.content = content;
-		this.examPaperQuestions = examPaperQuestions;
+		this.examQuestions = examQuestions;
 		this.answers = answers;
 		this.type = type;
 		this.category = category;
@@ -100,12 +105,12 @@ public class Question extends AbstractEntity {
 		this.content = content;
 	}
 
-	public Set<ExamPaperQuestion> getExamPaperQuestions() {
-		return examPaperQuestions;
+	public Set<ExamQuestion> getExamQuestions() {
+		return examQuestions;
 	}
 
-	public void setExamPaperQuestions(Set<ExamPaperQuestion> examPaperQuestions) {
-		this.examPaperQuestions = examPaperQuestions;
+	public void setExamQuestions(Set<ExamQuestion> examQuestions) {
+		this.examQuestions = examQuestions;
 	}
 
 	public List<Answer> getAnswers() {
@@ -122,6 +127,14 @@ public class Question extends AbstractEntity {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public Set<ExamPaperQuestion> getExamPaperQuestions() {
+		return examPaperQuestions;
+	}
+
+	public void setExamPaperQuestions(Set<ExamPaperQuestion> examPaperQuestions) {
+		this.examPaperQuestions = examPaperQuestions;
 	}
 
 	

@@ -25,13 +25,17 @@ function handleEvents()
 		var questionId = $(this).parents('[dataId]').attr('dataId');
 		check=true;
 		$('#modal-select-question').modal('hide');
-		viewQuestion(questionId);
+		var question = obj.getQuestionById(questionId);
+		if(question!=null&&question!=undefined&&question!="") {
+			viewQuestion(question);
+		}
+		else alert('Có Lỗi Xảy Ra. Xin Thử Lại Sau ! ');
 		$(document).on('hidden.bs.modal', '#modal-select-question', function (e){
 			if(check==true) $('#modal-view').modal('show');
 		});
 		
 		$(document).on('hidden.bs.modal', '#modal-view', function (e){
-			$('#modal-select-question').modal('show');
+			if(check==true) $('#modal-select-question').modal('show');
 			check=false;
 		});
 	});
@@ -43,11 +47,20 @@ function handleEvents()
 	// btn view
 	$(document).on('click', '#question-list-container .btn-view', function() {
 		var questionId = $(this).parents('[dataId]').attr('dataId');
-		viewQuestion(questionId);
-		$(document).off('hidden.bs.modal', '#modal-view', function (e){
-			
-		});
-		$('#modal-view').modal('show');
+		
+		var question = null;
+		for (var i = 0; i < examPaper.examPaperQuestions.length; i++) {
+			if(examPaper.examPaperQuestions[i].question.id==questionId)
+			{
+				question=examPaper.examPaperQuestions[i].question;
+				break;
+			}
+		}
+		if(question!=null&&question!=undefined&&question!="") {
+			viewQuestion(question);
+			$('#modal-view').modal('show');
+		}
+		else alert('Có Lỗi Xảy Ra. Xin Thử Lại Sau ! ');
 	});
 	
 	//delete question from exampaper
@@ -490,17 +503,22 @@ function saveExamPaperEvent()
 				  });
 			  }
 			  examPaper.examPaperQuestions=examPaperQuestions;*/
-			/*
+			
 			  for (var i = 0; i < examPaper.examPaperQuestions.length; i++) {
-				  examPaper.examPaperQuestions.examPaperQuestionAnswers=[];
+				 // if(examPaper.examPaperQuestions[i].examPaperQuestionAnswers.length<=0)
+				 // {
+					  examPaper.examPaperQuestions[i].examPaperQuestionAnswers=[];
+				 // }
 				  for (var j = 0; j <  examPaper.examPaperQuestions[i].question.answers.length; j++) {
 					  examPaper.examPaperQuestions[i].examPaperQuestionAnswers.push({
-						  answer:examPaper.examPaperQuestions[i].question.answers[j],
+						  answer:{
+							  id:examPaper.examPaperQuestions[i].question.answers[j].id
+						  },
 						  answerOrder:parseInt(j)+1
 					  })
 				}
 			  }
-			  */
+			  
 			var grades=$('[dataId] .question-grade' );
 			 for (var i = 0; i < examPaper.examPaperQuestions.length; i++) {
 				 examPaper.examPaperQuestions[i].questionGrade=$(grades[i]).val();
@@ -560,6 +578,8 @@ function showCategory(subjectId)
 function shuffleQuestionEvents()
 {
 	$(document).on('click', '.btn-question-shuffle', function (e) {
+		e.stopPropagation();
+	    e.preventDefault();
 		examPaper.examPaperQuestions=shuffleArray(examPaper.examPaperQuestions);
 		//update view question
 		var rowData=$('#question-item-sample').prop('outerHTML');
@@ -569,6 +589,15 @@ function shuffleQuestionEvents()
 			examPaper.examPaperQuestions[i].questionOrder=parseInt(i)+1;
 			addQuestionToView(examPaper.examPaperQuestions[i].question,examPaper.examPaperQuestions[i].questionGrade);
 			
+		}
+	});
+	$(document).on('click', '.btn-answer-shuffle', function (e) {
+		e.stopPropagation();
+	    e.preventDefault();
+		examPaper.examPaperQuestions=shuffleArray(examPaper.examPaperQuestions);
+		//update view question
+		for (var i = 0; i < examPaper.examPaperQuestions.length; i++) {
+			examPaper.examPaperQuestions[i].question.answers=shuffleArray(examPaper.examPaperQuestions[i].question.answers);
 		}
 	});
 }

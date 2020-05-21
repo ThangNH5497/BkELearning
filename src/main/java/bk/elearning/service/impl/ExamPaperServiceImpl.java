@@ -2,7 +2,6 @@ package bk.elearning.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,20 +34,16 @@ public class ExamPaperServiceImpl implements IExamPaperService {
 			for (ExamPaperQuestion epq : ep.getExamPaperQuestions()) {
 				epq.getQuestion().setContent(StringEscapeUtils.unescapeHtml4(epq.getQuestion().getContent()));
 				
-				List<Answer> answers=epq.getQuestion().getAnswers();
-				
-				for(int i=0;i<answers.size();i++)
+				List<ExamPaperQuestionAnswer> answerInfos=epq.getExamPaperQuestionAnswers();
+					//	epq.getQuestion().getAnswers();
+				epq.getQuestion().getAnswers().clear();
+				for(int i=0;i<answerInfos.size();i++)
 				{
 				//	answers.set(i, epq.getExamPaperQuestionAnswers().get(i).getAnswer());
-					answers.get(i).setContent(StringEscapeUtils.unescapeHtml4(answers.get(i).getContent()));
-					/*
-					for(int j=i;j<answers.size();j++)
-					{
-						if(epq.getExamPaperQuestionAnswers().get(j).getAnswer().getId()==answers.get(i).getId())
-						{
-							
-						}
-					}*/
+					answerInfos.get(i).getAnswer().setContent(StringEscapeUtils.unescapeHtml4(answerInfos.get(i).getAnswer().getContent()));
+					
+					epq.getQuestion().getAnswers().add(answerInfos.get(i).getAnswer());
+					
 				}
 								
 			}
@@ -106,15 +101,15 @@ public class ExamPaperServiceImpl implements IExamPaperService {
 		// TODO Auto-generated method stub
 		try {
 			ExamPaper examPaperUpdate=examPaperRepository.getById(examPaper.getId());
+			
 			examPaperUpdate.getExamPaperQuestions().clear();
 			for (ExamPaperQuestion exq : examPaper.getExamPaperQuestions()) {
 				exq.setExamPaper(examPaperUpdate);
-				/*
-				exq.getExamPaperQuestionAnswers().clear();
+				
 				for (ExamPaperQuestionAnswer exqa : exq.getExamPaperQuestionAnswers()) {
 					exqa.setExamPaperQuestion(exq);					
 				}
-				*/
+				
 				examPaperUpdate.getExamPaperQuestions().add(exq);
 			}
 			examPaperUpdate.setUpdateAt(Util.getDate());

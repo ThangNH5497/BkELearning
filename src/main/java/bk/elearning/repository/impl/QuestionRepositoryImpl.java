@@ -39,29 +39,7 @@ public class QuestionRepositoryImpl extends SubjectComponentRepositoryImpl<Quest
 	public PaginationResult<Question> searchByTeacherAndFilter(String teacherId, String subjectId, String type,
 			String level, String key, int start, int size) {
 		// TODO Auto-generated method stub
-		/*
-		 * PaginationResult<Question> pages = new PaginationResult<Question>(); try {
-		 * HashMap<String, Object> constrantFields = new HashMap<String, Object>(); if
-		 * (!teacherId.equals("ALL")) { constrantFields.put("category.user.id",
-		 * Integer.parseInt(teacherId)); }
-		 * 
-		 * if (!(subjectId.equals("ALL") || subjectId.equals("NONE"))) {
-		 * constrantFields.put("category.subject.id", Integer.parseInt(subjectId)); }
-		 * 
-		 * if (!type.equals("ALL")) { constrantFields.put("type", type); }
-		 * 
-		 * if (!level.equals("ALL")) { constrantFields.put("level",
-		 * Integer.parseInt(level)); }
-		 * 
-		 * HashMap<String, String> searchFields = new HashMap<String, String>();
-		 * searchFields.put("id", key); searchFields.put("name", key);
-		 * pages.setCount(super.getCount(constrantFields, searchFields));
-		 * 
-		 * pages.setData(super.search(constrantFields, searchFields, start * size,
-		 * size)); return pages; } catch (Exception e) { // TODO: handle exception }
-		 * 
-		 * return null;
-		 */
+		
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			String hqlQuery = "FROM Question q where q.category.bankType=:bankType ";
@@ -91,6 +69,8 @@ public class QuestionRepositoryImpl extends SubjectComponentRepositoryImpl<Quest
 			qCount.setParameter("bankType", Constant.BANK_TYPE_TEACHER);
 			qCount.setParameter("searchById", key);
 			qCount.setParameter("searchByName", key);
+			q.setFirstResult(start);
+			q.setMaxResults(size);
 
 			if (!teacherId.equals("ALL")) {
 				q.setParameter("teacherId", Integer.parseInt(teacherId));
@@ -110,7 +90,7 @@ public class QuestionRepositoryImpl extends SubjectComponentRepositoryImpl<Quest
 				q.setParameter("level", Integer.parseInt(level));
 				qCount.setParameter("level", Integer.parseInt(level));
 			}
-
+			
 			page.setCount((Long) qCount.uniqueResult());
 			if (page.getCount() > 0)
 				page.setData(q.list());
@@ -162,7 +142,8 @@ public class QuestionRepositoryImpl extends SubjectComponentRepositoryImpl<Quest
 			Query qCount = session.createQuery("SELECT COUNT(distinct q.id) " + hqlQuery);
 			q.setParameter("bankType", Constant.BANK_TYPE_TEACHER);
 			qCount.setParameter("bankType", Constant.BANK_TYPE_TEACHER);
-
+			q.setFirstResult(start);
+			q.setMaxResults(size);
 			if (!teacherId.equals("ALL")) {
 				q.setParameter("teacherId", Integer.parseInt(teacherId));
 				qCount.setParameter("teacherId", Integer.parseInt(teacherId));

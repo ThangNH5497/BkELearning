@@ -31,10 +31,11 @@ public class ExamPaperQuestionAnswer extends AbstractEntity implements Serializa
 	@JoinColumn(name = "exampaper_question_id")
 	private ExamPaperQuestion examPaperQuestion;
 	
-	@JsonIgnore
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "answer_id", referencedColumnName = "id")
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "answer_id")
 	private Answer answer;
+	
 	
 	@Column(name="answer_order")
 	private int answerOrder;
