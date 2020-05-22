@@ -22,7 +22,7 @@ import bk.elearning.entity.relationship.ExamPaperQuestion;
 
 @Entity
 @Table(name = "exampaper")
-public class ExamPaper extends AbstractEntity implements Serializable{
+public class ExamPaper extends AbstractEntity implements Serializable {
 
 	/**
 	 * 
@@ -35,13 +35,16 @@ public class ExamPaper extends AbstractEntity implements Serializable{
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "time")
+	private Integer time;
+
 	private String bankType;
-	
+
 	@Column(name = "crate_at")
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date createAt;
-	
+
 	@Column(name = "update_at")
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -55,7 +58,6 @@ public class ExamPaper extends AbstractEntity implements Serializable{
 	@JoinColumn(name = "subject_id")
 	private Subject subject;
 
-	
 	@OneToMany(mappedBy = "examPaper", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = ExamPaperQuestion.class, orphanRemoval = true)
 	@OrderBy("questionOrder ASC")
 	private Set<ExamPaperQuestion> examPaperQuestions;
@@ -66,26 +68,17 @@ public class ExamPaper extends AbstractEntity implements Serializable{
 		super();
 	}
 
-	public ExamPaper(String code, String name, User user, Subject subject, Set<ExamPaperQuestion> examPaperQuestions,
-			String bankType, String descriptor, Date createAt, Date updateAt) {
-		super();
-		this.code = code;
-		this.name = name;
-		this.user = user;
-		this.examPaperQuestions = examPaperQuestions;
-		this.bankType = bankType;
-		this.descriptor = descriptor;
-		this.subject = subject;
-		this.createAt=createAt;
-		this.updateAt=updateAt;
-	}
-	public ExamPaper(int id,String code, String name,String descriptor, Date createAt, Date updateAt) {
+	public ExamPaper(int id, String code, String name, User user, Subject subject, String descriptor, Integer time,
+			Date createAt, Date updateAt) {
 		super(id);
 		this.code = code;
 		this.name = name;
+		this.user = user;
 		this.descriptor = descriptor;
-		this.createAt=createAt;
-		this.updateAt=updateAt;
+		this.subject = subject;
+		this.time = time;
+		this.createAt = createAt;
+		this.updateAt = updateAt;
 	}
 
 	public Subject getSubject() {
@@ -163,5 +156,15 @@ public class ExamPaper extends AbstractEntity implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
+	public Integer getTime() {
+		return time;
+	}
+
+	public void setTime(Integer time) {
+		this.time = time;
+	}
+
+
+
 }

@@ -2,4 +2,5 @@ eclipse.preferences.version=1
 encoding//src/main/java/bk/elearning/controller/web/AuthController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/manager/admin/menu.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/manager/commons/category-list.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/manager/commons/exampaper-list.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/manager/commons/topbar.jsp=UTF-8

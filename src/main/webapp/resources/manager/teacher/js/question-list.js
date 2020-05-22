@@ -10,9 +10,7 @@ $(document).ready(function() {
 	
 	tableDataEvents();
 	filterEventHandle();
-	searchEvents('key-search','btn-search',rootApiSearch);
-	//for xs
-	searchEvents('key-search-xs','btn-search-xs',rootApiSearch);
+	
 	
 	searchSubject();
 	
@@ -118,6 +116,9 @@ function init()
 	//lay du lieu trang va phan trang tim kiem mon hoc cho filter
 	handlePagination('pagination-subject','table-data-body-subject','row-data-container-subject','api/subjects/page?');
 	deleteEvents("manager/api/questions/multiple");
+	searchEvents('key-search','btn-search',rootApiSearch);
+	//for xs
+	searchEvents('key-search-xs','btn-search-xs',rootApiSearch);
 }
 
 //xử lý các sự kiện chọn bộ lọc

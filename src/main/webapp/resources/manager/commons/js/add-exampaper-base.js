@@ -3,7 +3,9 @@ $(document).ready(function() {
 	//use small pagination for modal
 	$('#modal-select-subject ul.pagination').addClass('pagination-sm');
 	$('#sidebar .active').removeClass('active');
-	$('#menu-item-exam-paper').addClass('active');
+	$('#menu-item-exampaper').addClass('active');
+	$('#submenu-exampaper').collapse('show');
+	$('#menu-add-exampaper').addClass('text-primary');
 	//search events
 	searchEvents('key-search','btn-search','api/subjects/search?');
 	
@@ -44,6 +46,19 @@ function validInputs()
 		else $("#input-code").removeClass('border-danger');
 		
 	}
+	
+	if(check==true)
+	{
+		var time=$("#input-time").val();
+		if(!($.isNumeric(time)&&parseInt(time)>0))
+		{
+			check=false;
+			$("#input-time").addClass('border-danger');
+			alert('Thời Gian Không Hợp Lệ!');
+		}
+		
+	}
+
 	return check;
 }
 
@@ -86,6 +101,7 @@ function uploadEvents()
 				},
 				code:$('#input-code').val(),
 				name:$('#input-name').val(),
+				time:$('#input-time').val(),
 				descriptor:$('#input-descriptor').val()
 			}
 			var message=obj.ajaxCall('POST',false,'manager/api/exampapers',data,null);
@@ -93,7 +109,7 @@ function uploadEvents()
 			{
 				alert('Thêm Thành Công !');
 				//redirect to add question page
-				window.location.href = rootLocation+"teacher/ql-de-thi/chinh-sua?id="+message.data;
+				window.location.href = rootLocation+"teacher/ql-de-thi/cap-nhat?id="+message.data;
 			}
 			else alert('Thêm Thất Bại !');
 		}

@@ -85,7 +85,7 @@ public class QuestionApi {
 
 	}
 
-	// lấy danh sách câu hỏi chung theo bộ lọc
+	// tim kiem danh sách câu hỏi chung theo bộ lọc
 	@GetMapping("/search/subjects/{subjectId}/types/{type}/levels/{level}")
 	public PaginationResult<Question> searchPublicQuestion(@PathVariable String subjectId, @PathVariable String type,
 			@PathVariable String level, @RequestParam(name = "q") String key, @RequestParam int page, int size) {

@@ -182,7 +182,7 @@ body {
 
 #sidebar a:hover span
 {
-	color:white !important;
+	color:white;
 }
 
 #sidebar li.active span
@@ -199,21 +199,21 @@ span.redirect
 	padding-left:5px;
 }
 
-#pageSubmenu li:hover a
+.submenu li:hover a
 {
 	background:#e1e6eb !important;
 }
-#pageSubmenu  span
+.submenu  span
 {
 	padding:0px !important;
 }
 
-#pageSubmenu a:hover span
+.submenu a:hover span
 {
 	color:#4e73df !important;
 }
 
-#pageSubmenu a
+.submenu a
 {
 	font-size: 14px !important;
 	

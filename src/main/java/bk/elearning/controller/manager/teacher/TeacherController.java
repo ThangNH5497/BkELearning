@@ -45,6 +45,12 @@ public class TeacherController {
 	{
 		return "manager/teacher/course-detail";
 	}
+	
+	@RequestMapping("/ql-de-thi/danh-sach")
+	public String getExamPaperListView(@RequestParam(name="subject") String subject)
+	{
+		return "manager/teacher/exampaper-list";
+	}
 
 	@RequestMapping("/ql-de-thi/them-moi")
 	public String getAddExamPaperView()
@@ -52,7 +58,7 @@ public class TeacherController {
 		return "manager/teacher/add-exampaper";
 	}
 	
-	@RequestMapping("/ql-de-thi/chinh-sua")
+	@RequestMapping("/ql-de-thi/cap-nhat")
 	public String getEditExamPaperView(@RequestParam(name="id") int id)
 	{
 		return "manager/teacher/edit-exampaper";

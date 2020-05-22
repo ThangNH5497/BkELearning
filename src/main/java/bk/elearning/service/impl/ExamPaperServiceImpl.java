@@ -12,6 +12,7 @@ import bk.elearning.entity.Answer;
 import bk.elearning.entity.ExamPaper;
 import bk.elearning.entity.User;
 import bk.elearning.entity.dto.CustomUserDetails;
+import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.entity.relationship.ExamPaperQuestion;
 import bk.elearning.entity.relationship.ExamPaperQuestionAnswer;
 import bk.elearning.repository.IExamPaperRepository;
@@ -101,7 +102,9 @@ public class ExamPaperServiceImpl implements IExamPaperService {
 		// TODO Auto-generated method stub
 		try {
 			ExamPaper examPaperUpdate=examPaperRepository.getById(examPaper.getId());
-			
+			examPaperUpdate.setName(examPaper.getName());
+			examPaperUpdate.setTime(examPaper.getTime());
+			examPaperUpdate.setDescriptor(examPaper.getDescriptor());
 			examPaperUpdate.getExamPaperQuestions().clear();
 			for (ExamPaperQuestion exq : examPaper.getExamPaperQuestions()) {
 				exq.setExamPaper(examPaperUpdate);
@@ -130,7 +133,60 @@ public class ExamPaperServiceImpl implements IExamPaperService {
 	@Override
 	public int deleteMultiple(ArrayList<Integer> ids) {
 		// TODO Auto-generated method stub
-		return 0;
+		int success = 0;
+		try {
+			for (int i = 0; i < ids.size(); i++) {
+				examPaperRepository.delete(ids.get(i));
+				success++;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return success;
+	}
+
+	@Override
+	public PaginationResult<ExamPaper> getByUserAndSubject(String subject, int page, int size) {
+		// TODO Auto-generated method stub
+		if(page>0)
+		{
+			CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
+					.getPrincipal();
+			if(user!=null)
+			{
+				if(user.getRole().equals(Constant.ROLE_TEACHER))
+				{
+					return examPaperRepository.getByTeacherRepoAndSubject(String.valueOf(user.getId()),subject,page-1,size);
+				}
+				else if(user.getRole().equals(Constant.ROLE_ADMIN))
+				{
+					return examPaperRepository.getByAdminRepoAndSubject(subject,page-1,size);
+				}
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public PaginationResult<ExamPaper> searchByUserAndSubject(String subjectFilter, String key, int page, int size) {
+		// TODO Auto-generated method stub
+		if(page>0)
+		{
+			CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
+					.getPrincipal();
+			if(user!=null)
+			{
+				if(user.getRole().equals(Constant.ROLE_TEACHER))
+				{
+					return examPaperRepository.searchByTeacherRepoAndSubject(String.valueOf(user.getId()),subjectFilter,key,page-1,size);
+				}
+				else if(user.getRole().equals(Constant.ROLE_ADMIN))
+				{
+					return examPaperRepository.searchByAdminRepoAndSubject(subjectFilter,key,page-1,size);
+				}
+			}
+		}
+		return null;
 	}
 
 }

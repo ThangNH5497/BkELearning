@@ -28,14 +28,14 @@
 
 
 			<li id="menu-item-question"><a data-toggle="collapse"
-				data-target="#pageSubmenu" aria-expanded="false"
-				aria-controls="pageSubmenu"><span
+				data-target="#submenu-question" aria-expanded="false"
+				aria-controls="submenu-question"><span
 					class="icon fas fa-book-open mr-3"></span> <span class="redirect">Câu
 						Hỏi <i class="fas fa-caret-down pl-2"></i>
 				</span></a></li>
 
 			<!-- collapse -->
-			<ul class="collapse list-unstyled bg-white rounded" id="pageSubmenu">
+			<ul class="collapse list-unstyled bg-white rounded submenu" id="submenu-question">
 				<li><a
 					href="<c:url value='/teacher/ql-cau-hoi/them-cau-hoi'/>"
 					class="text-gray-600 text-sm  rounded"><span id='menu-add-question'
@@ -48,10 +48,26 @@
 					class="text-gray-600 text-sm  rounded"> <span
 						class="redirect ml-4" id='category-list'>QL Danh Mục</span></a></li>
 			</ul>
-			<li id="menu-item-exam-paper"><a
-				href="<c:url value='/teacher/ql-de-thi/them-moi'/>"><span
-					class="icon fas fa-user-graduate mr-3"></span> <span
-					class="redirect">Đề Thi</span></a></li>
+			
+			<li id="menu-item-exampaper"><a data-toggle="collapse"
+				data-target="#submenu-exampaper" aria-expanded="false"
+				aria-controls="submenu-exampaper"><span
+					class="icon fas fa-book-open mr-3"></span> <span class="redirect">Đề Thi <i class="fas fa-caret-down pl-2"></i>
+				</span></a></li>
+
+			<!-- collapse -->
+			<ul class="collapse list-unstyled bg-white rounded submenu" id="submenu-exampaper">
+				<li><a
+					href="<c:url value='/teacher/ql-de-thi/them-moi'/>"
+					class="text-gray-600 text-sm  rounded"><span id='menu-add-exampaper'
+						class="redirect ml-4">Thêm Đề Thi</span></a></li>
+				<li><a
+					href="<c:url value='/teacher/ql-de-thi/danh-sach?subject=ALL'/>"
+					class="text-gray-600 text-sm  rounded"><span id='exampaper-list'
+						class="redirect ml-4">QL Đề Thi</span></a></li>
+				
+			</ul>
+			
 
 			<li><a href="#"><span class="icon fa fa-sticky-note mr-3"></span>
 					<span class="redirect">Thông Tin</span></a></li>

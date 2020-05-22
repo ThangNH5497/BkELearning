@@ -46,7 +46,7 @@
 	<!-- End of Topbar -->
 	<div class="container-fluid">
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h4 mb-0 text-gray-600">Thêm Đề Thi</h1>
+			<h1 class="h4 mb-0 text-gray-600">Cập Nhật Đề Thi</h1>
 		</div>
 		<!-- filter -->
 		<div class="card mb-4 py-3 border-left-info" id="exampaper-info">
@@ -87,13 +87,22 @@
 						</div>
 					</form>
 
+					<form class=" ">
+						<div class="form-group row mt-3">
+							<label for="inputName" class="col-2 col-form-label">Thời
+								Gian (*)</label>
+							<div class="col-9">
+								<input type="text" class="form-control" id="input-time" required>
+							</div>
+							<div class="col-1"></div>
+						</div>
+					</form>
+
 					<form>
 						<div class="form-group row mt-3">
 							<label for="inputName" class="col-2 col-form-label">Mô Tả</label>
 							<div class="col-9">
-								<textarea class="form-control" id="input-descriptor
-								"
-									rows="3"></textarea>
+								<textarea class="form-control" id="input-descriptor" rows="3"></textarea>
 							</div>
 							<div class="col-1"></div>
 						</div>
@@ -107,21 +116,20 @@
 		<div>
 			<div class="card mb-4">
 				<div class="card-body ">
-					<h5 class="h6 mb-0 text-gray-600 mb-4">Trang 1</h5>
+					<h5 class="h6 mb-0 text-gray-600 mb-4">Danh Sách Câu Hỏi</h5>
 
 					<div id="question-list-container">
 						<div class='hidden' id='question-item-sample'>
 							<div class="card mt-3">
 								<div class="card-body p-2 mt-1 mb-1">
 									<div class='row d-flex'>
-										<div class="d-flex col-lg-10 col-md-9 align-self-center">
+										<div class="d-flex col-lg-10 col-md-2 align-self-center">
 											<div class="text-truncate d-flex question-content"></div>
 											<div class="pl-1 div-truncate" style="font-weight: bold;">
 												<span>...</span>
 											</div>
 										</div>
-										<div
-											class="row col-lg-2 col-md-3 justify-content-between d-flex">
+										<div class="row col-lg-2 col-md-2 justify-content-end d-flex">
 											<button class="m-0 btn btn-view text-info btn-control col-3">
 												<i class="far fa-eye"></i>
 											</button>
@@ -129,11 +137,6 @@
 												class="m-0 btn btn-delete text-danger btn-control col-3">
 												<i class="fas fa-trash"></i>
 											</button>
-											<div class="form-group m-0 col-6">
-												<div>
-													<input class="form-control question-grade" type="text">
-												</div>
-											</div>
 
 										</div>
 									</div>
@@ -148,27 +151,17 @@
 								<div class="d-flex col-lg-10 col-md-9 align-self-center">
 
 								</div>
-								<div
-									class="row col-lg-2 col-md-3 justify-content-between d-flex">
-									<label class='col-6'>Tổng </label>
-									<div class="form-group m-0 col-6">
-										<div>
-											<input class="form-control question-grade-sum" type="text"
-												readonly>
-										</div>
-									</div>
 
-								</div>
 							</div>
 
 						</div>
 					</div>
 					<!-- button add question -->
-					<div class="d-flex w-100 justify-content-between mt-4">
-						<a href="#" class="btn btn-primary btn-icon-split btn-sm"> <span
+					<div class="d-flex w-100 justify-content-end mt-4">
+						<!-- <a href="#" class="btn btn-primary btn-icon-split btn-sm"> <span
 							class="icon text-white-50"> <i class="fas fa-cut"></i>
 						</span> <span class="text">Trang Mới</span>
-						</a>
+						</a> -->
 
 						<div class='d-flex'>
 
@@ -178,10 +171,9 @@
 									aria-haspopup="true" aria-expanded="false">Nâng Cao</button>
 								<div class="dropdown-menu dropdown-menu-right"
 									aria-labelledby="dropdownMenuButton">
-									<a
-										class="dropdown-item btn-question-shuffle"
-										href="#">Đảo Câu Hỏi</a> <a class="dropdown-item btn-answer-shuffle"
-										href="#">Đảo Đáp Án</a>
+									<a class="dropdown-item btn-question-shuffle" href="#">Đảo
+										Câu Hỏi</a> <a class="dropdown-item btn-answer-shuffle" href="#">Đảo
+										Đáp Án</a>
 								</div>
 							</div>
 

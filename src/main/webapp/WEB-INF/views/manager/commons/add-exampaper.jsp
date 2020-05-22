@@ -90,6 +90,17 @@
 							<div class="col-1"></div>
 						</div>
 					</form>
+					
+					<form class=" ">
+						<div class="form-group row mt-3">
+							<label for="inputName" class="col-2 col-form-label">Thời Gian
+								(*)</label>
+							<div class="col-9">
+								<input type="text" class="form-control" id="input-time" required>
+							</div>
+							<div class="col-1"></div>
+						</div>
+					</form>
 
 					<form>
 						<div class="form-group row mt-3">

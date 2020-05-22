@@ -3,7 +3,9 @@ $(document).ready(function() {
 	// use small pagination for modal
 	$('#modal-select-subject ul.pagination').addClass('pagination-sm');
 	$('#sidebar .active').removeClass('active');
-	$('#menu-item-exam-paper').addClass('active');
+	$('#menu-item-exampaper').addClass('active');
+	$('#submenu-exampaper').collapse('show');
+	$('#exampaper-list').addClass('text-primary');
 	
 	init();
 	tableDataEvents();
@@ -69,9 +71,6 @@ function handleEvents()
 		$('#modal-delete-alert').modal('show');
 	});
 	$(document).on('click', '#modal-delete-alert .btn-submit', function() {
-		//update sum grade
-		$('.question-grade-sum').val(
-				parseFloat($('.question-grade-sum').val())-parseFloat($('[dataId='+deleteId+'] .question-grade').val()));
 		$('[dataId='+deleteId+']').remove();
 		
 		for (var i = 0; i < examPaper.examPaperQuestions.length; i++) {
@@ -83,35 +82,6 @@ function handleEvents()
 		}
 		
 		$('#modal-delete-alert').modal('hide');
-	});
-	//get sum question grade
-	$(document).on('change', '[dataId] .question-grade', function() {
-		var oldGrade=$(this).attr('old-value');
-		var newGrade=$(this).val();
-		
-		var check=true;
-		if($.isNumeric(newGrade))
-		{
-			$(this).attr('old-value',newGrade);
-			var sumGrade=$('.question-grade-sum').val()-oldGrade;
-			newGrade=parseFloat(newGrade);
-			if(newGrade>0&&newGrade<=100)
-			{
-				sumGrade+=newGrade;
-				/*if(sumGrade>100)
-				{
-					alert('Tổng Trọng Số Điểm Lớn Hơn 100 !');
-				}*/
-				$('.question-grade-sum').val(sumGrade);
-			}
-			else alert('Trọng Số Điểm Là Gía Trị Thực Lớn Hơn 0 và Nhỏ Hơn Bằng 100.');
-		}
-		else
-		{
-			$(this).val(oldGrade);
-			alert('Trọng Số Điểm Là Gía Trị Thực Lớn Hơn 0 và Nhỏ Hơn Bằng 100.');
-			
-		}
 	});
 }
 // init
@@ -125,17 +95,12 @@ function init()
 	}
 	else
 	{
-		var qGradeSum=0;
-		for (var i = 0; i < examPaper.examPaperQuestions.length; i++) {
-			addQuestionToView(examPaper.examPaperQuestions[i].question,examPaper.examPaperQuestions[i].questionGrade);
-			qGradeSum+=parseFloat(examPaper.examPaperQuestions[i].questionGrade);
-		}
-		$('.question-grade-sum').val(qGradeSum);
 		
 		$('#input-subject').val(examPaper.subject.code+'-'+examPaper.subject.subjectName);
 		$('#input-subject').attr('subjectId',examPaper.subject.id);
 		$('#input-code').val(examPaper.code);
 		$('#input-name').val(examPaper.name);
+		$('#input-time').val(examPaper.time);
 		$('#input-descriptor').val(examPaper.descriptor);
 		$(document).on('click', '.btn-select-question', function (e) {
 			e.stopPropagation();
@@ -177,6 +142,10 @@ function init()
 		// lay du lieu trang va phan trang tim kiem mon hoc cho filter
 		handlePagination('pagination-subject','table-data-body-subject','row-data-container-subject','api/subjects/page?');
 		searchEvents('key-search','btn-search',rootApiSearch);
+		
+		for (var i = 0; i < examPaper.examPaperQuestions.length; i++) {
+			addQuestionToView(examPaper.examPaperQuestions[i].question);
+		}
 	}
 }
 
@@ -325,7 +294,7 @@ function addQuestionSelectedEvents()
 	});
 }
 //them question view vao danh sach cau hoi
-function addQuestionToView(question,qGrade)
+function addQuestionToView(question)
 {
 	
 	var rowData=$('#question-item-sample').html();
@@ -333,16 +302,6 @@ function addQuestionToView(question,qGrade)
 		rowData='<div dataId="'+question.id+'">'+rowData+'</div>';
 		$('#question-list-container').append(rowData);
 		$('#question-list-container [dataId='+question.id+'] .question-content').html(question.content);
-		if(qGrade!=null&&qGrade!=undefined)
-		{
-			$('#question-list-container [dataId='+question.id+'] .question-grade').val(qGrade);
-			$('#question-list-container [dataId='+question.id+'] .question-grade').attr('old-value',qGrade);
-		}
-		else
-		{
-			$('#question-list-container [dataId='+question.id+'] .question-grade').val(0);
-			$('#question-list-container [dataId='+question.id+'] .question-grade').attr('old-value',0);
-		}
 		//replace img,video ,audio tag
 		$('#question-list-container [dataId='+question.id+'] .question-content img').replaceWith(
 		'<i class="ml-2 mr-2 h4 fas fa-images"></i>');
@@ -489,75 +448,50 @@ function saveExamPaperEvent()
 {
 	
 	$(document).on('click', '#btn-submit-exampaper', function (e) {
-		if(validInput()==true)
+		if(validInputs()==true)
 		{
-			/*var examPaperQuestions=[];
-			  var row=$('#question-list-container [dataId]');
-			  for (var i = 0; i < row.length; i++) {
-				  var examPaperQuestionAnswers=[];
-				  examPaperQuestions.push({
-					  question:{
-						  id:$(row[i]).attr('dataId')
-					  },
-					  examPaperQuestionAnswers:examPaperQuestionAnswers
-				  });
-			  }
-			  examPaper.examPaperQuestions=examPaperQuestions;*/
+			  examPaper.name=$('#input-name').val();
+			  examPaper.time=$('#input-time').val();
+			  examPaper.descriptor=$('#input-descriptor').val();
 			
 			  for (var i = 0; i < examPaper.examPaperQuestions.length; i++) {
-				 // if(examPaper.examPaperQuestions[i].examPaperQuestionAnswers.length<=0)
-				 // {
-					  examPaper.examPaperQuestions[i].examPaperQuestionAnswers=[];
-				 // }
-				  for (var j = 0; j <  examPaper.examPaperQuestions[i].question.answers.length; j++) {
-					  examPaper.examPaperQuestions[i].examPaperQuestionAnswers.push({
-						  answer:{
-							  id:examPaper.examPaperQuestions[i].question.answers[j].id
-						  },
-						  answerOrder:parseInt(j)+1
-					  })
-				}
+					  //if question exis , update
+					  if(examPaper.examPaperQuestions[i].examPaperQuestionAnswers.length==
+						  examPaper.examPaperQuestions[i].question.answers.length)
+					  {
+						  for (var j = 0; j <  examPaper.examPaperQuestions[i].question.answers.length; j++) {
+							  examPaper.examPaperQuestions[i].examPaperQuestionAnswers[j].answer=
+								  {
+									  id:examPaper.examPaperQuestions[i].question.answers[j].id
+								  };
+							  examPaper.examPaperQuestions[i].examPaperQuestionAnswers[j].answerOrder=parseInt(j)+1;
+					 
+						  } 
+					  }
+					  //create newion 
+					  else
+					  {
+						  for (var j = 0; j <  examPaper.examPaperQuestions[i].question.answers.length; j++) {
+							  examPaper.examPaperQuestions[i].examPaperQuestionAnswers.push({
+								  answer:{
+									  id:examPaper.examPaperQuestions[i].question.answers[j].id
+								  },
+								  answerOrder:parseInt(j)+1
+							  });
+						  }
+					  }
+					  
+				
 			  }
-			  
-			var grades=$('[dataId] .question-grade' );
-			 for (var i = 0; i < examPaper.examPaperQuestions.length; i++) {
-				 examPaper.examPaperQuestions[i].questionGrade=$(grades[i]).val();
-			 }
+
+			
 			  var msg=obj.ajaxCall('PUT',false,'manager/api/exampapers',examPaper,null);
 			  alert(msg.msg);
 		}
 		  
 	});
 }
-function validInput()
-{
-	var check=true;
-	var qGrades=$('[dataId] .question-grade');
-	for (var i = 0; i < qGrades.length; i++) {
-		if($(qGrades[i]).val()==''||parseFloat($(qGrades[i]).val())<=0)
-		{
-			$(qGrades[i]).addClass('border-danger');
-			check=false;
-		}
-		else
-		{
-			$(qGrades[i]).removeClass('border-danger');
-		}
-	}
-	if(check==false) alert('Trọng Số Điểm Cho Câu Hỏi Chưa Chính Xác !');
-	else
-	{
-		var sumGrade=$('.question-grade-sum').val();
-		if(parseFloat(sumGrade)>100)
-		{
-			alert('Tổng Trọng Số Điểm Lớn Hơn 100% !');
-			$('.question-grade-sum').addClass('border-danger');
-			check=false;
-		}
-		else $('.question-grade-sum').removeClass('border-danger');
-	}
-	return check;
-}
+
 function showCategory(subjectId)
 {
 	var categorys=obj.getCategoryBySubject(subjectId);
@@ -587,7 +521,7 @@ function shuffleQuestionEvents()
 		$('#question-list-container').append(rowData);
 		for (var i = 0; i < examPaper.examPaperQuestions.length; i++) {
 			examPaper.examPaperQuestions[i].questionOrder=parseInt(i)+1;
-			addQuestionToView(examPaper.examPaperQuestions[i].question,examPaper.examPaperQuestions[i].questionGrade);
+			addQuestionToView(examPaper.examPaperQuestions[i].question);
 			
 		}
 	});
@@ -610,6 +544,34 @@ function shuffleArray(array) {
         array[j] = temp;
     }
     return array;
+}
+
+function validInputs()
+{
+	var inputs=$('#exampaper-info input[required]');
+	var check=true;
+	for (var i = 0; i < inputs.length; i++) {
+		if($(inputs[i]).val()=="")
+		{
+			$(inputs[i]).addClass('border-danger');
+			check=false;
+		}
+		else $(inputs[i]).removeClass('border-danger');
+	}
+	
+	if(check==true)
+	{
+		var time=$("#input-time").val();
+		if(!($.isNumeric(time)&&parseInt(time)>0))
+		{
+			check=false;
+			$("#input-time").addClass('border-danger');
+			alert('Thời Gian Không Hợp Lệ!');
+		}
+		
+	}
+
+	return check;
 }
 class Question extends Base {
 	
