@@ -247,7 +247,7 @@
 					</nav>
 					<div class="container-fluid">
 
-						<div class="descriptor row p-4">
+						<div class="descriptor row px-4">
 							<div class="col-5 row d-flex ">
 								<div class="col-6">
 									<span class=' pl-1 m-0 font-weight-bold text-primary'>Môn
@@ -266,7 +266,7 @@
 						</div>
 						<!-- filter -->
 						<nav class="navbar navbar-expand-lg navbar-light bg-white mb-4"
-							id='filetr'>
+							id='filter'>
 
 							<div class="custom-menu ">
 								<button id="sidebarCollapse"
@@ -344,102 +344,74 @@
 						<!-- end filter -->
 						<!-- table -->
 						<!-- Area Chart -->
-						<div class="col-xl-12 col-lg-12 card-container">
-							<div class="card h-100">
-								<!-- Card Body -->
-								<div class="card-body">
-									<div class="limiter">
-										<div class="container-table-data">
-											<div class="wrap-table-data">
-												<div class="table-data  m-b-110">
-													<div class="table-data-head">
-														<table>
-															<thead>
-																<tr class="table-row head ">
-																	<th class="table-cell column0">
-																		<div class="dropdown d-flex">
-																			<div class="custom-control custom-checkbox">
-																				<input type="checkbox" class="custom-control-input">
-																				<label class="custom-control-label"></label>
+						<div class="table-responsive pl-3 pr-3  w-100">
+							<table class="table table-bordered w-100" id="dataTable"
+								cellspacing="0">
 
-																			</div>
-																			<div class="dropdown-toggle" id="dropdownMenuButton"
-																				data-toggle="dropdown" aria-haspopup="true"
-																				aria-expanded="false"></div>
-																			<div class="dropdown-menu"
-																				aria-labelledby="dropdownMenuButton">
-																				<a class="dropdown-item" id="select-all">Chọn
-																					Tất Cả</a> <a class="dropdown-item" id="deselect-all">Bỏ
-																					Chọn Tất Cả</a>
-																			</div>
-																		</div>
-																	</th>
-																	<th class="table-cell column1">STT</th>
-																	<th class="table-cell column2">Môn Học</th>
-																	<th class="table-cell column3">Tên Câu Hỏi</th>
-																	<th class="table-cell column4 ">Nội Dung</th>
-																	<th class="table-cell column5">Tùy Chọn</th>
+								<thead>
+									<tr>
+										<th class="table-cell column0">
+											<div class="dropdown d-flex">
+												<div class="custom-control custom-checkbox">
+													<input type="checkbox" class="custom-control-input">
+													<label class="custom-control-label"></label>
 
-																</tr>
-
-															</thead>
-														</table>
-													</div>
-
-													<div class="table-data-body js-pscroll">
-														<table>
-															<tbody id="table-data-body">
-																<h5 id='data-empty-alert'
-																	class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
-																	Có Dữ Liệu</h5>
-																<tr class="table-row body hidden"
-																	id="row-data-container">
-
-																	<td class="table-cell column0" field='checkBox'><div
-																			class="custom-control custom-checkbox">
-																			<input type="checkbox" class="custom-control-input"
-																				id="check-1"> <label
-																				class="custom-control-label" for="check-1"></label>
-																		</div></td>
-																	<td class="table-cell column1" field="index"></td>
-																	<td class="table-cell column2"
-																		field="subject.subjectName"></td>
-																	<td class="table-cell column3" field="name"></td>
-																	<td class="table-cell column4">
-																		<div class="d-flex">
-																			<div class="text-truncate d-flex" field="content"></div>
-																			<div class="pl-1 div-truncate"
-																				style="font-weight: bold;">
-																				<span>...</span>
-																			</div>
-																		</div>
-
-																	</td>
-																	<td class="table-cell column5">
-																		<button
-																			class="btn btn-view-inside text-success justify-content-center"
-																			style="box-shadow: none;">
-																			<i class="far fa-eye"></i>
-																		</button>
-
-																	</td>
-
-																</tr>
-
-															</tbody>
-														</table>
-													</div>
-
-													<div id='pagination' class='bg-white p-2 border-top'><jsp:include
-															page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
-													</div>
+												</div>
+												<div class="dropdown-toggle" id="dropdownMenuButton"
+													data-toggle="dropdown" aria-haspopup="true"
+													aria-expanded="false"></div>
+												<div class="dropdown-menu"
+													aria-labelledby="dropdownMenuButton">
+													<a class="dropdown-item" id="select-all">Chọn Tất Cả</a> <a
+														class="dropdown-item" id="deselect-all">Bỏ Chọn Tất Cả</a>
 												</div>
 											</div>
-										</div>
-									</div>
-								</div>
+										</th>
+										<th class='column1'>Tên</th>
+										<th class='column2'>Độ Khó</th>
+										<th class='column3'>Loại</th>
+										<th class='column4'>Nội Dung</th>
+										<th class='column5'>Xem</th>
+									</tr>
+								</thead>
 
-							</div>
+								<tbody id="table-data-body">
+									<tr id="row-data-container">
+										<td class="table-cell column0" field='checkBox'><div
+												class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input"
+													id="check-1"> <label class="custom-control-label"
+													for="check-1"></label>
+											</div></td>
+										<td class='column1' field='name'></td>
+										<td class='column2' field='level'></td>
+										<td class='column3' field='type'></td>
+										<td class="column4">
+											<div class="d-flex">
+												<div class="text-truncate d-flex" field="content"></div>
+												<div class="pl-1 div-truncate" style="font-weight: bold;">
+													<span>...</span>
+												</div>
+											</div>
+
+										</td>
+										<td class="table-cell column5">
+											<button
+												class="btn btn-view-inside text-success justify-content-center"
+												style="box-shadow: none;">
+												<i class="far fa-eye"></i>
+											</button>
+
+										</td>
+									</tr>
+
+
+								</tbody>
+							</table>
+
+						</div>
+						<div id='pagination' class='bg-white p-2 border-top'><jsp:include
+								page="/WEB-INF/views/commons/pagination.jsp"></jsp:include>
 						</div>
 
 						<!-- end table -->

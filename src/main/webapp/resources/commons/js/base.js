@@ -241,6 +241,15 @@ class Base {
     {
     	return this.ajaxCall('GET',false,'manager/api/categorys/subjects/'+subjectId);
     }
+  //for exam api
+    getExamByCode(code)
+    {
+    	return this.ajaxCall('GET',false,'manager/api/exams/codes/'+code);
+    }
+    getExamById(id)
+    {
+    	return this.ajaxCall('GET',false,'manager/api/exams/'+id);
+    }
     // init data for container data
     initData(containerId,rowDataId,data)
     {

@@ -34,6 +34,12 @@ function tableDataEvents()
 		var courseId=$(this).parents('[dataId]').attr('dataId');
 		window.location.href = rootLocation+"teacher/ql-lop-hoc/ql-sinh-vien?courseId="+courseId;
 	});
+	//btn-exam-management click , redirect to exam list view
+	//btn-student management click
+	$(document).on('click', '.btn-exam-management', function () {
+		var courseId=$(this).parents('[dataId]').attr('dataId');
+		window.location.href = rootLocation+"teacher/ql-lop-hoc/ql-bai-thi?course="+courseId;
+	});
 	//selected course
 	$(document).on('click', '.card', function () {
 		$('.card').removeClass('selected');

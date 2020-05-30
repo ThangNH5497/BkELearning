@@ -1,6 +1,5 @@
 package bk.elearning.repository;
 
-import java.util.HashMap;
 import java.util.List;
 
 public interface IGenericRepository<T> {

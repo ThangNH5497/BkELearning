@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import bk.elearning.entity.AbstractEntity;
 import bk.elearning.entity.Exam;
 import bk.elearning.entity.Question;
@@ -20,16 +22,19 @@ public class ExamQuestion extends AbstractEntity implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private float grade;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "question_id")
 	private Question question;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "exam_id")
 	private Exam exam;
 
-	public ExamQuestion(int id, Question question, Exam exam) {
+	public ExamQuestion(int id, Exam exam, Question question) {
 		super(id);
 		this.question = question;
 		this.exam = exam;
@@ -59,8 +64,13 @@ public class ExamQuestion extends AbstractEntity implements Serializable {
 		this.exam = exam;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public float getGrade() {
+		return grade;
 	}
+
+	public void setGrade(float grade) {
+		this.grade = grade;
+	}
+
 
 }

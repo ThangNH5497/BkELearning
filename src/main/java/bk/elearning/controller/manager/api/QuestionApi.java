@@ -206,4 +206,17 @@ public class QuestionApi {
 		return new Message(status, path);
 
 	}
+	
+	@PostMapping(path = "/file-multimedia")
+	public Message uploadFile(@RequestPart(name = "file", required = true) MultipartFile file) {
+
+		try {
+			String path = questionService.uploadFile(file);
+			if (path != null)
+				return new Message(Constant.STATUS_SUCCESS, path);
+		} catch (Exception e) {
+
+		}
+		return new Message(Constant.STATUS_ERROR, "Thêm Thất Bại. Vui Lòng Thử Lại! ");
+	}
 }

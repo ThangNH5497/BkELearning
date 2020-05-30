@@ -66,6 +66,10 @@ public class User extends AbstractEntity implements Serializable{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<Exam> exam;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<ExamPaper> examPapers;
 
 	/*
@@ -207,6 +211,13 @@ public class User extends AbstractEntity implements Serializable{
 	public void setCategory(Set<Category> category) {
 		this.category = category;
 	}
+	public Set<Exam> getExam() {
+		return exam;
+	}
+	public void setExam(Set<Exam> exam) {
+		this.exam = exam;
+	}
 
+	
 	
 }

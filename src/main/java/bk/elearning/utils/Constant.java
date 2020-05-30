@@ -30,4 +30,12 @@ public class Constant {
 	public static final String UPLOAD_USER_DIR="resources/commons/upload/user/";
 	
 	public static final String UPLOAD_QESTION_DIR="resources/commons/upload/question/";
+	
+	public static final String EXAM_STATUS_CLOSE="CLOSE";
+	
+	public static final String EXAM_STATUS_OPEN="OPEN";
+	
+	public static final String EXAM_STATUS_CONFIRM="CONFIRM";
+	
+	public static final String EXAM_STATUS_FINISH="FINISH";
 }

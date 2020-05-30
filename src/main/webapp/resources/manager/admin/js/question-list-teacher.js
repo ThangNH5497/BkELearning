@@ -143,7 +143,7 @@ function init()
 	rootApiGet='manager/api/questions/page/teachers/'+filterTeacher+'/subjects/'+filterSubject+'/types/'+filterType+'/levels/'+filterLevel+'?'
 	rootApiSearch='manager/api/questions/search/teachers/'+filterTeacher+'/subjects/'+filterSubject+'/types/'+filterType+'/levels/'+filterLevel+'?'
 	//lay du lieu trang va phan trang
-	handlePagination('pagination','table-data-body','row-data-container',rootApiGet,replaceImg);
+	handlePagination('pagination','table-data-body','row-data-container',rootApiGet,replaceDataView);
 	//lay du lieu trang va phan trang tim kiem mon hoc cho filter
 	handlePagination('pagination-subject','table-data-body-subject','row-data-container-subject','api/subjects/page?');
 	

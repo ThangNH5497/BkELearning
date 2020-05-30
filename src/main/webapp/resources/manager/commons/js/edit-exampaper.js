@@ -138,7 +138,7 @@ function init()
 		rootApiGet='manager/api/questions/page/teachers/'+teacherId+'/subjects/'+filterSubject+'/types/'+filterType+'/levels/'+filterLevel+'?'
 		rootApiSearch='manager/api/questions/search/teachers/'+teacherId+'/subjects/'+filterSubject+'/types/'+filterType+'/levels/'+filterLevel+'?'
 		// lay du lieu trang va phan trang
-		handlePagination('pagination','table-data-body','row-data-container',rootApiGet,replaceImg);
+		handlePagination('pagination','table-data-body','row-data-container',rootApiGet,replaceDataView);
 		// lay du lieu trang va phan trang tim kiem mon hoc cho filter
 		handlePagination('pagination-subject','table-data-body-subject','row-data-container-subject','api/subjects/page?');
 		searchEvents('key-search','btn-search',rootApiSearch);
@@ -266,7 +266,7 @@ function filterData()
 	rootApiSearch='manager/api/questions/search/teachers/'+teacherId+'/subjects/'+examPaper.subject.id+'/types/'+filterType+'/levels/'+filterLevel+'?';
 	// lay du lieu trang va phan trang
 	
-	handlePagination('pagination','table-data-body','row-data-container',rootApiGet,replaceImg);
+	handlePagination('pagination','table-data-body','row-data-container',rootApiGet,replaceDataView);
 	searchEvents('key-search','btn-search',rootApiSearch);
 }
 //them cac cau hoi da chon trong ngan hang cau hoi
@@ -573,6 +573,8 @@ function validInputs()
 
 	return check;
 }
+
+//replace img, video ,... question show in table by icon
 class Question extends Base {
 	
     constructor() {

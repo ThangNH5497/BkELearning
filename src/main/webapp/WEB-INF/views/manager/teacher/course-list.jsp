@@ -52,14 +52,14 @@
 									id="link-current">
 									<span class="navbar-text text-primary font-weight-bold d-flex">Mã
 										Lớp
-										<p field="code" class="pl-4">10000</p>
+										<p field="code" class="pl-4"></p>
 									</span>
 								</div>
 								<div class="d-flex justify-content-end col-6">
 									<a href="#"
 										class="btn btn-success btn-circle btn-sm mr-3 btn-student-management">
 										<i class="fas fa-user-cog"></i>
-									</a> <a href="#" class="btn btn-info btn-circle btn-sm mr-3"> <i
+									</a> <a href="#" class="btn btn-info btn-circle btn-sm mr-3 btn-exam-management"> <i
 										class="fas fa-sliders-h"></i>
 									</a>
 

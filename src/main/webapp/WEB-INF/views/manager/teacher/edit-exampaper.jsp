@@ -9,7 +9,7 @@
 <link rel="stylesheet"
 	href="<c:url value='/resources/manager/commons/css/dashboard.css' />">
 <link rel="stylesheet"
-	href="<c:url value='/resources/manager/commons/css/question-list.css' />">
+	href="<c:url value='/resources/manager/commons/css/edit-exampaper.css' />">
 
 <!-- Phan noi dung trang -->
 <div class="wrapper d-flex align-items-stretch">

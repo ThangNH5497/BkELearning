@@ -1,0 +1,50 @@
+table td
+{
+	box-sizing: border-box;
+}
+.column0 {
+	width: 5%;
+	padding-left: 10px;
+}
+.column1 {
+	width: 10%;
+}
+
+.column2 {
+	width: 10%;
+}
+
+.column3 {
+	width: 10%;
+}
+
+.column4 {
+	width: 10%;
+}
+
+.column5 {
+	width: 10%;
+}
+
+.column6 {
+	width: 10%;
+}
+
+.column7 {
+	width: 10%;
+}
+.column8 {
+	width: 10%;
+}
+.column9 {
+	width: 10%;
+}
+
+
+table
+{
+	table-layout: fixed;
+}
+
+
+
