@@ -8,7 +8,7 @@ function deleteEvents(urlApi)
 	    } else {
 	    	
 	    	//get all input checked
-	    	var items=$('#table-data-body tr input[type="checkbox"]:checked');
+	    	var items=$('#table-data-body tr[dataId] input[type="checkbox"]:checked');
 			
 	    	//no selected
 	    	if(items.length<=0)
@@ -30,7 +30,7 @@ function deleteEvents(urlApi)
 					$('#modal-delete-alert').modal('hide');
 					//list ids to delete
 					var ids=[];
-					var rowChecked=$('#table-data-body tr.checked');
+					var rowChecked=$('#table-data-body tr.checked[dataId]');
 					for(var i=0;i<rowChecked.length;i++)
 					{
 						ids.push($(rowChecked[i]).attr('dataId'));

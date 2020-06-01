@@ -1,5 +1,5 @@
 var key;
-function searchEvents(inputId,buttonId,rootUrlApi)
+function searchEvents(inputId,buttonId,rootUrlApi,functionHandle)
 {
 	//get key
 	$(document).on('click', '#'+buttonId, function () {
@@ -7,6 +7,6 @@ function searchEvents(inputId,buttonId,rootUrlApi)
 
 		$('#link-back-search').removeClass('hidden');
 		url=rootUrlApi+'q='+key+'&';
-		handlePagination('pagination','table-data-body','row-data-container',url);
+		handlePagination('pagination','table-data-body','row-data-container',url,functionHandle);
 	});
 }

@@ -42,8 +42,8 @@ function submitExam()
 						code:$('#input-code').val(),
 						time:$('#input-time').val(),
 						descriptor:$('#input-descriptor').val(),
-						timeOpen:$("#time-open").data("datetimepicker").getUTCDate(),
-						timeClose:$("#time-close").data("datetimepicker").getUTCDate(),
+						timeOpen:$("#time-open").data("datetimepicker").getDate(),
+						timeClose:$("#time-close").data("datetimepicker").getDate(),
 						subject:{
 							id:$('#input-subject').attr('subjectId')
 						},

@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,6 +26,7 @@ import bk.elearning.entity.relationship.ExamQuestion;
 
 @Entity
 @Table(name = "exam")
+@DynamicUpdate
 public class Exam extends AbstractEntity {
 
 	private String code;
@@ -41,14 +44,14 @@ public class Exam extends AbstractEntity {
 
 	@Temporal(TemporalType.TIMESTAMP)
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm",timezone = "GMT+7")
 
 	@Column(name = "time_open")
 	private Date timeOpen;
 
 	@Temporal(TemporalType.TIMESTAMP)
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm",timezone = "GMT+7")
 
 	@Column(name = "time_close")
 	private Date timeClose;
@@ -68,14 +71,13 @@ public class Exam extends AbstractEntity {
 	private Subject subject;
 
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "create_by")
 	private User user;
 
 	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<ExamQuestion> examQuestions;
 
-	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
 	private Set<ExamCourse> examCourses;
 	
 	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -87,7 +89,7 @@ public class Exam extends AbstractEntity {
 	}
 
 	public Exam(int id, String code, int time, float grade, String name, String descriptor,String status, Date timeOpen,
-			Date timeClose, Date createAt, Date updateAt) {
+			Date timeClose, Date createAt, Date updateAt,User user) {
 		super(id);
 		this.code = code;
 		this.time = time;
@@ -99,6 +101,7 @@ public class Exam extends AbstractEntity {
 		this.createAt = createAt;
 		this.updateAt = updateAt;
 		this.status=status;
+		this.user=user;
 	}
 
 	public String getCode() {

@@ -3,29 +3,42 @@ $(document).ready(function() {
 	//use small pagination for modal
 	$('#modal-select-subject ul.pagination').addClass('pagination-sm');
 	$('#sidebar .active').removeClass('active');
-	$('#menu-item-course').addClass('active');
+	$('#menu-item-subject').addClass('active');
 	init();
 
 });
 var courseId;
 function init()
 {	
-	courseId=obj.getParam('course');
-	searchEvents('key-search','btn-search','manager/api/exams/search/courses/'+courseId+'?',function(){
-		handleLock();
-	});
+	subjectId=obj.getParam('subject');
+	try {
+		var subject=obj.getSubjectById(subjectId);
+		$('#table-title').text(subject.code+'-'+subject.subjectName);
+	} catch (e) {
+		// TODO: handle exception
+	}
+	searchEvents('key-search','btn-search','manager/api/exams/search/subjects/'+subjectId+'?',handleLock);
 	handlePagination('pagination','table-data-body','row-data-container',
-			'manager/api/exams/page/courses/'+courseId+'?',function(){
+			'manager/api/exams/page/subjects/'+subjectId+'?',function(){
+		$('.btn-view').html('<i class="fas fa-sliders-h"></i>');
+		$('.btn-view').addClass('btn-edit-course');
+		$('.btn-view').removeClass('btn-view');
 		handleLock();
+		
 	});
 	
 	$(document).on('click', '.btn-add', function () {
-		window.location.href = rootLocation+"teacher/ql-lop-hoc/ql-bai-thi/them-moi?course="+courseId;
+		window.location.href = rootLocation+"admin/ql-mon-hoc/ql-bai-thi/them-moi?subject="+subjectId;
 	});
 	
 	$(document).on('click', '.btn-edit', function () {
 		var examId=$(this).parents('[dataId]').attr('dataId');
-		window.location.href = rootLocation+"teacher/ql-lop-hoc/ql-bai-thi/cap-nhat?examId="+examId;
+		window.location.href = rootLocation+"admin/ql-mon-hoc/ql-bai-thi/cap-nhat?examId="+examId;
+	});
+	
+	$(document).on('click', '.btn-edit-course', function () {
+		var examId=$(this).parents('[dataId]').attr('dataId');
+		window.location.href = rootLocation+"admin/ql-mon-hoc/ql-bai-thi/cap-nhat-lop?examId="+examId;
 	});
 	
 	// click table
@@ -36,12 +49,8 @@ function init()
 		$(this).addClass('selected');
 
 	});
-	
-	 //check-all
-	 $('#select-all').click(function(){
-		$('#table-data-body [field="user.role"]:contains("Chung")').parents('tr[dataId]').removeClass('checked');
-    });
 }
+//xu ly cac du lieu khoa chinh suwa/xoa
 function handleLock()
 {
 	try {
@@ -54,10 +63,6 @@ function handleLock()
 			else if($(roles[i]).text()=='ROLE_ADMIN')
 			{
 				$(roles[i]).text('Chung');
-				$(roles[i]).addClass('text-danger');
-				var tr=$(roles[i]).parents('tr[dataId]');
-				$(tr).find('[field=checkBox]').html('');
-				$(tr).find('[field=control]').html('');
 			}
 		}
 	} catch (e) {

@@ -1,0 +1,33 @@
+#modal-select-course .table-responsive{
+	/* height: 50vh; */
+	min-height: 50vh;
+	/* max-height: 50vh; */
+	overflow: auto;
+}
+#table-data-body tr:nth-child(odd) {
+	background-color:#f0f2f5;
+}
+
+ .table-responsive th {
+    text-align: center;
+    vertical-align: middle;
+}
+#table-data-body tr td {
+	font-size: 0.9vw;
+    text-align: center;
+    vertical-align: middle;
+}
+#pagination-course li
+{
+	color :#858796 !important;
+}
+
+#table-data-body .selected
+{
+	background: #e1e6ed !important;
+}
+#table-data-body .checked td
+{
+	background: #f0ad4e  !important;
+	color:white;
+}

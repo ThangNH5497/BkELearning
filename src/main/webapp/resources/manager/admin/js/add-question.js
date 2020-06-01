@@ -47,6 +47,4 @@ class Question extends Base {
     	super();
 
     }
-    
-    
 }

@@ -1,6 +1,8 @@
 package bk.elearning.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.text.StringEscapeUtils;
@@ -34,12 +36,13 @@ public class ExamServiceImpl implements IExamService {
 		Exam exam = examRepo.getById(id);
 		try {
 			for (ExamQuestion eq : exam.getExamQuestions()) {
-				Question q=eq.getQuestion();
+				Question q = eq.getQuestion();
 				q.setContent(StringEscapeUtils.unescapeHtml4(q.getContent()));
 				for (Answer answer : q.getAnswers()) {
 					answer.setContent(StringEscapeUtils.unescapeHtml4(answer.getContent()));
 				}
 			}
+			exam = checkStatus(exam);
 			return exam;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -106,6 +109,23 @@ public class ExamServiceImpl implements IExamService {
 	}
 
 	@Override
+	public int updateCourses(Exam exam) {
+
+		try {
+			Exam examUpdate = examRepo.getById(exam.getId());
+			examUpdate.getExamCourses().clear();
+			for (ExamCourse ec : exam.getExamCourses()) {
+				ec.setExam(examUpdate);
+				examUpdate.getExamCourses().add(ec);
+			}
+			return examRepo.update(examUpdate);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+	}
+
+	@Override
 	public Exam getByCode(String code) {
 		// TODO Auto-generated method stub
 		return examRepo.getByCode(code);
@@ -117,15 +137,134 @@ public class ExamServiceImpl implements IExamService {
 		return 0;
 	}
 
+	// get page by subject of admin
 	@Override
 	public PaginationResult<Exam> getPageByCourse(int courseId, int page, int size) {
 		// TODO Auto-generated method stub
-		if (page > 0) {
+		try {
+			if (page > 0) {
 
-			return examRepo.getPageByCourse(courseId, page - 1, size);
+				// return examRepo.getPageByCourse(courseId, page - 1, size);
+				PaginationResult<Exam> pages = examRepo.getPageByCourse(courseId, page - 1, size);
+
+				for (Exam exam : pages.getData()) {
+					exam = checkStatus(exam);
+				}
+
+				return pages;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 
 		return null;
+	}
+
+	@Override
+	public PaginationResult<Exam> getPageBySubject(int subjectId, int page, int size) {
+		// TODO Auto-generated method stub
+		try {
+			if (page > 0) {
+				CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
+						.getPrincipal();
+				if (user.getRole().equals(Constant.ROLE_ADMIN)) {
+					// return examRepo.getPageBySubject(subjectId, page - 1, size);
+					PaginationResult<Exam> pages = examRepo.getPageBySubject(subjectId, page - 1, size);
+
+					for (Exam exam : pages.getData()) {
+						exam = checkStatus(exam);
+					}
+
+					return pages;
+				}
+
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return null;
+	}
+
+	@Override
+	public PaginationResult<Exam> searchPageByCourse(int courseId, String key, int page, int size) {
+		// TODO Auto-generated method stub
+		try {
+			if (page > 0) {
+
+				PaginationResult<Exam> pages = examRepo.searchPageByCourse(courseId, key, page - 1, size);
+
+				for (Exam exam : pages.getData()) {
+					exam = checkStatus(exam);
+				}
+
+				return pages;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return null;
+	}
+
+	@Override
+	public PaginationResult<Exam> searchPageBySubject(int subjectId, String key, int page, int size) {
+		// TODO Auto-generated method stub
+		try {
+			if (page > 0) {
+
+				// return examRepo.searchPageBySubject(subjectId, key, page - 1, size);
+				PaginationResult<Exam> pages = examRepo.searchPageBySubject(subjectId, key, page - 1, size);
+
+				for (Exam exam : pages.getData()) {
+					exam = checkStatus(exam);
+				}
+
+				return pages;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return null;
+	}
+
+	private Exam checkStatus(Exam exam) {
+		try {
+			Date currentTime = Util.getDate();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS");
+			// Output "Wed Sep 26 14:23:28 EST 2012"
+			String time = format.format(Util.getDate());
+			System.out.println("time : " + time);
+			System.out.println("open : " + format.format(exam.getTimeOpen()));
+			System.out.println("close : " + format.format(exam.getTimeClose()));
+
+			System.out.println(currentTime.getTime());
+			System.out.println(exam.getTimeOpen().getTime());
+			System.out.println(exam.getTimeClose().getTime());
+
+			if (currentTime.getTime() < exam.getTimeOpen().getTime()) {
+				if (!exam.getStatus().equals(Constant.EXAM_STATUS_CLOSE)) {
+					exam.setStatus(Constant.EXAM_STATUS_CLOSE);
+					this.update(exam);
+				}
+
+			} else if (currentTime.getTime() > exam.getTimeClose().getTime()) {
+				if (!exam.getStatus().equals(Constant.EXAM_STATUS_FINISH)) {
+					exam.setStatus(Constant.EXAM_STATUS_FINISH);
+					this.update(exam);
+				}
+			} else {
+				if (!exam.getStatus().equals(Constant.EXAM_STATUS_OPEN)) {
+					exam.setStatus(Constant.EXAM_STATUS_OPEN);
+					this.update(exam);
+				}
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return exam;
+
 	}
 
 }

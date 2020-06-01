@@ -49,7 +49,6 @@ public class User extends AbstractEntity implements Serializable{
 	@Column(name = "phone_number")
 	private String phoneNumber;
 
-	@JsonIgnore
 	@Column(name = "role", nullable = false)
 	private String role;
 

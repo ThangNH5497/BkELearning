@@ -118,7 +118,71 @@
 		</div>
 	</div>
 	<!-- table -->
+	<!-- course list view -->
+	<div class='hidden course-list'>
+		<div class="card mb-4">
+			<div class="card-body ">
+				<h5 class="h6 mb-0 text-gray-600 mb-4">Danh Sách Lớp</h5>
 
+				<div id="course-list-container">
+					<div class='hidden' id='course-item-sample'>
+						<div class="card mt-3">
+							<div class="card-body p-2 mt-1 mb-1">
+								<div class='row d-flex'>
+									<div class="d-flex col-lg-4 col-md-4 align-self-center">
+										<div class='course-code'></div>
+									</div>
+									<div class="d-flex col-lg-6 col-md-6 align-self-center">
+										<div class="text-truncate d-flex course-name"></div>
+
+									</div>
+
+
+									<div class="row col-lg-2 col-md-2 justify-content-end d-flex">
+
+										<button
+											class="m-0 btn btn-delete text-danger btn-control col-3">
+											<i class="fas fa-trash"></i>
+										</button>
+
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card mt-3">
+					<div class="card-body p-2 mt-1 mb-1">
+						<div class='row d-flex'>
+							<div class="d-flex col-lg-10 col-md-9 align-self-center"></div>
+
+						</div>
+
+					</div>
+				</div>
+				<!-- button add question -->
+				<div class="d-flex w-100 justify-content-end mt-4">
+
+
+					<div class='d-flex'>
+
+						<div class="dropdown">
+							<button class="btn btn-success btn-select-course btn-sm"
+								type="button">Thêm Lớp</button>
+
+						</div>
+					</div>
+
+				</div>
+
+				<!-- end button add question -->
+
+			</div>
+		</div>
+	</div>
+	<!-- question list view -->
 	<div>
 		<div class="card mb-4">
 			<div class="card-body ">
@@ -174,10 +238,7 @@
 				</div>
 				<!-- button add question -->
 				<div class="d-flex w-100 justify-content-end mt-4">
-					<!-- <a href="#" class="btn btn-primary btn-icon-split btn-sm"> <span
-							class="icon text-white-50"> <i class="fas fa-cut"></i>
-						</span> <span class="text">Trang Mới</span>
-						</a> -->
+
 
 					<div class='d-flex'>
 
@@ -218,8 +279,8 @@
 									<div class="d-flex col-lg-2 col-md-2 align-self-center">
 										<div class="form-group m-0 col-12">
 											<div>
-												<input class="form-control exam-filter-input" type="text" value='0'
-													id='input-question-easy' required>
+												<input class="form-control exam-filter-input" type="text"
+													value='0' id='input-question-easy' required>
 											</div>
 										</div>
 									</div>
@@ -228,34 +289,11 @@
 									<div class="d-flex col-lg-2 col-md-2 align-self-center">
 										<div class="form-group m-0 col-12">
 											<div>
-												<input class="form-control" type="text" value='0' readonly id='number-question-easy'>
+												<input class="form-control" type="text" value='0' readonly
+													id='number-question-easy'>
 											</div>
 										</div>
 									</div>
-									<!-- <div class="d-flex align-self-center ml-3">
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input">
-											<label class="custom-control-label">Một Đáp Án</label>
-
-										</div>
-									</div>
-									
-									<div class="d-flex align-self-center ml-3">
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input">
-											<label class="custom-control-label">Nhiều Đáp Án</label>
-
-										</div>
-									</div>
-									
-									<div class="d-flex align-self-center ml-3 mr-3">
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input">
-											<label class="custom-control-label">Điền Từ</label>
-
-										</div>
-									</div>
- 												-->
 
 
 								</div>
@@ -271,8 +309,8 @@
 									<div class="d-flex col-lg-2 col-md-2 align-self-center">
 										<div class="form-group m-0 col-12">
 											<div>
-												<input class="form-control exam-filter-input" type="text" value='0'
-													id='input-question-medium' required>
+												<input class="form-control exam-filter-input" type="text"
+													value='0' id='input-question-medium' required>
 											</div>
 										</div>
 									</div>
@@ -280,7 +318,8 @@
 									<div class="d-flex col-lg-2 col-md-2 align-self-center">
 										<div class="form-group m-0 col-12">
 											<div>
-												<input class="form-control" type="text" value='0' readonly id='number-question-medium'>
+												<input class="form-control" type="text" value='0' readonly
+													id='number-question-medium'>
 											</div>
 										</div>
 									</div>
@@ -299,8 +338,8 @@
 									<div class="d-flex col-lg-2 col-md-2 align-self-center">
 										<div class="form-group m-0 col-12">
 											<div>
-												<input class="form-control exam-filter-input" type="text" value='0'
-													id='input-question-hard' required>
+												<input class="form-control exam-filter-input" type="text"
+													value='0' id='input-question-hard' required>
 											</div>
 										</div>
 									</div>
@@ -309,7 +348,8 @@
 									<div class="d-flex col-lg-2 col-md-2 align-self-center">
 										<div class="form-group m-0 col-12">
 											<div>
-												<input class="form-control" type="text" value='0' readonly id='number-question-hard'>
+												<input class="form-control" type="text" value='0' readonly
+													id='number-question-hard'>
 											</div>
 										</div>
 									</div>
@@ -327,14 +367,16 @@
 									<div class="d-flex col-lg-2 col-md-2 align-self-center">
 										<div class="form-group m-0 col-12">
 											<div>
-												<input class="form-control" type="text" value='0' readonly id='input-question-count'>
+												<input class="form-control" type="text" value='0' readonly
+													id='input-question-count'>
 											</div>
 										</div>
 									</div>
 									<div class="d-flex col-lg-2 col-md-2 align-self-center">
 										<div class="form-group m-0 col-12">
 											<div>
-												<input class="form-control" type="text" value='0' readonly id='number-question-total'>
+												<input class="form-control" type="text" value='0' readonly
+													id='number-question-total'>
 											</div>
 										</div>
 									</div>
@@ -357,7 +399,7 @@
 
 	<div class='row d-flex justify-content-center mt-4'>
 		<button type="button" class="btn btn-primary btn-submit"
-			id="btn-submit-exampaper">Lưu</button>
+			id="btn-submit-exam">Lưu</button>
 	</div>
 	<!-- end table -->
 </div>

@@ -66,4 +66,28 @@ public class AdminController {
 	{
 		return "manager/admin/category-list";
 	}
+	
+	@RequestMapping("/ql-mon-hoc/ql-bai-thi")
+	public String getExamListView(@RequestParam(required = false,name="subject") Integer subjectId)
+	{
+		return "manager/admin/exam-list";
+	}
+	
+	@RequestMapping("/ql-mon-hoc/ql-bai-thi/cap-nhat")
+	public String getUpdateExamView(@RequestParam(name="examId") Integer examId)
+	{
+		return "manager/admin/edit-exam";
+	}
+	
+	@RequestMapping("/ql-mon-hoc/ql-bai-thi/cap-nhat-lop")
+	public String getUpdateExamCourse(@RequestParam(name="examId") Integer examId)
+	{
+		return "manager/admin/edit-exam-course";
+	}
+	
+	@RequestMapping("/ql-mon-hoc/ql-bai-thi/them-moi")
+	public String getAddExamListView(@RequestParam(required = false,name="subject") Integer subjectId)
+	{
+		return "manager/admin/add-exam";
+	}
 }

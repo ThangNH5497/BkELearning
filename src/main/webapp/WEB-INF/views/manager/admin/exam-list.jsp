@@ -14,7 +14,7 @@
 
 <!-- Phan noi dung trang -->
 <div class="wrapper d-flex align-items-stretch">
-	<jsp:include page="/WEB-INF/views/manager/teacher/menu.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/manager/admin/menu.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/manager/commons/exam-list.jsp"></jsp:include>
 </div>
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
@@ -25,7 +25,7 @@
 
 
 <script
-	src="<c:url value='/resources/manager/teacher/js/exam-list.js' />"></script>
+	src="<c:url value='/resources/manager/admin/js/exam-list.js' />"></script>
 <!-- Footer -->
 
 <jsp:include page="/WEB-INF/views/manager/commons/footer.jsp"></jsp:include>

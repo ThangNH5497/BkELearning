@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:include page="/WEB-INF/views/commons/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/manager/commons/header.jsp"></jsp:include>
 
 <link rel="stylesheet"
 	href="<c:url value='/resources/commons/css/style.css' />">
@@ -121,11 +121,16 @@
 															<td class="table-cell column2" field="code"></td>
 															<td class="table-cell column3" field="subjectName"></td>
 															<td class="table-cell column4" field="descriptor"></td>
-															<td class="table-cell column5">
+															<td class="table-cell column5 ">
 																<button
-																	class="btn btn-add text-secondary btn-subject-detail d-flex justify-content-start"
-																	style="width: 100%; box-shadow: none;">
-																	<i style="font-size: 20px;" class="fas fa-cog"></i>
+																	class="btn text-secondary btn-subject-detail"
+																	style=" box-shadow: none;">
+																	<i class="fas fa-cog"></i>
+																</button>
+																<button
+																	class="btn text-primary btn-exam-list"
+																	style=" box-shadow: none;">
+																	<i class="far fa-newspaper"></i>
 																</button>
 															</td>
 
@@ -327,4 +332,4 @@
 <!-- Footer -->
 
 
-<jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/manager/commons/footer.jsp"></jsp:include>

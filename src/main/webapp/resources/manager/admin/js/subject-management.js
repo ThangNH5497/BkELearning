@@ -55,6 +55,12 @@ function tableDataEvents()
 		var id=$(this).parents('tr[dataId]').attr('dataId');
 		location.href = rootLocation+'admin/ql-mon-hoc/danh-sach-lop?id='+id;
 	});
+	//btn exam list
+	$(document).on('click', '#table-data-body .btn-exam-list', function () {
+		//lay id tu phan tử tr
+		var id=$(this).parents('tr[dataId]').attr('dataId');
+		location.href = rootLocation+'admin/ql-mon-hoc/ql-bai-thi?subject='+id;
+	});
 }
 function validForm(formId,subject)
 {

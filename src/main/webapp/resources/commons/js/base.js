@@ -77,13 +77,18 @@ class Base {
          });
     	 //check-all
     	 $('#select-all').click(function(){
-    		 $('#table-data-body tr[dataId] input[type="checkbox"]').prop('checked',true);
+    		 $('#table-data-body  input[type="checkbox"]').prop('checked',true);
     		 $('#table-data-body tr[dataId]').addClass('checked');
+    		 
+    		 var input=$(this).parents('th').find('input[type="checkbox"]');
+    		 $(input).prop('checked',true);
          });
     	 //de check-all
     	 $('#deselect-all').click(function(){
     		 $('#table-data-body input[type="checkbox"]').prop('checked',false);
     		 $('#table-data-body tr').removeClass('checked');
+    		 var input=$(this).parents('th').find('input[type="checkbox"]');
+    		 $(input).prop('checked',false);
          });
     	
     }

@@ -8,7 +8,7 @@
 
 		<div
 			class="d-flex align-items-center justify-content-between mb-4 row">
-			<h1 class="col-8 h5 mb-0 text-gray-600">Danh Sách Bài Thi</h1>
+			<h1 class="col-8 h5 mb-0 text-gray-600" id='table-title'>Danh Sách Bài Thi</h1>
 			<a href="#"
 				class=" col-1 btn btn-sm btn-primary shadow-sm btn-add"><i
 				class="fas fa-plus fa-sm text-white-50"></i>Thêm</a>
@@ -83,7 +83,8 @@
 													<th class="table-cell column6">TG Mở</th>
 													<th class="table-cell column7">TG Đóng</th>
 													<th class="table-cell column8">Trạng Thái</th>
-													<th class="table-cell column8">Tùy Chọn</th>
+													<th class="table-cell column9">Phạm Vi</th>
+													<th class="table-cell column10">Tùy Chọn</th>
 
 												</tr>
 
@@ -111,7 +112,8 @@
 													<td class="table-cell column6" field="timeOpen"></td>
 													<td class="table-cell column7" field="timeClose"></td>
 													<td class="table-cell column8" field="status"></td>
-													<td class="table-cell column9">
+													<td class="table-cell column9" field="user.role"></td>
+													<td class="table-cell column10" field='control'>
 														<button
 															class="btn btn-view text-success justify-content-center"
 															style="box-shadow: none;">
