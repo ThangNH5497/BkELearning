@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import bk.elearning.entity.Exam;
+import bk.elearning.entity.dto.ExamDTO;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.repository.IExamRepository;
 import bk.elearning.utils.Constant;
@@ -120,6 +121,33 @@ public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implemen
 				query.setParameter("subjectId", subjectId);
 				query.setParameter("roleAdmin", Constant.ROLE_ADMIN);
 				query.setParameter("key",key);
+				query.setFirstResult(start);
+				query.setMaxResults(size);
+				page.setData(query.list());
+			}
+			return page;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+	@Override
+	public PaginationResult<ExamDTO> getByStudent(Integer studentId, int start, int size) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		PaginationResult<ExamDTO> page = new PaginationResult<ExamDTO>();
+		try {
+			String hqlQuery = "FROM Exam e JOIN e.examCourses ec where ec.course.id"
+					+" IN ( select c.id FROM  Course c JOIN c.studentCourses sc where sc.student.id=:studentId)";
+			Query qCount = session.createQuery("SELECT COUNT(distinct e.id)" + hqlQuery);
+			qCount.setParameter("studentId", studentId);
+			page.setCount((Long) qCount.uniqueResult());
+			if (page.getCount() > 0) {
+				Query query = session.createQuery(
+						//"SELECT new Exam(e.id,e.code,e.time,e.grade,e.name,e.descriptor,e.status, e.timeOpen,e.timeClose,e.createAt,e.updateAt,e.subject) "
+						"Select  new bk.elearning.entity.dto.ExamDTO(e.id,e,ec) "+		 hqlQuery);
+				query.setParameter("studentId", studentId);
 				query.setFirstResult(start);
 				query.setMaxResults(size);
 				page.setData(query.list());

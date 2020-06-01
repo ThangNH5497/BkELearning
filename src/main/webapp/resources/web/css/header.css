@@ -1,0 +1,192 @@
+body {
+	font-family: "Quicksand", sans-serif;
+}
+
+span.menu-button {
+	font-family: "Quicksand", sans-serif;
+	font-size: 15px;
+	color: white;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.fa, .fab {
+	font-size: 18px;
+}
+
+.dropdown>.dropdown-menu {
+	top: 200%;
+	transition: 0.3s all ease-in-out;
+}
+
+.dropdown:hover>.dropdown-menu {
+	display: block;
+	top: 100%;
+}
+
+.dropdown>.dropdown-toggle:active {
+	/*Without this, clicking will make it sticky*/
+	pointer-events: none;
+}
+
+.header .menu {
+	/* background-color: #dd1a5b ;*/
+	padding-left: 7%;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	color: white !important;
+	min-height: 45px;
+}
+
+.header .menu li,.header  a {
+	height: 100%;
+	min-height: 45px;
+}
+
+.menu .dropdown a:hover a.main-menu {
+	background-color: white !important;
+}
+
+.menu .dropdown a:hover {
+	background-color: #dd1a5b !important;
+}
+
+.menu a.main-menu:hover span.menu-button {
+	color: #dd1a5b;
+}
+
+.menu a.main-menu:hover {
+	background-color: white !important;
+}
+
+.fixed-top {
+	opacity: 80%;
+}
+
+/*chinh sua  tim kiem*/
+.header {
+	display: flex;
+}
+
+.left {
+	width: 35%;
+	padding-left: 5%;
+	box-sizing: border-box;
+}
+
+.center {
+	width: 40%;
+	box-sizing: border-box;
+}
+
+.right {
+	width: 25%;
+	box-sizing: border-box;
+}
+
+.center {
+	display: flex;
+}
+
+.center form {
+	width: 100%;
+	display: flex;
+}
+
+ul li {
+	border: none;
+}
+
+.tablet {
+	display: none;
+}
+.mobile
+{
+	display: none;
+}
+
+/* responsive cho tablet*/
+/* responsive cho tablet*/
+@media screen and (min-width: 576px) and (max-width: 991px)    {
+	.header {
+		display: block;
+	}
+	.center {
+		width: 100%;
+		padding-left: 10%;
+		padding-right: 10%;
+		margin: 0px;
+	}
+	.right {
+		display: none;
+	}
+	.left {
+		display: flex;
+		box-sizing: border-box;
+		width: 100%;
+	}
+	.left a {
+		width: 50%;
+		box-sizing: border-box;
+	}
+	.left .tablet {
+		width: 50%;
+		display: block;
+		box-sizing: border-box;
+	}
+}
+
+/* responsive cho mobile*/
+@media screen and (max-width: 575px) {
+	.header {
+		display: block;
+	}
+	.center {
+		width: 100%;
+		padding-left: 10%;
+		padding-right: 10%;
+	}
+	.right {
+		display: none;
+	}
+	.tablet
+	{
+		display: none;
+	}
+	#menu-top span
+	{
+		padding-left:0px;
+	}
+	.mobile
+	{
+	display: block;
+	}
+	.mobile li a
+	{
+	padding-left:15px;
+	color:white;
+	}
+	.mobile i
+	{
+	color:white;
+	}
+}
+
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}

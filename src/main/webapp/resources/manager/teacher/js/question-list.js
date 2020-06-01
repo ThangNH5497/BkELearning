@@ -177,8 +177,5 @@ class QuestionManager extends Base {
     constructor() {
     	super();
     }
-    
-    
-    
-    
+ 
 }

@@ -15,6 +15,7 @@ import bk.elearning.entity.Exam;
 import bk.elearning.entity.Question;
 import bk.elearning.entity.User;
 import bk.elearning.entity.dto.CustomUserDetails;
+import bk.elearning.entity.dto.ExamDTO;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.entity.relationship.ExamCourse;
 import bk.elearning.entity.relationship.ExamFilter;
@@ -265,6 +266,16 @@ public class ExamServiceImpl implements IExamService {
 		}
 		return exam;
 
+	}
+
+	@Override
+	public PaginationResult<ExamDTO> getByStudent(Integer studentId,int page,int size) {
+		// TODO Auto-generated method stub
+		if(page>0)
+		{
+			return examRepo.getByStudent(studentId,page-1,size);
+		}
+		return null;
 	}
 
 }

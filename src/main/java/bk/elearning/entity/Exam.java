@@ -103,6 +103,23 @@ public class Exam extends AbstractEntity {
 		this.status=status;
 		this.user=user;
 	}
+	
+	public Exam(int id, String code, int time, float grade, String name, String descriptor,String status, Date timeOpen,
+			Date timeClose, Date createAt, Date updateAt,Subject subject) {
+		super(id);
+		this.code = code;
+		this.time = time;
+		this.grade = grade;
+		this.name = name;
+		this.descriptor = descriptor;
+		this.timeOpen = timeOpen;
+		this.timeClose = timeClose;
+		this.createAt = createAt;
+		this.updateAt = updateAt;
+		this.status=status;
+		this.subject=subject;
+	
+	}
 
 	public String getCode() {
 		return code;

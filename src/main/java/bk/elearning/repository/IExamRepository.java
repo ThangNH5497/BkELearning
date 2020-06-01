@@ -1,7 +1,7 @@
 package bk.elearning.repository;
 
 import bk.elearning.entity.Exam;
-import bk.elearning.entity.ExamPaper;
+import bk.elearning.entity.dto.ExamDTO;
 import bk.elearning.entity.dto.PaginationResult;
 
 public interface IExamRepository extends IGenericRepository<Exam>{
@@ -13,5 +13,7 @@ public interface IExamRepository extends IGenericRepository<Exam>{
 	PaginationResult<Exam> searchPageByCourse(int courseId, String key, int i, int size);
 
 	PaginationResult<Exam> searchPageBySubject(int subjectId, String key, int i, int size);
+
+	PaginationResult<ExamDTO> getByStudent(Integer studentId, int page, int size);
 
 }

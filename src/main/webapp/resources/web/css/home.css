@@ -1,0 +1,13 @@
+#main-carousel img {
+	margin: 0px;
+	min-width: 100%;
+	max-height: 600px;
+}
+
+.pagination a {
+	vertical-align: middle !important;
+}
+.hidden
+{
+	display: none;
+}
