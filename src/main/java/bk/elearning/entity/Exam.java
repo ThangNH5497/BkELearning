@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import bk.elearning.entity.relationship.ExamCourse;
 import bk.elearning.entity.relationship.ExamFilter;
 import bk.elearning.entity.relationship.ExamQuestion;
+import bk.elearning.entity.relationship.StudentExam;
 
 @Entity
 @Table(name = "exam")
@@ -83,6 +84,10 @@ public class Exam extends AbstractEntity {
 	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@OrderBy("number ASC")
 	private Set<ExamFilter> examFilters;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="exam",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<StudentExam> studentExams;
 
 	public Exam() {
 		super();

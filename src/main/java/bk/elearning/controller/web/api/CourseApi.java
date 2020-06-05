@@ -40,13 +40,13 @@ public class CourseApi {
 	// lay theo id
 	@GetMapping(path = "/{id}")
 	public Course getCourseById(@PathVariable int id) {
-		Course courses = null;
+		Course course = null;
 		try {
-			courses = courseService.getById(id);
+			course = courseService.getById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return courses;
+		return course;
 	}
 
 	// lay theo code

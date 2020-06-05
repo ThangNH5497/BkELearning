@@ -14,6 +14,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import bk.elearning.entity.relationship.StudentCourse;
+import bk.elearning.entity.relationship.StudentExam;
 
 @Entity
 @DynamicUpdate
@@ -30,6 +31,10 @@ public class Student extends User{
 	@JsonIgnore
 	@OneToMany(mappedBy="student",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<StudentCourse> studentCourses;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="student",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<StudentExam> studentExams;
 
 	public Student(String className, Set<StudentCourse> studentCourses) {
 		super();
@@ -68,6 +73,14 @@ public class Student extends User{
 
 	public void setStudentCourses(Set<StudentCourse> studentCourses) {
 		this.studentCourses = studentCourses;
+	}
+
+	public Set<StudentExam> getStudentExams() {
+		return studentExams;
+	}
+
+	public void setStudentExams(Set<StudentExam> studentExams) {
+		this.studentExams = studentExams;
 	}
 	
 	

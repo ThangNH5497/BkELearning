@@ -27,4 +27,15 @@ public class ExamApi {
 		return null;
 
 	}
+	
+	@GetMapping("/dto/id/{examId}")
+	public ExamDTO getById(@PathVariable Integer examId) {
+		try {
+			return examService.getExamDTOById(examId);
+		} catch (Exception e) {
+
+		}
+		return null;
+
+	}
 }

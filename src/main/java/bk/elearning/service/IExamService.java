@@ -18,4 +18,6 @@ public interface IExamService extends IGenericService<Exam> {
 
 	PaginationResult<ExamDTO> getByStudent(Integer studentId,int pgae,int size);
 
+	ExamDTO getExamDTOById(Integer examId);
+
 }

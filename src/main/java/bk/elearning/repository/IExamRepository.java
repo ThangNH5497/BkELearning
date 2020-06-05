@@ -16,4 +16,8 @@ public interface IExamRepository extends IGenericRepository<Exam>{
 
 	PaginationResult<ExamDTO> getByStudent(Integer studentId, int page, int size);
 
+	int  updateStatus(Exam exam);
+
+	ExamDTO getExamDTOById(Integer examId);
+
 }

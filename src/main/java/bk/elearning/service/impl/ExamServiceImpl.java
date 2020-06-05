@@ -247,18 +247,18 @@ public class ExamServiceImpl implements IExamService {
 			if (currentTime.getTime() < exam.getTimeOpen().getTime()) {
 				if (!exam.getStatus().equals(Constant.EXAM_STATUS_CLOSE)) {
 					exam.setStatus(Constant.EXAM_STATUS_CLOSE);
-					this.update(exam);
+					examRepo.updateStatus(exam);
 				}
 
 			} else if (currentTime.getTime() > exam.getTimeClose().getTime()) {
 				if (!exam.getStatus().equals(Constant.EXAM_STATUS_FINISH)) {
 					exam.setStatus(Constant.EXAM_STATUS_FINISH);
-					this.update(exam);
+					examRepo.updateStatus(exam);
 				}
 			} else {
 				if (!exam.getStatus().equals(Constant.EXAM_STATUS_OPEN)) {
 					exam.setStatus(Constant.EXAM_STATUS_OPEN);
-					this.update(exam);
+					examRepo.updateStatus(exam);
 				}
 			}
 		} catch (Exception e) {
@@ -273,9 +273,28 @@ public class ExamServiceImpl implements IExamService {
 		// TODO Auto-generated method stub
 		if(page>0)
 		{
-			return examRepo.getByStudent(studentId,page-1,size);
+			PaginationResult<ExamDTO> pages = examRepo.getByStudent(studentId,page-1,size);
+
+			for (ExamDTO examDTO : pages.getData()) {
+				Exam exam = new Exam();
+				exam.setId(examDTO.getId());
+				exam.setTimeOpen(examDTO.getTimeOpen());
+				exam.setTimeClose(examDTO.getTimeClose());
+				exam.setStatus(examDTO.getStatus());
+				exam=checkStatus(exam);
+				examDTO.setStatus(exam.getStatus());
+			}
+
+			return pages;
+			
 		}
 		return null;
+	}
+
+	@Override
+	public ExamDTO getExamDTOById(Integer examId) {
+		// TODO Auto-generated method stub
+		return examRepo.getExamDTOById(examId);
 	}
 
 }

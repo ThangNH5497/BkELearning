@@ -1,0 +1,122 @@
+.hidden {
+	display: none;
+}
+p {
+	word-wrap: break-word !important;
+}
+
+/*for checkbox*/
+/* only demo styles */
+body {
+	font-family: Raleway;
+}
+
+/* end only demo styles */
+.checkbox-custom, .radio-custom {
+	opacity: 0;
+	position: absolute;
+}
+
+.checkbox-custom, .checkbox-custom-label, .radio-custom,
+	.radio-custom-label {
+	display: inline-block;
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+.checkbox-custom-label, .radio-custom-label {
+	position: relative;
+}
+
+.checkbox-custom+.checkbox-custom-label:before, .radio-custom+.radio-custom-label:before
+	{
+	content: '';
+	background: #fff;
+	border: 2px solid #ddd;
+	display: inline-block;
+	vertical-align: middle;
+	width: 20px;
+	height: 20px;
+	padding: 2px;
+	margin-right: 10px;
+	text-align: center;
+	border-radius: 50%;
+}
+
+.checkbox-custom:checked+.checkbox-custom-label:before {
+	background: rebeccapurple;
+	box-shadow: inset 0px 0px 0px 4px #fff;
+	border-radius: 50%;
+}
+
+.radio-custom+.radio-custom-label:before {
+	border-radius: 50%;
+}
+
+.radio-custom:checked+.radio-custom-label:before {
+	background: #ccc;
+	box-shadow: inset 0px 0px 0px 4px #fff;
+}
+
+/*check*/
+.checkbox-custom:focus+.answer-content, .radio-custom:focus+.radio-custom-label
+	{
+	
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.container-grid {
+	margin: 0 auto 0 auto;
+	position: relative;
+	max-width: 900px;
+	width: 90%;
+	border-radius: 7px;
+	display: flex;
+	flex-wrap: wrap;
+	/* justify-content: space-around; */
+}
+
+.item {
+	border: 1px solid #0373fc;
+	border-radius: 7px;
+	width: 18%;
+	height: 32%;
+	margin-right: 2%;
+	margin-bottom: 5%;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+}
+
+.item:hover {
+	background: #0373fc;
+	border-color: #FFDD40 !important;
+	color: white;
+	text-decoration: none;
+}
+.loader
+{
+	position: fixed;
+	top:0px;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+}
+
+
+@media screen and (max-width: 1200px) {
+	.item {
+		border: 1px solid #0373fc;
+		border-radius: 7px;
+		width: 30%;
+		height: 32%;
+		margin-right: 2%;
+		margin-bottom: 5%;
+		position: relative;
+		text-align: center;
+		text-decoration: none;
+	}
+}

@@ -17,8 +17,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import bk.elearning.entity.relationship.ExamPaperQuestion;
+import bk.elearning.entity.relationship.StudentExam;
 
 @Entity
 @Table(name = "exampaper")
@@ -61,6 +63,10 @@ public class ExamPaper extends AbstractEntity implements Serializable {
 	@OneToMany(mappedBy = "examPaper", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = ExamPaperQuestion.class, orphanRemoval = true)
 	@OrderBy("questionOrder ASC")
 	private Set<ExamPaperQuestion> examPaperQuestions;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="examPaper",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<StudentExam> studentExams;
 
 	private String descriptor;
 

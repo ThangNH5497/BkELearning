@@ -38,4 +38,8 @@ public class Constant {
 	public static final String EXAM_STATUS_CONFIRM="CONFIRM";
 	
 	public static final String EXAM_STATUS_FINISH="FINISH";
+	
+	public static final String STUDENT_EXAM_STATUS_FINISH="FINISH";
+	
+	public static final String STUDENT_EXAM_STATUS_CONTINUE="CONTINUE";
 }

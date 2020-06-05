@@ -66,7 +66,7 @@
 					src="<c:url value='/resources/commons/image/login/slide-1.jpg' />"
 					alt="">
 				<div class="carousel-caption d-none d-md-block">
-					<h1>Mountain</h1>
+					<h1>HUST</h1>
 				</div>
 			</div>
 			<div class="carousel-item">
@@ -74,9 +74,8 @@
 					src="<c:url value='/resources/commons/image/login/slide-2.jpg' />"
 					alt="">
 				<div class="carousel-caption d-none d-md-block">
-					<h3>Mountain</h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Adipisci esse vitae exercitationem fugit, numquam minus!</p>
+					<h3>HUST</h3>
+					<p>Lời Giới Thiệu</p>
 				</div>
 			</div>
 			<div class="carousel-item">
@@ -84,9 +83,8 @@
 					src="<c:url value='/resources/commons/image/login/slide-1.jpg' />"
 					alt="">
 				<div class="carousel-caption d-none d-md-block">
-					<h3>Mountain</h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Adipisci esse vitae exercitationem fugit, numquam minus!</p>
+					<h3>HUST</h3>
+					<p>Lời Giới Thiệu</p>
 				</div>
 			</div>
 			<div class="carousel-item">
@@ -94,9 +92,8 @@
 					src="<c:url value='/resources/commons/image/login/slide-2.jpg' />"
 					alt="" class="d-block img-fluid">
 				<div class="carousel-caption d-none d-md-block">
-					<h3>Mountain</h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Adipisci esse vitae exercitationem fugit, numquam minus!</p>
+					<h3>HUST</h3>
+					<p>Lời Giới Thiệu</p>
 				</div>
 			</div>
 		</div>
@@ -223,15 +220,15 @@
 								</tfoot>
 								<tbody id='table-data-body'>
 									<tr role="row" class="odd hidden" id='row-data-container'>
-										<td class="sorting_1" field="exam.code"></td>
-										<td field="exam.name"></td>
-										<td field="exam.subject.subjectName"></td>
+										<td class="sorting_1" field="code"></td>
+										<td field="name"></td>
+										<td field="examCourse.course.subject.subjectName"></td>
 										<td field="examCourse.course.code"></td>
-										<td field="exam.time"></td>
-										<td field="exam.timeOpen"></td>
-										<td field="exam.timeClose"></td>
-										<td field="exam.status"></td>
-										<td></td>
+										<td field="time"></td>
+										<td field="timeOpen"></td>
+										<td field="timeClose"></td>
+										<td field="status"></td>
+										<td field="result"></td>
 									</tr>
 
 								</tbody>

@@ -1,22 +1,25 @@
-*{
+* {
 	box-sizing: border-box !important;
 }
+
 p {
-   word-wrap: break-word !important;
+	word-wrap: break-word !important;
 }
+
 #content {
 	background-color: white;
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
 }
+
 .btn-control {
 	margin-right: 10px;
 	box-shadow: none !important;
 }
-.btn-control i
-{
-	font-size: max(1.1vw,14px) !important;
+
+.btn-control i {
+	font-size: max(1.1vw, 14px) !important;
 }
 
 .hidden {
@@ -28,7 +31,6 @@ p {
 }
 
 .card-container .card-header {
-
 	min-height: 8vh;
 	padding: 0 16px 0 16px !important;
 }
@@ -47,22 +49,20 @@ p {
 }
 
 .select-style {
-    border: 1px solid #007BFF;
-    width: 100px;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
+	border: 1px solid #007BFF;
+	width: 100px;
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
 }
 
 .select-style select {
-    padding: 5px 8px;
-    width: 100%;
-    border: none;
-    box-shadow: none;
-    background: transparent;
-    background-image: none;
-    -webkit-appearance: none;
-    
- 
+	padding: 5px 8px;
+	width: 100%;
+	border: none;
+	box-shadow: none;
+	background: transparent;
+	background-image: none;
+	-webkit-appearance: none;
 }
 
 /*//////////////////////////////////////////////////////////////////
@@ -110,48 +110,48 @@ iframe {
 
 /*//////////////////////////////////////////////////////////////////
 [ Scroll bar ]*/
-[ Scroll bar ]*/
+[Scroll bar ]* /
 .js-pscroll {
-  position: relative;
-  overflow: hidden;
+	position: relative;
+	overflow: hidden;
 }
 
 .table-data .ps__rail-y {
-  width: 9px;
-  background-color: transparent;
-  opacity: 1 !important;
-  right: 5px;
+	width: 9px;
+	background-color: transparent;
+	opacity: 1 !important;
+	right: 5px;
 }
 
 .table-data .ps__rail-y::before {
-  content: "";
-  display: block;
-  position: absolute;
-  background-color: #ebebeb;
-  border-radius: 5px;
-  width: 100%;
-  height: calc(100% - 30px);
-  left: 0;
-  top: 15px;
+	content: "";
+	display: block;
+	position: absolute;
+	background-color: #ebebeb;
+	border-radius: 5px;
+	width: 100%;
+	height: calc(100% - 30px);
+	left: 0;
+	top: 15px;
 }
 
 .table-data .ps__rail-y .ps__thumb-y {
-  width: 100%;
-  right: 0;
-  background-color: transparent;
-  opacity: 1 !important;
+	width: 100%;
+	right: 0;
+	background-color: transparent;
+	opacity: 1 !important;
 }
 
 .table-data .ps__rail-y .ps__thumb-y::before {
-  content: "";
-  display: block;
-  position: absolute;
-  background-color: #cccccc;
-  border-radius: 5px;
-  width: 100%;
-  height: calc(100% - 30px);
-  left: 0;
-  top: 15px;
+	content: "";
+	display: block;
+	position: absolute;
+	background-color: #cccccc;
+	border-radius: 5px;
+	width: 100%;
+	height: calc(100% - 30px);
+	left: 0;
+	top: 15px;
 }
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*/
@@ -218,16 +218,14 @@ th, td {
 .table-data-head th {
 	padding-top: 16px;
 	padding-right: 0px !important;
-	font-size: max(1.1vw ,15px) !important;
+	font-size: max(1.1vw, 15px) !important;
 }
 
 .table-data-body td {
 	padding-top: 16px;
 	padding-bottom: 16px;
-	font-size: max(0.95vw ,13px) !important;
+	font-size: max(0.95vw, 13px) !important;
 }
-
-
 
 /*==================================================================
 [ Fix header ]*/
@@ -262,26 +260,24 @@ th, td {
 }
 
 .table-data td {
-	
 	font-size: 16px;
-	
 	line-height: 1.4;
-	
-	font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
-    color: #5e5d52;
-	
+	font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial",
+		sans-serif;
+	color: #5e5d52;
 }
-#table-data-body .selected td
-{
+
+#table-data-body .selected td {
 	background: #facde9;
 }
-#table-data-body .checked td
-{
+
+#table-data-body .checked td {
 	background: #f0ad4e;
-	color:white;
+	color: white;
 }
+
 .table-data .table-data-body tr:nth-child(odd) {
-	background-color:#f0f2f5;
+	background-color: #f0f2f5;
 }
 
 /*---------------------------------------------*/
@@ -342,7 +338,7 @@ th, td {
 	min-width: 15%;
 }
 
-.modal-body .btn-submit, .btn-next, .btn-submit-file-exel,.btn-ok,
+.modal-body .btn-submit, .btn-next, .btn-submit-file-exel, .btn-ok,
 	.btn-delete-alert-ok {
 	background: #33b5e5 !important;
 	margin-left: 10%;
@@ -374,7 +370,7 @@ th, td {
 	font-family: 'Open Sans', sans-serif;
 }
 
-.form-container h2,.form-v4-content h2 {
+.form-container h2, .form-v4-content h2 {
 	font-weight: 400;
 	font-size: 24px;
 	padding: 6px 0 0;
@@ -387,7 +383,7 @@ th, td {
 	width: 100%;
 }
 
-.form-container h2,.form-v4-content .form-detail h2 {
+.form-container h2, .form-v4-content .form-detail h2 {
 	color: #3786bd;
 }
 
@@ -511,10 +507,9 @@ th, td {
 	-ms-box-sizing: border-box;
 }
 
-.form-v4-content .form-detail .form-row input:focus ,area:focus{
+.form-v4-content .form-detail .form-row input:focus, area:focus {
 	border: 1px solid #53c83c !important;
 }
-
 
 .form-v4-content .form-detail .register {
 	background: #3786bd;
@@ -615,20 +610,16 @@ th, td {
 /* end modal form*/
 
 /*css add from file exel tab*/
-#add-exel-tab .message-container
-{
+#add-exel-tab .message-container {
 	min-height: 30vh !important;
-	padding:40px;
+	padding: 40px;
 }
 /*end css add from file exel tab*/
 /*end modal*/
-.text-responsive-lg
-{
-	font-size: max(1vw,15px) !important;
+.text-responsive-lg {
+	font-size: max(1vw, 15px) !important;
 }
 /*card detail*/
-.card-detail
-{
-	font-size: max(0.95vw,13px) !important;
+.card-detail {
+	font-size: max(0.95vw, 13px) !important;
 }
-
