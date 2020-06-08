@@ -109,3 +109,88 @@ function init()
 	}
 }
 
+function filterData()
+{
+	filterType=$('#filter-type input').attr('val');
+	filterLevel=$('#filter-level input').attr('val');
+	
+	$('#filter-type input').attr('val',filterType);
+	$('#filter-level input').attr('val',filterLevel);
+	
+	switch (filterType) {
+		case "ALL":
+		{
+			$('#filter-type input').val("Tất Cả");
+			
+			break;
+		}
+		case "ONE_CHOICE":
+		{
+			$('#filter-type input').val("Một Đáp Án");
+			
+			break;
+		}	
+		case "MULTIPLE_CHOICE":
+		{
+			$('#filter-type input').val("Nhiều Đáp Án");
+			
+			break;
+		}
+		case "FILL_WORD":
+		{
+			$('#filter-type input').val("Điền Từ");
+			
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+	switch (filterLevel) {
+		case "ALL":
+		{
+			$('#filter-level input').val("Tất Cả");
+			
+			break;
+		}
+		case "0":
+		{
+			$('#filter-level input').val("Dễ");
+			
+			break;
+		}	
+		case "1":
+		{
+			$('#filter-level input').val("Trung Bình");
+			
+			break;
+		}
+		case "2":
+		{
+			$('#filter-level input').val("Khó");
+			
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+	
+	/*rootApiGet='manager/api/questions/page/teachers/'+teacherId+'/subjects/'+exam.subject.id+'/types/'+filterType+'/levels/'+filterLevel+'?';
+	rootApiSearch='manager/api/questions/search/teachers/'+teacherId+'/subjects/'+exam.subject.id+'/types/'+filterType+'/levels/'+filterLevel+'?';
+	// lay du lieu trang va phan trang
+	
+	handlePagination('pagination','table-data-body','row-data-container',rootApiGet,replaceDataView);
+	searchEvents('key-search','btn-search',rootApiSearch);*/
+	
+	
+	rootApiGet='manager/api/questions/page/subjects/'+filterSubject+'/types/'+filterType+'/levels/'+filterLevel+'?'
+	rootApiSearch='manager/api/questions/search/subjects/'+filterSubject+'/types/'+filterType+'/levels/'+filterLevel+'?'
+	//lay du lieu trang va phan trang
+	handlePagination('pagination','table-data-body','row-data-container',rootApiGet,replaceDataView);
+	//lay du lieu trang va phan trang tim kiem mon hoc cho filter
+	searchEvents('key-search','btn-search',rootApiSearch);
+}
+

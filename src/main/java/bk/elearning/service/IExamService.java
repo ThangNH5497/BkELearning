@@ -1,8 +1,12 @@
 package bk.elearning.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import bk.elearning.entity.Exam;
 import bk.elearning.entity.dto.ExamDTO;
 import bk.elearning.entity.dto.PaginationResult;
+import bk.elearning.entity.dto.StudentResultQuestionDTO;
+import bk.elearning.entity.dto.TimeCoundown;
 
 public interface IExamService extends IGenericService<Exam> {
 
@@ -19,5 +23,11 @@ public interface IExamService extends IGenericService<Exam> {
 	PaginationResult<ExamDTO> getByStudent(Integer studentId,int pgae,int size);
 
 	ExamDTO getExamDTOById(Integer examId);
+
+	ExamDTO doExam(Integer examId, Integer studentId,HttpServletRequest request);
+
+	void updateResult(StudentResultQuestionDTO studentResultQuestionDTO);
+
+	void updateResult(TimeCoundown tc);
 
 }

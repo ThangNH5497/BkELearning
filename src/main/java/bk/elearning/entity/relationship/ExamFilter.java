@@ -1,10 +1,7 @@
 package bk.elearning.entity.relationship;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -20,6 +17,11 @@ import bk.elearning.entity.Exam;
 @Table(name="exam_filter")
 public class ExamFilter extends AbstractEntity implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private int number;
 	
 	private int level;
@@ -28,7 +30,7 @@ public class ExamFilter extends AbstractEntity implements Serializable{
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
-	@JoinColumn(name = "question_id")
+	@JoinColumn(name = "exam_id")
 	private Exam exam;
 	
 	public ExamFilter() {}

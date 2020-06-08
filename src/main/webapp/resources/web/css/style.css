@@ -106,6 +106,45 @@ body {
 	left: 0px;
 }
 
+/*modal*/
+.modal-header {
+	background: #33b5e5;
+	color: white;
+}
+
+.modal-header .close span {
+	color: white;
+}
+
+/*button form*/
+.modal-body a {
+	font-weight: 600;
+	min-width: 15%;
+}
+
+.modal-body .btn-submit, .btn-next, .btn-submit-file-exel, .btn-ok,
+	.btn-delete-alert-ok {
+	background: #33b5e5 !important;
+	margin-left: 10%;
+	color: white !important;
+}
+
+.modal-body .btn-delete-alert-ok {
+	background: #4BB543 !important;
+}
+
+.modal-body .btn-back {
+	background: #eb8034 !important;
+	color: white !important;
+}
+
+.modal-body .btn-cancel {
+	margin-right: 10%;
+	border: 1px solid #33b5e5 !important;
+	color: #33b5e5 !important;
+}
+
+
 
 @media screen and (max-width: 1200px) {
 	.item {

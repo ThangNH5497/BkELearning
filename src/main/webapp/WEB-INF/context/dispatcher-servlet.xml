@@ -17,10 +17,13 @@
 	<context:component-scan
 		base-package="net.javaguides.springmvc" />
 	<!-- Add support for conversion, formatting and validation support -->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven>
+		<mvc:async-support default-timeout="30000">
+		</mvc:async-support>
+	</mvc:annotation-driven>
 	<!-- Configures Interceptors -->
 	<mvc:interceptors>
-	<!-- kich hoat task -->
+		<!-- kich hoat task -->
 
 		<!-- This XML will intercept all URIs <bean class="vn.nongsanquehuong.interceptor.AuthInterceptor"></bean> -->
 
@@ -51,9 +54,10 @@
 		class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/bkelearning?allowPublicKeyRetriny = true;useSSL=false&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8"/>
-		<!--value="jdbc:mysql://localhost:3306/NongSanQueHuong?useSSL=false&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8"-->
-		 
+		<property name="jdbcUrl"
+			value="jdbc:mysql://localhost:3306/bkelearning?allowPublicKeyRetriny = true;useSSL=false&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8" />
+		<!--value="jdbc:mysql://localhost:3306/NongSanQueHuong?useSSL=false&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8" -->
+
 		<property name="user" value="root" />
 		<property name="password" value="thangkmhd54" />
 		<!-- these are connection pool properties for C3P0 -->
@@ -65,8 +69,7 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
-		<property name="packagesToScan"
-			value="bk.elearning.entity" />
+		<property name="packagesToScan" value="bk.elearning.entity" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL55Dialect</prop>
@@ -88,10 +91,13 @@
 		transaction-manager="myTransactionManager" />
 	<!-- email -->
 	<!-- upload file -->
-	<bean id="multipartResolver" class="bk.elearning.config.MultipartResolver">
-		<!--  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+	<bean id="multipartResolver"
+		class="bk.elearning.config.MultipartResolver">
+		<!-- class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> -->
 		<!-- setting maximum upload size -->
-		<property name="maxUploadSize" value="5000000"/>
+		<property name="maxUploadSize" value="5000000" />
 	</bean>
-	
+
+
+
 </beans>

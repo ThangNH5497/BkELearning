@@ -39,6 +39,9 @@ public class ExamPaperQuestionAnswer extends AbstractEntity implements Serializa
 	
 	@Column(name="answer_order")
 	private int answerOrder;
+	
+	@Column(name="student_answer")
+	private String studentAnswer;
 
 	public ExamPaperQuestionAnswer()
 	{
@@ -67,6 +70,12 @@ public class ExamPaperQuestionAnswer extends AbstractEntity implements Serializa
 	}
 	public void setAnswerOrder(int answerOrder) {
 		this.answerOrder = answerOrder;
+	}
+	public String getStudentAnswer() {
+		return studentAnswer;
+	}
+	public void setStudentAnswer(String studentAnswer) {
+		this.studentAnswer = studentAnswer;
 	}
 	
 	

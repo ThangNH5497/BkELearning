@@ -45,7 +45,7 @@
 
 			
 			<div class='row mt-4 mb-4 justify-content-center border-top pt-4'>
-				<a href="lam-bai?id=12" class="btn btn-success btn-icon-split mt-4"> <span
+				<a href="#" class="btn btn-success btn-icon-split mt-4" id='btn-do-exam'> <span
 					class="text">Vào Bài Thi</span> <span class="icon text-white-50">
 						<i class="fas fa-arrow-right"></i>
 				</span>

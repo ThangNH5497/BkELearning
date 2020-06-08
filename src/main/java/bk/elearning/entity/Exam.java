@@ -75,18 +75,17 @@ public class Exam extends AbstractEntity {
 	@JoinColumn(name = "create_by")
 	private User user;
 
-	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
 	private Set<ExamQuestion> examQuestions;
 
 	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
 	private Set<ExamCourse> examCourses;
 	
-	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
 	@OrderBy("number ASC")
 	private Set<ExamFilter> examFilters;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy="exam",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="exam",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<StudentExam> studentExams;
 
 	public Exam() {
@@ -125,6 +124,23 @@ public class Exam extends AbstractEntity {
 		this.subject=subject;
 	
 	}
+	
+	public Exam(int id, String code, int time, float grade, String name, String descriptor, String status,
+			Date timeOpen, Date timeClose, Set<ExamFilter> examFilters) {
+		super(id);
+		this.code = code;
+		this.time = time;
+		this.grade = grade;
+		this.name = name;
+		this.descriptor = descriptor;
+		this.status = status;
+		this.timeOpen = timeOpen;
+		this.timeClose = timeClose;
+		this.examFilters=examFilters;
+	}
+	
+	
+
 
 	public String getCode() {
 		return code;
@@ -244,6 +260,14 @@ public class Exam extends AbstractEntity {
 
 	public void setExamFilters(Set<ExamFilter> examFilters) {
 		this.examFilters = examFilters;
+	}
+
+	public Set<StudentExam> getStudentExams() {
+		return studentExams;
+	}
+
+	public void setStudentExams(Set<StudentExam> studentExams) {
+		this.studentExams = studentExams;
 	}
 
 }

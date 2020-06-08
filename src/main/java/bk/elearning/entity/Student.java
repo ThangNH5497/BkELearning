@@ -59,6 +59,11 @@ public class Student extends User{
 		// TODO Auto-generated constructor stub
 	}
 
+	public Student(int id) {
+		// TODO Auto-generated constructor stub
+		super(id);
+	}
+
 	public String getClassName() {
 		return className;
 	}

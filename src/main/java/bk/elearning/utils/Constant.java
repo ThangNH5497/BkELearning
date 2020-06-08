@@ -42,4 +42,9 @@ public class Constant {
 	public static final String STUDENT_EXAM_STATUS_FINISH="FINISH";
 	
 	public static final String STUDENT_EXAM_STATUS_CONTINUE="CONTINUE";
+	
+	public static final String SESSION_TIME_COUNTDOWN="TIME_COUNTDOWN";
+	
+	public static final String STUDENT_ANSWER_CHOOSE="CHOOSED";
+	public static final Long DELAY_TIME = 5000l;
 }

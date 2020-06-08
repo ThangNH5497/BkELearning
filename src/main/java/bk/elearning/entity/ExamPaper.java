@@ -171,6 +171,14 @@ public class ExamPaper extends AbstractEntity implements Serializable {
 		this.time = time;
 	}
 
+	public Set<StudentExam> getStudentExams() {
+		return studentExams;
+	}
+
+	public void setStudentExams(Set<StudentExam> studentExams) {
+		this.studentExams = studentExams;
+	}
+
 
 
 }

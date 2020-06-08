@@ -45,7 +45,8 @@ class Home extends Base {
 									switch (data[i].studentExam.status) {
 									case "CONTINUE":
 									{
-										value='<a href="bai-thi" style="color:#e3ac09;">Tiếp Tục</a>';
+
+										value='<a style="color:#e3ac09;" href="bai-thi?examId='+data[i].id+'&courseId='+data[i].examCourse.course.id+'">Tiếp Tục</a>';
 										break;
 									}
 									case "FINISH":

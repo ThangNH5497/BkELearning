@@ -1,6 +1,7 @@
 package bk.elearning.entity.dto;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -8,6 +9,7 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import bk.elearning.entity.relationship.ExamCourse;
+import bk.elearning.entity.relationship.ExamFilter;
 import bk.elearning.entity.relationship.StudentExam;
 
 public class ExamDTO {
@@ -39,6 +41,8 @@ public class ExamDTO {
 	private ExamCourse examCourse;
 	
 	private StudentExam studentExam;
+	
+	private Set<ExamFilter> examFilters;
 
 	public int getId() {
 		return id;
@@ -130,6 +134,14 @@ public class ExamDTO {
 		this.studentExam = studentExam;
 	}
 
+
+	public Set<ExamFilter> getExamFilters() {
+		return examFilters;
+	}
+
+	public void setExamFilters(Set<ExamFilter> examFilters) {
+		this.examFilters = examFilters;
+	}
 	public ExamDTO(int id, String code, int time, float grade, String name, String descriptor, String status,
 			Date timeOpen, Date timeClose, ExamCourse examCourse) {
 		super();
@@ -159,5 +171,19 @@ public class ExamDTO {
 		this.timeOpen = timeOpen;
 		this.timeClose = timeClose;
 	}
-
+	
+	public ExamDTO(int id, String code, int time, float grade, String name, String descriptor, String status,
+			Date timeOpen, Date timeClose, Set<ExamFilter> examFilters) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.time = time;
+		this.grade = grade;
+		this.name = name;
+		this.descriptor = descriptor;
+		this.status = status;
+		this.timeOpen = timeOpen;
+		this.timeClose = timeClose;
+		this.examFilters=examFilters;
+	}
 }

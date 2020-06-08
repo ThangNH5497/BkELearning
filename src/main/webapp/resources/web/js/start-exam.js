@@ -17,6 +17,11 @@ $(document).ready(function() {
 		alert('Có Lỗi Xảy Ra . Vui Lòng Thử Lại!')
 	}
 	
+	$(document).on('click', '#btn-do-exam', function (e) {
+		window.location.href = rootLocation+"lam-bai?id="+examId;
+	
+	});
+	
 });
 var obj;
 class StartExam extends Base {

@@ -8,16 +8,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping()
 public class WebController {
 	@RequestMapping("/bai-thi")
-	public String logout(@RequestParam Integer examId,@RequestParam Integer courseId) {
-		
+	public String logout(@RequestParam Integer examId, @RequestParam Integer courseId) {
+
 		return "web/start-exam";
 	}
-	
-	//id cua de thi
+
+	// id cua de thi
 	@RequestMapping("/lam-bai")
 	public String doExamView(@RequestParam Integer id) {
-		
+
 		return "web/do-exam";
 	}
-	
+
+	// id cua de thi
+	@RequestMapping("/hoan-thanh")
+	public String finishExamView() {
+
+		return "web/finish-exam";
+	}
+
 }

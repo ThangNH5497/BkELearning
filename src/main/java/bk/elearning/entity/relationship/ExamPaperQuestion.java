@@ -47,6 +47,9 @@ public class ExamPaperQuestion extends AbstractEntity implements Serializable{
 	@Column(name = "question_grade")
 	private float questionGrade;
 	
+	@Column(name = "student_grade")
+	private float studentGrade;
+	
 	
 	@OneToMany(mappedBy = "examPaperQuestion", cascade = CascadeType.ALL, 
 			fetch = FetchType.EAGER,targetEntity = ExamPaperQuestionAnswer.class, orphanRemoval = true)
@@ -109,4 +112,13 @@ public class ExamPaperQuestion extends AbstractEntity implements Serializable{
 		this.examPaperQuestionAnswers = examPaperQuestionAnswers;
 	}
 
+	public float getStudentGrade() {
+		return studentGrade;
+	}
+
+	public void setStudentGrade(float studentGrade) {
+		this.studentGrade = studentGrade;
+	}
+
+	
 }

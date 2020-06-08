@@ -18,6 +18,8 @@
 	href="<c:url value='/resources/commons/lib/fontawesome5.12.0/css/all.css' />">
 <link rel="stylesheet"
 	href="<c:url value='/resources/web/css/style.css' />">
+	<link rel="stylesheet"
+	href="<c:url value='/resources/web/css/do-exam.css' />">
 
 </head>
 <script>
@@ -58,16 +60,21 @@
 
 						<div id='time-counter'
 							class="d-flex mb-4 mt-4 text-lg border p-2 border-info rounded">
-							<div class="col-3">
+							<div class="col-lg-2 col-md-12">
 								<i class="far fa-clock text-info"></i>
 							</div>
-							<div class="minute col-4 text-center text-primary"></div>
-							<div class="col-1 text-center text-primary">:</div>
-							<div class="second col-4 text-center text-primary"></div>
+							<div class="minute col-lg-4 col-md-5 text-center text-primary"></div>
+							<div class="col-lg-1 col-md-2 text-center text-primary">:</div>
+							<div class="second col-lg-5 col-md-5 text-center text-primary"></div>
+						</div>
+						
+						<div id='test'>
+						<p>0</p>
+							
 						</div>
 
 						<div class="my-4 justify-content-center row border-top pt-4">
-							<a href="#" class="btn btn-success btn-icon-split btn-sm "> <span
+							<a href="#" class="btn btn-success btn-icon-split btn-sm " id="finish-attempt"> <span
 								class="text">Nộp Bài</span> <span class="icon text-white-50">
 									<i class="fas fa-check"></i>
 							</span>
@@ -122,10 +129,48 @@
 			</div>
 		</div>
 	</div>
+<!-- modal alert -->
+<div class="modal modal-reset fade" id="modal-alert"
+	tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header bg-warning">
+				<p class="heading lead">Cảnh Báo</p>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+			<div class="modal-body border-top my-3">
+				<div class="message">Bạn Có Muốn Tiếp Nộp Bài ?</div>
+
+				<div class="border-top my-3"></div>
+				<div class="d-flex justify-content-center">
+					<a type="button" class="btn  waves-effect btn-cancel"
+						data-dismiss="modal">Hủy</a><a type="button"
+						class="btn  waves-effect btn-submit">Nộp Bài</a>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.modal-content -->
 	</div>
+	<!-- /.modal-dialog -->
+
+</div>
+
+<!-- end modal alert -->
 
 	<jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 	<script src="<c:url value='/resources/commons/js/base.js' />"></script>
 	<script src="<c:url value='/resources/web/js/do-exam.js' />"></script>
+	<script src="<c:url value='/resources/commons/lib/websocket/sockjs.min.js' />"></script>
+	<script src="<c:url value='/resources/commons/lib/websocket/stomp.min.js' />"></script>
+	<script src="<c:url value='/resources/web/js/websocket-process.js' />"></script>
+	
 </body>
 </html>

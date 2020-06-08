@@ -1,11 +1,13 @@
 package bk.elearning.repository;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import bk.elearning.entity.Question;
 import bk.elearning.entity.dto.CustomUserDetails;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.entity.dto.QuestionFilter;
+import bk.elearning.entity.relationship.ExamFilter;
 
 public interface IQuestionRepository extends IGenericRepository<Question>,ISubjectComponentRepository<Question>{
 
@@ -24,7 +26,7 @@ public interface IQuestionRepository extends IGenericRepository<Question>,ISubje
 
 	ArrayList<Question> getRandomQuestion(QuestionFilter filter, CustomUserDetails user);
 
-
+	
 	
 
 }

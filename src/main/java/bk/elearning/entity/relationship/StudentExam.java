@@ -1,10 +1,13 @@
 package bk.elearning.entity.relationship;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -14,27 +17,32 @@ import bk.elearning.entity.ExamPaper;
 import bk.elearning.entity.Student;
 
 @Entity
-@Table(name="student_exam")
-public class StudentExam   extends AbstractEntity{
+@Table(name = "student_exam")
+@DynamicUpdate
+public class StudentExam extends AbstractEntity {
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "student_id",nullable=false)
+	@JoinColumn(name = "student_id", nullable = false)
 	private Student student;
 
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "exam_id")
 	private Exam exam;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "exam_paper_id")
 	private ExamPaper examPaper;
-	
+
 	private String status;
+	
+	@Column(name = "time_left")
+	private int timeLeft;
 
 	public Student getStudent() {
 		return student;
 	}
+
 
 	public void setStudent(Student student) {
 		this.student = student;
@@ -67,7 +75,16 @@ public class StudentExam   extends AbstractEntity{
 	public StudentExam() {
 		super();
 	}
+
+
+	public int getTimeLeft() {
+		return timeLeft;
+	}
+
+
+	public void setTimeLeft(int timeLeft) {
+		this.timeLeft = timeLeft;
+	}
 	
-	
-	
+
 }
