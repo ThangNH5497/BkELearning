@@ -31,6 +31,12 @@ public class Constant {
 	
 	public static final String UPLOAD_QESTION_DIR="resources/commons/upload/question/";
 	
+	public static final String QUESTION_ONE_CHOICE="ONE_CHOICE";
+	
+	public static final String QUESTION_MULTIPLE_CHOICE="MULTIPLE_CHOICE";
+	
+	public static final String QUESTION_FILL_WORD="FILL_WORD";
+	
 	public static final String EXAM_STATUS_CLOSE="CLOSE";
 	
 	public static final String EXAM_STATUS_OPEN="OPEN";
@@ -39,9 +45,13 @@ public class Constant {
 	
 	public static final String EXAM_STATUS_FINISH="FINISH";
 	
-	public static final String STUDENT_EXAM_STATUS_FINISH="FINISH";
+	public static final String STUDENT_EXAM_STATUS_START="START";
+	
+	public static final String STUDENT_EXAM_STATUS_COMPLETE="COMPLETE";
 	
 	public static final String STUDENT_EXAM_STATUS_CONTINUE="CONTINUE";
+	
+	public static final String STUDENT_EXAM_STATUS_WAIT_RESULT="WAIT_RESULT";
 	
 	public static final String SESSION_TIME_COUNTDOWN="TIME_COUNTDOWN";
 	

@@ -28,6 +28,7 @@ function init()
 		
 		
 		$('#input-name').val(exam.name);
+		$('#input-grade').val(exam.grade);
 		$('#input-time').val(exam.time);
 		$('#input-descriptor').val(exam.descriptor);
 		$('#input-time-open').val(exam.timeOpen);

@@ -1,56 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:include page="/WEB-INF/views/commons/header2.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/commons/header.jsp"></jsp:include>
 <link rel="stylesheet"
 	href="<c:url value='/resources/web/css/home.css' />">
 
 <!--bat dau body-->
-<div style="margin-top: 30px;"></div>
-<%-- <div id="carouselExampleIndicators" class="carousel slide"
-	data-ride="carousel">
-	<ol class="carousel-indicators">
-		<li data-target="#carouselExampleIndicators" data-slide-to="0"
-			class="active"></li>
-		<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-		<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-	</ol>
-	<div class="carousel-inner" role="listbox">
-		<div class="carousel-item active">
-			<div class="img">
-				<img class="d-block img-fluid"
-					src="<c:url value='/resources/commons/image/login/slide-1.jpg' />"
-					alt="First slide">
-			</div>
-		</div>
-		<div class="carousel-item">
-			<div class="img">
-				<img class="d-block img-fluid"
-					src="<c:url value='/resources/commons/image/login/slide-2.jpg' />"
-					alt="Second slide">
-			</div>
-		</div>
-		<div class="carousel-item">
-			<div class="img">
-				<img class="d-block img-fluid"
-					src="<c:url value='/resources/web/image/login/slide-1.jpg' />"
-					alt="Third slide">
-			</div>
-		</div>
-	</div>
-	<a class="carousel-control-prev" href="#carouselExampleIndicators"
-		role="button" data-slide="prev"> <span
-		class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-		class="sr-only">Previous</span>
-	</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-		role="button" data-slide="next"> <span
-		class="carousel-control-next-icon" aria-hidden="true"></span> <span
-		class="sr-only">Next</span>
-	</a>
-</div> --%>
 
-
-<div class="">
+<div class="mt-4">
 	<div class="carousel slide" id="main-carousel" data-ride="carousel">
 		<ol class="carousel-indicators">
 			<li data-target="#main-carousel" data-slide-to="0" class="active"></li>
@@ -114,23 +71,50 @@
 
 
 <nav
-	class="navbar navbar-expand-sm bg-light navbar-light menu text-light mt-4 mb-4">
-	<div class="collapse navbar-collapse" id="menu-second">
-		<ul class="navbar-nav justify-content-end col-md-12 col-sm-12"
-			style="padding-right: 5%;">
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" id="navbardrop"
-				data-toggle="dropdown"> <span class="menu-button-2"
-					id="sort-by-price">Sắp xếp theo</span>
-			</a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" id="low-to-high">thấp -> cao</a> <a
-						class="dropdown-item" id="high-to-low">Cao -> Thấp</a>
-				</div></li>
-		</ul>
+	class="navbar navbar-expand-sm bg-light navbar-light menu text-light mt-4 mb-4 justify-content-end">
+	<div class="col-3 ">
+		<nav class="navbar navbar-expand-sm justify-content-end">
+			<ul class="navbar-nav ml-auto">
+				<!-- Nav Item - User Information -->
+				<li class="nav-item dropdown no-arrow"><a
+					class="nav-link dropdown-toggle" href="#" 
+					data-toggle="dropdown"> <span class="mr-2  text-gray-600">Bộ
+							Lọc</span><i class="fas fa-filter"></i>
+				</a>
+					<div id="filterDropdown"
+						class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+						aria-labelledby="filterDropdown">
+						<a class="dropdown-item" href="#" value='all'> <i
+							class="fas fa-pen-square mr-2 fa-sm fa-fw text-gray-400"
+							id="filter-all"></i>Tất Cả
+						</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#" value='continue'> <i
+							class="fas fa-pen-square mr-2 fa-sm fa-fw text-gray-400"
+							id="filter-continue"></i>Ngắt Quãnng
+						</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#" value='open'> <i
+							class="fas fa-pen-square mr-2 fa-sm fa-fw text-gray-400"
+							id="filter-open"></i>Đang Mở
+						</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#" value='close'> <i
+							class="fas fa-window-close fa-sm fa-fw mr-2 text-gray-400"
+							id="filter-close"></i> Đã Đóng
+						</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#" value='complete'> <i
+							class="fas fa-check-circle fa-sm fa-fw mr-2 text-gray-400"
+							id="filter-complete"></i> Đã Hoàn Thành
+						</a>
+					</div></li>
+
+			</ul>
+		</nav>
 	</div>
 </nav>
-<div class="container-content container-fluid">
+<div class="container-content container-fluid" >
 
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
@@ -246,6 +230,7 @@
 
 		</div>
 	</div>
+	
 
 </div>
 
@@ -255,5 +240,6 @@
 <script src="<c:url value='/resources/commons/js/pagination.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/search.js' />"></script>
 <script src="<c:url value='/resources/web/js/home.js' />"></script>
+
 
 <jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>

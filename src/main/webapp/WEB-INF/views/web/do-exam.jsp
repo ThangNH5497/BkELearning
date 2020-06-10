@@ -68,10 +68,7 @@
 							<div class="second col-lg-5 col-md-5 text-center text-primary"></div>
 						</div>
 						
-						<div id='test'>
-						<p>0</p>
-							
-						</div>
+						
 
 						<div class="my-4 justify-content-center row border-top pt-4">
 							<a href="#" class="btn btn-success btn-icon-split btn-sm " id="finish-attempt"> <span
@@ -80,6 +77,7 @@
 							</span>
 							</a>
 						</div>
+					
 
 					</div>
 				</div>
@@ -171,6 +169,6 @@
 	<script src="<c:url value='/resources/commons/lib/websocket/sockjs.min.js' />"></script>
 	<script src="<c:url value='/resources/commons/lib/websocket/stomp.min.js' />"></script>
 	<script src="<c:url value='/resources/web/js/websocket-process.js' />"></script>
-	
+	<script src="<c:url value='/resources/commons/lib/jspdf/jspdf.min.js' />"></script>
 </body>
 </html>

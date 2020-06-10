@@ -28,7 +28,7 @@ function init()
 		$('#input-subject').val(exam.subject.code+'-'+exam.subject.subjectName);
 		$('#input-subject').attr('subjectId',exam.subject.id);
 		$('#input-code').val(exam.code);
-		
+		$('#input-grade').val(exam.grade);
 		$('#input-name').val(exam.name);
 		$('#input-time').val(exam.time);
 		$('#input-descriptor').val(exam.descriptor);

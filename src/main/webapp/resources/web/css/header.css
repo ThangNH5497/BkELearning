@@ -47,13 +47,6 @@ span.menu-button {
 	background-color: white !important;
 }
 
-.menu .dropdown a:hover {
-	background-color: #dd1a5b !important;
-}
-
-.menu a.main-menu:hover span.menu-button {
-	color: #dd1a5b;
-}
 
 .menu a.main-menu:hover {
 	background-color: white !important;

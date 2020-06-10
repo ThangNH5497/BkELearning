@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -24,6 +25,7 @@ import bk.elearning.entity.Question;
 
 @Entity
 @Table(name="exampaper_question")
+@DynamicUpdate
 public class ExamPaperQuestion extends AbstractEntity implements Serializable{
 
 

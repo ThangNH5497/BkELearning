@@ -129,6 +129,18 @@
 						</div>
 					</form>
 
+					<form class=" ">
+						<div class="form-group row mt-3">
+							<label for="inputName" class="col-2 col-form-label">Thang
+								Điểm (*)</label>
+							<div class="col-9">
+								<input type="text" class="form-control" id="input-grade"
+									required>
+							</div>
+							<div class="col-1"></div>
+						</div>
+					</form>
+
 
 					<div class="form-group row">
 						<label for="example-datetime-local-input"
@@ -142,7 +154,7 @@
 						</div>
 
 					</div>
-					
+
 					<div class="form-group row">
 						<label for="example-datetime-local-input"
 							class="col-2 col-form-label">Thời Gian Đóng (*)</label>

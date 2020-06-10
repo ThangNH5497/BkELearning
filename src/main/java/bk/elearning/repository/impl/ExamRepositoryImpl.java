@@ -150,7 +150,7 @@ public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implemen
 	}
 
 	@Override
-	public PaginationResult<ExamDTO> getByStudent(Integer studentId, int start, int size) {
+	public PaginationResult<ExamDTO> getByStudent(Integer studentId,String filter, int start, int size) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		PaginationResult<ExamDTO> page = new PaginationResult<ExamDTO>();
@@ -171,7 +171,7 @@ public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implemen
 				query.setMaxResults(size);
 				page.setData(query.list());
 				for (ExamDTO examDTO : page.getData()) {
-					hqlQuery = "FROM StudentExam sc where sc.student.id=:studentId and sc.exam.id=:examId";
+					hqlQuery = "SELECT new bk.elearning.entity.relationship.StudentExam(sc.status,sc.timeLeft,sc.grade) FROM StudentExam sc where sc.student.id=:studentId and sc.exam.id=:examId";
 
 					query = session.createQuery(hqlQuery);
 					query.setParameter("studentId", studentId);
@@ -356,12 +356,13 @@ public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implemen
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			String hqlQuery="UPDATE StudentExam se SET se.timeLeft=:timeLeft ,se.status=:status where se.id=:id";
+			String hqlQuery="UPDATE StudentExam se SET se.timeLeft=:timeLeft ,se.status=:status,se.grade=:grade where se.id=:id";
 			
 			Query query=session.createQuery(hqlQuery);
 			query.setParameter("id", se.getId());
 			query.setParameter("timeLeft", se.getTimeLeft());
 			query.setParameter("status", se.getStatus());
+			query.setParameter("grade", se.getGrade());
 			query.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception

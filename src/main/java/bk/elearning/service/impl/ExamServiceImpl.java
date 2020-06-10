@@ -35,6 +35,7 @@ import bk.elearning.entity.relationship.ExamQuestion;
 import bk.elearning.entity.relationship.StudentExam;
 import bk.elearning.repository.IExamPaperRepository;
 import bk.elearning.repository.IExamRepository;
+import bk.elearning.repository.IStudenExamRepository;
 import bk.elearning.service.IExamService;
 import bk.elearning.utils.Constant;
 import bk.elearning.utils.Util;
@@ -47,6 +48,9 @@ public class ExamServiceImpl implements IExamService {
 
 	@Autowired
 	IExamPaperRepository examPaperRepo;
+	
+	@Autowired
+	IStudenExamRepository studentExamRepo;
 	
 	static HashMap<String, HttpSession> sessionProcess=new HashMap<String, HttpSession>();
 
@@ -292,10 +296,10 @@ public class ExamServiceImpl implements IExamService {
 	}
 
 	@Override
-	public PaginationResult<ExamDTO> getByStudent(Integer studentId, int page, int size) {
+	public PaginationResult<ExamDTO> getByStudent(Integer studentId,String filter, int page, int size) {
 		// TODO Auto-generated method stub
 		if (page > 0) {
-			PaginationResult<ExamDTO> pages = examRepo.getByStudent(studentId, page - 1, size);
+			PaginationResult<ExamDTO> pages = examRepo.getByStudent(studentId,filter, page - 1, size);
 
 			for (ExamDTO examDTO : pages.getData()) {
 				Exam exam = new Exam();
@@ -482,14 +486,19 @@ public class ExamServiceImpl implements IExamService {
 			StudentExam se=examRepo.getStudentExamById(tc.getStudentExamId());
 			if(se!=null)
 			{
-				if(!(se.getTimeLeft()==0&&se.getStatus().equals(Constant.STUDENT_EXAM_STATUS_FINISH)))
+				if(!(se.getTimeLeft()==0&&se.getStatus().equals(Constant.STUDENT_EXAM_STATUS_COMPLETE)))
 				{
 					se.setTimeLeft(tc.getTimeLeft());
 					if(tc.getTimeLeft()==0)
 					{
-						se.setStatus(Constant.STUDENT_EXAM_STATUS_FINISH);
+						se.setStatus(Constant.STUDENT_EXAM_STATUS_COMPLETE);
+						StudentExam tmp=countGrade(se);
+						se.setGrade(tmp.getGrade());
+						se.setStatus(tmp.getStatus());
+						se.getExamPaper().setExamPaperQuestions(tmp.getExamPaper().getExamPaperQuestions());
+						
 					}
-					examRepo.updateStudentExam(se);
+					studentExamRepo.update(se);
 				}
 				
 			}
@@ -497,8 +506,56 @@ public class ExamServiceImpl implements IExamService {
 			// TODO: handle exception
 		}
 		
-	}
 
+		
+	}
+	private StudentExam countGrade(StudentExam se)
+	{
+		float studentGrade=0;
+		float questionGrade=0;
+		try {
+			for (ExamPaperQuestion epq : se.getExamPaper().getExamPaperQuestions()) {
+				if(epq.getQuestion().getType().equals(Constant.QUESTION_FILL_WORD))
+				{
+					if(epq.getStudentGrade()<=0)
+					{
+						se.setStatus(Constant.STUDENT_EXAM_STATUS_WAIT_RESULT);
+					}
+					else
+					{
+						studentGrade+=epq.getStudentGrade();
+					}
+				}
+				//other type
+				else
+				{
+					float weight=0f;
+					for (ExamPaperQuestionAnswer epqa : epq.getExamPaperQuestionAnswers()) {
+						try {
+							if(epqa.getStudentAnswer()!=null&&epqa.getStudentAnswer().equals(Constant.STUDENT_ANSWER_CHOOSE))
+							{
+								weight+=epqa.getAnswer().getWeight();
+								
+							}
+						} catch (Exception e) {
+							// TODO: handle exception
+							System.out.println(e.toString());
+						}
+						
+					}
+					epq.setStudentGrade(weight*epq.getQuestionGrade());
+					studentGrade+=weight*epq.getQuestionGrade();
+				}
+				questionGrade+=epq.getQuestionGrade();
+			}
+
+			se.setGrade(studentGrade/questionGrade);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
+		}
+		return se;
+	}
 	
 
 }

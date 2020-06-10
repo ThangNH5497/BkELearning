@@ -435,21 +435,10 @@ function checkboxControl()
 		
 	});
 	
-	$(document).on('click', 'btn-add-exam-filter', function() {
-		addExamFilter();
-	});
-}
-
-function addExamFilter()
-{
-	var html=$('#exam-filter-item-sample').html(); 
-	html+='<div id='+$('#exam-filter')
-}
-//show question of exam
-function showQuestion()
-{
 	
 }
+
+
 function saveExamEvent(urlRedirect)
 {
 	
@@ -460,6 +449,7 @@ function saveExamEvent(urlRedirect)
 
 				exam.name=$('#input-name').val(),
 				exam.time=$('#input-time').val();
+				exam.grade=$('#input-grade').val();
 				exam.descriptor=$('#input-descriptor').val();
 				exam.timeOpen=$("#time-open").data("datetimepicker").getDate();
 				exam.timeClose=$("#time-close").data("datetimepicker").getDate();
@@ -598,6 +588,23 @@ function validInputs()
 		}
 		else $('#input-question-hard').removeClass('border-danger');
 	}
+	
+	if(check==true)
+	{
+		var grade=$('#input-grade').val();
+		if($.isNumeric(grade)==false)
+		{
+			$('#input-grade').addClass('border-danger');
+			check=false;
+		}
+		else if(parseFloat(grade)<=0)
+		{
+			$('#input-grade').addClass('border-danger');
+			check=false;
+		}
+		else $('#input-grade').removeClass('border-danger');
+	}
+	
 	
 	return check;
 }

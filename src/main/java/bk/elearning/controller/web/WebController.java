@@ -26,5 +26,10 @@ public class WebController {
 
 		return "web/finish-exam";
 	}
+	@RequestMapping("/test")
+	public String test() {
+
+		return "web/test";
+	}
 
 }

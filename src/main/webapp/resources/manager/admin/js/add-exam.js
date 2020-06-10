@@ -130,6 +130,7 @@ function submitExam()
 						name:$('#input-name').val(),
 						code:$('#input-code').val(),
 						time:$('#input-time').val(),
+						grade:$('#input-grade').val(),
 						descriptor:$('#input-descriptor').val(),
 						timeOpen:$("#time-open").data("datetimepicker").getDate(),
 						timeClose:$("#time-close").data("datetimepicker").getDate(),
@@ -197,6 +198,22 @@ function validInputs()
 			check=false;
 		}
 		else $('#input-time').removeClass('border-danger');
+	}
+	
+	if(check==true)
+	{
+		var grade=$('#input-grade').val();
+		if($.isNumeric(grade)==false)
+		{
+			$('#input-grade').addClass('border-danger');
+			check=false;
+		}
+		else if(parseFloat(grade)<=0)
+		{
+			$('#input-grade').addClass('border-danger');
+			check=false;
+		}
+		else $('#input-grade').removeClass('border-danger');
 	}
 	
 	return check;

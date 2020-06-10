@@ -1,5 +1,6 @@
 package bk.elearning.entity.relationship;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,14 +31,30 @@ public class StudentExam extends AbstractEntity {
 	@JoinColumn(name = "exam_id")
 	private Exam exam;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name = "exam_paper_id")
 	private ExamPaper examPaper;
 
 	private String status;
 	
+	private float grade;
+	
 	@Column(name = "time_left")
 	private int timeLeft;
+	
+	public StudentExam(String status, int timeLeft) {
+		super();
+		this.status = status;
+		this.timeLeft = timeLeft;
+	}
+
+	public StudentExam(String status, int timeLeft,float grade) {
+		super();
+		this.status = status;
+		this.timeLeft = timeLeft;
+		this.grade=grade;
+	}
+
 
 	public Student getStudent() {
 		return student;
@@ -84,6 +101,18 @@ public class StudentExam extends AbstractEntity {
 
 	public void setTimeLeft(int timeLeft) {
 		this.timeLeft = timeLeft;
+	}
+
+
+	
+
+	public float getGrade() {
+		return grade;
+	}
+
+
+	public void setGrade(float grade) {
+		this.grade = grade;
 	}
 	
 

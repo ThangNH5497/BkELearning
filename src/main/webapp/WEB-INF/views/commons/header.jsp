@@ -37,121 +37,61 @@
 	<!-- hop thoai thong baso tuy chinh -->
 	<div class="container-fluid header">
 
-		<div class="left ">
-			<a class="navbar-brand" href="#"> <img
-				style="max-height: 64px !important;"
-				src="<c:url value='/resources/commons/image/hust.png' />" alt="">
-			</a>
-
-			<div class="tablet">
-				<nav class="navbar navbar-expand-sm bg-light justify-content-center">
-					<ul class="navbar-nav container-fluid">
-						<li class="nav-item col-md-2 col-sm-2 "><a
-							class="nav-link d-flex h-100" href="#"><i
-								class="fab fa-facebook align-self-center"></i></a></li>
-						<li class="nav-item col-md-2 col-sm-2"><a
-							class="nav-link d-flex h-100" href="#"><i
-								class="fab fa-google-plus-g align-self-center"></i></a></li>
-						<li class="nav-item dropdown col-md-8 col-sm-8 "><a
-							class="nav-link d-flex h-100" href="#"
-							style="display: flex; width: 100%; padding: 0px; margin: 0px;"
-							id="navbardrop" data-toggle="dropdown"> <i
-								class="fa fa-user-circle align-self-center"></i><span
-								class="account-info align-self-center"
-								style="padding-left: 10px;"> Tài Khoản</span>
-						</a>
-							<div class="dropdown-menu login-dropdown-menu">
-								<a class="dropdown-item " style="width: 100%; padding: 5px;"><button
-										type="button"
-										class="btn btn-success btn-block btn-authentication modal-authentication-open">Đăng
-										nhập</button></a>
+		<div class='row w-100 p-0 m-0'>
+			<div class=" col-3">
+				<a class="navbar-brand" href="#"> <img
+					style="max-height: 64px !important;"
+					src="<c:url value='/resources/commons/image/hust.png' />" alt="">
+				</a>
+			</div>
+			<div class="col-6 h-100 row ">
+				<div class="input-group w-100 align-self-center">
+					<input type="text" class="form-control"
+						placeholder="Nhập Mã Hoặc Tên Bài Thi...">
+					<div class="input-group-append">
+						<button class="btn btn-secondary" type="button">
+							<i class="fa fa-search"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- right -->
+			<div class="col-3 ">
+				<nav class="navbar navbar-expand-sm justify-content-end">
+					<ul class="navbar-nav ml-auto">
+						<!-- Nav Item - User Information -->
+						<li class="nav-item dropdown no-arrow"><a
+							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+							data-toggle="dropdown"><img
+								style="max-height: 48px; max-width: 48px;"
+								class="img-profile rounded-circle"
+								src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
+								<span
+								class="mr-2 d-none d-lg-inline text-gray-600 small user-full-name">Tài
+									Khoản</span> </a> <!-- Dropdown - User Information -->
+							<div
+								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+								aria-labelledby="userDropdown">
+								<a class="dropdown-item" href="#"> <i
+									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập Nhật
+									Thông Tin
+								</a> <a class="dropdown-item" href="#"> <i
+									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
+									Khẩu
+								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="register"
-									style="width: 100%; padding: 5px;"><button type="button"
-										class="btn btn-light btn-block">Đăng ký</button></a>
+								<a class="dropdown-item" href="<c:url value='/logout'/>"> <i
+									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+									Logout
+								</a>
 							</div></li>
-
 
 					</ul>
 				</nav>
 			</div>
 		</div>
-		<div class="center row  ">
-			<div class="input-group align-self-center">
-				<form class="form-inline" method="GET" action="tim-kiem">
-					<input type="text" class="form-control" placeholder="Tìm kiếm"
-						aria-label="Search" name="search" style="width: 90%;">
-					<div class="input-group-append " style="width: 10%; padding: 0px;">
-						<button class="btn btn-outline-secondary" type="submit">
-							<i class="fas fa-search" aria-hidden="true"></i>
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-		<!-- right -->
-		<div class="right ">
-			<nav class="navbar navbar-expand-sm bg-light justify-content-center">
-				<!-- <ul class="navbar-nav">
-					<li class="nav-item col-md-2 col-sm-2 "><a
-						class="nav-link d-flex h-100" href="#"><i
-							class="fab fa-facebook align-self-center"></i></a></li>
-					<li class="nav-item col-md-2 col-sm-2"><a
-						class="nav-link d-flex h-100" href="#"><i
-							class="fab fa-google-plus-g align-self-center"></i></a></li>
-					<li class="nav-item dropdown col-md-8 col-sm-8 "><a
-						class="nav-link d-flex h-100" href="#"
-						style="display: flex; width: 100%; padding: 0px; margin: 0px;"
-						id="navbardrop" data-toggle="dropdown"> <i
-							class="fa fa-user-circle align-self-center"></i><span
-							class="account-info align-self-center"
-							style="padding-left: 10px;"> Tài Khoản</span>
-					</a>
-						<div class="dropdown-menu login-dropdown-menu">
-							<a class="dropdown-item " style="width: 100%; padding: 5px;"><button
-									type="button"
-									class="btn btn-success btn-block btn-authentication modal-authentication-open">Đăng
-									nhập</button></a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="register"
-								style="width: 100%; padding: 5px;"><button type="button"
-									class="btn btn-light btn-block">Đăng ký</button></a>
-						</div></li>
 
 
-				</ul> -->
-				<div class="topbar-divider d-none d-sm-block"></div>
-
-				<!-- Nav Item - User Information -->
-				<li class="nav-item dropdown no-arrow"><a
-					class="nav-link dropdown-toggle" href="#" id="userDropdown"
-					data-toggle="dropdown"><img
-						style="max-height: 60px; max-width: 60px;"
-						class="img-profile rounded-circle"
-						src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
-						<span
-						class="mr-2 d-none d-lg-inline text-gray-600 small user-full-name">Tài
-							Khoản</span> </a> <!-- Dropdown - User Information -->
-					<div
-						class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-						aria-labelledby="userDropdown">
-						<a class="dropdown-item" href="#"> <i
-							class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập Nhật
-							Thông Tin
-						</a> <a class="dropdown-item" href="#"> <i
-							class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
-							Khẩu
-						</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="<c:url value='/logout'/>"> <i
-							class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-							Logout
-						</a>
-					</div></li>
-
-				</ul>
-			</nav>
-		</div>
 
 	</div>
 
@@ -171,19 +111,25 @@
 						<span class="menu-button">GIỚI THIỆU</span>
 				</a></li>
 
-
+				<li class="nav-item"><a class="nav-link main-menu" href="#">
+						<span class="menu-button">LỚP HỌC</span>
+				</a></li>
+				
+				<li class="nav-item"><a class="nav-link main-menu" href="#">
+						<span class="menu-button">BÀI THI</span>
+				</a></li>
 
 				<!-- Dropdown -->
-				<li class="nav-item dropdown"><a
+				<!-- <li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle main-menu" href="#" id="navbardrop"
-					data-toggle="dropdown"> <span class="menu-button">SẢN
-							PHẨM</span>
+					data-toggle="dropdown"> <span class="menu-button">Tin Tức</span>
 				</a>
-					<div class="dropdown-menu menu-top-danhmuc"></div></li>
+					<div class="dropdown-menu menu-top-danhmuc"></div></li> -->
+			</ul>
 		</div>
 
-		</ul>
-		</div>
+
+
 	</nav>
 
 

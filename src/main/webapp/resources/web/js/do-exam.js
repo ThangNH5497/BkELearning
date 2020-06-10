@@ -126,6 +126,7 @@ function initData()
 
 function handleEvent()
 {
+
 	
 	$(document).on('click', '#finish-attempt', function (e) {
 		$('#modal-alert').modal('show');
@@ -258,9 +259,13 @@ function timeCount(distance)
 
 function finishAttempt()
 {
-	sendMessage(JSON.stringify(''),'FINISH_ATTEMPT');
-	window.location.href = rootLocation+"hoan-thanh";
+	sendMessage(JSON.stringify('{}'),'FINISH_ATTEMPT');
+	setTimeout(function(){ 
+		window.location.href = rootLocation+"hoan-thanh";
+	}, 1000);
+	
 }
+
 
 
 var obj;

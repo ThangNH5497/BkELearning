@@ -20,7 +20,6 @@ public interface IExamService extends IGenericService<Exam> {
 
 	PaginationResult<Exam> searchPageBySubject(int subjectId, String key, int page, int size);
 
-	PaginationResult<ExamDTO> getByStudent(Integer studentId,int pgae,int size);
 
 	ExamDTO getExamDTOById(Integer examId);
 
@@ -29,5 +28,7 @@ public interface IExamService extends IGenericService<Exam> {
 	void updateResult(StudentResultQuestionDTO studentResultQuestionDTO);
 
 	void updateResult(TimeCoundown tc);
+
+	PaginationResult<ExamDTO> getByStudent(Integer studentId, String filter, int page, int size);
 
 }

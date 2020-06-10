@@ -116,6 +116,18 @@
 						</div>
 					</form>
 
+					<form class=" ">
+						<div class="form-group row mt-3">
+							<label for="inputName" class="col-2 col-form-label">Thang
+								Điểm (*)</label>
+							<div class="col-9">
+								<input type="text" class="form-control" id="input-grade"
+									required>
+							</div>
+							<div class="col-1"></div>
+						</div>
+					</form>
+
 
 					<div class="form-group row">
 						<label for="example-datetime-local-input"
@@ -175,15 +187,14 @@
 
 											</div>
 
-											
-											<div
-												class="row col-lg-2 col-md-2 justify-content-end d-flex">
-												
+
+											<div class="row col-lg-2 col-md-2 justify-content-end d-flex">
+
 												<button
 													class="m-0 btn btn-delete text-danger btn-control col-3">
 													<i class="fas fa-trash"></i>
 												</button>
-												
+
 
 											</div>
 										</div>
@@ -208,8 +219,8 @@
 							<div class='d-flex'>
 
 								<div class="dropdown">
-									<button class="btn btn-success btn-select-course btn-sm" type="button">Thêm
-										Lớp</button>
+									<button class="btn btn-success btn-select-course btn-sm"
+										type="button">Thêm Lớp</button>
 
 								</div>
 							</div>

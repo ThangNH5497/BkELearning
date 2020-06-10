@@ -72,7 +72,7 @@ public class WebSocketController {
 						
 						examService.updateResult(tc);
 						httpSession.removeAttribute(Constant.SESSION_TIME_COUNTDOWN);
-						ExamServiceImpl.getSessionProcess().remove(httpSessionId);
+						//ExamServiceImpl.getSessionProcess().remove(httpSessionId);
 					}
 				} catch (Exception e) {
 					// TODO: handle exception
@@ -84,12 +84,13 @@ public class WebSocketController {
 					TimeCoundown tc=(TimeCoundown) httpSession.getAttribute(Constant.SESSION_TIME_COUNTDOWN);
 					
 					tc.setTimeLeft(0);
-					
+					headerAccessor.getSessionAttributes().put("FINISH_ATTEMPT", true);
 					examService.updateResult(tc);
 					httpSession.removeAttribute(Constant.SESSION_TIME_COUNTDOWN);
-					ExamServiceImpl.getSessionProcess().remove(httpSessionId);
+					//ExamServiceImpl.getSessionProcess().remove(httpSessionId);
 					} catch (Exception e) {
 					// TODO: handle exception
+						System.out.println(e);
 				}
 			}
 		} catch (Exception e) {

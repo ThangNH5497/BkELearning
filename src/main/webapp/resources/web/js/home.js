@@ -3,9 +3,27 @@ $(document).ready(function() {
 	obj=new Home();
 
 	var studentId=userLoged.id;
-	handlePagination('pagination','table-data-body','row-data-container','api/exams/page/students/'+studentId+'?');	
-	
+	handlePagination('pagination','table-data-body','row-data-container','api/exams/page/students/'+studentId+'?filter=all&');	
+	 handleEvent();
+	 
+	 
 });
+
+function init()
+{
+	var filter=obj.getParam('filter');
+	if(filter==""||filter==null||filter==undefined) filter="ALL";
+}
+
+function handleEvent()
+{
+	$(document).on('click', '#filterDropdown a', function (e) {
+		e.preventDefault();
+		alert($(this).attr('value'));
+	});
+	
+}
+
 var obj;
 class Home extends Base {
 	
@@ -49,10 +67,20 @@ class Home extends Base {
 										value='<a style="color:#e3ac09;" href="bai-thi?examId='+data[i].id+'&courseId='+data[i].examCourse.course.id+'">Tiếp Tục</a>';
 										break;
 									}
-									case "FINISH":
+									case "COMPLETE":
 									{
 										value='<div class="text-success">Hoàn Thành</div>';
-										$('#'+containerId+' [dataId='+data[i].id+'] [field=result]').html('<a href="facebook.com" class="text-success">Xem</a>');
+										var grade=parseFloat(data[i].studentExam.grade);
+										grade=grade*(parseFloat(data[i].grade));
+										grade=grade.toFixed(2);
+										
+										$('#'+containerId+' [dataId='+data[i].id+'] [field=result]').html('<a href="facebook.com" class="text-success">'+grade+'/'+data[i].grade+'</a>');
+										break;
+									}
+									case "WAIT_RESULT":
+									{
+										value='<div class="text-info">Chờ Kết Quả</div>';
+										/*$('#'+containerId+' [dataId='+data[i].id+'] [field=result]').html('<a href="facebook.com" class="text-success">Xem</a>');*/
 										break;
 									}
 
@@ -85,8 +113,6 @@ class Home extends Base {
 						// TODO: handle exception
 						console.log(e);
 					}
-        			
-  	 
         		}
         	
         	}

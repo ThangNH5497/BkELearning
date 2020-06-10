@@ -39,6 +39,7 @@ public class WebSocketEventListener {
 	public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
 		StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
 
+
 		String username = (String) headerAccessor.getSessionAttributes().get("username");
 
 		if (username != null) {
@@ -48,19 +49,23 @@ public class WebSocketEventListener {
 						.get("sessionId").toString();
 				System.out.println("disconnected " + sessionId);
 				HttpSession httpSession = ExamServiceImpl.getSessionProcess().get(sessionId);
-				ExamServiceImpl.getSessionProcess().remove(sessionId);
+				//ExamServiceImpl.getSessionProcess().remove(sessionId);
 				TimeCoundown tc=(TimeCoundown) httpSession.getAttribute(Constant.SESSION_TIME_COUNTDOWN);
 				//update time
-				Long currentTime=Util.getDate().getTime();
-				int timeLeft=0;
-				if(currentTime<tc.getTimeEnd())
+				if(tc!=null)
 				{
-					timeLeft=(int) ((tc.getTimeEnd()-currentTime)/(60*1000));
-					if(timeLeft<0) timeLeft=0;
+					Long currentTime=Util.getDate().getTime();
+					int timeLeft=0;
+					if(currentTime<tc.getTimeEnd())
+					{
+						timeLeft=(int) ((tc.getTimeEnd()-currentTime)/(60*1000));
+						if(timeLeft<0) timeLeft=0;
+					}
+					tc.setTimeLeft(timeLeft);
+					examService.updateResult(tc);
+				//	httpSession.removeAttribute(Constant.SESSION_TIME_COUNTDOWN);
 				}
-				tc.setTimeLeft(timeLeft);
-				examService.updateResult(tc);
-				httpSession.removeAttribute(Constant.SESSION_TIME_COUNTDOWN);
+				
 				//close session
 				//httpSession.invalidate();
 			} catch (Exception e) {

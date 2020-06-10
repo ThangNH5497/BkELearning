@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import bk.elearning.entity.AbstractEntity;
@@ -19,6 +21,7 @@ import bk.elearning.entity.Answer;
 
 @Entity
 @Table(name="exampaper_question_answer")
+@DynamicUpdate
 public class ExamPaperQuestionAnswer extends AbstractEntity implements Serializable{
 
 	/**
