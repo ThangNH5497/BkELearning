@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import bk.elearning.entity.Exam;
+import bk.elearning.entity.dto.ExamPageDTO;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.service.IExamService;
 import bk.elearning.utils.Constant;
@@ -35,27 +36,29 @@ public class ExamApi {
 	}
 
 	@GetMapping("/page/courses/{courseId}")
-	public PaginationResult<Exam> getByUserAndCourse(@PathVariable int courseId, @RequestParam int page,
+	public PaginationResult<ExamPageDTO> getByUserAndCourse(@PathVariable int courseId, @RequestParam int page,
 			@RequestParam int size) {
 		return examService.getPageByCourse(courseId, page, size);
 
 	}
 	
 	@GetMapping("/page/subjects/{subjectId}")
-	public PaginationResult<Exam> getByUserAndSubject(@PathVariable int subjectId, @RequestParam int page,
+	public PaginationResult<ExamPageDTO> getByUserAndSubject(@PathVariable int subjectId, @RequestParam int page,
 			@RequestParam int size) {
 		return examService.getPageBySubject(subjectId, page, size);
 
 	}
 	@GetMapping("/search/courses/{courseId}")
-	public PaginationResult<Exam> searchByUserAndCourse(@PathVariable int courseId, @RequestParam(name="q") String key, @RequestParam int page,
+	public PaginationResult<ExamPageDTO> searchByUserAndCourse(@PathVariable int courseId, @RequestParam(name="q") String key, @RequestParam int page,
 			@RequestParam int size) {
 		return examService.searchPageByCourse(courseId,key, page, size);
 
 	}
 	
+	
+	
 	@GetMapping("/search/subjects/{subjectId}")
-	public PaginationResult<Exam> searchByUserAndSubject(@PathVariable int subjectId,@RequestParam(name="q") String key, @RequestParam int page,
+	public PaginationResult<ExamPageDTO> searchByUserAndSubject(@PathVariable int subjectId,@RequestParam(name="q") String key, @RequestParam int page,
 			@RequestParam int size) {
 		return examService.searchPageBySubject(subjectId,key, page, size);
 

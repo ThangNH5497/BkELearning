@@ -3,65 +3,38 @@ $(document).ready(function() {
 	// use small pagination for modal
 	$('#modal-select-subject ul.pagination').addClass('pagination-sm');
 	$('#sidebar .active').removeClass('active');
-	$('#menu-item-course').addClass('active');
+	$('#menu-item-exampaper').addClass('active');
+	$('#submenu-exampaper').collapse('show');
+	$('#exampaper-list').addClass('text-primary');
 	
 	init();
-	dateTimePicker();
 	tableDataEvents();
 	filterEventHandle();
 	searchSubject();
 	handleEvents();
 	addQuestionSelectedEvents();
-	saveExamEvent("admin/ql-mon-hoc/ql-bai-thi?subject="+exam.subject.id);
+	saveExamPaperEvent();
+	shuffleQuestionEvents();
 });
+
+// init
 function init()
 {
-	var id=obj.getParam('examId');
-	exam=obj.getExamById(id);
-	if(exam==""||exam==null||exam==undefined)
+	var id=obj.getParam('id');
+	examPaper=obj.getExamPaperById(id);
+	if(examPaper==""||examPaper==null||examPaper==undefined)
 	{
 		alert('Lỗi Khi lấy Dữ Liệu . Vui Lòng Thử Lại !');
 	}
 	else
 	{
 		
-		$('#input-subject').val(exam.subject.code+'-'+exam.subject.subjectName);
-		$('#input-subject').attr('subjectId',exam.subject.id);
-		$('#input-code').val(exam.code);
-		$('#input-grade').val(exam.grade);
-		$('#input-name').val(exam.name);
-		$('#input-time').val(exam.time);
-		$('#input-descriptor').val(exam.descriptor);
-		$('#input-time-open').val(exam.timeOpen);
-		$('#input-time-close').val(exam.timeClose);
-		var count=0;
-		for (var i = 0; i < exam.examFilters.length; i++) {
-			count+=parseInt(exam.examFilters[i].number);
-			switch (exam.examFilters[i].level) {
-			case 0:
-			{
-				$('#input-question-easy').val(exam.examFilters[i].number);
-				
-				break;
-			}
-			case 1:
-			{
-				$('#input-question-medium').val(exam.examFilters[i].number);
-				break;
-			}
-			case 2:
-			{
-				$('#input-question-hard').val(exam.examFilters[i].number);
-				break;
-			}
-				
-
-			default:
-				break;
-			}
-		}
-		
-		$('#input-question-count').val(count);
+		$('#input-subject').val(examPaper.subject.code+'-'+examPaper.subject.subjectName);
+		$('#input-subject').attr('subjectId',examPaper.subject.id);
+		$('#input-code').val(examPaper.code);
+		$('#input-name').val(examPaper.name);
+		$('#input-time').val(examPaper.time);
+		$('#input-descriptor').val(examPaper.descriptor);
 		$(document).on('click', '.btn-select-question', function (e) {
 			e.stopPropagation();
 		    e.preventDefault();
@@ -72,42 +45,42 @@ function init()
 		    e.preventDefault();
 			$('#modal-random-question').modal('show');
 		});
-		teacherId=userLoged.id;
-		filterSubject=exam.subject.id;
+		adminId=userLoged.id;
+		filterSubject=examPaper.subject.id;
 		filterType='ALL';
 		filterLevel='ALL'
 		$('#filter-subject input').attr('val',filterSubject);
 		$('#filter-type input').attr('val','ALL');
 		$('#filter-level input').attr('val','ALL');
 		
-		$('#filter-subject input').val(exam.subject.code+'-'+exam.subject.subjectName);
+		$('#filter-subject input').val(examPaper.subject.code+'-'+examPaper.subject.subjectName);
 		$('#filter-type input').val("Tất Cả");
 		$('#filter-level input').val("Tất Cả");
 		
 		//modal random question
-		$('#modal-random-question .subject').text(exam.subject.code+'-'+exam.subject.subjectName);
+		$('#modal-random-question .subject').text(examPaper.subject.code+'-'+examPaper.subject.subjectName);
 		$('#modal-random-question .user').text(userLoged.fullName);
 		
 		//show category filter
-		showCategory(exam.subject.id);
+		showCategory(examPaper.subject.id);
 		
 		getRandomQuestion();
 		
 		checkboxControl();
-		// init url api
-		rootApiGet='manager/api/questions/page/subjects/'+filterSubject+'/types/'+filterType+'/levels/'+filterLevel+'?'
-		rootApiSearch='manager/api/questions/search/subjects/'+filterSubject+'/types/'+filterType+'/levels/'+filterLevel+'?'
+		
+		rootApiGet='manager/api/questions/page/subjects/'+examPaper.subject.id+'/types/'+filterType+'/levels/'+filterLevel+'?';
+		rootApiSearch='manager/api/questions/search/subjects/'+examPaper.subject.id+'/types/'+filterType+'/levels/'+filterLevel+'?';
 		// lay du lieu trang va phan trang
+		
 		handlePagination('pagination','table-data-body','row-data-container',rootApiGet,replaceDataView);
-		// lay du lieu trang va phan trang tim kiem mon hoc cho filter
-		handlePagination('pagination-subject','table-data-body-subject','row-data-container-subject','api/subjects/page?');
 		searchEvents('key-search','btn-search',rootApiSearch);
 		
-		for (var i = 0; i < exam.examQuestions.length; i++) {
-			addQuestionToView(exam.examQuestions[i].question,exam.examQuestions[i].grade);
+		for (var i = 0; i < examPaper.examPaperQuestions.length; i++) {
+			addQuestionToView(examPaper.examPaperQuestions[i].question);
 		}
 	}
 }
+
 
 function filterData()
 {
@@ -178,14 +151,19 @@ function filterData()
 		}
 	}
 	
-
+	rootApiGet='manager/api/questions/page/subjects/'+examPaper.subject.id+'/types/'+filterType+'/levels/'+filterLevel+'?';
+	rootApiSearch='manager/api/questions/search/subjects/'+examPaper.subject.id+'/types/'+filterType+'/levels/'+filterLevel+'?';
+	// lay du lieu trang va phan trang
 	
-	
-	rootApiGet='manager/api/questions/page/subjects/'+filterSubject+'/types/'+filterType+'/levels/'+filterLevel+'?'
-	rootApiSearch='manager/api/questions/search/subjects/'+filterSubject+'/types/'+filterType+'/levels/'+filterLevel+'?'
-	//lay du lieu trang va phan trang
 	handlePagination('pagination','table-data-body','row-data-container',rootApiGet,replaceDataView);
-	//lay du lieu trang va phan trang tim kiem mon hoc cho filter
 	searchEvents('key-search','btn-search',rootApiSearch);
 }
 
+
+
+class Question extends Base {
+	
+    constructor() {
+    	super();
+    }  
+}

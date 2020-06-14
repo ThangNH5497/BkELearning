@@ -56,7 +56,9 @@ function handleFilter()
 		if(value=="ALL")
 		{
 			$('#filter-subject input').attr('val','ALL');
-			filterData();
+
+			filterSubject='ALL';
+			window.location.href = rootLocation+'admin/ql-de-thi/danh-sach?subject='+filterSubject;
 		}
 		else
 		{
@@ -74,12 +76,14 @@ function handleFilter()
 			if(filterSubject==""||filterSubject==null||filterSubject==undefined) filterSubject='ALL';
 			var type=$('#filter-type input').attr('val');
 			var level=$('#filter-level input').attr('val');
-			window.location.href = rootLocation+'teacher/ql-de-thi/danh-sach?subject='+filterSubject;
+			window.location.href = rootLocation+'admin/ql-de-thi/danh-sach?subject='+filterSubject;
 		}
 	});
 }
 
 function tableDataEvents() {
+	
+	var dataId;
 	// btn refresh
 	$(document).on('click', '.btn-refresh', function() {
 		location.reload();
@@ -99,29 +103,43 @@ function tableDataEvents() {
 		$(this).addClass('selected');
 		$('#modal-select-subject .btn-submit').removeClass('disabled');
 	});
-
-	// table select teacher click
-	$(document).on('click', '#table-data-body-teacher [dataId]', function() {
-		$('#table-data-body-teacher .selected').removeClass('selected');
-		var id = $(this).attr("dataId");
-		$(this).addClass('selected');
-		$('#modal-select-teacher .btn-submit').removeClass('disabled');
-	});
-	// btn view
-	$(document).on('click', '#table-data-body .btn-view', function() {
-		var questionId = $(this).parents('[dataId]').attr('dataId');
-		var question = obj.getQuestionById(questionId);
-		if(question!=null&&question!=undefined&&question!="") {
-			viewQuestion(question);
-			$('#modal-view').modal('show');
-		}
-		
-	});
 	
 	//edit btn click
 	$(document).on('click', '.btn-edit', function () {
 		var epId=$(this).parents('[dataId]').attr('dataId');
-		window.location.href = rootLocation+'teacher/ql-de-thi/cap-nhat?id='+epId;
+		window.location.href = rootLocation+'admin/ql-de-thi/cap-nhat?id='+epId;
+	});
+	
+	//btn-download
+	$(document).on('click', '.btn-download', function (e) {
+		dataId=$(this).parents('[dataId]').attr('dataId');
+		
+		$('#modal-download').modal('show');
+		
+		//window.location.href = rootLocation+'manager/downloadexampaper?id='+epId;
+	});
+	
+	$(document).on('click', '#modal-download .btn-submit', function (e) {
+		
+		$('#modal-download').modal('hide');
+		var exampapertype=$('#modal-download .exampaper-type-choosed');
+		var type=$(exampapertype).attr('type');
+		var border=$(exampapertype).attr('border');
+		window.open(rootLocation+'manager/downloadexampaper?id='+dataId+'&type='+type+'&border='+border);
+		//window.location.href = rootLocation+'manager/downloadexampaper?id='+epId;
+	});
+	
+	$(document).on('click', '#modal-download .exampaper-type', function (e) {
+		$('#modal-download .bg-success').removeClass('bg-success');
+		$('#modal-download .exampaper-type-choosed').removeClass('bg-success');
+		$(this).addClass('bg-success');
+		$(this).addClass('exampaper-type-choosed');
+		$('#modal-download .btn-submit').removeClass('disabled');
+		//window.location.href = rootLocation+'manager/downloadexampaper?id='+epId;
+	});
+	$(document).on('click', '.btn-add-exampaper', function (e) {
+		
+		window.location.href = rootLocation+'admin/ql-de-thi/them-moi';
 	});
 
 }

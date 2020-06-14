@@ -142,6 +142,13 @@ public class Exam extends AbstractEntity {
 	
 
 
+	public Exam(int id, Date timeOpen, Date timeClose,String status) {
+		super(id);
+		this.timeOpen = timeOpen;
+		this.timeClose = timeClose;
+		this.status=status;
+	}
+
 	public String getCode() {
 		return code;
 	}

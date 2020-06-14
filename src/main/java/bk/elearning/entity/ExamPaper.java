@@ -70,8 +70,15 @@ public class ExamPaper extends AbstractEntity implements Serializable {
 
 	private String descriptor;
 
+	public ExamPaper(Set<ExamPaperQuestion> examPaperQuestions) {
+		this.examPaperQuestions=examPaperQuestions;
+	}
+	
 	public ExamPaper() {
 		super();
+	}
+	public ExamPaper(int id) {
+		super(id);
 	}
 
 	public ExamPaper(int id, String code, String name, User user, Subject subject, String descriptor, Integer time,

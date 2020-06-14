@@ -43,8 +43,12 @@ public class WebSocketController {
 		try {
 			template.convertAndSend("/check-connect/do-exam", Constant.STATUS_SUCCESS);
 			Map<String, Object> sessionAttributes = headerAccessor.getSessionAttributes();
-			String httpSessionId = sessionAttributes.get("sessionId").toString();
-			HttpSession httpSession = ExamServiceImpl.getSessionProcess().get(httpSessionId);
+			/*
+			 * String httpSessionId = sessionAttributes.get("sessionId").toString();
+			 * HttpSession httpSession =
+			 * ExamServiceImpl.getSessionProcess().get(httpSessionId);
+			 */
+			HttpSession httpSession = (HttpSession) sessionAttributes.get("httpSession");
 			if (chatMessage.getType() == MessageType.START_TIME) {
 			
 				TimeCoundown tc = (TimeCoundown) (httpSession.getAttribute(Constant.SESSION_TIME_COUNTDOWN));

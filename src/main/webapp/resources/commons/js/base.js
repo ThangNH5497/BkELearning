@@ -15,8 +15,13 @@ class Base {
     	// for real host
     	// rootLocation = getUrl .protocol + "//" + getUrl.host + "/";
     	// init user profile
-    	$('#userDropdown .user-full-name').text(userLoged.fullName);
-    	$('#userDropdown img').attr("src",rootLocation+userLoged.image);
+    	try {
+    		$('#userDropdown .user-full-name').text(userLoged.fullName);
+        	$('#userDropdown img').attr("src",rootLocation+userLoged.image);
+		} catch (e) {
+			// TODO: handle exception
+		}
+    	
 
     }
 

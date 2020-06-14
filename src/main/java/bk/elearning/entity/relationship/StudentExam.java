@@ -42,6 +42,9 @@ public class StudentExam extends AbstractEntity {
 	@Column(name = "time_left")
 	private int timeLeft;
 	
+	public StudentExam(int id) {
+		super(id);
+	}
 	public StudentExam(String status, int timeLeft) {
 		super();
 		this.status = status;

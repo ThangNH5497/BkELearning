@@ -46,7 +46,7 @@
 	<!-- End of Topbar -->
 	<div class="container-fluid">
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h4 mb-0 text-gray-600">Thêm Bài Thi</h1>
+			<h1 class="h4 mb-0 text-gray-600">Cập Nhật Bài Thi</h1>
 		</div>
 		<!-- filter -->
 		<div class="card mb-4 py-3 border-left-info" id="exampaper-info">

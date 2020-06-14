@@ -3,7 +3,6 @@ package bk.elearning.service.impl;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,7 +23,9 @@ import bk.elearning.entity.Student;
 import bk.elearning.entity.User;
 import bk.elearning.entity.dto.CustomUserDetails;
 import bk.elearning.entity.dto.ExamDTO;
+import bk.elearning.entity.dto.ExamPageDTO;
 import bk.elearning.entity.dto.PaginationResult;
+import bk.elearning.entity.dto.StudentExamDTO;
 import bk.elearning.entity.dto.StudentResultQuestionDTO;
 import bk.elearning.entity.dto.TimeCoundown;
 import bk.elearning.entity.relationship.ExamCourse;
@@ -48,11 +49,9 @@ public class ExamServiceImpl implements IExamService {
 
 	@Autowired
 	IExamPaperRepository examPaperRepo;
-	
+
 	@Autowired
 	IStudenExamRepository studentExamRepo;
-	
-	static HashMap<String, HttpSession> sessionProcess=new HashMap<String, HttpSession>();
 
 	@Override
 	public Exam getById(int id) {
@@ -166,16 +165,17 @@ public class ExamServiceImpl implements IExamService {
 
 	// get page by subject of admin
 	@Override
-	public PaginationResult<Exam> getPageByCourse(int courseId, int page, int size) {
+	public PaginationResult<ExamPageDTO> getPageByCourse(int courseId, int page, int size) {
 		// TODO Auto-generated method stub
 		try {
 			if (page > 0) {
 
 				// return examRepo.getPageByCourse(courseId, page - 1, size);
-				PaginationResult<Exam> pages = examRepo.getPageByCourse(courseId, page - 1, size);
+				PaginationResult<ExamPageDTO> pages = examRepo.getPageByCourse(courseId, page - 1, size);
 
-				for (Exam exam : pages.getData()) {
-					exam = checkStatus(exam);
+				for (ExamPageDTO examDTO : pages.getData()) {
+					examDTO.setStatus(checkStatus(new Exam(examDTO.getId(),examDTO.getTimeOpen(),examDTO.getTimeClose(),examDTO.getStatus())).getStatus());
+					examDTO.setCountExamProcess(examRepo.getCoutExamProcess(examDTO.getId(),courseId).intValue());
 				}
 
 				return pages;
@@ -188,7 +188,7 @@ public class ExamServiceImpl implements IExamService {
 	}
 
 	@Override
-	public PaginationResult<Exam> getPageBySubject(int subjectId, int page, int size) {
+	public PaginationResult<ExamPageDTO> getPageBySubject(int subjectId, int page, int size) {
 		// TODO Auto-generated method stub
 		try {
 			if (page > 0) {
@@ -196,10 +196,11 @@ public class ExamServiceImpl implements IExamService {
 						.getPrincipal();
 				if (user.getRole().equals(Constant.ROLE_ADMIN)) {
 					// return examRepo.getPageBySubject(subjectId, page - 1, size);
-					PaginationResult<Exam> pages = examRepo.getPageBySubject(subjectId, page - 1, size);
+					PaginationResult<ExamPageDTO> pages = examRepo.getPageBySubject(subjectId, page - 1, size);
 
-					for (Exam exam : pages.getData()) {
-						exam = checkStatus(exam);
+					for (ExamPageDTO examDTO : pages.getData()) {
+						examDTO.setStatus(checkStatus(new Exam(examDTO.getId(),examDTO.getTimeOpen(),examDTO.getTimeClose(),examDTO.getStatus())).getStatus());
+						examDTO.setCountExamProcess(0);
 					}
 
 					return pages;
@@ -214,15 +215,18 @@ public class ExamServiceImpl implements IExamService {
 	}
 
 	@Override
-	public PaginationResult<Exam> searchPageByCourse(int courseId, String key, int page, int size) {
+	public PaginationResult<ExamPageDTO> searchPageByCourse(int courseId, String key, int page, int size) {
 		// TODO Auto-generated method stub
 		try {
 			if (page > 0) {
 
-				PaginationResult<Exam> pages = examRepo.searchPageByCourse(courseId, key, page - 1, size);
+				PaginationResult<ExamPageDTO> pages = examRepo.searchPageByCourse(courseId, key, page - 1, size);
 
-				for (Exam exam : pages.getData()) {
-					exam = checkStatus(exam);
+				for (ExamPageDTO examDTO : pages.getData()) {
+					examDTO.setStatus(checkStatus(new Exam(examDTO.getId(),examDTO.getTimeOpen(),examDTO.getTimeClose(),examDTO.getStatus())).getStatus());
+					//select tong cac bai thi can cham
+					examDTO.setCountExamProcess(examRepo.getCoutExamProcess(examDTO.getId(),courseId).intValue());
+				
 				}
 
 				return pages;
@@ -235,16 +239,17 @@ public class ExamServiceImpl implements IExamService {
 	}
 
 	@Override
-	public PaginationResult<Exam> searchPageBySubject(int subjectId, String key, int page, int size) {
+	public PaginationResult<ExamPageDTO> searchPageBySubject(int subjectId, String key, int page, int size) {
 		// TODO Auto-generated method stub
 		try {
 			if (page > 0) {
 
 				// return examRepo.searchPageBySubject(subjectId, key, page - 1, size);
-				PaginationResult<Exam> pages = examRepo.searchPageBySubject(subjectId, key, page - 1, size);
+				PaginationResult<ExamPageDTO> pages = examRepo.searchPageBySubject(subjectId, key, page - 1, size);
 
-				for (Exam exam : pages.getData()) {
-					exam = checkStatus(exam);
+				for (ExamPageDTO examDTO : pages.getData()) {
+					examDTO.setStatus(checkStatus(new Exam(examDTO.getId(),examDTO.getTimeOpen(),examDTO.getTimeClose(),examDTO.getStatus())).getStatus());
+					examDTO.setCountExamProcess(0);
 				}
 
 				return pages;
@@ -296,10 +301,10 @@ public class ExamServiceImpl implements IExamService {
 	}
 
 	@Override
-	public PaginationResult<ExamDTO> getByStudent(Integer studentId,String filter, int page, int size) {
+	public PaginationResult<ExamDTO> getByStudent(Integer studentId, String filter, int page, int size) {
 		// TODO Auto-generated method stub
 		if (page > 0) {
-			PaginationResult<ExamDTO> pages = examRepo.getByStudent(studentId,filter, page - 1, size);
+			PaginationResult<ExamDTO> pages = examRepo.getByStudent(studentId, filter, page - 1, size);
 
 			for (ExamDTO examDTO : pages.getData()) {
 				Exam exam = new Exam();
@@ -324,18 +329,17 @@ public class ExamServiceImpl implements IExamService {
 	}
 
 	@Override
-	public ExamDTO doExam(Integer examId, Integer studentId,HttpServletRequest request) {
+	public ExamDTO doExam(Integer examId, Integer studentId, HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		try {
 			CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
 					.getPrincipal();
-			HttpSession session=request.getSession();
-			
-			
+			HttpSession session = request.getSession();
+
 			if (user != null && user.getId() == studentId) {
 				ExamDTO examDTO = examRepo.getByIdAndStudent(examId, studentId);
 				if (examDTO.getStudentExam() != null) {
-					
+
 					for (ExamPaperQuestion epq : examDTO.getStudentExam().getExamPaper().getExamPaperQuestions()) {
 						epq.getQuestion().setContent(StringEscapeUtils.unescapeHtml4(epq.getQuestion().getContent()));
 
@@ -344,19 +348,17 @@ public class ExamServiceImpl implements IExamService {
 						epq.getQuestion().getAnswers().clear();
 						for (int i = 0; i < answerInfos.size(); i++) {
 							// answers.set(i, epq.getExamPaperQuestionAnswers().get(i).getAnswer());
-							if(answerInfos.get(i).getAnswer()!=null)
-							{
+							if (answerInfos.get(i).getAnswer() != null) {
 								answerInfos.get(i).getAnswer().setContent(
 										StringEscapeUtils.unescapeHtml4(answerInfos.get(i).getAnswer().getContent()));
 
-								
 							}
-							
 
 						}
 					}
-					session.setAttribute(Constant.SESSION_TIME_COUNTDOWN,new TimeCoundown(examDTO.getStudentExam().getTimeLeft(), null, examDTO.getStudentExam().getId()));
-					sessionProcess.put(session.getId(), session);
+					session.setAttribute(Constant.SESSION_TIME_COUNTDOWN, new TimeCoundown(
+							examDTO.getStudentExam().getTimeLeft(), null, examDTO.getStudentExam().getId()));
+
 					return examDTO;
 
 				}
@@ -365,7 +367,7 @@ public class ExamServiceImpl implements IExamService {
 					List<ExamQuestion> eqs = examRepo.getRandomQuestionByFilter(examDTO.getId(),
 							examDTO.getExamFilters());
 					eqs = shuffleArray(eqs);
-					
+
 					Exam exam = examRepo.getById(examDTO.getId());
 					StudentExam studentExam = new StudentExam();
 					ExamPaper examPaper = new ExamPaper();
@@ -381,24 +383,20 @@ public class ExamServiceImpl implements IExamService {
 					int i = 1;
 					for (ExamQuestion examQuestion : eqs) {
 						ExamPaperQuestion epq = new ExamPaperQuestion();
-						
+
 						Question question = examQuestion.getQuestion();
 						question.setAnswers(shuffleArray(question.getAnswers()));
-						//test
+						// test
 						question.setContent(StringEscapeUtils.unescapeHtml4(question.getContent()));
-						
-						
+
 						epq.setExamPaperQuestionAnswers(new ArrayList<ExamPaperQuestionAnswer>());
-						
-						if(question.getType().equals("FILL_WORD"))
-						{
+
+						if (question.getType().equals("FILL_WORD")) {
 							ExamPaperQuestionAnswer epqa = new ExamPaperQuestionAnswer();
 							epqa.setStudentAnswer(null);
 							epqa.setExamPaperQuestion(epq);
 							epq.getExamPaperQuestionAnswers().add(epqa);
-						}
-						else
-						{
+						} else {
 							int j = 1;
 							for (Answer answer : question.getAnswers()) {
 								answer.setContent(StringEscapeUtils.unescapeHtml4(answer.getContent()));
@@ -410,7 +408,7 @@ public class ExamServiceImpl implements IExamService {
 								j++;
 							}
 						}
-						
+
 						question.getAnswers().clear();
 						epq.setQuestion(question);
 						epq.setQuestionGrade(examQuestion.getGrade());
@@ -421,7 +419,7 @@ public class ExamServiceImpl implements IExamService {
 					}
 
 					Set<StudentExam> studentExams = new HashSet<StudentExam>();
-				
+
 					studentExams.add(studentExam);
 					studentExam.setTimeLeft(exam.getTime());
 					examPaper.setStudentExams(studentExams);
@@ -430,13 +428,13 @@ public class ExamServiceImpl implements IExamService {
 					studentExam.setExam(exam);
 					exam.setStudentExams(studentExams);
 					examRepo.update(exam);
-					
+
 					examDTO.setStudentExam(studentExam);
 					examDTO.getExamFilters().clear();
-					
-					//add session to process
-					session.setAttribute(Constant.SESSION_TIME_COUNTDOWN,new TimeCoundown(examDTO.getStudentExam().getTimeLeft(), null, examDTO.getStudentExam().getId()));
-					sessionProcess.put(session.getId(), session);
+
+					// add session to process
+					session.setAttribute(Constant.SESSION_TIME_COUNTDOWN, new TimeCoundown(
+							examDTO.getStudentExam().getTimeLeft(), null, examDTO.getStudentExam().getId()));
 					return examDTO;
 
 				}
@@ -448,7 +446,7 @@ public class ExamServiceImpl implements IExamService {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public void updateResult(StudentResultQuestionDTO studentResultQuestionDTO) {
 		try {
@@ -456,10 +454,83 @@ public class ExamServiceImpl implements IExamService {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 	}
-	
-	
+
+	@Override
+	public void updateResult(TimeCoundown tc) {
+		// TODO Auto-generated method stub
+		try {
+			StudentExam se = examRepo.getStudentExamById(tc.getStudentExamId());
+			if (se != null) {
+				if (!(se.getTimeLeft() == 0 && se.getStatus().equals(Constant.STUDENT_EXAM_STATUS_COMPLETE))) {
+					se.setTimeLeft(tc.getTimeLeft());
+					if (tc.getTimeLeft() == 0) {
+						se.setStatus(Constant.STUDENT_EXAM_STATUS_COMPLETE);
+						StudentExam tmp = countGrade(se);
+						se.setGrade(tmp.getGrade());
+						se.setStatus(tmp.getStatus());
+						se.getExamPaper().setExamPaperQuestions(tmp.getExamPaper().getExamPaperQuestions());
+
+					}
+					studentExamRepo.update(se);
+				}
+
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+	}
+
+	private StudentExam countGrade(StudentExam se) {
+		float countGrade = 0;
+		float questionGrade = 0;
+		try {
+			for (ExamPaperQuestion epq : se.getExamPaper().getExamPaperQuestions()) {
+				if (epq.getQuestion().getType().equals(Constant.QUESTION_FILL_WORD)) {
+					if (epq.getStudentGrade() <= 0) {
+						se.setStatus(Constant.STUDENT_EXAM_STATUS_WAIT_RESULT);
+					} else {
+						countGrade += epq.getStudentGrade();
+					}
+				}
+				// other type
+				else {
+					float weight = 0f;
+					for (ExamPaperQuestionAnswer epqa : epq.getExamPaperQuestionAnswers()) {
+						try {
+							if (epqa.getStudentAnswer() != null
+									&& epqa.getStudentAnswer().equals(Constant.STUDENT_ANSWER_CHOOSE)) {
+								weight += epqa.getAnswer().getWeight();
+
+							}
+						} catch (Exception e) {
+							// TODO: handle exception
+							System.out.println(e.toString());
+						}
+
+					}
+					float grade=0;
+					grade=weight * epq.getQuestionGrade();
+					if(grade>epq.getQuestionGrade()) grade=epq.getQuestionGrade();
+					else if(grade<-epq.getQuestionGrade()) grade=-epq.getQuestionGrade();
+					epq.setStudentGrade(grade);
+					countGrade +=grade;
+				}
+				questionGrade += epq.getQuestionGrade();
+			}
+			if(questionGrade!=0&&countGrade!=0)
+			{
+				se.setGrade(countGrade / questionGrade);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
+		}
+		return se;
+	}
 
 	private <T> List<T> shuffleArray(List<T> list) {
 		for (int i = list.size() - 1; i > 0; i--) {
@@ -471,91 +542,60 @@ public class ExamServiceImpl implements IExamService {
 		return list;
 	}
 
-	public static HashMap<String, HttpSession> getSessionProcess() {
-		return sessionProcess;
+	@Override
+	public PaginationResult<StudentExamDTO> getStudentExamUncomplete(int examId, int courseId, int page, int size) {
+		// TODO Auto-generated method stub
+		if(page>0)
+		{
+			return examRepo.getStudentExamUncomplete(examId,courseId,page-1,size);
+		}
+		return null;
 	}
 
-	public static void setSessionProcess(HashMap<String, HttpSession> sessionProcess) {
-		ExamServiceImpl.sessionProcess = sessionProcess;
-	}
+	
 
 	@Override
-	public void updateResult(TimeCoundown tc) {
+	public int updateStudentGrade(StudentExam studentExam) {
 		// TODO Auto-generated method stub
 		try {
-			StudentExam se=examRepo.getStudentExamById(tc.getStudentExamId());
-			if(se!=null)
+			for (ExamPaperQuestion epq : studentExam.getExamPaper().getExamPaperQuestions()) {
+				examRepo.updateStudentGrade(epq);
+			}
+			studentExam=examRepo.getStudentExamById(studentExam.getId());
+			float countQuestionGrade=0;
+			float contStudentGrade=0;
+			for (ExamPaperQuestion epq : studentExam.getExamPaper().getExamPaperQuestions()) {
+				countQuestionGrade+=epq.getQuestionGrade();
+				contStudentGrade+=epq.getStudentGrade();
+			}
+			if(countQuestionGrade>0)
 			{
-				if(!(se.getTimeLeft()==0&&se.getStatus().equals(Constant.STUDENT_EXAM_STATUS_COMPLETE)))
-				{
-					se.setTimeLeft(tc.getTimeLeft());
-					if(tc.getTimeLeft()==0)
-					{
-						se.setStatus(Constant.STUDENT_EXAM_STATUS_COMPLETE);
-						StudentExam tmp=countGrade(se);
-						se.setGrade(tmp.getGrade());
-						se.setStatus(tmp.getStatus());
-						se.getExamPaper().setExamPaperQuestions(tmp.getExamPaper().getExamPaperQuestions());
-						
-					}
-					studentExamRepo.update(se);
-				}
-				
+				studentExam.setGrade(contStudentGrade/countQuestionGrade);
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-
-		
-	}
-	private StudentExam countGrade(StudentExam se)
-	{
-		float studentGrade=0;
-		float questionGrade=0;
-		try {
-			for (ExamPaperQuestion epq : se.getExamPaper().getExamPaperQuestions()) {
-				if(epq.getQuestion().getType().equals(Constant.QUESTION_FILL_WORD))
-				{
-					if(epq.getStudentGrade()<=0)
-					{
-						se.setStatus(Constant.STUDENT_EXAM_STATUS_WAIT_RESULT);
-					}
-					else
-					{
-						studentGrade+=epq.getStudentGrade();
-					}
-				}
-				//other type
-				else
-				{
-					float weight=0f;
-					for (ExamPaperQuestionAnswer epqa : epq.getExamPaperQuestionAnswers()) {
-						try {
-							if(epqa.getStudentAnswer()!=null&&epqa.getStudentAnswer().equals(Constant.STUDENT_ANSWER_CHOOSE))
-							{
-								weight+=epqa.getAnswer().getWeight();
-								
-							}
-						} catch (Exception e) {
-							// TODO: handle exception
-							System.out.println(e.toString());
-						}
-						
-					}
-					epq.setStudentGrade(weight*epq.getQuestionGrade());
-					studentGrade+=weight*epq.getQuestionGrade();
-				}
-				questionGrade+=epq.getQuestionGrade();
-			}
-
-			se.setGrade(studentGrade/questionGrade);
+			studentExam.setStatus(Constant.STUDENT_EXAM_STATUS_COMPLETE);
+			examRepo.updateStudentExam(studentExam);
+			return 1;
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.toString());
 		}
-		return se;
+		return 0;
 	}
-	
+
+	@Override
+	public StudentExam getStudentExamUncompleteById(int id) {
+		// TODO Auto-generated method stub
+		
+		try {
+			StudentExam se=examRepo.getStudentExamUncompleteById(id);
+			for (ExamPaperQuestion epq : se.getExamPaper().getExamPaperQuestions()) {
+				epq.getQuestion().setContent(StringEscapeUtils.unescapeHtml4(epq.getQuestion().getContent()));
+			}
+			return se;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
 
 }

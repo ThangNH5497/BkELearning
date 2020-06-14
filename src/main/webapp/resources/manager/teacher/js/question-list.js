@@ -14,11 +14,7 @@ $(document).ready(function() {
 	
 	searchSubject();
 	
-	//edit btn click
-	$(document).on('click', '.btn-edit', function () {
-		var qId=$(this).parents('[dataId]').attr('dataId');
-		window.location.href = rootLocation+'teacher/ql-cau-hoi/cap-nhat?id='+qId;
-	});
+	
 	
 });
 
@@ -162,6 +158,12 @@ function filterEventHandle()
 			$('#filter-subject input').attr('val',subject);
 			filterData();
 		}
+	});
+	
+	//edit btn click
+	$(document).on('click', '.btn-edit', function () {
+		var qId=$(this).parents('[dataId]').attr('dataId');
+		window.location.href = rootLocation+'teacher/ql-cau-hoi/cap-nhat?id='+qId;
 	});
 }
 function filterData()

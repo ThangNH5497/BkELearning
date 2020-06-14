@@ -53,7 +53,7 @@ function init()
 //xu ly cac du lieu khoa chinh suwa/xoa
 function handleLock()
 {
-	try {
+	/*try {
 		var roles=$('#table-data-body [field="user.role"]');
 		for (var i = 0; i < roles.length; i++) {
 			if($(roles[i]).text()=='ROLE_TEACHER')
@@ -65,15 +65,101 @@ function handleLock()
 				$(roles[i]).text('Chung');
 			}
 		}
+		
+		$('.btn-notify').remove();
 	} catch (e) {
 		// TODO: handle exception
 		alert(e);
-	}
+	}*/
 }
 class ExamManagement extends Base {
 	
     constructor() {
     	super();
     }
- 
+    initData(containerId,rowDataId,data)
+    {
+    		$('#'+rowDataId).removeClass('hidden');
+    		var html=$('#'+rowDataId).prop('outerHTML');
+        	$('#'+containerId).empty();
+        	// hien thi du lieu
+        	if(data.length>0)
+        	{
+        		$('#data-empty-alert').addClass('hidden');
+        		for(var i=0;i<data.length;i++)
+            	{
+            		$('#'+containerId).append(html);
+            		$('#'+rowDataId).attr('dataId',data[i].id);
+            		$('#'+rowDataId).removeAttr('id');
+            		var keys=Object.keys(data[i]);
+            		var fields=$('#'+containerId+' [dataId='+data[i].id+'] [field]');
+            		for(var j=0;j<fields.length;j++)
+            		{
+            			try {
+            				var fieldAttr=$(fields[j]).attr('field');
+                			var value=obj.resolve(fieldAttr,data[i]);
+                			if(fieldAttr=='checkBox')
+                			{
+                				$(fields[j]).children().children('input').attr('id','check-'+i);
+                				$(fields[j]).children().children('label.custom-control-label').attr('for','check-'+i);
+                			}
+                			else if(fieldAttr=='status')
+                			{
+                				switch (value) {
+								case 'FINISH':
+								{
+									$(fields[j]).text('Kết Thúc');
+									$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-edit').remove();
+									break;
+								}
+								case 'OPEN':
+								{
+									$(fields[j]).text('Đang Mở');
+									$(fields[j]).addClass('text-success');
+									$('#'+containerId+' [dataId='+data[i].id+'] [field=checkBox]').html('');
+									$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-edit').remove();
+									break;
+								}
+								case 'CLOSE':
+								{
+									$(fields[j]).text('Đang Đóng')
+									break;
+								}
+								default:
+									break;
+								}
+                			}
+                			else if(fieldAttr=='role')
+                			{
+                				if(value=='ROLE_TEACHER')
+                				{
+                					$(fields[j]).text('Riêng');
+                				}
+                				else if(value=='ROLE_ADMIN')
+                				{
+                					$(fields[j]).text('Chung');
+                					
+                				}
+                			}
+                			
+                			else $(fields[j]).html(value);
+						} catch (e) {
+							// TODO: handle exception
+							console.log(e);
+						}
+            			
+      	 
+            		}
+            	
+            	}
+        	}
+        	else
+        	{
+        		$('#data-empty-alert').removeClass('hidden');
+        	}
+        	
+        	$('#'+containerId).append(html);
+        	$('#'+rowDataId).addClass('hidden');
+        	$('.btn-notify').remove();
+    }
 }

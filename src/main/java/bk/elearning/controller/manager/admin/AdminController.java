@@ -90,4 +90,22 @@ public class AdminController {
 	{
 		return "manager/admin/add-exam";
 	}
+	
+	//quan ly de thi
+	@RequestMapping("/ql-de-thi/them-moi")
+	public String getAddExamPaperView()
+	{
+		return "manager/admin/add-exampaper";
+	}
+	
+	@RequestMapping("/ql-de-thi/cap-nhat")
+	public String getEditExamPaperView(@RequestParam(name="id") int id)
+	{
+		return "manager/admin/edit-exampaper";
+	}
+	@RequestMapping("/ql-de-thi/danh-sach")
+	public String getExamPaperListView(@RequestParam(name="subject") String subject)
+	{
+		return "manager/admin/exampaper-list";
+	}
 }

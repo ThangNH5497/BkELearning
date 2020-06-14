@@ -9,8 +9,8 @@
 		<div
 			class="d-flex align-items-center justify-content-between mb-4 row">
 			<h1 class="col-8 h5 mb-0 text-gray-600">Ngân Hàng Đề Thi</h1>
-			<a href="<c:url value='/teacher/ql-de-thi/them-moi'/>"
-				class=" col-1 btn btn-sm btn-primary shadow-sm"><i
+			<a href="#"
+				class=" col-1 btn btn-sm btn-primary shadow-sm btn-add-exampaper"><i
 				class="fas fa-plus fa-sm text-white-50"></i>Thêm</a>
 		</div>
 		<!-- filter -->
@@ -122,7 +122,7 @@
 									<div class="table-data-body js-pscroll">
 										<table>
 											<tbody id="table-data-body">
-												
+
 												<tr class="table-row body hidden" id="row-data-container">
 
 													<td class="table-cell column0" field='checkBox'><div
@@ -140,9 +140,9 @@
 													<td class="table-cell column7" field="updateAt"></td>
 													<td class="table-cell column8">
 														<button
-															class="btn btn-view text-success justify-content-center"
+															class="btn btn-download text-success justify-content-center"
 															style="box-shadow: none;">
-															<i class="far fa-eye"></i>
+															<i class="fas fa-file-download"></i>
 														</button>
 														<button
 															class="btn btn-edit text-primary justify-content-center"
@@ -301,5 +301,83 @@
 	</div>
 	<!-- /.modal-dialog -->
 </div>
-<!-- modal choose file -->
+<!-- end modal select subject -->
+<!-- modal select download  type -->
+<div class="modal  fade" id="modal-download" tabindex="-1" role="dialog"
+	aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<p class="heading lead">Tải Xuống Đề Thi</p>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+			<div class="modal-body pl-0 pr-0 pt-0">
+				<div class="row m-4 p-4">
+					<div class="card col-5 shadow mb-4 exampaper-type" type="basic" border="false">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">Kiểu Cơ Bản</h6>
+						</div>
+						<div class="card-body">
+							<img style="width: 100%;" alt=""
+								src="<c:url value='/resources/commons/image/web/exampaper-basic.png' />">
+						</div>
+					</div>
+					<div class="col-2"></div>
+					<div class="card col-5 shadow mb-4 exampaper-type" type="double" border="false">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">Chia Đôi</h6>
+						</div>
+						<div class="card-body">
+							<img style="width: 100%;" alt=""
+								src="<c:url value='/resources/commons/image/web/exampaper-double.png' />">
+						</div>
+					</div>
+					
+				</div>
+				
+				<div class="row m-4 p-4">
+					<div class="card col-5 shadow mb-4 exampaper-type" type="basic" border="true">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">Kiểu Cơ Bản Có Viền</h6>
+						</div>
+						<div class="card-body">
+							<img style="width: 100%;" alt=""
+								src="<c:url value='/resources/commons/image/web/exampaper-basic-border.png' />">
+						</div>
+					</div>
+					<div class="col-2"></div>
+					<div class="card col-5 shadow mb-4 exampaper-type" type="double" border="true">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">Chia Đôi Có Viền</h6>
+						</div>
+						<div class="card-body">
+							<img style="width: 100%;" alt=""
+								src="<c:url value='/resources/commons/image/web/exampaper-double-border.png' />">
+						</div>
+					</div>
+					
+				</div>
+				<div>
+					<div class="border-top my-3"></div>
+					<div class="d-flex justify-content-center">
+						<a type="button" class="btn  waves-effect btn-cancel"
+							data-dismiss="modal">Hủy</a><a type="button"
+							class="btn  waves-effect btn-submit disabled">Tải Xuống</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+
 

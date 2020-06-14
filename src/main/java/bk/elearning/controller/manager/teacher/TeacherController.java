@@ -62,6 +62,17 @@ public class TeacherController {
 	{
 		return "manager/teacher/add-exam";
 	}
+	
+	@RequestMapping("/ql-lop-hoc/ql-bai-thi/cham-diem")
+	public String getMarkView(@RequestParam(name="id") Integer id,@RequestParam(name="examId") Integer examId,@RequestParam(name="courseId") Integer courseId)
+	{
+		return "manager/teacher/mark";
+	}
+	@RequestMapping("/ql-lop-hoc/ql-bai-thi/danh-sach-cham-diem")
+	public String getMarkListView(@RequestParam(name="examId") Integer examId,@RequestParam(name="courseId") Integer courseId)
+	{
+		return "manager/teacher/mark-list";
+	}
 	@RequestMapping("/ql-lop-hoc/ql-bai-thi/cap-nhat")
 	public String getUpdateExamView(@RequestParam(name="examId") Integer examId)
 	{

@@ -63,7 +63,24 @@
 						class="redirect ml-4" id='category-list'>QL Danh Mục</span></a></li>
 			</ul>
 			<!-- end collapse -->
+			
+			<li id="menu-item-exampaper"><a data-toggle="collapse"
+				data-target="#submenu-exampaper" aria-expanded="false"
+				aria-controls="submenu-exampaper"><span
+					class="icon fas fa-book-open mr-3"></span> <span class="redirect">Đề Thi <i class="fas fa-caret-down pl-2"></i>
+				</span></a></li>
+			<!-- collapse -->
+			<ul class="collapse list-unstyled bg-white rounded submenu"
+				id="submenu-exampaper">
+				<li><a href="<c:url value='/admin/ql-de-thi/them-moi'/>"
+					class="text-gray-600 text-sm  rounded"><span
+						id='menu-add-exampaper' class="redirect ml-4">Thêm Đề Thi</span></a></li>
+				<li><a
+					href="<c:url value='/admin/ql-de-thi/danh-sach?subject=ALL'/>"
+					class="text-gray-600 text-sm  rounded"><span
+						id='exampaper-list' class="redirect ml-4">QL Đề Thi</span></a></li>
 
+			</ul>
 
 
 			<li><a href="#"><span class="icon fa fa-sticky-note mr-3"></span>

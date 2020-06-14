@@ -45,10 +45,9 @@ public class WebSocketEventListener {
 		if (username != null) {
 
 			try {
-				String sessionId = SimpMessageHeaderAccessor.getSessionAttributes(event.getMessage().getHeaders())
-						.get("sessionId").toString();
-				System.out.println("disconnected " + sessionId);
-				HttpSession httpSession = ExamServiceImpl.getSessionProcess().get(sessionId);
+
+				HttpSession httpSession =(HttpSession) SimpMessageHeaderAccessor.getSessionAttributes(event.getMessage().getHeaders())
+						.get("httpSession");
 				//ExamServiceImpl.getSessionProcess().remove(sessionId);
 				TimeCoundown tc=(TimeCoundown) httpSession.getAttribute(Constant.SESSION_TIME_COUNTDOWN);
 				//update time

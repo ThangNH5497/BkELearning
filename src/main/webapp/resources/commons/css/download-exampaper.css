@@ -1,0 +1,11 @@
+/* .container {
+	padding: 25px;
+} */
+p {
+	word-wrap: break-word !important;
+	font-size: 12pt !important;
+}
+img
+{
+	max-width: 350px;
+}

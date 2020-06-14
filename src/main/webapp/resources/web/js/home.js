@@ -73,6 +73,7 @@ class Home extends Base {
 										var grade=parseFloat(data[i].studentExam.grade);
 										grade=grade*(parseFloat(data[i].grade));
 										grade=grade.toFixed(2);
+										if(grade>parseFloat(data[i].grade)) grade=parseFloat(data[i].grade);
 										
 										$('#'+containerId+' [dataId='+data[i].id+'] [field=result]').html('<a href="facebook.com" class="text-success">'+grade+'/'+data[i].grade+'</a>');
 										break;
@@ -119,7 +120,7 @@ class Home extends Base {
     	}
     	else
     	{
-    		$('#data-empty-alert').removeClass('hidden');
+    		alert('Lỗi Xảy Ra Hoặc Bài Thi Không Có Nội Dung !');
     	}
     	
     	$('#'+containerId).append(html);

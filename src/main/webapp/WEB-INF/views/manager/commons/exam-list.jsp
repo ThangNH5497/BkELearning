@@ -8,9 +8,9 @@
 
 		<div
 			class="d-flex align-items-center justify-content-between mb-4 row">
-			<h1 class="col-8 h5 mb-0 text-gray-600" id='table-title'>Danh Sách Bài Thi</h1>
-			<a href="#"
-				class=" col-1 btn btn-sm btn-primary shadow-sm btn-add"><i
+			<h1 class="col-8 h5 mb-0 text-gray-600" id='table-title'>Danh
+				Sách Bài Thi</h1>
+			<a href="#" class=" col-1 btn btn-sm btn-primary shadow-sm btn-add"><i
 				class="fas fa-plus fa-sm text-white-50"></i>Thêm</a>
 		</div>
 		<%-- 	<div class=" container-fluid d-flex pl-0 ml-0 bg-light">
@@ -35,7 +35,7 @@
 						Sách Bài Thi</h6>
 					<div class="m-0"></div>
 					<div class="d-flex">
-						
+
 						<button class="btn btn-delete text-danger btn-control">
 							<i class="fas fa-trash"></i>
 						</button>
@@ -76,7 +76,7 @@
 														</div>
 													</th>
 													<th class="table-cell column1">Mã</th>
-													<th class="table-cell column2">Tên </th>
+													<th class="table-cell column2">Tên</th>
 													<th class="table-cell column3">TG</th>
 													<th class="table-cell column4">Ngày Tạo</th>
 													<th class="table-cell column5">Ngày Sửa</th>
@@ -112,13 +112,13 @@
 													<td class="table-cell column6" field="timeOpen"></td>
 													<td class="table-cell column7" field="timeClose"></td>
 													<td class="table-cell column8" field="status"></td>
-													<td class="table-cell column9" field="user.role"></td>
+													<td class="table-cell column9" field="role"></td>
 													<td class="table-cell column10" field='control'>
-														<button
-															class="btn btn-view text-success justify-content-center"
-															style="box-shadow: none;">
-															<i class="far fa-eye"></i>
+														<!-- Counter - Alerts -->
+														<button type="button" class="btn btn-notify" style="box-shadow: none;">
+															<i class="fas fa-bell text-success"></i> <span class="badge badge-light">0</span>
 														</button>
+
 														<button
 															class="btn btn-edit text-primary justify-content-center"
 															style="box-shadow: none;">

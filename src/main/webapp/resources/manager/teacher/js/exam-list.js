@@ -15,9 +15,7 @@ function init()
 		handleLock();
 	});
 	handlePagination('pagination','table-data-body','row-data-container',
-			'manager/api/exams/page/courses/'+courseId+'?',function(){
-		handleLock();
-	});
+			'manager/api/exams/page/courses/'+courseId+'?',null);
 	
 	$(document).on('click', '.btn-add', function () {
 		window.location.href = rootLocation+"teacher/ql-lop-hoc/ql-bai-thi/them-moi?course="+courseId;
@@ -41,11 +39,22 @@ function init()
 	 $('#select-all').click(function(){
 		$('#table-data-body [field="user.role"]:contains("Chung")').parents('tr[dataId]').removeClass('checked');
     });
+	 //btn cham diem
+	// click table
+	$(document).on('click', '#table-data-body .btn-notify', function() {
+		var examId=$(this).parents('[dataId]').attr('dataId');
+		var value=$(this).find('span').text();
+		if(parseInt(value)>0)
+		{
+			window.location.href = rootLocation+"teacher/ql-lop-hoc/ql-bai-thi/danh-sach-cham-diem?examId="+examId+"&courseId="+courseId;
+		}
+		
+	}); 
 }
 function handleLock()
 {
 	try {
-		var roles=$('#table-data-body [field="user.role"]');
+		var roles=$('#table-data-body [field="role"]');
 		for (var i = 0; i < roles.length; i++) {
 			if($(roles[i]).text()=='ROLE_TEACHER')
 			{
@@ -69,6 +78,105 @@ class ExamManagement extends Base {
 	
     constructor() {
     	super();
+    }
+    
+    initData(containerId,rowDataId,data)
+    {
+    		$('#'+rowDataId).removeClass('hidden');
+    		var html=$('#'+rowDataId).prop('outerHTML');
+        	$('#'+containerId).empty();
+        	// hien thi du lieu
+        	if(data.length>0)
+        	{
+        		$('#data-empty-alert').addClass('hidden');
+        		for(var i=0;i<data.length;i++)
+            	{
+            		$('#'+containerId).append(html);
+            		$('#'+rowDataId).attr('dataId',data[i].id);
+            		$('#'+rowDataId).removeAttr('id');
+            		var keys=Object.keys(data[i]);
+            		var fields=$('#'+containerId+' [dataId='+data[i].id+'] [field]');
+            		for(var j=0;j<fields.length;j++)
+            		{
+            			try {
+            				var fieldAttr=$(fields[j]).attr('field');
+                			var value=obj.resolve(fieldAttr,data[i]);
+                			if(fieldAttr=='checkBox')
+                			{
+                				$(fields[j]).children().children('input').attr('id','check-'+i);
+                				$(fields[j]).children().children('label.custom-control-label').attr('for','check-'+i);
+                			}
+                			else if(fieldAttr=='status')
+                			{
+                				switch (value) {
+								case 'FINISH':
+								{
+									$(fields[j]).text('Kết Thúc');
+									$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-edit').remove();
+									break;
+								}
+								case 'OPEN':
+								{
+									$(fields[j]).text('Đang Mở');
+									$(fields[j]).addClass('text-success');
+									$('#'+containerId+' [dataId='+data[i].id+'] [field=checkBox]').html('');
+									$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-edit').remove();
+									break;
+								}
+								case 'CLOSE':
+								{
+									$(fields[j]).text('Đang Đóng')
+									break;
+								}
+								default:
+									break;
+								}
+                			}
+                			else if(fieldAttr=='role')
+                			{
+                				if(value=='ROLE_TEACHER')
+                				{
+                					$(fields[j]).text('Riêng');
+                				}
+                				else if(value=='ROLE_ADMIN')
+                				{
+                					$(fields[j]).text('Chung');
+                					$(fields[j]).addClass('text-danger');
+                					$('#'+containerId+' [dataId='+data[i].id+'] [field=checkBox]').html('');
+                					$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-edit').remove();
+                					//$(tr).find('[field=checkBox]').html('');
+                					//$(tr).find('[field=control]').html('');
+                				}
+                			}
+                			else if(fieldAttr=='control')
+                			{
+                				var count=data[i].countExamProcess;
+                				if(count>0)
+                				{
+                					$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-notify span').text(count);
+                					$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-notify span').addClass('text-danger');
+                				}
+                				
+                			
+                			}
+                			else $(fields[j]).html(value);
+						} catch (e) {
+							// TODO: handle exception
+							console.log(e);
+						}
+            			
+      	 
+            		}
+            	
+            	}
+        	}
+        	else
+        	{
+        		$('#data-empty-alert').removeClass('hidden');
+        	}
+        	
+        	$('#'+containerId).append(html);
+        	$('#'+rowDataId).addClass('hidden');
     }
  
 }
