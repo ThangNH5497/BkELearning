@@ -6,6 +6,7 @@ import java.util.Set;
 import bk.elearning.entity.Exam;
 import bk.elearning.entity.dto.ExamDTO;
 import bk.elearning.entity.dto.ExamPageDTO;
+import bk.elearning.entity.dto.ExamResultDTO;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.entity.dto.StudentExamDTO;
 import bk.elearning.entity.dto.StudentResultQuestionDTO;
@@ -42,10 +43,24 @@ public interface IExamRepository extends IGenericRepository<Exam>{
 
 	public Long getCoutExamProcess(int examId,int courseId);
 
-	PaginationResult<StudentExamDTO> getStudentExamUncomplete(int examId, int courseId, int start, int size);
+	PaginationResult<StudentExamDTO> getStudentExamUncomplete(int examId, int courseId);
 
 	int updateStudentGrade(ExamPaperQuestion epq);
 
 	StudentExam getStudentExamUncompleteById(int id);
+
+	PaginationResult<ExamResultDTO> getResultByCourse(int examId, int courseId);
+
+	int createLockExamDetail(StudentExam studentexam);
+
+	StudentExam getResultDetailByStudentExamId(int id);
+
+	public Long getCoutStudentRequest(int id, int courseId);
+
+	PaginationResult<StudentExamDTO> getStudentRequest(int examId, int courseId);
+
+	void updateLockDetail(int id);
+
+	void deleteLockDetail(int id);
 
 }

@@ -68,11 +68,32 @@ public class TeacherController {
 	{
 		return "manager/teacher/mark";
 	}
+	
+	
 	@RequestMapping("/ql-lop-hoc/ql-bai-thi/danh-sach-cham-diem")
 	public String getMarkListView(@RequestParam(name="examId") Integer examId,@RequestParam(name="courseId") Integer courseId)
 	{
 		return "manager/teacher/mark-list";
 	}
+	
+	@RequestMapping("/ql-lop-hoc/ql-bai-thi/yeu-cau-sinh-vien")
+	public String getStudentRequestView(@RequestParam(name="examId") Integer examId,@RequestParam(name="courseId") Integer courseId)
+	{
+		return "manager/teacher/student-request-list";
+	}
+	
+	@RequestMapping("/ql-lop-hoc/ql-bai-thi/ket-qua")
+	public String getResultExamView(@RequestParam(name="examId") int examId,@RequestParam(name="courseId") int courseId)
+	{
+		return "manager/teacher/exam-result";
+	}
+	
+	@RequestMapping("/ql-lop-hoc/ql-bai-thi/ket-qua/download")
+	public String downloadResultExamView(@RequestParam(name="examId") int examId,@RequestParam(name="courseId") int courseId)
+	{
+		return "manager/teacher/download-exam-result-pdf";
+	}
+	
 	@RequestMapping("/ql-lop-hoc/ql-bai-thi/cap-nhat")
 	public String getUpdateExamView(@RequestParam(name="examId") Integer examId)
 	{

@@ -477,7 +477,7 @@
 	</div>
 	<!-- /.modal-dialog -->
 </div>
-<!-- modal choose file -->
+
 
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>

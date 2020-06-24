@@ -5,6 +5,7 @@ $(document).ready(function() {
 	$('#sidebar .active').removeClass('active');
 	$('#menu-item-course').addClass('active');
 	init();
+	deleteEvents("manager/api/exams/multiple");
 
 });
 var courseId;
@@ -48,6 +49,43 @@ function init()
 		{
 			window.location.href = rootLocation+"teacher/ql-lop-hoc/ql-bai-thi/danh-sach-cham-diem?examId="+examId+"&courseId="+courseId;
 		}
+		
+	}); 
+	
+	//xem yeu cau cua sinh vien
+	 //btn cham diem
+	// click table
+	$(document).on('click', '#table-data-body .btn-student-request', function() {
+		var examId=$(this).parents('[dataId]').attr('dataId');
+		var value=$(this).find('span').text();
+		if(parseInt(value)>0)
+		{
+			window.location.href = rootLocation+"teacher/ql-lop-hoc/ql-bai-thi/yeu-cau-sinh-vien?examId="+examId+"&courseId="+courseId;
+		}
+		
+	}); 
+	
+	$(document).on('click', '.btn-result', function() {
+		 if ($(this).hasClass('disabled')) {
+			 	alert('Chọn Bài Thi Trước !');
+		      
+		    } 
+		 //redirect to result view
+		 else {
+			 var selected=$('#table-data-body .selected');
+			 if($(selected).find('[field="status"]').text()=="Kết Thúc")
+			 {
+				 var eId=$(selected).attr('dataId');
+				 window.location.href = rootLocation+"teacher/ql-lop-hoc/ql-bai-thi/ket-qua?examId="+eId+"&courseId="+courseId;
+			 }
+			 else alert('bài Thi Chưa Kết Thúc');
+		 }
+
+	});
+	
+	//delete
+	$(document).on('click', '.btn-delete', function() {
+		
 		
 	}); 
 }
@@ -150,13 +188,18 @@ class ExamManagement extends Base {
                 			}
                 			else if(fieldAttr=='control')
                 			{
-                				var count=data[i].countExamProcess;
-                				if(count>0)
+                				var countExamProcess=data[i].countExamProcess;
+                				var countStudentRequest=data[i].countStudentRequest;
+                				if(countExamProcess>0)
                 				{
-                					$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-notify span').text(count);
+                					$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-notify span').text(countExamProcess);
                 					$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-notify span').addClass('text-danger');
                 				}
-                				
+                				if(countStudentRequest>0)
+                				{
+                					$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-student-request span').text(countStudentRequest);
+                					$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-student-request span').addClass('text-danger');
+                				}
                 			
                 			}
                 			else $(fields[j]).html(value);

@@ -77,9 +77,9 @@
 			<ul class="navbar-nav ml-auto">
 				<!-- Nav Item - User Information -->
 				<li class="nav-item dropdown no-arrow"><a
-					class="nav-link dropdown-toggle" href="#" 
-					data-toggle="dropdown"> <span class="mr-2  text-gray-600">Bộ
-							Lọc</span><i class="fas fa-filter"></i>
+					class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+						<span class="mr-2  text-gray-600">Bộ Lọc</span><i
+						class="fas fa-filter"></i>
 				</a>
 					<div id="filterDropdown"
 						class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -114,7 +114,7 @@
 		</nav>
 	</div>
 </nav>
-<div class="container-content container-fluid" >
+<div class="container-content container-fluid">
 
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
@@ -230,11 +230,126 @@
 
 		</div>
 	</div>
-	
+
 
 </div>
 
+<!-- modal alert access detali exam  reslut-->
+<!-- modal select subject -->
+<div class="modal  fade" id="modal-alert" tabindex="-1" role="dialog"
+	aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<p class="heading lead">Thông Báo</p>
 
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+			<div class="modal-body pl-0 pr-0 pt-0">
+				<div class="m-4 p-4 justify-content-center">
+					<h6 class="m-0 font-weight-bold text-primary text-center ">Bạn
+						Chưa được cấp quyền xem chi tiết!</h6>
+					<h6 class="m-0 font-weight-bold text-primary text-center mt-4">Bạn
+						cần gửi yêu cầu để người quản lý phê duyệt !</h6>
+				</div>
+				<div>
+					<div class="border-top my-3"></div>
+					<div class="d-flex justify-content-center">
+						<a type="button" class="btn  waves-effect btn-cancel"
+							data-dismiss="modal">Đóng</a><a type="button"
+							class="btn  waves-effect btn-submit">Gửi Yêu Cầu</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+
+<div class="modal  fade" id="modal-alert-request-exits" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<p class="heading lead">Thông Báo</p>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+			<div class="modal-body pl-0 pr-0 pt-0">
+				<div class="m-4 p-4 justify-content-center">
+					<h6 class="m-0 font-weight-bold text-primary text-center ">Yêu
+						Cầu Xem Chi Tiết đang chờ xử lý !</h6>
+
+				</div>
+				<div>
+					<div class="border-top my-3"></div>
+					<div class="d-flex justify-content-center">
+						<a type="button" class="btn  waves-effect btn-cancel" style="margin-left: 10%;"
+							data-dismiss="modal">Đóng</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!--  modal-request-exam-detail-->
+<div class="modal modal-reset fade" id="modal-request-exam-detail" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<p class="heading lead">Yêu cầu xem chi tiết kết quả</p>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="white-text">×</span>
+				</button>
+			</div>
+
+			<!--Body-->
+			<div class="modal-body pl-0 pr-0 pt-0">
+				<div class="m-4 p-4 justify-content-center">
+					<form>
+						<div class="form-group">
+							<label for="exampleFormControlTextarea1">Lý Do</label>
+							<textarea class="form-control" id="input-reason"
+								rows="3"></textarea>
+						</div>
+					</form>
+				</div>
+				<div>
+					<div class="border-top my-3"></div>
+					<div class="d-flex justify-content-center">
+						<a type="button" class="btn  waves-effect btn-cancel"
+							data-dismiss="modal">Hủy</a><a type="button"
+							class="btn  waves-effect btn-submit">Gửi</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
 <jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>
 <script src="<c:url value='/resources/commons/js/pagination.js' />"></script>

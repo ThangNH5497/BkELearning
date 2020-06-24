@@ -26,10 +26,10 @@ public class WebController {
 
 		return "web/finish-exam";
 	}
-	@RequestMapping("/test")
-	public String test() {
+	@RequestMapping("/ket-qua")
+	public String getDetailResultView(@RequestParam int id) {
 
-		return "web/test";
+		return "web/exam-detail-result";
 	}
 
 }

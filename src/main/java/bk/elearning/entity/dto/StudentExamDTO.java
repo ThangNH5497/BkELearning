@@ -1,5 +1,7 @@
 package bk.elearning.entity.dto;
 
+import bk.elearning.entity.StudentExamDetailLock;
+
 public class StudentExamDTO {
 
 	private int id;
@@ -9,6 +11,8 @@ public class StudentExamDTO {
 	private String studentCode;
 	
 	private String studentName;
+	
+	private StudentExamDetailLock lock;
 
 	public StudentExamDTO(int id, String code, String studentCode, String studentName) {
 		super();
@@ -17,6 +21,31 @@ public class StudentExamDTO {
 		this.studentCode = studentCode;
 		this.studentName = studentName;
 	}
+	
+	public StudentExamDTO(int id, String code, String studentCode, String studentName,StudentExamDetailLock lock) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.studentCode = studentCode;
+		this.studentName = studentName;
+		this.lock=lock;
+	}
+	
+	
+
+	public StudentExamDetailLock getLock() {
+		return lock;
+	}
+
+
+
+
+	public void setLock(StudentExamDetailLock lock) {
+		this.lock = lock;
+	}
+
+
+
 
 	public int getId() {
 		return id;

@@ -214,10 +214,4 @@ public class StudentServiceImpl implements IStudentService{
 		return null;
 	}
 
-	
-
-	
-
-	
-
 }

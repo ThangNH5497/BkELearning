@@ -35,7 +35,9 @@
 						Sách Bài Thi</h6>
 					<div class="m-0"></div>
 					<div class="d-flex">
-
+						<button class="btn btn-result text-success btn-control ">
+							<i class="fas fa-poll"></i>
+						</button>
 						<button class="btn btn-delete text-danger btn-control">
 							<i class="fas fa-trash"></i>
 						</button>
@@ -44,7 +46,6 @@
 						</button>
 
 					</div>
-
 
 				</div>
 				<!-- Card Body -->
@@ -115,8 +116,16 @@
 													<td class="table-cell column9" field="role"></td>
 													<td class="table-cell column10" field='control'>
 														<!-- Counter - Alerts -->
-														<button type="button" class="btn btn-notify" style="box-shadow: none;">
-															<i class="fas fa-bell text-success"></i> <span class="badge badge-light">0</span>
+														<button type="button" class="btn btn-notify"
+															style="box-shadow: none;">
+															<i class="fas fa-bell text-success"></i> <span
+																class="badge badge-light">0</span>
+														</button>
+
+														<button type="button" class="btn btn-student-request"
+															style="box-shadow: none;">
+															<i class="fas fa-exclamation-circle text-info"></i> <span
+																class="badge badge-light">0</span>
 														</button>
 
 														<button

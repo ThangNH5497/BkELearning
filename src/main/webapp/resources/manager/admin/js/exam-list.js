@@ -4,7 +4,10 @@ $(document).ready(function() {
 	$('#modal-select-subject ul.pagination').addClass('pagination-sm');
 	$('#sidebar .active').removeClass('active');
 	$('#menu-item-subject').addClass('active');
+	$('.btn-result').remove();
+	
 	init();
+	deleteEvents("manager/api/exams/multiple");
 
 });
 var courseId;
@@ -17,13 +20,12 @@ function init()
 	} catch (e) {
 		// TODO: handle exception
 	}
-	searchEvents('key-search','btn-search','manager/api/exams/search/subjects/'+subjectId+'?',handleLock);
+	searchEvents('key-search','btn-search','manager/api/exams/search/subjects/'+subjectId+'?');
 	handlePagination('pagination','table-data-body','row-data-container',
 			'manager/api/exams/page/subjects/'+subjectId+'?',function(){
 		$('.btn-view').html('<i class="fas fa-sliders-h"></i>');
 		$('.btn-view').addClass('btn-edit-course');
 		$('.btn-view').removeClass('btn-view');
-		handleLock();
 		
 	});
 	
@@ -49,29 +51,11 @@ function init()
 		$(this).addClass('selected');
 
 	});
+	
+	
+
 }
-//xu ly cac du lieu khoa chinh suwa/xoa
-function handleLock()
-{
-	/*try {
-		var roles=$('#table-data-body [field="user.role"]');
-		for (var i = 0; i < roles.length; i++) {
-			if($(roles[i]).text()=='ROLE_TEACHER')
-			{
-				$(roles[i]).text('Riêng');
-			}
-			else if($(roles[i]).text()=='ROLE_ADMIN')
-			{
-				$(roles[i]).text('Chung');
-			}
-		}
-		
-		$('.btn-notify').remove();
-	} catch (e) {
-		// TODO: handle exception
-		alert(e);
-	}*/
-}
+
 class ExamManagement extends Base {
 	
     constructor() {
@@ -161,5 +145,6 @@ class ExamManagement extends Base {
         	$('#'+containerId).append(html);
         	$('#'+rowDataId).addClass('hidden');
         	$('.btn-notify').remove();
+        	$('.btn-student-request').remove();
     }
 }

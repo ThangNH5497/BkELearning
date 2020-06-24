@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,9 +24,12 @@ import com.itextpdf.styledxmlparser.css.media.MediaType;
 
 import bk.elearning.entity.dto.ExamDTO;
 import bk.elearning.entity.dto.PaginationResult;
+import bk.elearning.entity.relationship.StudentExam;
 import bk.elearning.service.IExamPaperService;
 import bk.elearning.service.IExamService;
 import bk.elearning.service.IQuestionService;
+import bk.elearning.utils.Constant;
+import bk.elearning.utils.Message;
 
 @RestController
 @RequestMapping(path = "api/exams")
@@ -73,12 +77,34 @@ public class ExamApi {
 		return null;
 
 	}
+	
+	@GetMapping("/studentexams/{id}")
+	public StudentExam getById(@PathVariable int id) {
+		try {
+			return examService.getResultDetailByStudentExamId(id);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return null;
+
+	}
+
+	@PostMapping("/studentexams/{studentexamId}/lock")
+	public Message createLockExamDetail(@RequestBody StudentExam studentexam) {
+		
+		if(examService.createLockExamDetail(studentexam)==1)
+		{
+			return new Message(Constant.STATUS_SUCCESS, "Hệ thống đang xử lý yêu cầu !");
+		}
+		
+		return new Message(Constant.STATUS_ERROR, "Đã Xảy Ra Lỗi . Xin Thử lại Sau!");
+	}
 
 	@PostMapping("/itext/{id}")
 	public void testItext(@PathVariable int id) {
 		/*
-		String DEST = "D:\\test.pdf";
-		
+		 * String DEST = "D:\\test.pdf";
+		 * 
 		 * try { ExamPaper examPaper = examPaperService.getById(id); StringBuilder HTML
 		 * = new StringBuilder(); HTML.append("<!DOCTYPE html>" + "<html>" + "<head>" +
 		 * "<meta charset='UTF-8'> <meta name='viewport' content='width=device-width, initial-scale=1'>"

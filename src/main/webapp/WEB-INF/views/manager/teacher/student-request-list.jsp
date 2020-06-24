@@ -57,17 +57,17 @@
 		</nav>
 
 		<div class="container-content container-fluid">
-			<nav class="navbar navbar-light " style="font-weight: 600;"
-				>
+			<nav class="navbar navbar-light " style="font-weight: 600;">
 
 				<span class="navbar-text"> <i class="fas fa-arrow-left"></i><a
-					class='text-primary' href="#" id="back-link">Quay Lại Danh Sách Bài Thi</a></span>
+					class='text-primary' href="#" id="back-link">Quay Lại Danh Sách
+						Bài Thi</a></span>
 
 			</nav>
 			<div class="card shadow mb-4 mt-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Danh Sách Bài
-						Thi Cần Xác Nhận</h6>
+					<h6 class="m-0 font-weight-bold text-primary">Danh sách yêu
+						cầu xem chi tiết</h6>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -84,8 +84,7 @@
 												<th class="sorting_asc" tabindex="0"
 													aria-controls="dataTable" rowspan="1" colspan="1"
 													aria-sort="ascending">STT</th>
-												<th class="sorting" tabindex="0" aria-controls="dataTable"
-													rowspan="1" colspan="1">Mã Đề</th>
+
 
 												<th class="sorting" tabindex="0" aria-controls="dataTable"
 													rowspan="1" colspan="1">Mã Sinh Viên</th>
@@ -94,33 +93,42 @@
 													rowspan="1" colspan="1">Tên Sinh Viên</th>
 
 												<th class="sorting" tabindex="0" aria-controls="dataTable"
-													rowspan="1" colspan="1">Chấm Bài</th>
+													rowspan="1" colspan="1">Lý Do</th>
+
+												<th class="sorting" tabindex="0" aria-controls="dataTable"
+													rowspan="1" colspan="1" style="width: 10%;">Tùy Chọn</th>
 											</tr>
 										</thead>
 										<tfoot>
 											<tr>
 												<th rowspan="1" colspan="1">STT</th>
-												<th rowspan="1" colspan="1">Mã Đề</th>
+
 												<th rowspan="1" colspan="1">Mã Sinh Viên</th>
 												<th rowspan="1" colspan="1">Tên Sinh Viên</th>
-												<th rowspan="1" colspan="1">Chấm Bài</th>
+
+												<th rowspan="1" colspan="1">Lý Do</th>
+												<th rowspan="1" colspan="1" style="width: 10%;">Tùy
+													Chọn</th>
 
 											</tr>
 										</tfoot>
 										<tbody id='table-data-body'>
 											<tr role="row" class="odd hidden" id='row-data-container'>
 												<td field="index"></td>
-												<td field="code"></td>
+
 
 												<td field="studentCode"></td>
 
 												<td field="studentName"></td>
 
-												<td field="control" class='justify-content-center d-flex'><button
-														class="btn btn-mark text-primary justify-content-center"
-														style="box-shadow: none;">
-														Chấm Bài <i class="fas fa-arrow-circle-right"></i>
-													</button></td>
+												<td field="lock.reason"></td>
+
+												<td field="control" class='justify-content-between d-flex'><a
+													href="#" class="btn btn-success btn-circle btn-sm btn-access"> <i
+														class="fas fa-check"></i>
+												</a><a href="#" class="btn btn-danger btn-circle btn-sm btn-delete"> <i
+														class="fas fa-trash"></i>
+												</a></td>
 
 											</tr>
 
@@ -151,7 +159,7 @@
 <script src="<c:url value='/resources/commons/js/pagination.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/search.js' />"></script>
 <script
-	src="<c:url value='/resources/manager/teacher/js/mark-list.js' />"></script>
+	src="<c:url value='/resources/manager/teacher/js/student-request-list.js' />"></script>
 <!-- Footer -->
 
 <jsp:include page="/WEB-INF/views/manager/commons/footer.jsp"></jsp:include>

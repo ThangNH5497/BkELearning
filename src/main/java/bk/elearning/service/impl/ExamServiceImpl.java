@@ -1,5 +1,7 @@
 package bk.elearning.service.impl;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +26,7 @@ import bk.elearning.entity.User;
 import bk.elearning.entity.dto.CustomUserDetails;
 import bk.elearning.entity.dto.ExamDTO;
 import bk.elearning.entity.dto.ExamPageDTO;
+import bk.elearning.entity.dto.ExamResultDTO;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.entity.dto.StudentExamDTO;
 import bk.elearning.entity.dto.StudentResultQuestionDTO;
@@ -39,6 +42,7 @@ import bk.elearning.repository.IExamRepository;
 import bk.elearning.repository.IStudenExamRepository;
 import bk.elearning.service.IExamService;
 import bk.elearning.utils.Constant;
+import bk.elearning.utils.ExcelGenerator;
 import bk.elearning.utils.Util;
 
 @Service
@@ -160,7 +164,18 @@ public class ExamServiceImpl implements IExamService {
 	@Override
 	public int deleteMultiple(ArrayList<Integer> ids) {
 		// TODO Auto-generated method stub
-		return 0;
+		int checkErro = 0;
+		for (Integer integer : ids) {
+			try {
+				examRepo.delete(integer);
+			} catch (Exception e) {
+				// TODO: handle exception
+				checkErro++;
+			}
+		}
+		if (checkErro == 0)
+			return 1;
+		return 1;
 	}
 
 	// get page by subject of admin
@@ -176,6 +191,8 @@ public class ExamServiceImpl implements IExamService {
 				for (ExamPageDTO examDTO : pages.getData()) {
 					examDTO.setStatus(checkStatus(new Exam(examDTO.getId(),examDTO.getTimeOpen(),examDTO.getTimeClose(),examDTO.getStatus())).getStatus());
 					examDTO.setCountExamProcess(examRepo.getCoutExamProcess(examDTO.getId(),courseId).intValue());
+					examDTO.setCountStudentRequest(examRepo.getCoutStudentRequest(examDTO.getId(),courseId).intValue());
+				
 				}
 
 				return pages;
@@ -543,13 +560,11 @@ public class ExamServiceImpl implements IExamService {
 	}
 
 	@Override
-	public PaginationResult<StudentExamDTO> getStudentExamUncomplete(int examId, int courseId, int page, int size) {
+	public PaginationResult<StudentExamDTO> getStudentExamUncomplete(int examId, int courseId) {
 		// TODO Auto-generated method stub
-		if(page>0)
-		{
-			return examRepo.getStudentExamUncomplete(examId,courseId,page-1,size);
-		}
-		return null;
+		
+		return examRepo.getStudentExamUncomplete(examId,courseId);
+		
 	}
 
 	
@@ -596,6 +611,84 @@ public class ExamServiceImpl implements IExamService {
 			// TODO: handle exception
 		}
 		return null;
+	}
+
+	@Override
+	public PaginationResult<ExamResultDTO> getResultByCourse(int examId, int courseId) {
+		// TODO Auto-generated method stub
+		return examRepo.getResultByCourse(examId,courseId);
+	}
+
+	@Override
+	public ByteArrayInputStream downloadResultExcel(int examId, int courseId) {
+		// TODO Auto-generated method stub
+		
+		PaginationResult<ExamResultDTO> pages= examRepo.getResultByCourse(examId,courseId);
+		if(pages!=null)
+		{
+			try {
+				return ExcelGenerator.resultToExcel(pages.getData());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return null;
+	}
+
+	@Override
+	public int createLockExamDetail(StudentExam studentexam) {
+		// TODO Auto-generated method stub
+		return examRepo.createLockExamDetail(studentexam);
+	}
+
+	@Override
+	public StudentExam getResultDetailByStudentExamId(int id) {
+		// TODO Auto-generated method stub
+		StudentExam se=examRepo.getResultDetailByStudentExamId(id);
+		if(se.getLock()!=null)
+		{
+			if(se.getLock().isLockAccess())
+			{
+				return null;
+			}
+			else
+			{
+				for (ExamPaperQuestion epq : se.getExamPaper().getExamPaperQuestions()) {
+					epq.getQuestion().setContent(StringEscapeUtils.unescapeHtml4(epq.getQuestion().getContent()));
+					epq.getQuestion().getAnswers().clear();
+					for (ExamPaperQuestionAnswer epqa : epq.getExamPaperQuestionAnswers()) {
+						if(!(epq.getQuestion().getType().equals(Constant.QUESTION_FILL_WORD)))
+						{
+							epqa.getAnswer().setContent(StringEscapeUtils.unescapeHtml4(epqa.getAnswer().getContent()));
+						}
+					}
+				}
+			}
+		}
+		else return null;
+		return se;
+	}
+
+	@Override
+	public PaginationResult<StudentExamDTO> getStudentRequest(int examId, int courseId) {
+		// TODO Auto-generated method stub
+		return examRepo.getStudentRequest(examId,courseId);
+		
+	}
+
+	@Override
+	public void allowStudentRequest(int id) {
+		// TODO Auto-generated method stub
+		examRepo.updateLockDetail(id);
+		
+	}
+
+	@Override
+	public void unAllowStudentRequest(int id) {
+		// TODO Auto-generated method stub
+		examRepo.deleteLockDetail(id);
 	}
 
 }

@@ -1,15 +1,14 @@
 package bk.elearning.controller.manager.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import bk.elearning.entity.Exam;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.entity.dto.StudentExamDTO;
 import bk.elearning.entity.relationship.StudentExam;
@@ -25,9 +24,26 @@ public class StudentExamApi {
 	IExamService examService;
 	
 	@GetMapping("/page/waitresult/exams/{examId}/courses/{courseId}")
-	public PaginationResult<StudentExamDTO> getByExamAndCourse(@PathVariable int examId,@PathVariable int courseId, @RequestParam int page,
-			@RequestParam int size) {
-		return examService.getStudentExamUncomplete(examId,courseId, page, size);
+	public PaginationResult<StudentExamDTO> getByExamAndCourse(@PathVariable int examId,@PathVariable int courseId) {
+		return examService.getStudentExamUncomplete(examId,courseId);
+
+	}
+	
+	@GetMapping("/page/lock/exams/{examId}/courses/{courseId}")
+	public PaginationResult<StudentExamDTO> getStudentRequest(@PathVariable int examId,@PathVariable int courseId) {
+		return examService.getStudentRequest(examId,courseId);
+
+	}
+	
+	@PutMapping("/locks/{id}")
+	public void allowStudentRequest(@PathVariable int id) {
+		 examService.allowStudentRequest(id);
+
+	}
+	
+	@DeleteMapping("/locks/{id}")
+	public void unAllowStudentRequest(@PathVariable int id) {
+		examService.unAllowStudentRequest(id);
 
 	}
 	

@@ -1,10 +1,13 @@
 package bk.elearning.service;
 
+import java.io.ByteArrayInputStream;
+
 import javax.servlet.http.HttpServletRequest;
 
 import bk.elearning.entity.Exam;
 import bk.elearning.entity.dto.ExamDTO;
 import bk.elearning.entity.dto.ExamPageDTO;
+import bk.elearning.entity.dto.ExamResultDTO;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.entity.dto.StudentExamDTO;
 import bk.elearning.entity.dto.StudentResultQuestionDTO;
@@ -34,11 +37,25 @@ public interface IExamService extends IGenericService<Exam> {
 
 	PaginationResult<ExamDTO> getByStudent(Integer studentId, String filter, int page, int size);
 
-	PaginationResult<StudentExamDTO> getStudentExamUncomplete(int examId, int courseId, int page, int size);
+	PaginationResult<StudentExamDTO> getStudentExamUncomplete(int examId, int courseId);
 
 
 	int updateStudentGrade(StudentExam studentExam);
 
 	StudentExam getStudentExamUncompleteById(int id);
+
+	PaginationResult<ExamResultDTO> getResultByCourse(int examId, int courseId);
+
+	ByteArrayInputStream downloadResultExcel(int examId, int courseId);
+
+	int createLockExamDetail(StudentExam studentexam);
+
+	StudentExam getResultDetailByStudentExamId(int id);
+
+	PaginationResult<StudentExamDTO> getStudentRequest(int examId, int courseId);
+
+	void allowStudentRequest(int id);
+
+	void unAllowStudentRequest(int id);
 
 }

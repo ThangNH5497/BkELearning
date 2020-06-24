@@ -5,8 +5,12 @@ $(document).ready(function() {
 	$('#menu-item-course').addClass('active');
 	var examId=obj.getParam('examId');
 	var courseId=obj.getParam('courseId');
-	var rootApiGet='manager/api/studentexams/page/waitresult/exams/'+examId+'/courses/'+courseId+'?';
-	handlePagination('pagination','table-data-body','row-data-container',rootApiGet,null);
+	var rootApiGet='manager/api/studentexams/page/waitresult/exams/'+examId+'/courses/'+courseId;
+	//handlePagination('pagination','table-data-body','row-data-container',rootApiGet,null);
+	
+	var data=obj.ajaxCall('GET',false,rootApiGet,null,null);
+	obj.initData('table-data-body','row-data-container',data.data);
+	
 	$('#back-link').attr('href',rootLocation+'teacher/ql-lop-hoc/ql-bai-thi?course='+courseId);
 
 	//view mark click

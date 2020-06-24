@@ -43,6 +43,9 @@ public class ExamPageDTO {
 	
 	//luong bai thi can cham diem
 	private int countExamProcess;
+	
+	//luong bai thi yeu cau xem chi tiet
+	private int countStudentRequest;
 
 	public ExamPageDTO(int id,String code, int time, float grade, String name, String descriptor, String status, Date createAt,
 			Date updateAt, Date timeOpen, Date timeClose, String role) {
@@ -163,6 +166,14 @@ public class ExamPageDTO {
 
 	public void setCountExamProcess(int countExamProcess) {
 		this.countExamProcess = countExamProcess;
+	}
+
+	public int getCountStudentRequest() {
+		return countStudentRequest;
+	}
+
+	public void setCountStudentRequest(int countStudentRequest) {
+		this.countStudentRequest = countStudentRequest;
 	}
 	
 	

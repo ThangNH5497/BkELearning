@@ -13,8 +13,10 @@ import org.springframework.stereotype.Repository;
 
 import bk.elearning.entity.Exam;
 import bk.elearning.entity.ExamPaper;
+import bk.elearning.entity.StudentExamDetailLock;
 import bk.elearning.entity.dto.ExamDTO;
 import bk.elearning.entity.dto.ExamPageDTO;
+import bk.elearning.entity.dto.ExamResultDTO;
 import bk.elearning.entity.dto.PaginationResult;
 import bk.elearning.entity.dto.StudentExamDTO;
 import bk.elearning.entity.dto.StudentResultQuestionDTO;
@@ -23,12 +25,16 @@ import bk.elearning.entity.relationship.ExamPaperQuestion;
 import bk.elearning.entity.relationship.ExamQuestion;
 import bk.elearning.entity.relationship.StudentExam;
 import bk.elearning.repository.IExamRepository;
+import bk.elearning.repository.IStudentExamDetailLockRepository;
 import bk.elearning.utils.Constant;
 
 @Repository
 public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implements IExamRepository {
 	@Autowired
 	private SessionFactory sessionFactory;
+
+	@Autowired
+	private IStudentExamDetailLockRepository lockRepo;
 
 	@Override
 	public PaginationResult<ExamPageDTO> getPageByCourse(int courseId, int start, int size) {
@@ -175,14 +181,19 @@ public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implemen
 				query.setMaxResults(size);
 				page.setData(query.list());
 				for (ExamDTO examDTO : page.getData()) {
-					hqlQuery = "SELECT new bk.elearning.entity.relationship.StudentExam(sc.status,sc.timeLeft,sc.grade) FROM StudentExam sc where sc.student.id=:studentId and sc.exam.id=:examId";
+					try {
+						hqlQuery = "SELECT new bk.elearning.entity.relationship.StudentExam(sc.id,sc.status,sc.timeLeft,sc.grade,scl) FROM StudentExam sc LEFT JOIN sc.lock scl  where sc.student.id=:studentId and sc.exam.id=:examId";
 
-					query = session.createQuery(hqlQuery);
-					query.setParameter("studentId", studentId);
-					query.setParameter("examId", examDTO.getId());
-					List<StudentExam> sc = query.list();
-					if (!sc.isEmpty()) {
-						examDTO.setStudentExam(sc.get(0));
+						query = session.createQuery(hqlQuery);
+						query.setParameter("studentId", studentId);
+						query.setParameter("examId", examDTO.getId());
+						List<StudentExam> sc = query.list();
+						if (!sc.isEmpty()) {
+							examDTO.setStudentExam(sc.get(0));
+						}
+					} catch (Exception e) {
+						// TODO: handle exception
+						System.out.println(e.toString());
 					}
 
 				}
@@ -393,29 +404,21 @@ public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implemen
 	}
 
 	@Override
-	public PaginationResult<StudentExamDTO> getStudentExamUncomplete(int examId, int courseId, int start, int size) {
+	public PaginationResult<StudentExamDTO> getStudentExamUncomplete(int examId, int courseId) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		PaginationResult<StudentExamDTO> page = new PaginationResult<StudentExamDTO>();
 		try {
 			String hqlQuery = " FROM Exam e join e.examCourses ec join e.studentExams se Where ec.course.id=:courseId and e.id=:examId and se.status=:status";
 
-			Query query = session.createQuery("SELECT COUNT(distinct se.id) " + hqlQuery);
+			Query query = session.createQuery(
+					"SELECT  new bk.elearning.entity.dto.StudentExamDTO(se.id,se.examPaper.code,se.student.code,se.student.fullName) "
+							+ hqlQuery);
 			query.setParameter("examId", examId);
 			query.setParameter("courseId", courseId);
 			query.setParameter("status", Constant.STUDENT_EXAM_STATUS_WAIT_RESULT);
-			page.setCount((Long) query.uniqueResult());
-			if (page.getCount() > 0) {
-				query = session.createQuery(
-						"SELECT  new bk.elearning.entity.dto.StudentExamDTO(se.id,se.examPaper.code,se.student.code,se.student.fullName) "
-								+ hqlQuery);
-				query.setParameter("examId", examId);
-				query.setParameter("courseId", courseId);
-				query.setParameter("status", Constant.STUDENT_EXAM_STATUS_WAIT_RESULT);
-				query.setFirstResult(start);
-				query.setMaxResults(size);
-				page.setData(query.list());
-			}
+			page.setData(query.list());
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
@@ -463,26 +466,194 @@ public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implemen
 				query = session.createQuery(hqlQuery);
 				query.setParameter("id", id);
 				se.setExamPaper((ExamPaper) query.list().get(0));
-				if(se.getExamPaper()!=null)
-				{
+				if (se.getExamPaper() != null) {
 					hqlQuery = " FROM ExamPaperQuestion epq  where epq.examPaper.id=:examPaperId AND epq.question.type=:type";
 
 					query = session.createQuery(hqlQuery);
 					query.setParameter("examPaperId", se.getExamPaper().getId());
 					query.setParameter("type", Constant.QUESTION_FILL_WORD);
-					Set<ExamPaperQuestion> data=new HashSet<ExamPaperQuestion>(query.list());
+					Set<ExamPaperQuestion> data = new HashSet<ExamPaperQuestion>(query.list());
 					se.getExamPaper().setExamPaperQuestions(data);
 				}
 			}
 
-			
-		
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
 			session.clear();
 		}
 		return se;
+	}
+
+	@Override
+	public PaginationResult<ExamResultDTO> getResultByCourse(int examId, int courseId) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		PaginationResult<ExamResultDTO> pages = new PaginationResult<ExamResultDTO>();
+		try {
+
+			String hqlQuery = "Select new bk.elearning.entity.dto.ExamResultDTO(s.id,s.code,s.fullName) FROM Student s JOIN s.studentCourses sc where sc.course.id=:courseId";
+
+			Query query = session.createQuery(hqlQuery);
+			query.setParameter("courseId", courseId);
+			pages.setData(query.list());
+
+			// select grade
+			for (ExamResultDTO examResult : pages.getData()) {
+				hqlQuery = "Select (se.grade * se.exam.grade) FROM StudentExam se WHERE se.student.id=:studentId AND se.exam.id=:examId";
+				query = session.createQuery(hqlQuery);
+				query.setParameter("studentId", examResult.getStudentId());
+				query.setParameter("examId", examId);
+				try {
+					examResult.setStudentGrade((float) query.list().get(0));
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+			session.clear();
+		}
+		return pages;
+	}
+
+	@Override
+	public int createLockExamDetail(StudentExam studentexam) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		try {
+
+			studentexam.getLock().setStudentExam(studentexam);
+			studentexam.getLock().setLockAccess(true);
+			lockRepo.save(studentexam.getLock());
+			// String hqlQuery = "UPDATE StudentExam se SET se.lock=:lock where
+			// se.id=:studentExamId"
+			String hqlQuery = "UPDATE StudentExam se SET se.lock=:lock where se.id=:studentExamId";
+
+			Query query = session.createQuery(hqlQuery);
+			query.setParameter("studentExamId", studentexam.getId());
+			query.setParameter("lock", studentexam.getLock());
+			query.executeUpdate();
+			return 1;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+			session.clear();
+		}
+		return 0;
+	}
+
+	@Override
+	public StudentExam getResultDetailByStudentExamId(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		StudentExam se = null;
+		try {
+			String hqlQuery = "SELECT new bk.elearning.entity.relationship.StudentExam(sc.id,sc.status,sc.timeLeft,sc.grade,sc.examPaper,scl) FROM StudentExam sc LEFT JOIN sc.lock scl WHERE sc.id=:id";
+
+			Query query = session.createQuery(hqlQuery);
+			query.setParameter("id", id);
+			se = (StudentExam) query.list().get(0);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+			session.clear();
+		}
+		return se;
+	}
+
+	@Override
+	public Long getCoutStudentRequest(int examId, int courseId) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			String hqlQuery = "SELECT COUNT(distinct se.id) FROM Exam e join e.examCourses ec join e.studentExams se JOIN se.lock sel Where ec.course.id=:courseId and e.id=:examId and sel.lockAccess=:lock";
+
+			Query query = session.createQuery(hqlQuery);
+			query.setParameter("examId", examId);
+			query.setParameter("courseId", courseId);
+			query.setParameter("lock", true);
+			return (Long) query.uniqueResult();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+			session.clear();
+		}
+		return 0l;
+	}
+
+	@Override
+	public PaginationResult<StudentExamDTO> getStudentRequest(int examId, int courseId) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		PaginationResult<StudentExamDTO> page = new PaginationResult<StudentExamDTO>();
+		try {
+			String hqlQuery = " FROM Exam e join e.examCourses ec join e.studentExams se JOIN se.lock sel Where ec.course.id=:courseId and e.id=:examId and sel.lockAccess=:lock";
+
+			Query query = session.createQuery(
+					"SELECT  new bk.elearning.entity.dto.StudentExamDTO(se.id,se.examPaper.code,se.student.code,se.student.fullName,sel) "
+							+ hqlQuery);
+			query.setParameter("examId", examId);
+			query.setParameter("courseId", courseId);
+			query.setParameter("lock", true);
+			page.setData(query.list());
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+			session.clear();
+		}
+		return page;
+	}
+
+	@Override
+	public void updateLockDetail(int id) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			String hqlQuery = "UPDATE StudentExamDetailLock sel SET sel.lockAccess=:lock where sel.id=:id";
+
+			Query query = session.createQuery(hqlQuery);
+			query.setParameter("id", id);
+			query.setParameter("lock", false);
+			query.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+			session.clear();
+		}
+
+	}
+
+	@Override
+	public void deleteLockDetail(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			String hqlQuery="UPDATE StudentExam se  SET se.lock=:lock Where se.lock.id=:id";
+			Query query = session.createQuery(hqlQuery);
+			query.setParameter("id", id);
+			query.setParameter("lock", null);
+			query.executeUpdate();
+			
+			hqlQuery = "DELETE FROM  StudentExamDetailLock sel where sel.id=:id";
+
+			query = session.createQuery(hqlQuery);
+			query.setParameter("id", id);
+			query.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+			session.clear();
+		}
 	}
 
 }
