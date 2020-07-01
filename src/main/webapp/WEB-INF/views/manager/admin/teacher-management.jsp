@@ -6,8 +6,6 @@
 <link rel="stylesheet"
 	href="<c:url value='/resources/commons/css/style.css' />">
 <link rel="stylesheet"
-	href="<c:url value='/resources/manager/commons/css/style.css' />">
-<link rel="stylesheet"
 	href="<c:url value='/resources/manager/commons/css/dashboard.css' />">
 
 <!-- Phan noi dung trang -->

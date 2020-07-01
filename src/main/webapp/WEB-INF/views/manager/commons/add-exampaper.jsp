@@ -29,10 +29,10 @@
 				<div
 					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 					aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#"> <i
+					<a class="dropdown-item" href="#" id="btn-edit-profile"> <i
 						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập Nhật
 						Thông Tin
-					</a> <a class="dropdown-item" href="#"> <i
+					</a> <a class="dropdown-item" href="#"  id="btn-change-password"> <i
 						class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
 						Khẩu
 					</a>

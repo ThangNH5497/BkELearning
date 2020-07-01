@@ -4,7 +4,10 @@ $(document).ready(function() {
 
 	var studentId=userLoged.id;
 	handlePagination('pagination','table-data-body','row-data-container','api/exams/page/students/'+studentId+'?filter=all&');	
-	 handleEvent();
+	handleEvent();
+	searchEvents('key-search','btn-search','api/exams/search/students/'+studentId+'?',function(){
+		$(window).scrollTop($('#table-data-body').offset().top-100);
+	});
 	 
 	 
 });
@@ -18,10 +21,6 @@ function init()
 function handleEvent()
 {
 	var creatRequestLockId;
-	$(document).on('click', '#filterDropdown a', function (e) {
-		e.preventDefault();
-		alert($(this).attr('value'));
-	});
 	
 	$(document).on('click', '.btn-exam-detail', function (e) {
 		e.preventDefault();
@@ -70,6 +69,42 @@ function handleEvent()
 		
 	});
 	
+	//filter
+	$(document).on('click', '.filter', function (e) {
+		e.preventDefault();
+		var val=$(this).attr('value');
+		$('#table-data-body [dataId]').hide();
+		switch (val) {
+		case 'all':
+		{
+			$('#table-data-body [dataId]').show();
+			break;
+		}
+		case 'continue':
+		{
+			
+			var row=$('#table-data-body [dataId] td[field="status"]:contains("Tiếp Tục")');
+			$(row).parents('[dataId]').show();
+			break;
+		}
+		case 'open':
+		{
+			var row=$('#table-data-body [dataId] td[field="status"]:contains("Làm Bài")');
+			$(row).parents('[dataId]').show();
+			break;
+		}
+		case 'complete':
+		{
+			var row=$('#table-data-body [dataId] td[field="status"]:contains("Hoàn Thành")');
+			$(row).parents('[dataId]').show();
+			break;
+		}
+
+		default:
+			break;
+		}
+	});
+	
 }
 
 var obj;
@@ -88,6 +123,21 @@ class Home extends Base {
     	if(data.length>0)
     	{
     		$('#data-empty-alert').addClass('hidden');
+    		
+    		data.sort(function(x, y) {
+    			  if (x.status=="OPEN") {
+    				  if(x.studentExam!=null)
+    				  {
+    					  if((x.studentExam.status=="COMPLETE")||(x.studentExam.status=="WAIT_RESULT")) return 1;
+    					  else return -1;
+    				  }
+    				  else return -1;
+    			  }
+    			  else return 1;
+    			  return 0;
+    			});
+    		
+    		
     		for(var i=0;i<data.length;i++)
         	{
     			
@@ -149,7 +199,9 @@ class Home extends Base {
 									case "CONTINUE":
 									{
 
-										value='<a style="color:#e3ac09;" href="bai-thi?examId='+data[i].id+'&courseId='+data[i].examCourse.course.id+'">Tiếp Tục</a>';
+										value='<a style="color:#005ff7;" href="bai-thi?examId='+data[i].id+'&courseId='+data[i].examCourse.course.id+'">Tiếp Tục</a>';
+										$('#'+containerId+' [dataId='+data[i].id+'] td').addClass('text-light');
+										$('#'+containerId+' [dataId='+data[i].id+']').addClass('bg-info');
 										break;
 									}
 									
@@ -172,7 +224,11 @@ class Home extends Base {
 									}
 									
 								}
-								else value='<a href="bai-thi?examId='+data[i].id+'&courseId='+data[i].examCourse.course.id+'">Làm Bài</a>';
+								else {
+									value='<a href="bai-thi?examId='+data[i].id+'&courseId='+data[i].examCourse.course.id+'">Làm Bài</a>';
+									$('#'+containerId+' [dataId='+data[i].id+'] td').addClass('text-light');
+									$('#'+containerId+' [dataId='+data[i].id+']').addClass('bg-info');
+								}
 								break;
 							}
 							case "CLOSE":

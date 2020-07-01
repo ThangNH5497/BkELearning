@@ -76,57 +76,33 @@
 
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Cập nhật thông
-						tin</h6>
+					<h6 class="m-0 font-weight-bold text-primary">Đổi mật khẩu</h6>
 				</div>
-				<div class="card-body">
+				<div class="card-body p-4">
 					<div class="form-container">
 						<div class="row">
-							<div class="image-input-container col-sm-2 col-md-2">
-								<form class="form-img">
-									<div class="profile-img">
-										<img class="image-preview"
-											src="<c:url value='/resources/commons/image/user/default-user.jpg' />"
-											alt="" />
-										<div class="file btn btn-lg btn-primary">
-											Change Photo <input type="file" name="file"
-												class="input-file-avatar" />
-										</div>
-									</div>
-								</form>
-							</div>
-							<div class="form-v4 col-sm-10 col-md-10">
+
+							<div class="form-v4 col-sm-12 col-md-12">
 								<div class="form-v4-content">
 									<form class="form-detail" action="#" method="post"
 										id="form-edit">
 
-										<div class="form-group">
-
-											<div class="form-row form-row-1 ">
-												<label for="department">Email</label> <input type="text"
-													name="email" class="input-text" id="input-email">
-											</div>
-											<div class="form-row form-row-1">
-												<label>SĐT</label> <input type="number" name="phoneNumber"
-													id="input-phone-number" class="input-text">
-											</div>
-
-
+										<div class="form-row">
+											<label for="password">Mật khẩu hiện tại (*)</label> <input
+												type="password" id="password" name="password" class="input-text" required>
+											<label name="password-error" class="error hidden">Mật
+												khẩu chưa chính xác</label>
 										</div>
-
-										<div class="form-group">
-											<div class="form-row form-row-1 ">
-												<label for="department">Địa Chỉ</label> <input type="text"
-													name="addr" class="input-text" id="input-addr">
-											</div>
-											<div class="form-row form-row-1">
-												<label>Ngày Sinh</label> <input id="input-date-of-birth"
-													type="date" value="2011-08-19" name="dateOfBirth"
-													class="input-text">
-											</div>
-
+										<div class="form-row">
+											<label for="new-password">Mật khẩu mới (*)</label> <input
+												type="password" name="newPassword" id="new-password" class="input-text" required>
+											<label name="new-password-error" class="error hidden">Mật khẩu không hợp lệ</label>
 										</div>
-
+										<div class="form-row">
+											<label for="new-password">Xác nhận mật khẩu mới (*)</label> <input
+												type="password" id="confirm-password" class="input-text" required>
+											<label name="confirm-password-error" class="error hidden">Xác nhận không khớp</label>
+										</div>
 									</form>
 								</div>
 							</div>
@@ -188,6 +164,6 @@
 	<!-- end modal alert -->
 	<jsp:include page="/WEB-INF/views/commons/lib.jsp"></jsp:include>
 	<script src="<c:url value='/resources/commons/js/base.js' />"></script>
-	<script src="<c:url value='/resources/commons/js/edit-profile.js' />"></script>
+	<script src="<c:url value='/resources/commons/js/change-password.js' />"></script>
 </body>
 </html>

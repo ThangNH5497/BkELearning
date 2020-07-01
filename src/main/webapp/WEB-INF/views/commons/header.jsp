@@ -46,10 +46,10 @@
 			</div>
 			<div class="col-6 h-100 row ">
 				<div class="input-group w-100 align-self-center">
-					<input type="text" class="form-control"
+					<input id="key-search" type="text" class="form-control"
 						placeholder="Nhập Mã Hoặc Tên Bài Thi...">
 					<div class="input-group-append">
-						<button class="btn btn-secondary" type="button">
+						<button id="btn-search" class="btn btn-secondary" type="button">
 							<i class="fa fa-search"></i>
 						</button>
 					</div>
@@ -63,7 +63,7 @@
 						<li class="nav-item dropdown no-arrow"><a
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							data-toggle="dropdown"><img
-								style="max-height: 48px; max-width: 48px;"
+								style="max-height: 32px; max-width: 32px;"
 								class="img-profile rounded-circle"
 								src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
 								<span
@@ -72,10 +72,10 @@
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
+								<a class="dropdown-item" href="#" id="btn-edit-profile"> <i
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập Nhật
 									Thông Tin
-								</a> <a class="dropdown-item" href="#"> <i
+								</a> <a class="dropdown-item" href="#" id="btn-change-password"> <i
 									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
 									Khẩu
 								</a>

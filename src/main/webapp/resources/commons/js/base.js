@@ -38,6 +38,14 @@ class Base {
     	$(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e){
 			resetForm();
 		});
+    	//btn-edit-profile
+    	$(document).on('click', '#btn-edit-profile', function (e){
+			window.location.href=rootLocation+'cap-nhat-thong-tin?id='+userLoged.id;
+		});
+    	//btn-edit-profile
+    	$(document).on('click', '#btn-change-password', function (e){
+			window.location.href=rootLocation+'doi-mat-khau?id='+userLoged.id;
+		});
 		// alert close event
     	$(document).on('close.bs.alert', '.alert', function (e){
 			  e.preventDefault();

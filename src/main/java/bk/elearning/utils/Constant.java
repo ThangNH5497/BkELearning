@@ -57,4 +57,5 @@ public class Constant {
 	
 	public static final String STUDENT_ANSWER_CHOOSE="CHOOSED";
 	public static final Long DELAY_TIME = 5000l;
+	public static final int STATUS_PASSWORD_ERROR = 1000;
 }

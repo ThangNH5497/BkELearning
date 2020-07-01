@@ -58,4 +58,6 @@ public interface IExamService extends IGenericService<Exam> {
 
 	void unAllowStudentRequest(int id);
 
+	PaginationResult<ExamDTO> searchByStudent(Integer studentId, String key, int page, int size);
+
 }

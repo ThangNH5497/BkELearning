@@ -63,4 +63,6 @@ public interface IExamRepository extends IGenericRepository<Exam>{
 
 	void deleteLockDetail(int id);
 
+	PaginationResult<ExamDTO> searchByStudent(Integer studentId, String key, int i, int size);
+
 }

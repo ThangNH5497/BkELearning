@@ -44,7 +44,7 @@
 				</span></a></li>
 
 			<!-- collapse -->
-			<ul class="collapse list-unstyled bg-white rounded" id="pageSubmenu">
+			<ul class="collapse list-unstyled bg-white rounded submenu" id="pageSubmenu">
 				<li><a href="<c:url value='/admin/ql-cau-hoi/them-cau-hoi'/>"
 					class="text-gray-600 text-sm  rounded"><span
 						id='menu-add-question' class="redirect ml-4">Thêm Câu Hỏi</span></a></li>

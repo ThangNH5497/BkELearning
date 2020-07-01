@@ -45,10 +45,22 @@ public class ExamApi {
 	IQuestionService questionService;
 
 	@GetMapping("/page/students/{studentId}")
-	public PaginationResult<ExamDTO> getByCode(@PathVariable Integer studentId, @RequestParam String filter,
+	public PaginationResult<ExamDTO> getPageByStudent(@PathVariable Integer studentId, @RequestParam String filter,
 			@RequestParam int page, @RequestParam int size) {
 		try {
 			return examService.getByStudent(studentId, filter, page, size);
+		} catch (Exception e) {
+
+		}
+		return null;
+
+	}
+	
+	@GetMapping("/search/students/{studentId}")
+	public PaginationResult<ExamDTO> searchByStudent(@PathVariable Integer studentId, @RequestParam(name = "q") String key,
+			@RequestParam int page, @RequestParam int size) {
+		try {
+			return examService.searchByStudent(studentId, key, page, size);
 		} catch (Exception e) {
 
 		}

@@ -84,27 +84,23 @@
 					<div id="filterDropdown"
 						class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 						aria-labelledby="filterDropdown">
-						<a class="dropdown-item" href="#" value='all'> <i
+						<a class="dropdown-item filter" href="#" value='all'> <i
 							class="fas fa-pen-square mr-2 fa-sm fa-fw text-gray-400"
 							id="filter-all"></i>Tất Cả
 						</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#" value='continue'> <i
+						<a class="dropdown-item filter" href="#" value='continue'> <i
 							class="fas fa-pen-square mr-2 fa-sm fa-fw text-gray-400"
-							id="filter-continue"></i>Ngắt Quãnng
+							id="filter-continue"></i>Tiếp Tục
 						</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#" value='open'> <i
+						<a class="dropdown-item filter" href="#" value='open'> <i
 							class="fas fa-pen-square mr-2 fa-sm fa-fw text-gray-400"
-							id="filter-open"></i>Đang Mở
+							id="filter-open"></i>Làm bài
 						</a>
+						
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#" value='close'> <i
-							class="fas fa-window-close fa-sm fa-fw mr-2 text-gray-400"
-							id="filter-close"></i> Đã Đóng
-						</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#" value='complete'> <i
+						<a class="dropdown-item filter" href="#" value='complete'> <i
 							class="fas fa-check-circle fa-sm fa-fw mr-2 text-gray-400"
 							id="filter-complete"></i> Đã Hoàn Thành
 						</a>
@@ -125,27 +121,7 @@
 				<div id="dataTable_wrapper"
 					class="dataTables_wrapper dt-bootstrap4 m-0 p-0"
 					style="width: 100%;">
-					<!-- <div class="row m-0 p-0 ">
-						<div class="col-sm-12 col-md-6">
-							<div class="dataTables_length" id="dataTable_length">
-								<label>Show <select name="dataTable_length"
-									aria-controls="dataTable"
-									class="custom-select custom-select-sm form-control form-control-sm"><option
-											value="10">10</option>
-										<option value="25">25</option>
-										<option value="50">50</option>
-										<option value="100">100</option></select> entries
-								</label>
-							</div>
-						</div>
-						<div class="col-sm-12 col-md-6">
-							<div id="dataTable_filter" class="dataTables_filter">
-								<label>Search:<input type="search"
-									class="form-control form-control-sm" placeholder=""
-									aria-controls="dataTable"></label>
-							</div>
-						</div>
-					</div> -->
+					
 					<div class="row p-0 m-0">
 						<div class="col-sm-12">
 							<table class="table table-bordered dataTable" id="dataTable"

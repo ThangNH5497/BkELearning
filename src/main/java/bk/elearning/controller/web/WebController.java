@@ -31,5 +31,20 @@ public class WebController {
 
 		return "web/exam-detail-result";
 	}
+	
+	@RequestMapping("/cap-nhat-thong-tin")
+	public String getEditProfileView(@RequestParam int id) {
 
+		return "commons/edit-profile";
+	}
+	@RequestMapping("/doi-mat-khau")
+	public String changePasswordView(@RequestParam int id) {
+
+		return "commons/change-password";
+	}
+	@RequestMapping("/quen-mat-khau")
+	public String forgotPasswordView() {
+
+		return "commons/forgot-password";
+	}
 }

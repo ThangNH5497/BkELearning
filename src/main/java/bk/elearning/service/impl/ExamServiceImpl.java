@@ -243,6 +243,7 @@ public class ExamServiceImpl implements IExamService {
 					examDTO.setStatus(checkStatus(new Exam(examDTO.getId(),examDTO.getTimeOpen(),examDTO.getTimeClose(),examDTO.getStatus())).getStatus());
 					//select tong cac bai thi can cham
 					examDTO.setCountExamProcess(examRepo.getCoutExamProcess(examDTO.getId(),courseId).intValue());
+					examDTO.setCountStudentRequest(examRepo.getCoutStudentRequest(examDTO.getId(),courseId).intValue());
 				
 				}
 
@@ -322,6 +323,28 @@ public class ExamServiceImpl implements IExamService {
 		// TODO Auto-generated method stub
 		if (page > 0) {
 			PaginationResult<ExamDTO> pages = examRepo.getByStudent(studentId, filter, page - 1, size);
+
+			for (ExamDTO examDTO : pages.getData()) {
+				Exam exam = new Exam();
+				exam.setId(examDTO.getId());
+				exam.setTimeOpen(examDTO.getTimeOpen());
+				exam.setTimeClose(examDTO.getTimeClose());
+				exam.setStatus(examDTO.getStatus());
+				exam = checkStatus(exam);
+				examDTO.setStatus(exam.getStatus());
+			}
+
+			return pages;
+
+		}
+		return null;
+	}
+	
+	@Override
+	public PaginationResult<ExamDTO> searchByStudent(Integer studentId, String key, int page, int size) {
+		// TODO Auto-generated method stub
+		if (page > 0) {
+			PaginationResult<ExamDTO> pages = examRepo.searchByStudent(studentId, key, page - 1, size);
 
 			for (ExamDTO examDTO : pages.getData()) {
 				Exam exam = new Exam();
@@ -690,5 +713,7 @@ public class ExamServiceImpl implements IExamService {
 		// TODO Auto-generated method stub
 		examRepo.deleteLockDetail(id);
 	}
+
+	
 
 }

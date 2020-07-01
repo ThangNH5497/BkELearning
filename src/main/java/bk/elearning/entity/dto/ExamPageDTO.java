@@ -63,6 +63,30 @@ public class ExamPageDTO {
 		this.timeClose = timeClose;
 		this.role = role;
 	}
+	
+	
+
+	public ExamPageDTO(int id, String code, int time, float grade, String name, String descriptor, String status,
+			Date createAt, Date updateAt, Date timeOpen, Date timeClose, String role, int countExamProcess,
+			int countStudentRequest) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.time = time;
+		this.grade = grade;
+		this.name = name;
+		this.descriptor = descriptor;
+		this.status = status;
+		this.createAt = createAt;
+		this.updateAt = updateAt;
+		this.timeOpen = timeOpen;
+		this.timeClose = timeClose;
+		this.role = role;
+		this.countExamProcess = countExamProcess;
+		this.countStudentRequest = countStudentRequest;
+	}
+
+
 
 	public int getId() {
 		return id;

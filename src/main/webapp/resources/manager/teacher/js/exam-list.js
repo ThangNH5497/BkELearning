@@ -112,6 +112,27 @@ function handleLock()
 		alert(e);
 	}
 }
+
+//overide
+function updateTableData(object,data)
+{	
+	//obj.initData('table-data-body','row-data-container',data);
+	if(data!=""&&data!=null&&data!=undefined)
+	{
+		data.sort(function(a, b){
+			 return (parseInt(b.countExamProcess)+parseInt(b.countStudentRequest)) - (parseInt(a.countExamProcess)+parseInt(a.countStudentRequest));
+		});
+		obj.initData(object.dataContainerId,object.rowDataContainerId,data);
+		
+	}
+	else obj.initData(object.dataContainerId,object.rowDataContainerId,[]);
+	try {
+		object.callBack();
+	} catch (e) {
+		// TODO: handle exception
+	}
+		
+}
 class ExamManagement extends Base {
 	
     constructor() {
@@ -190,17 +211,26 @@ class ExamManagement extends Base {
                 			{
                 				var countExamProcess=data[i].countExamProcess;
                 				var countStudentRequest=data[i].countStudentRequest;
+                				var checkHightLine=false;
                 				if(countExamProcess>0)
                 				{
                 					$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-notify span').text(countExamProcess);
                 					$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-notify span').addClass('text-danger');
+                					checkHightLine=true;
                 				}
                 				if(countStudentRequest>0)
                 				{
                 					$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-student-request span').text(countStudentRequest);
                 					$('#'+containerId+' [dataId='+data[i].id+'] [field=control] .btn-student-request span').addClass('text-danger');
+                					checkHightLine=true;
                 				}
-                			
+                				if(checkHightLine==true)
+                				{
+                				//	$('#'+containerId+' [dataId='+data[i].id+']').css('background','#f0bf7f');
+                					$('#'+containerId+' [dataId='+data[i].id+']').addClass('border-bottom');
+                					$('#'+containerId+' [dataId='+data[i].id+']').addClass('bg-warning');
+                					$('#'+containerId+' [dataId='+data[i].id+'] td').addClass('text-white');
+                				}
                 			}
                 			else $(fields[j]).html(value);
 						} catch (e) {

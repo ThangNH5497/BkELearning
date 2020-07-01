@@ -11,26 +11,30 @@
 			<div class="col-md-4 login-sec">
 				<h2 class="text-center">Đăng Nhập</h2>
 				<p class="text-center text-danger">${requestScope.message}</p>
-				<form class="login-form" action="<c:url value='j_spring_security_login' />" method='POST'>
+				<form class="login-form"
+					action="<c:url value='j_spring_security_login' />" method='POST'>
 					<div class="form-group">
 						<label for="exampleInputEmail1" class="text-uppercase">Tài
-							Khoản</label> <input type="text" class="form-control" placeholder="" name="username">
+							Khoản</label> <input type="text" class="form-control" placeholder=""
+							name="username">
 
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1" class="text-uppercase">Mật
-							Khẩu</label> <input type="password" class="form-control" placeholder="" name="password">
+							Khẩu</label> <input type="password" class="form-control" placeholder=""
+							name="password">
 					</div>
-
-
-					<div class="form-check">
+					<div class="row m-0 px-4 justify-content-between py-4 d-flex">
 						<label class="form-check-label"> <input type="checkbox"
 							class="form-check-input"> <small>Ghi nhớ</small>
-						</label>
-						<button type="submit" class="btn btn-login float-right">Đăng
+						</label> <a href="<c:url value='/quen-mat-khau' />" style="text-decoration: none;">Quên mật khẩu ?</a>
+					</div>
+
+					<div class=" justify-content-center row">
+						<button type="submit" class="btn btn-login float-center">Đăng
 							Nhập</button>
 					</div>
-					
+
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 				</form>

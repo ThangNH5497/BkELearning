@@ -123,7 +123,7 @@ function submitData()
 			for (var i = 0; i < data.length; i++) {
 				epq.push({
 					id:$(data[i]).attr('dataId'),
-					questionGrade:$(data[i]).find('.student-grade').val()
+					studentGrade:$(data[i]).find('.student-grade').val()
 				});
 			}
 			studentExam.examPaper.examPaperQuestions=epq;

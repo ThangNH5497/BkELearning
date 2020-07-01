@@ -48,3 +48,7 @@
 	border: 1px solid #33b5e5 !important;
 	color: #33b5e5 !important;
 }
+#menu-top li:hover span
+{
+	color: #1cc88a !important;
+}
