@@ -47,4 +47,9 @@ public class WebController {
 
 		return "commons/forgot-password";
 	}
+	@RequestMapping("/accessDenied")
+	public String accessDeniedView() {
+
+		return "commons/403-page";
+	}
 }

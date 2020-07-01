@@ -106,8 +106,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 ">
-				<div class="text-center text-white">&copy; 2019
-					NongSanQueHuong.vn</div>
+				<div class="text-center text-white">&copy; 2020
+					BkELearning</div>
 			</div>
 		</div>
 	</div>

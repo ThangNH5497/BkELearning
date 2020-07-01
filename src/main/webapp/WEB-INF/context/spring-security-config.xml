@@ -7,9 +7,12 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<http auto-config="true">
-		<!-- <intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')" /> 
-			<intercept-url pattern="/teacher/*" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_TEACHER')" 
-			/> -->
+		<intercept-url pattern="/admin/*"
+			access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/teacher/*"
+			access="hasRole('ROLE_ADMIN') or hasRole('ROLE_TEACHER')" />
+		<intercept-url pattern="/manager/*"
+			access="hasRole('ROLE_ADMIN') or hasRole('ROLE_TEACHER')" />
 		<intercept-url pattern="/login*" access="permitAll" />
 		<form-login login-page="/login"
 			login-processing-url="/j_spring_security_login"
@@ -23,9 +26,9 @@
 			error-page="/accessDenied" />
 		<!-- disable csrf -->
 		<csrf disabled="true" />
-		
+
 	</http>
-	
+
 	<authentication-manager>
 		<authentication-provider
 			user-service-ref="userDetailsServiceImpl">
