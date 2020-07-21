@@ -15,16 +15,10 @@
 	href="<c:url value='/resources/web/css/finish-exam.css' />">
 </head>
 <body>
-	<noscript>
-		<h2>Sorry! Your browser doesn't support Javascript</h2>
-	</noscript>
-
-
-
 	<div id="main-page">
 		<div class="main-container">
 			<div class="main-header">
-				<h2>Hoàn Thành Bài Thi</h2>
+				<h2>Hoàn thành bài thi</h2>
 			</div>
 
 			<div class='container justify-content-center d-flex'>
@@ -36,7 +30,7 @@
 			<div class='container justify-content-center d-flex mt-4 pt-4'>
 				<a href="<c:url value='/trang-chu' />" class="btn btn-primary btn-icon-split"> <span
 					class="icon text-white-50"> <i class="fas fa-flag"></i>
-				</span> <span class="text">Về Trang Chủ</span>
+				</span> <span class="text">Về trang chủ</span>
 				</a>
 			</div>
 

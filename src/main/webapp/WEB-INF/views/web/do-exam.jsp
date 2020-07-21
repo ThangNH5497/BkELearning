@@ -134,7 +134,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header bg-warning">
-				<p class="heading lead">Cảnh Báo</p>
+				<p class="heading lead">Cảnh báo</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -144,13 +144,13 @@
 
 			<!--Body-->
 			<div class="modal-body border-top my-3">
-				<div class="message">Bạn Có Muốn Tiếp Nộp Bài ?</div>
+				<div class="message">Bạn có muốn tiếp tục nộp bài ?</div>
 
 				<div class="border-top my-3"></div>
 				<div class="d-flex justify-content-center">
 					<a type="button" class="btn  waves-effect btn-cancel"
 						data-dismiss="modal">Hủy</a><a type="button"
-						class="btn  waves-effect btn-submit">Nộp Bài</a>
+						class="btn  waves-effect btn-submit">Nộp bài</a>
 				</div>
 			</div>
 

@@ -235,7 +235,7 @@ function userDetailEvents(urlApi) {
 	$(document).on('click', '.btn-view', function () {
 		var id=$('#table-data-body .selected[dataId]').attr("dataId");
 		if(($("#card-detail"). is(":hidden")))
-		{			//lay doi tuong user ko dong bo va xu ly voi ham initUserDetail
+		{	//lay doi tuong user ko dong bo va xu ly voi ham initUserDetail
 			obj.ajaxCall("GET",true,urlApi+id,null,function(user)
 			{
 				try {

@@ -24,21 +24,21 @@
 
 					<span class="navbar-text"> <i class="fas fa-link"></i> <a
 						class='text-primary' href="<c:url value='/teacher/ql-lop-hoc' />">Danh
-							Sách Lớp</a></span>
+							sách lớp</a></span>
 
 				</nav>
 				<nav class="navbar navbar-light bg-light hidden"
 					style="font-weight: 600;" id='link-back-search'>
 					<span class="navbar-text"> <i class="fas fa-link"></i><a
 						class='text-primary' href="javascript:location.reload(true)">Danh
-							Sách Lớp</a><span> / Tìm Kiếm</span>
+							sách lớp</a><span> / Tìm kiếm</span>
 					</span>
 				</nav>
 			</div>
 
 			<h5 id='data-empty-alert'
 				class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
-				Có Dữ Liệu</h5>
+				có dữ liệu</h5>
 			<div class="row " id="table-data-body">
 				<!-- Area Chart -->
 				<div class="col-xl-12 col-lg-12  mb-4 hidden"
@@ -51,7 +51,7 @@
 								<div class="col-6  p-0 m-0" style="font-weight: 600;"
 									id="link-current">
 									<span class="navbar-text text-primary font-weight-bold d-flex">Mã
-										Lớp
+										lớp
 										<p field="code" class="pl-4"></p>
 									</span>
 								</div>
@@ -71,7 +71,7 @@
 								<div class="col-6 d-block">
 									<div class="row">
 										<div class="col-md-4 font-weight-bold">
-											<label>Mã Học Phần </label>
+											<label>Mã học phần </label>
 										</div>
 										<div class="col-md-8">
 
@@ -80,7 +80,7 @@
 									</div>
 									<div class="row">
 										<div class="col-md-4 font-weight-bold">
-											<label>Tên Lớp</label>
+											<label>Tên lớp</label>
 										</div>
 										<div class="col-md-8">
 
@@ -93,7 +93,7 @@
 								<div class="col-6 d-block">
 									<div class="row">
 										<div class="col-md-4 font-weight-bold">
-											<label>Tên Học Phần </label>
+											<label>Tên học phần </label>
 										</div>
 										<div class="col-md-8">
 
@@ -102,7 +102,7 @@
 									</div>
 									<div class="row">
 										<div class="col-md-4 font-weight-bold">
-											<label>Mô Tả Lớp</label>
+											<label>Mô tả</label>
 										</div>
 										<div class="col-md-8">
 
@@ -133,7 +133,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thêm Lớp Học</p>
+				<p class="heading lead">Thêm lớp học</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -148,22 +148,21 @@
 						<div class="form-v4-content">
 							<form class="form-detail" action="#" method="post"
 								id="form-add-new">
-								<h2>Thông Tin Lớp</h2>
+								<h2>Thông tin lớp</h2>
 								<div class="form-group">
 									<div class="form-row form-row-1">
-										<label for="code">Mã Lớp Học (*)</label> <input type="text"
+										<label for="code">Mã lớp (*)</label> <input type="text"
 											name="code" class="input-text" required> <label
-											name="code-error" class="error hidden">Mã Môn Học Tồn
-											Tại</label>
+											name="code-error" class="error hidden">Mã lớp tồn tại</label>
 									</div>
 									<div class="form-row form-row-1">
-										<label for="subjectName">Tên Lớp Học (*)</label> <input
+										<label for="subjectName">Tên lớp (*)</label> <input
 											type="text" name="courseName" class="input-text" required>
 									</div>
 								</div>
 
 								<div class="form-row">
-									<label for="descriptor">Mô Tả</label> <input type="text"
+									<label for="descriptor">Mô tả</label> <input type="text"
 										name="descriptor" class=" input-text">
 
 								</div>
@@ -194,7 +193,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Sửa Thông Tin Lớp</p>
+				<p class="heading lead">Sửa thông tin lớp</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -208,15 +207,15 @@
 					<div class="form-v4">
 						<div class="form-v4-content">
 							<form class="form-detail" action="#" method="post" id="form-edit">
-								<h2>Sửa Thông Tin Lớp</h2>
+								<h2>Sửa thông tin lớp</h2>
 								<div class="form-group">
 									<div class="form-row form-row-1">
-										<label for="code">Mã Lớp (*)</label> <input type="text"
+										<label for="code">Mã lớp (*)</label> <input type="text"
 											name="code" class="input-text" required> <label
-											name="code-error" class="error hidden">Mã Lớp Tồn Tại</label>
+											name="code-error" class="error hidden">Mã lớp tồn tại</label>
 									</div>
 									<div class="form-row form-row-1">
-										<label for="subjectName">Tên Lớp (*)</label> <input
+										<label for="subjectName">Tên lớp (*)</label> <input
 											type="text" name="courseName" class="input-text" required>
 									</div>
 								</div>

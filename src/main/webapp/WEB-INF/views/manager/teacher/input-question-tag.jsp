@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="d-flex row mt-4 answer">
 	<div class='col-2'>
-		<label class="answer-index">Đáp Án </label>
+		<label class="answer-index">Đáp án </label>
 		<div class="form-group col-12 d-flex answer-check">
 			<span>Đúng</span>
 			<div class="custom-control custom-checkbox ml-3 ">
@@ -14,7 +14,7 @@
 		<div class="form-group col-12 answer-weight hidden">
 			<form>
 				<div class="form-group">
-					<label for="exampleFormControlSelect1">Trọng Số Điểm</label> <select
+					<label for="exampleFormControlSelect1">Trọng số điểm</label> <select
 						class="form-control">
 						<option value='1'>100%</option>
 						<option value='0.9'>90%</option>

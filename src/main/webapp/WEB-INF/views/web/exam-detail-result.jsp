@@ -68,7 +68,7 @@
 											<div field='content'></div>
 											<div class='answer border-top mt-4 pt-4'>
 												<div field="answer.content"></div>
-												<div class="pt-4 ml-1 border-top">Chấm Điểm</div>
+												<div class="pt-4 ml-1 border-top">Chấm điểm</div>
 												<div class='row mx-0 p-0 mt-4'>
 													<form>
 														<div class="row">

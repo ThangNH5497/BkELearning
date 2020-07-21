@@ -66,15 +66,15 @@ p {
 									<th class="sorting font-weight-bold" tabindex="0"
 										aria-controls="dataTable" rowspan="1" colspan="1"
 										aria-label="Position: activate to sort column ascending">Mã
-										Sinh Viên</th>
+										sinh viên</th>
 									<th class="sorting font-weight-bold" tabindex="0"
 										aria-controls="dataTable" rowspan="1" colspan="1"
 										aria-label="Office: activate to sort column ascending">Họ
-										Và Tên</th>
+										và tên</th>
 									<th class="sorting font-weight-bold" tabindex="0"
 										aria-controls="dataTable" rowspan="1" colspan="1"
 										aria-label="Office: activate to sort column ascending">Kết
-										Quả</th>
+										quả</th>
 
 								</tr>
 							</thead>
@@ -83,10 +83,9 @@ p {
 									<th rowspan="1" colspan="1" class="font-weight-bold">STT</th>
 									<th rowspan="1" colspan="1" class="font-weight-bold">Mã
 										Sinh Viên</th>
-									<th rowspan="1" colspan="1" class="font-weight-bold">Họ Và
-										Tên</th>
+									<th rowspan="1" colspan="1" class="font-weight-bold">Họ và tên</th>
 									<th rowspan="1" colspan="1" class="font-weight-bold">Kết
-										Quả</th>
+										quả</th>
 
 								</tr>
 							</tfoot>

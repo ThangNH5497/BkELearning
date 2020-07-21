@@ -15,6 +15,7 @@
 		<ul class="navbar-nav ml-auto">
 			<div class="topbar-divider d-none d-sm-block"></div>
 			<!-- Nav Item - User Information -->
+			<!-- Nav Item - User Information -->
 			<li class="nav-item dropdown no-arrow"><a
 				class="nav-link dropdown-toggle" href="#" id="userDropdown"
 				data-toggle="dropdown"><img
@@ -23,16 +24,16 @@
 					src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
 					<span
 					class="mr-2 d-none d-lg-inline text-gray-600 small user-full-name">Tài
-						Khoản</span> </a> <!-- Dropdown - User Information -->
+						khoản</span> </a> <!-- Dropdown - User Information -->
 				<div
 					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 					aria-labelledby="userDropdown">
 					<a class="dropdown-item" href="#" id="btn-edit-profile"> <i
-						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400" ></i>Cập Nhật
-						Thông Tin
+						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập nhật
+						thông tin
 					</a> <a class="dropdown-item" href="#" id="btn-change-password"> <i
-						class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
-						Khẩu
+						class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi mật
+						khẩu
 					</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="<c:url value='/logout'/>"> <i
@@ -46,16 +47,16 @@
 	<!-- End of Topbar -->
 	<div class="container-fluid">
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h4 mb-0 text-gray-600">Cập Nhật Đề Thi</h1>
+			<h1 class="h4 mb-0 text-gray-600">Cập nhật đề thi</h1>
 		</div>
 		<!-- filter -->
 		<div class="card mb-4 py-3 border-left-info" id="exampaper-info">
 			<div class="card-body">
 				<h5 class="mb-4 font-weight-bold text-primary col-12 text-center">Thông
-					Tin Đề Thi</h5>
+					tin đề thi</h5>
 				<div id="question-infor mt-3">
 					<div class="row">
-						<label class='col-2 col-form-label'>Môn Học (*)</label>
+						<label class='col-2 col-form-label'>Môn học (*)</label>
 						<div class="input-group col-9">
 							<input class="form-control" type="text" subjectId='' value=""
 								id="input-subject" readonly required>
@@ -66,8 +67,7 @@
 
 					<form class=" ">
 						<div class="form-group row mt-3">
-							<label for="inputName" class="col-2 col-form-label">Mã Đề
-								Thi (*)</label>
+							<label for="inputName" class="col-2 col-form-label">Mã đề thi (*)</label>
 							<div class="col-9">
 								<input type="text" class="form-control" id="input-code" readonly
 									required>
@@ -79,7 +79,7 @@
 					<form class=" ">
 						<div class="form-group row mt-3">
 							<label for="inputName" class="col-2 col-form-label">Tên
-								Đề Thi (*)</label>
+								đề thi (*)</label>
 							<div class="col-9">
 								<input type="text" class="form-control" id="input-name" required>
 							</div>
@@ -90,7 +90,7 @@
 					<form class=" ">
 						<div class="form-group row mt-3">
 							<label for="inputName" class="col-2 col-form-label">Thời
-								Gian (*)</label>
+								gian (*)</label>
 							<div class="col-9">
 								<input type="text" class="form-control" id="input-time" required>
 							</div>
@@ -100,7 +100,7 @@
 
 					<form>
 						<div class="form-group row mt-3">
-							<label for="inputName" class="col-2 col-form-label">Mô Tả</label>
+							<label for="inputName" class="col-2 col-form-label">Mô tả</label>
 							<div class="col-9">
 								<textarea class="form-control" id="input-descriptor" rows="3"></textarea>
 							</div>
@@ -116,7 +116,7 @@
 		<div>
 			<div class="card mb-4">
 				<div class="card-body ">
-					<h5 class="h6 mb-0 text-gray-600 mb-4">Danh Sách Câu Hỏi</h5>
+					<h5 class="h6 mb-0 text-gray-600 mb-4">Danh sách câu hỏi</h5>
 
 					<div id="question-list-container">
 						<div class='hidden' id='question-item-sample'>
@@ -168,25 +168,24 @@
 							<div class="dropdown mr-4">
 								<button class="btn btn-success dropdown-toggle btn-sm"
 									type="button" id="dropdownMenuButton" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">Nâng Cao</button>
+									aria-haspopup="true" aria-expanded="false">Nâng cao</button>
 								<div class="dropdown-menu dropdown-menu-right"
 									aria-labelledby="dropdownMenuButton">
 									<a class="dropdown-item btn-question-shuffle" href="#">Đảo
-										Câu Hỏi</a> <a class="dropdown-item btn-answer-shuffle" href="#">Đảo
-										Đáp Án</a>
+										câu hỏi</a> <a class="dropdown-item btn-answer-shuffle" href="#">Đảo
+										đáp án</a>
 								</div>
 							</div>
 
 							<div class="dropdown">
 								<button class="btn btn-success dropdown-toggle btn-sm"
 									type="button" id="dropdownMenuButton" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">Thêm Câu
-									Hỏi</button>
+									aria-haspopup="true" aria-expanded="false">Thêm câu hỏi</button>
 								<div class="dropdown-menu dropdown-menu-right"
 									aria-labelledby="dropdownMenuButton">
 									<a class="dropdown-item btn-select-question" href="#">Ngân
-										Hàng Câu hỏi</a> <a class="dropdown-item btn-random-question"
-										href="#">Ngẫu Nhiên</a>
+										hàng câu hỏi</a> <a class="dropdown-item btn-random-question"
+										href="#">Ngẫu nhiên</a>
 								</div>
 							</div>
 						</div>
@@ -214,7 +213,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Chọn Câu Hỏi</p>
+				<p class="heading lead">Chọn câu hỏi</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -251,7 +250,7 @@
 							<div class="col-5 row d-flex ">
 								<div class="col-6">
 									<span class=' pl-1 m-0 font-weight-bold text-primary'>Môn
-										Học</span>
+										học</span>
 								</div>
 								<div class="col-6">
 									<span class='text-primary subject-info'></span>
@@ -261,7 +260,7 @@
 							<div class="col-2"></div>
 							<div class="col-5 row d-flex pl-4">
 								<span class='col-6 pl-4 m-0 font-weight-bold text-primary'>Người
-									Tạo</span> <span class='text-primary  col-6 teacher-info'></span>
+									tạo</span> <span class='text-primary  col-6 teacher-info'></span>
 							</div>
 						</div>
 						<!-- filter -->
@@ -286,7 +285,7 @@
 									<div class="d-block col-md-5 col-lg-5 filter-item pr-0"
 										id="filter-type">
 										<h6 class="m-0 font-weight-bold text-primary col-9">Loại
-											Câu Hỏi</h6>
+											câu hỏi</h6>
 										<div class="input-group col-lg-12 col-md-12 d-flex mt-3 pr-0">
 											<input class="form-control" type="text" val='ALL' readonly>
 											<div class="input-group-append border-0 dropdown">
@@ -296,16 +295,16 @@
 												<div
 													class="dropdown-menu dropdown-menu-right dropdown-menu-w-100"
 													aria-labelledby="dropdownMenuButton">
-													<a class="dropdown-item" href="#" value='ALL'>Tất Cả</a>
+													<a class="dropdown-item" href="#" value='ALL'>Tất cả</a>
 													<div class="dropdown-divider"></div>
 													<a class="dropdown-item" href="#" value='ONE_CHOICE'>Một
-														Đáp Án</a>
+														đáp án</a>
 													<div class="dropdown-divider"></div>
 													<a class="dropdown-item" href="#" value='MULTIPLE_CHOICE'>Nhiều
-														Đáp Án</a>
+														đáp án</a>
 													<div class="dropdown-divider"></div>
 													<a class="dropdown-item" href="#" value='FILL_WORD'>Điền
-														Từ</a>
+														từ</a>
 												</div>
 											</div>
 										</div>
@@ -314,7 +313,7 @@
 									<div class="d-block col-md-5 col-lg-5 filter-item pr-0"
 										id="filter-level">
 										<h6 class="m-0 font-weight-bold text-primary col-9 ">Độ
-											Khó</h6>
+											khó</h6>
 										<div class="input-group col-lg-12 col-md-12 d-flex mt-3 pr-0">
 											<input class="form-control" type="text" val='ALL' readonly>
 											<div class="input-group-append border-0 dropdown">
@@ -324,11 +323,11 @@
 												<div
 													class="dropdown-menu dropdown-menu-right dropdown-menu-w-100"
 													aria-labelledby="dropdownMenuButton">
-													<a class="dropdown-item" href="#" value="ALL">Tất Cả</a>
+													<a class="dropdown-item" href="#" value="ALL">Tất cả</a>
 													<div class="dropdown-divider"></div>
 													<a class="dropdown-item" href="#" value="0">Dễ</a>
 													<div class="dropdown-divider"></div>
-													<a class="dropdown-item" href="#" value="1">Trung Bình</a>
+													<a class="dropdown-item" href="#" value="1">Trung bình</a>
 													<div class="dropdown-divider"></div>
 													<a class="dropdown-item" href="#" value="2">Khó</a>
 												</div>
@@ -362,15 +361,15 @@
 													aria-expanded="false"></div>
 												<div class="dropdown-menu"
 													aria-labelledby="dropdownMenuButton">
-													<a class="dropdown-item" id="select-all">Chọn Tất Cả</a> <a
-														class="dropdown-item" id="deselect-all">Bỏ Chọn Tất Cả</a>
+													<a class="dropdown-item" id="select-all">Chọn tất cả</a> <a
+														class="dropdown-item" id="deselect-all">Bỏ chọn tất cả</a>
 												</div>
 											</div>
 										</th>
 										<th class='column1'>Tên</th>
-										<th class='column2'>Độ Khó</th>
+										<th class='column2'>Độ khó</th>
 										<th class='column3'>Loại</th>
-										<th class='column4'>Nội Dung</th>
+										<th class='column4'>Nội dung</th>
 										<th class='column5'>Xem</th>
 									</tr>
 								</thead>
@@ -443,7 +442,7 @@
 		<div class="modal-content" style="min-height: 50vh;">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Chi Tiết Câu Hỏi</p>
+				<p class="heading lead">Chi tiết câu hỏi</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -456,18 +455,18 @@
 				<div class="" id='question-detail-container'>
 					<div class="descriptor row p-4">
 						<div class="col-6 row d-flex">
-							<span class='text-gray-600  col-6'>ID Câu Hỏi</span> <span
+							<span class='text-gray-600  col-6'>ID câu hỏi</span> <span
 								class='text-primary  col-6' field='id'></span>
 						</div>
 						<div class="col-6 row d-flex">
-							<span class='text-gray-600  col-6'>Tên Câu Hỏi</span> <span
+							<span class='text-gray-600  col-6'>Tên câu hỏi</span> <span
 								class='text-primary  col-6' field='name'></span>
 						</div>
 					</div>
 					<div class="descriptor row p-4">
 						<div class="col-6 row d-flex">
 							<div class="col-6">
-								<span class='text-gray-600 '>Môn Học</span>
+								<span class='text-gray-600 '>Môn học</span>
 							</div>
 							<div class="col-6">
 								<span class='text-primary ' field='category.subject.subjectName'></span>
@@ -475,17 +474,17 @@
 
 						</div>
 						<div class="col-6 row d-flex">
-							<span class='text-gray-600  col-6'>Người Tạo</span> <span
+							<span class='text-gray-600  col-6'>Người tạo</span> <span
 								class='text-primary  col-6' field='category.user.fullName'></span>
 						</div>
 					</div>
 					<div class="descriptor row p-4">
 						<div class="col-6 row d-flex">
-							<span class='text-gray-600  col-6'>Độ Khó</span> <span
+							<span class='text-gray-600  col-6'>Độ khó</span> <span
 								class='text-primary  col-6' field='level'></span>
 						</div>
 						<div class="col-6 row d-flex">
-							<span class='text-gray-600  col-6'>Loại Câu Hỏi</span> <span
+							<span class='text-gray-600  col-6'>Loại câu hỏi</span> <span
 								class='text-primary  col-6' field='type'></span>
 						</div>
 					</div>
@@ -494,8 +493,7 @@
 							<div class="w-100 d-block" field='content'></div>
 						</div>
 						<div class="row mt-3">
-							<span class='text-lg' style="font-weight: 900;">Câu Trả
-								Lời</span>
+							<span class='text-lg' style="font-weight: 900;">Câu trả lời</span>
 						</div>
 
 						<div class='w-100' id='question-detail-answer' field='answer'>
@@ -543,7 +541,7 @@
 		<div class="modal-content" style="min-height: 50vh;">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Lấy Ngẫu Nhiên Câu Hỏi</p>
+				<p class="heading lead">Lấy ngẫu nhiên câu hỏi</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -556,7 +554,7 @@
 				<div class='filter-content' style="min-height: 50vh;">
 					<div class="form-group row mt-4 px-4">
 						<label for="inputName" class="col-3 col-form-label">Số
-							Lượng Câu Hỏi</label>
+							lượng câu hỏi</label>
 						<div class="col-9">
 							<input type="text" class="form-control" id="input-question"
 								required>
@@ -566,34 +564,34 @@
 
 					<div class="form-group row px-4">
 						<label for="inputName" class="col-3 col-form-label">Môn
-							Học</label> <label for="inputName"
+							học</label> <label for="inputName"
 							class="col-9 col-form-label text-primary subject"></label>
 						<div class="col-1"></div>
 					</div>
 
 					<div class="form-group row px-4">
 						<label for="inputName" class="col-3 col-form-label">Kho
-							Giảng Viên</label> <label for="inputName"
+							giảng viên</label> <label for="inputName"
 							class="col-9 col-form-label text-primary user"></label>
 						<div class="col-1"></div>
 					</div>
 
 					<div class='d-flex px-4 pb-4'>
 						<div class='col-3 align-self-center p-0'>
-							<label for="inputName" class="col-form-label">Bộ Lọc</label>
+							<label for="inputName" class="col-form-label">Bộ lọc</label>
 						</div>
 						<div class="dropdown col-3 pl-0 pr-4"
 							id='random-question-filter-level'>
 							<button class="btn btn-secondary dropdown-toggle mt-4 mb-4 w-100"
 								type="button" data-toggle="dropdown">
-								<span class="dropdown-text"> Độ Khó</span> <span class="caret"></span>
+								<span class="dropdown-text"> Độ khó</span> <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu pl-1">
 								<li><div class="custom-control custom-checkbox">
 										<input type="checkbox" class="custom-control-input check-all"
 											id="level-check-all" value='ALL'> <label
 											class="custom-control-label" for="level-check-all">Chọn
-											Tất Cả</label>
+											tất cả</label>
 									</div></li>
 								<li><div class="dropdown-divider"></div></li>
 								<li><div class="custom-control custom-checkbox">
@@ -606,7 +604,7 @@
 										<input type="checkbox" class="custom-control-input"
 											id="level-check-2" value='1'> <label
 											class="custom-control-label" for="level-check-2">Trung
-											Bình</label>
+											bình</label>
 									</div></li>
 								<li><div class="dropdown-divider"></div></li>
 								<li><div class="custom-control custom-checkbox">
@@ -620,7 +618,7 @@
 							id='random-question-filter-type'>
 							<button class="btn btn-secondary dropdown-toggle mt-4 mb-4 w-100"
 								type="button" data-toggle="dropdown">
-								<span class="dropdown-text"> Loại Câu Hỏi</span> <span
+								<span class="dropdown-text"> Loại câu hỏi</span> <span
 									class="caret"></span>
 							</button>
 							<ul class="dropdown-menu pl-1">
@@ -628,35 +626,35 @@
 										<input type="checkbox" class="custom-control-input check-all"
 											id="type-check-all" value='ALL'> <label
 											class="custom-control-label" for="type-check-all">Chọn
-											Tất Cả</label>
+											tất cả</label>
 									</div></li>
 								<li><div class="dropdown-divider"></div></li>
 								<li><div class="custom-control custom-checkbox">
 										<input type="checkbox" class="custom-control-input"
 											id="type-check-1" value='ONE_CHOICE'> <label
 											class="custom-control-label" for="type-check-1">Một
-											Đáp Án</label>
+											đáp án</label>
 									</div></li>
 								<li><div class="dropdown-divider"></div></li>
 								<li><div class="custom-control custom-checkbox">
 										<input type="checkbox" class="custom-control-input"
 											id="type-check-2" value='MULTIPLE_CHOICE'> <label
 											class="custom-control-label" for="type-check-2">Nhiều
-											Đáp Án</label>
+											đáp án</label>
 									</div></li>
 								<li><div class="dropdown-divider"></div></li>
 								<li><div class="custom-control custom-checkbox">
 										<input type="checkbox" class="custom-control-input"
 											id="type-check-3" value='FILL_WORD'> <label
 											class="custom-control-label" for="type-check-3">Điền
-											Từ</label>
+											từ</label>
 									</div></li>
 							</ul>
 						</div>
 						<div class="dropdown col-3 pl-0 pr-4">
 							<button class="btn btn-secondary dropdown-toggle mt-4 mb-4 w-100"
 								type="button" data-toggle="dropdown">
-								<span class="dropdown-text">Danh Mục</span> <span class="caret"></span>
+								<span class="dropdown-text">Danh mục</span> <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu pl-1"
 								id='random-question-filter-category'>
@@ -664,7 +662,7 @@
 										<input type="checkbox" class="custom-control-input check-all"
 											id="category-check-all" value="ALL"> <label
 											class="custom-control-label" for="category-check-all">Chọn
-											Tất Cả</label>
+											tất cả</label>
 									</div></li>
 
 								<li id='category-item-sample' class='hidden'><div
@@ -685,7 +683,7 @@
 						<a type="button" class="btn  waves-effect btn-cancel"
 							data-dismiss="modal">Đóng</a> <a type="button"
 							class="btn  waves-effect btn-submit" id='btn-submit-subject'>Lấy
-							Câu Hỏi</a>
+							câu hỏi</a>
 					</div>
 				</div>
 			</div>
@@ -701,7 +699,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header bg-warning">
-				<p class="heading lead">Cảnh Báo</p>
+				<p class="heading lead">Cảnh báo</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -711,8 +709,7 @@
 
 			<!--Body-->
 			<div class="modal-body border-top my-3">
-				<div class="message">Bạn Có Muốn Tiếp Tục Xóa Câu Hỏi Khỏi Đề
-					Thi ?</div>
+				<div class="message">Bạn có muốn tiếp tục xóa câu hỏi?</div>
 
 				<div class="border-top my-3"></div>
 				<div class="d-flex justify-content-center">

@@ -9,12 +9,12 @@
 <div class="container mt-4 mb-4">
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Thông Tin Bài Thi</h6>
+			<h6 class="m-0 font-weight-bold text-primary">Thông tin bài thi</h6>
 		</div>
 		<div class="card-body">
 			<div class='row'>
 				<div class='col-md-6 col-sm-12 d-flex mt-4 mb-4'>
-					<div class='col-4 text-primary'>Môn Học</div>
+					<div class='col-4 text-primary'>Môn học</div>
 					<div class='col-8' field='subject'></div>
 				</div>
 				<div class='col-md-6 col-sm-12 d-flex mt-4 mb-4'>
@@ -24,11 +24,11 @@
 			</div>
 			<div class='row'>
 				<div class='col-md-6 col-sm-12 d-flex mt-4 mb-4'>
-					<div class='col-4 text-primary'>Mã Bài Thi</div>
+					<div class='col-4 text-primary'>Mã bài thi</div>
 					<div class='col-8' field='code'></div>
 				</div>
 				<div class='col-md-6 col-sm-12 d-flex mt-4 mb-4'>
-					<div class='col-4 text-primary'>Tên Bài Thi</div>
+					<div class='col-4 text-primary'>Tên bài thi</div>
 					<div class='col-8' field='name'></div>
 				</div>
 			</div>
@@ -38,7 +38,7 @@
 					<div class='col-8' field='time'></div>
 				</div>
 				<div class='col-md-6 col-sm-12 d-flex mt-4 mb-4'>
-					<div class='col-4 text-primary'>Trạng Thái</div>
+					<div class='col-4 text-primary'>Trạng thái</div>
 					<div class='col-8' field='status'></div>
 				</div>
 			</div>
@@ -46,7 +46,7 @@
 			
 			<div class='row mt-4 mb-4 justify-content-center border-top pt-4'>
 				<a href="#" class="btn btn-success btn-icon-split mt-4" id='btn-do-exam'> <span
-					class="text">Vào Bài Thi</span> <span class="icon text-white-50">
+					class="text">Vào bài thi</span> <span class="icon text-white-50">
 						<i class="fas fa-arrow-right"></i>
 				</span>
 				</a>

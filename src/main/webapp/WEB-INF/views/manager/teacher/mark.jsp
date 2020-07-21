@@ -35,16 +35,16 @@
 						src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
 						<span
 						class="mr-2 d-none d-lg-inline text-gray-600 small user-full-name">Tài
-							Khoản</span> </a> <!-- Dropdown - User Information -->
+							khoản</span> </a> <!-- Dropdown - User Information -->
 					<div
 						class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 						aria-labelledby="userDropdown">
-						<a class="dropdown-item" href="#"  id="btn-edit-profile"> <i
-							class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập Nhật
-							Thông Tin
-						</a> <a class="dropdown-item" href="#"  id="btn-change-password"> <i
-							class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
-							Khẩu
+						<a class="dropdown-item" href="#" id="btn-edit-profile"> <i
+							class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập nhật
+							thông tin
+						</a> <a class="dropdown-item" href="#" id="btn-change-password"> <i
+							class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi mật
+							khẩu
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<c:url value='/logout'/>"> <i
@@ -60,8 +60,7 @@
 			<nav class="navbar navbar-light " style="font-weight: 600;">
 
 				<span class="navbar-text"> <i class="fas fa-arrow-left"></i><a
-					class='text-primary' href="#" id="back-link">Quay Lại Danh Sách
-						Bài Thi</a></span>
+					class='text-primary' href="#" id="back-link">Quay lại danh sách bài thi</a></span>
 
 			</nav>
 			<!-- content -->
@@ -95,13 +94,13 @@
 													<div field='content'></div>
 													<div class='answer border-top mt-4 pt-4'>
 														<div field="answer.content">
-															<div class="py-4 ml-1">Câu Trả Lời Của Sinh Viên</div>
+															<div class="py-4 ml-1">Câu trả lời của sinh viên</div>
 															<div class="input-group fill-word">
 																<textarea readonly class="form-control"
 																	aria-label="With textarea"></textarea>
 
 															</div>
-															<div class="pt-4 ml-1 border-top">Chấm Điểm</div>
+															<div class="pt-4 ml-1 border-top">Chấm điểm</div>
 															<div class='row mx-0 p-0 mt-4'>
 																<form>
 																	<div class="row">
@@ -110,7 +109,8 @@
 																				value="0">
 																		</div>
 																		<div class="col">
-																			<input type="text" class="form-control max-grade" readonly>
+																			<input type="text" class="form-control max-grade"
+																				readonly>
 																		</div>
 																	</div>
 																</form>
@@ -130,14 +130,14 @@
 
 					</div>
 				</div>
-				
+
 				<div class='row mt-4 mb-4 justify-content-center border-top pt-4'>
-				<a href="#" class="btn btn-success btn-icon-split mt-4" id='btn-submit'> <span
-					class="text">Lưu</span> <span class="icon text-white-50">
-						<i class="fas fa-arrow-right"></i>
-				</span>
-				</a>
-			</div>
+					<a href="#" class="btn btn-success btn-icon-split mt-4"
+						id='btn-submit'> <span class="text">Lưu</span> <span
+						class="icon text-white-50"> <i class="fas fa-arrow-right"></i>
+					</span>
+					</a>
+				</div>
 			</div>
 			<!-- end content -->
 
@@ -147,13 +147,13 @@
 
 </div>
 <!-- modal alert -->
-<div class="modal modal-reset fade" id="modal-alert"
-	tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+<div class="modal modal-reset fade" id="modal-alert" tabindex="-1"
+	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header bg-warning">
-				<p class="heading lead">Cảnh Báo</p>
+				<p class="heading lead">Cảnh báo</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -163,13 +163,13 @@
 
 			<!--Body-->
 			<div class="modal-body border-top my-3">
-				<div class="message">Xác Nhận Lưu Thay Đổi ?</div>
+				<div class="message">Xác nhận lưu thay đổi?</div>
 
 				<div class="border-top my-3"></div>
 				<div class="d-flex justify-content-center">
 					<a type="button" class="btn  waves-effect btn-cancel"
 						data-dismiss="modal">Hủy</a><a type="button"
-						class="btn  waves-effect btn-submit">Xác Nhận</a>
+						class="btn  waves-effect btn-submit">Xác nhận</a>
 				</div>
 			</div>
 

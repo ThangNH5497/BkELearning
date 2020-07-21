@@ -51,7 +51,7 @@ public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implemen
 						"SELECT new bk.elearning.entity.dto.ExamPageDTO(e.id,e.code,e.time,e.grade,e.name,e.descriptor,e.status,e.createAt,e.updateAt, e.timeOpen,e.timeClose,e.user.role) "
 								+ hqlQuery)
 						.setParameter("courseId", courseId);
-				query.setFirstResult(start);
+				query.setFirstResult(start*size);
 				query.setMaxResults(size);
 				page.setData(query.list());
 			}
@@ -81,7 +81,7 @@ public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implemen
 								+ hqlQuery);
 				query.setParameter("subjectId", subjectId);
 				query.setParameter("roleAdmin", Constant.ROLE_ADMIN);
-				query.setFirstResult(start);
+				query.setFirstResult(start*size);
 				query.setMaxResults(size);
 				page.setData(query.list());
 			}
@@ -115,7 +115,7 @@ public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implemen
 
 				query.setParameter("courseId", courseId);
 				query.setParameter("key", key);
-				query.setFirstResult(start);
+				query.setFirstResult(start*size);
 				query.setMaxResults(size);
 				page.setData(query.list());
 			}
@@ -148,7 +148,7 @@ public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implemen
 				query.setParameter("subjectId", subjectId);
 				query.setParameter("roleAdmin", Constant.ROLE_ADMIN);
 				query.setParameter("key", key);
-				query.setFirstResult(start);
+				query.setFirstResult(start*size);
 				query.setMaxResults(size);
 				page.setData(query.list());
 			}
@@ -177,7 +177,7 @@ public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implemen
 						"Select  new bk.elearning.entity.dto.ExamDTO(e.id,e.code,e.time,e.grade,e.name,e.descriptor,e.status,e.timeOpen,e.timeClose,ec) "
 								+ hqlQuery);
 				query.setParameter("studentId", studentId);
-				query.setFirstResult(start);
+				query.setFirstResult(start*size);
 				query.setMaxResults(size);
 				page.setData(query.list());
 				for (ExamDTO examDTO : page.getData()) {
@@ -225,7 +225,7 @@ public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implemen
 								+ hqlQuery);
 				query.setParameter("studentId", studentId);
 				query.setParameter("key", key);
-				query.setFirstResult(start);
+				query.setFirstResult(start*size);
 				query.setMaxResults(size);
 				page.setData(query.list());
 				for (ExamDTO examDTO : page.getData()) {
@@ -534,9 +534,7 @@ public class ExamRepositoryImpl extends AbstractGenericRepository<Exam> implemen
 		Session session = sessionFactory.getCurrentSession();
 		PaginationResult<ExamResultDTO> pages = new PaginationResult<ExamResultDTO>();
 		try {
-
 			String hqlQuery = "Select new bk.elearning.entity.dto.ExamResultDTO(s.id,s.code,s.fullName) FROM Student s JOIN s.studentCourses sc where sc.course.id=:courseId";
-
 			Query query = session.createQuery(hqlQuery);
 			query.setParameter("courseId", courseId);
 			pages.setData(query.list());

@@ -147,7 +147,7 @@ public class QuestionMapperUtil implements IModelMapper<Question> {
 	}
 
 	/**
-	 * Map image to model user sheet -> sheet exel list -> list model user
+	 * Map image to model question sheet -> sheet excel list -> list model question
 	 */
 	@Override
 	public void mapImages(Sheet sheet, List<Question> list, List<String> fieldNames) {

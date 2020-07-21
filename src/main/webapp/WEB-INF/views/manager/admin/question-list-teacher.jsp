@@ -21,8 +21,7 @@
 
 			<div
 				class="d-flex align-items-center justify-content-between mb-4 row">
-				<h1 class="col-8 h5 mb-0 text-gray-600">Ngân Hàng Câu Hỏi Giảng
-					Viên</h1>
+				<h1 class="col-8 h5 mb-0 text-gray-600">Ngân hàng câu hỏi giảng viên</h1>
 			</div>
 			<!-- filter -->
 			<nav class="navbar navbar-expand-lg navbar-light bg-white mb-4"
@@ -43,7 +42,7 @@
 						<div class="d-block col-md-12 col-lg-6 filter-item mt-3"
 							id="filter-teacher">
 							<h6 class="m-0 font-weight-bold text-primary col-9">Giảng
-								Viên</h6>
+								viên</h6>
 							<div class="input-group col-lg-11 col-md-12 d-flex mt-3">
 								<input class="form-control" type="text" val='ALL' readonly>
 								<div class="input-group-append border-0 dropdown">
@@ -54,9 +53,9 @@
 									<div
 										class="dropdown-menu dropdown-menu-right dropdown-menu-w-100"
 										aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item" href="#" value='ALL'>Tất Cả</a>
+										<a class="dropdown-item" href="#" value='ALL'>Tất cả</a>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#" value=''>Tìm Giảng Viên</a>
+										<a class="dropdown-item" href="#" value=''>Tìm giảng viên</a>
 
 									</div>
 								</div>
@@ -66,7 +65,7 @@
 
 						<div class="d-block col-md-12 col-lg-6 filter-item mt-3"
 							id="filter-subject">
-							<h6 class="m-0 font-weight-bold text-primary col-9">Môn Học</h6>
+							<h6 class="m-0 font-weight-bold text-primary col-9">Môn học</h6>
 							<div class="input-group col-lg-11 col-md-12 d-flex mt-3">
 								<input class="form-control" type="text" val='ALL' readonly>
 								<div class="input-group-append border-0 dropdown">
@@ -77,9 +76,9 @@
 									<div
 										class="dropdown-menu dropdown-menu-right dropdown-menu-w-100"
 										aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item" href="#" value='ALL'>Tất Cả</a>
+										<a class="dropdown-item" href="#" value='ALL'>Tất cả</a>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#" value=''>Tìm Môn Học</a>
+										<a class="dropdown-item" href="#" value=''>Tìm môn học</a>
 
 									</div>
 								</div>
@@ -88,8 +87,8 @@
 
 						<div class="d-block col-md-12 col-lg-6 filter-item mt-3"
 							id="filter-type">
-							<h6 class="m-0 font-weight-bold text-primary col-9">Loại Câu
-								Hỏi</h6>
+							<h6 class="m-0 font-weight-bold text-primary col-9">Loại câu hỏi
+								</h6>
 							<div class="input-group col-lg-11 col-md-12 d-flex mt-3">
 								<input class="form-control" type="text" val='ALL' readonly>
 								<div class="input-group-append border-0 dropdown">
@@ -100,16 +99,16 @@
 									<div
 										class="dropdown-menu dropdown-menu-right dropdown-menu-w-100"
 										aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item" href="#" value='ALL'>Tất Cả</a>
+										<a class="dropdown-item" href="#" value='ALL'>Tất cả</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="#" value='ONE_CHOICE'>Một
-											Đáp Án</a>
+											đáp án</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="#" value='MULTIPLE_CHOICE'>Nhiều
-											Đáp Án</a>
+											đáp án</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="#" value='FILL_WORD'>Điền
-											Từ</a>
+											từ</a>
 									</div>
 								</div>
 							</div>
@@ -117,7 +116,7 @@
 
 						<div class="d-block col-md-12 col-lg-6 filter-item mt-3"
 							id="filter-level">
-							<h6 class="m-0 font-weight-bold text-primary col-9">Độ Khó</h6>
+							<h6 class="m-0 font-weight-bold text-primary col-9">Độ khó</h6>
 							<div class="input-group col-lg-11 col-md-12 d-flex mt-3">
 								<input class="form-control" type="text" val='ALL' readonly>
 								<div class="input-group-append border-0 dropdown">
@@ -128,11 +127,11 @@
 									<div
 										class="dropdown-menu dropdown-menu-right dropdown-menu-w-100"
 										aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item" href="#" value="ALL">Tất Cả</a>
+										<a class="dropdown-item" href="#" value="ALL">Tất cả</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="#" value="0">Dễ</a>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#" value="1">Trung Bình</a>
+										<a class="dropdown-item" href="#" value="1">Trung bình</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="#" value="2">Khó</a>
 									</div>
@@ -155,7 +154,7 @@
 						class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 						<h6
 							class="m-0 font-weight-bold text-primary text-responsive-lg d-none d-sm-block"">Danh
-							Sách Câu hỏi</h6>
+							sách câu hỏi</h6>
 						<div class="m-0"></div>
 						<div class="d-flex">
 							<button class="btn btn-copy text-success btn-control">
@@ -191,17 +190,17 @@
 																	aria-expanded="false"></div>
 																<div class="dropdown-menu"
 																	aria-labelledby="dropdownMenuButton">
-																	<a class="dropdown-item" id="select-all">Chọn Tất
-																		Cả</a> <a class="dropdown-item" id="deselect-all">Bỏ
-																		Chọn Tất Cả</a>
+																	<a class="dropdown-item" id="select-all">Chọn tất
+																		cả</a> <a class="dropdown-item" id="deselect-all">Bỏ
+																		chọn tất cả</a>
 																</div>
 															</div>
 														</th>
 														<th class="table-cell column1">STT</th>
-														<th class="table-cell column2">Môn Học</th>
-														<th class="table-cell column3">Tên Câu Hỏi</th>
-														<th class="table-cell column4 ">Nội Dung</th>
-														<th class="table-cell column5">Tùy Chọn</th>
+														<th class="table-cell column2">Môn học</th>
+														<th class="table-cell column3">Tên câu hỏi</th>
+														<th class="table-cell column4 ">Nội dung</th>
+														<th class="table-cell column5">Tùy chọn</th>
 
 													</tr>
 
@@ -279,7 +278,7 @@
 		<div class="modal-content" style="min-height: 50vh;">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Chi Tiết Câu Hỏi</p>
+				<p class="heading lead">Chi tiết câu hỏi</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -292,18 +291,18 @@
 				<div class="" id='question-detail-container'>
 					<div class="descriptor row p-4">
 						<div class="col-6 row d-flex">
-							<span class='text-gray-600  col-6'>ID Câu Hỏi</span> <span
+							<span class='text-gray-600  col-6'>ID câu hỏi</span> <span
 								class='text-primary  col-6' field='id'></span>
 						</div>
 						<div class="col-6 row d-flex">
-							<span class='text-gray-600  col-6'>Tên Câu Hỏi</span> <span
+							<span class='text-gray-600  col-6'>Tên câu hỏi</span> <span
 								class='text-primary  col-6' field='name'></span>
 						</div>
 					</div>
 					<div class="descriptor row p-4">
 						<div class="col-6 row d-flex">
 							<div class="col-6">
-								<span class='text-gray-600 '>Môn Học</span>
+								<span class='text-gray-600 '>Môn học</span>
 							</div>
 							<div class="col-6">
 								<span class='text-primary ' field='category.subject.subjectName'></span>
@@ -317,11 +316,11 @@
 					</div>
 					<div class="descriptor row p-4">
 						<div class="col-6 row d-flex">
-							<span class='text-gray-600  col-6'>Độ Khó</span> <span
+							<span class='text-gray-600  col-6'>Độ khó</span> <span
 								class='text-primary  col-6' field='level'></span>
 						</div>
 						<div class="col-6 row d-flex">
-							<span class='text-gray-600  col-6'>Loại Câu Hỏi</span> <span
+							<span class='text-gray-600  col-6'>Loại câu hỏi</span> <span
 								class='text-primary  col-6' field='type'></span>
 						</div>
 					</div>
@@ -330,8 +329,7 @@
 							<div class="w-100 d-block" field='content'></div>
 						</div>
 						<div class="row mt-3">
-							<span class='text-lg' style="font-weight: 900;">Câu Trả
-								Lời</span>
+							<span class='text-lg' style="font-weight: 900;">Câu trả lời</span>
 						</div>
 
 						<div class='w-100' id='question-detail-answer' field='answer'>
@@ -379,7 +377,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header bg-info">
-				<p class="heading lead">Xác Nhận</p>
+				<p class="heading lead">Xác nhận</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -415,7 +413,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Chọn Môn Học</p>
+				<p class="heading lead">Chọn môn học</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -488,7 +486,7 @@
 							class="btn  waves-effect btn-submit disabled"
 							id='btn-select-subject'>Chọn</a> <a type="button"
 							class="btn  waves-effect btn-submit disabled hidden"
-							id='btn-select-subject-copy'>Tiếp Tục</a>
+							id='btn-select-subject-copy'>Tiếp tục</a>
 					</div>
 				</div>
 			</div>
@@ -506,7 +504,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Chọn Danh Mục</p>
+				<p class="heading lead">Chọn danh mục</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -519,7 +517,7 @@
 			<div class="modal-body p-4">
 				<div class="row mt-3">
 					<div class='col-2'>
-						<label>Danh Mục (*)</label>
+						<label>Danh mục (*)</label>
 					</div>
 
 					<div class="form-group col-9">
@@ -533,7 +531,7 @@
 					<div class="d-flex justify-content-center">
 						<a type="button" class="btn waves-effect btn-cancel"
 							data-dismiss="modal">Hủy</a><a type="button"
-							class="btn  waves-effect btn-submit">Xác Nhận</a>
+							class="btn  waves-effect btn-submit">Xác nhận</a>
 					</div>
 				</div>
 			</div>
@@ -555,7 +553,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Chọn Giảng Viên</p>
+				<p class="heading lead">Chọn giảng viên</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -624,7 +622,7 @@
 					<div class="d-flex justify-content-center">
 						<a type="button" class="btn  waves-effect btn-cancel"
 							data-dismiss="modal">Hủy</a><a type="button"
-							class="btn  waves-effect btn-submit disabled">Tiếp Tục</a>
+							class="btn  waves-effect btn-submit disabled">Tiếp tục</a>
 					</div>
 				</div>
 			</div>
@@ -642,7 +640,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thêm Danh Mục</p>
+				<p class="heading lead">Thêm danh mục</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -657,12 +655,12 @@
 						<div class="form-v4-content">
 							<form class="form-detail" action="#" method="post"
 								id="form-add-new">
-								<h2>Thông Tin Danh Mục</h2>
+								<h2>Thông tin danh mục</h2>
 
 								<div class="form-row">
-									<label for="code">Tên Danh Mục (*)</label> <input type="text"
+									<label for="code">Tên danh mục (*)</label> <input type="text"
 										name="name" class="input-text" required> <label
-										name="name-error" class="error hidden">Tên Danh Mục Trống</label>
+										name="name-error" class="error hidden">Tên danh mục trống</label>
 
 								</div>
 

@@ -15,6 +15,7 @@
 		<ul class="navbar-nav ml-auto">
 			<div class="topbar-divider d-none d-sm-block"></div>
 			<!-- Nav Item - User Information -->
+			<!-- Nav Item - User Information -->
 			<li class="nav-item dropdown no-arrow"><a
 				class="nav-link dropdown-toggle" href="#" id="userDropdown"
 				data-toggle="dropdown"><img
@@ -23,16 +24,16 @@
 					src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
 					<span
 					class="mr-2 d-none d-lg-inline text-gray-600 small user-full-name">Tài
-						Khoản</span> </a> <!-- Dropdown - User Information -->
+						khoản</span> </a> <!-- Dropdown - User Information -->
 				<div
 					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 					aria-labelledby="userDropdown">
 					<a class="dropdown-item" href="#" id="btn-edit-profile"> <i
-						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập Nhật
-						Thông Tin
+						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập nhật
+						thông tin
 					</a> <a class="dropdown-item" href="#" id="btn-change-password"> <i
-						class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
-						Khẩu
+						class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi mật
+						khẩu
 					</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="<c:url value='/logout'/>"> <i
@@ -46,18 +47,18 @@
 	<!-- End of Topbar -->
 	<div class="container-fluid">
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h4 mb-0 text-gray-600">Cập Nhật Bài Thi</h1>
+			<h1 class="h4 mb-0 text-gray-600">Cập nhật bài thi</h1>
 		</div>
 		<!-- filter -->
 		<div class="card mb-4 py-3 border-left-info" id="exampaper-info">
 			<div class="card-body">
 				<h5 class="mb-4 font-weight-bold text-primary col-12 text-center">Thông
-					Tin Bài Thi</h5>
+					tin bài thi</h5>
 
 				<form class=" ">
 					<div class="form-group row mt-3">
 						<label for="inputName" class="col-2 col-form-label">Tên
-							Bài Thi (*)</label>
+							bài thi (*)</label>
 						<div class="col-9">
 							<input type="text" class="form-control" id="input-name" required>
 						</div>
@@ -75,10 +76,11 @@
 						<div class="col-1"></div>
 					</div>
 				</form>
-				
+
 				<form class=" ">
 					<div class="form-group row mt-3">
-						<label for="inputName" class="col-2 col-form-label">Thang Điểm (*)</label>
+						<label for="inputName" class="col-2 col-form-label">Thang
+							Điểm (*)</label>
 						<div class="col-9">
 							<input type="text" class="form-control" id="input-grade" required>
 						</div>
@@ -102,7 +104,7 @@
 
 				<div class="form-group row">
 					<label for="example-datetime-local-input"
-						class="col-2 col-form-label">Thời Gian Đóng (*)</label>
+						class="col-2 col-form-label">Thời gian đóng (*)</label>
 					<div class="col-9">
 						<div class="date form_datetime" id='time-close'>
 							<input class="form-control" type="text" id='input-time-close'
@@ -116,7 +118,7 @@
 
 				<form>
 					<div class="form-group row mt-3">
-						<label for="inputName" class="col-2 col-form-label">Mô Tả</label>
+						<label for="inputName" class="col-2 col-form-label">Mô tả</label>
 						<div class="col-9">
 							<textarea class="form-control" id="input-descriptor" rows="3"></textarea>
 						</div>
@@ -132,7 +134,7 @@
 	<div class='hidden course-list'>
 		<div class="card mb-4">
 			<div class="card-body ">
-				<h5 class="h6 mb-0 text-gray-600 mb-4">Danh Sách Lớp</h5>
+				<h5 class="h6 mb-0 text-gray-600 mb-4">Danh sách lớp</h5>
 
 				<div id="course-list-container">
 					<div class='hidden' id='course-item-sample'>
@@ -180,7 +182,7 @@
 
 						<div class="dropdown">
 							<button class="btn btn-success btn-select-course btn-sm"
-								type="button">Thêm Lớp</button>
+								type="button">Thêm lớp</button>
 
 						</div>
 					</div>
@@ -196,7 +198,7 @@
 	<div>
 		<div class="card mb-4">
 			<div class="card-body ">
-				<h5 class="h6 mb-0 text-gray-600 mb-4">Kho Câu Hỏi</h5>
+				<h5 class="h6 mb-0 text-gray-600 mb-4">Kho câu hỏi</h5>
 
 				<div id="question-list-container">
 					<div class='hidden' id='question-item-sample'>
@@ -255,12 +257,12 @@
 						<div class="dropdown">
 							<button class="btn btn-success dropdown-toggle btn-sm"
 								type="button" id="dropdownMenuButton" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false">Thêm Câu Hỏi</button>
+								aria-haspopup="true" aria-expanded="false">Thêm câu hỏi</button>
 							<div class="dropdown-menu dropdown-menu-right"
 								aria-labelledby="dropdownMenuButton">
 								<a class="dropdown-item btn-select-question" href="#">Ngân
-									Hàng Câu hỏi</a> <a class="dropdown-item btn-random-question"
-									href="#">Ngẫu Nhiên</a>
+									hàng câu hỏi</a> <a class="dropdown-item btn-random-question"
+									href="#">Ngẫu nhiên</a>
 							</div>
 						</div>
 					</div>
@@ -277,7 +279,7 @@
 	<div id='exam-filter'>
 		<div class="card mb-4">
 			<div class="card-body ">
-				<h5 class="h6 mb-0 text-gray-600 mb-4">Bộ Lọc Tạo Đề Thi</h5>
+				<h5 class="h6 mb-0 text-gray-600 mb-4">Bộ lọc tạo đề thi</h5>
 
 				<div id="exam-filter-container">
 					<div class='' id='exam-filter-item-sample'>
@@ -285,7 +287,7 @@
 							<div class="card-body p-2 mt-1 mb-1">
 								<div class='row d-flex justify-content-start'>
 									<div class="d-flex col-lg-2 col-md-2 align-self-center">
-										Số Lượng Câu Hỏi Dễ</div>
+										Số lượng câu hỏi dễ</div>
 									<div class="d-flex col-lg-2 col-md-2 align-self-center">
 										<div class="form-group m-0 col-12">
 											<div>
@@ -315,7 +317,7 @@
 							<div class="card-body p-2 mt-1 mb-1">
 								<div class='row d-flex justify-content-start'>
 									<div class="d-flex col-lg-2 col-md-2 align-self-center">
-										Số Lượng Câu Hỏi TB</div>
+										Số lượng câu hỏi TB</div>
 									<div class="d-flex col-lg-2 col-md-2 align-self-center">
 										<div class="form-group m-0 col-12">
 											<div>
@@ -344,7 +346,7 @@
 							<div class="card-body p-2 mt-1 mb-1">
 								<div class='row d-flex justify-content-start'>
 									<div class="d-flex col-lg-2 col-md-2 align-self-center">
-										Số Lượng Câu Hỏi Khó</div>
+										Số lượng câu hỏi khó</div>
 									<div class="d-flex col-lg-2 col-md-2 align-self-center">
 										<div class="form-group m-0 col-12">
 											<div>

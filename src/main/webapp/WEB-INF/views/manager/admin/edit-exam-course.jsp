@@ -39,16 +39,16 @@
 						src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
 						<span
 						class="mr-2 d-none d-lg-inline text-gray-600 small user-full-name">Tài
-							Khoản</span> </a> <!-- Dropdown - User Information -->
+							khoản</span> </a> <!-- Dropdown - User Information -->
 					<div
 						class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 						aria-labelledby="userDropdown">
-						<a class="dropdown-item" href="#"> <i
-							class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập Nhật
-							Thông Tin
-						</a> <a class="dropdown-item" href="#"> <i
-							class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
-							Khẩu
+						<a class="dropdown-item" href="#" id="btn-edit-profile"> <i
+							class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập nhật
+							thông tin
+						</a> <a class="dropdown-item" href="#" id="btn-change-password"> <i
+							class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi mật
+							khẩu
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<c:url value='/logout'/>"> <i
@@ -63,14 +63,14 @@
 		<div class="container-fluid">
 			<div
 				class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h4 mb-0 text-gray-600">Gán Lớp Học</h1>
+				<h1 class="h4 mb-0 text-gray-600">Gán lớp học</h1>
 			</div>
-			
+
 
 			<div>
 				<div class="card mb-4">
 					<div class="card-body ">
-						<h5 class="h6 mb-0 text-gray-600 mb-4">Danh Sách Lớp</h5>
+						<h5 class="h6 mb-0 text-gray-600 mb-4">Danh sách lớp</h5>
 
 						<div id="course-list-container">
 							<div class='hidden' id='course-item-sample'>
@@ -85,15 +85,14 @@
 
 											</div>
 
-											
-											<div
-												class="row col-lg-2 col-md-2 justify-content-end d-flex">
-												
+
+											<div class="row col-lg-2 col-md-2 justify-content-end d-flex">
+
 												<button
 													class="m-0 btn btn-delete text-danger btn-control col-3">
 													<i class="fas fa-trash"></i>
 												</button>
-												
+
 
 											</div>
 										</div>
@@ -118,8 +117,8 @@
 							<div class='d-flex'>
 
 								<div class="dropdown">
-									<button class="btn btn-success btn-select-course btn-sm" type="button">Thêm
-										Lớp</button>
+									<button class="btn btn-success btn-select-course btn-sm"
+										type="button">Thêm lớp</button>
 
 								</div>
 							</div>
@@ -140,7 +139,7 @@
 
 		<div class='row d-flex justify-content-center mt-4'>
 			<button type="button" class="btn btn-primary btn-submit"
-				id="btn-submit-exam">Cập Nhật</button>
+				id="btn-submit-exam">Cập nhật</button>
 		</div>
 		<!-- end table -->
 	</div>
@@ -154,7 +153,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Chọn Lớp Học</p>
+				<p class="heading lead">Chọn lớp học</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -191,7 +190,7 @@
 							<div class="col-6 row d-flex ">
 								<div class="col-6">
 									<span class=' pl-1 m-0 font-weight-bold text-primary'>Môn
-										Học</span>
+										học</span>
 								</div>
 								<div class="col-6">
 									<span class='text-primary subject-info'></span>
@@ -222,15 +221,15 @@
 													aria-expanded="false"></div>
 												<div class="dropdown-menu"
 													aria-labelledby="dropdownMenuButton">
-													<a class="dropdown-item" id="check-all">Chọn Tất Cả</a> <a
-														class="dropdown-item" id="un-check-all">Bỏ Chọn Tất Cả</a>
+													<a class="dropdown-item" id="check-all">Chọn tất cả</a> <a
+														class="dropdown-item" id="un-check-all">Bỏ chọn tất cả</a>
 												</div>
 											</div>
 										</th>
 										<th class='column1'>STT</th>
-										<th class='column2'>Mã Lớp</th>
-										<th class='column3'>Tên Lớp</th>
-										<th class='column4'>Mô Tả</th>
+										<th class='column2'>Mã lớp</th>
+										<th class='column3'>Tên lớp</th>
+										<th class='column4'>Mô tả</th>
 									</tr>
 								</thead>
 
@@ -287,7 +286,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header bg-warning">
-				<p class="heading lead">Cảnh Báo</p>
+				<p class="heading lead">Cảnh báo</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -297,8 +296,7 @@
 
 			<!--Body-->
 			<div class="modal-body border-top my-3">
-				<div class="message">Bạn Có Muốn Tiếp Tục Xóa Câu Hỏi Khỏi Đề
-					Thi ?</div>
+				<div class="message">Bạn có muốn tiếp tục xóa câu hỏi khỏi đề thi ?</div>
 
 				<div class="border-top my-3"></div>
 				<div class="d-flex justify-content-center">
@@ -320,7 +318,8 @@
 <script src="<c:url value='/resources/commons/js/base.js' />"></script>
 <script src="<c:url value='/resources/commons/js/pagination.js' />"></script>
 <script src="<c:url value='/resources/manager/commons/js/search.js' />"></script>
-<script src="<c:url value='/resources/manager/admin/js/edit-exam-course.js' />"></script>
+<script
+	src="<c:url value='/resources/manager/admin/js/edit-exam-course.js' />"></script>
 <!-- Footer -->
 
 <jsp:include page="/WEB-INF/views/manager/commons/footer.jsp"></jsp:include>

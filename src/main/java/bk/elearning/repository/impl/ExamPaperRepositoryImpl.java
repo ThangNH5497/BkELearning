@@ -40,7 +40,7 @@ public class ExamPaperRepositoryImpl extends AbstractGenericRepository<ExamPaper
 
 			Query qCount = session.createQuery("SELECT COUNT(distinct ep.id) " + hqlQuery);
 
-			q.setFirstResult(start);
+			q.setFirstResult(start*size);
 			q.setMaxResults(size);
 			if (teacherFilter.equals("ALL")) {
 				q.setParameter("bankType", Constant.BANK_TYPE_TEACHER);
@@ -93,7 +93,7 @@ public class ExamPaperRepositoryImpl extends AbstractGenericRepository<ExamPaper
 			Query qCount = session.createQuery("SELECT COUNT(distinct ep.id) " + hqlQuery);
 			q.setParameter("key", key);
 			qCount.setParameter("key", key);
-			q.setFirstResult(start);
+			q.setFirstResult(start*size);
 			q.setMaxResults(size);
 			if (teacherFilter.equals("ALL")) {
 				q.setParameter("bankType", Constant.BANK_TYPE_TEACHER);
@@ -138,7 +138,7 @@ public class ExamPaperRepositoryImpl extends AbstractGenericRepository<ExamPaper
 
 			Query qCount = session.createQuery("SELECT COUNT(distinct ep.id) " + hqlQuery);
 
-			q.setFirstResult(start);
+			q.setFirstResult(start*size);
 			q.setMaxResults(size);
 			q.setParameter("bankType", Constant.BANK_TYPE_ADMIN);
 			qCount.setParameter("bankType", Constant.BANK_TYPE_ADMIN);
@@ -180,7 +180,7 @@ public class ExamPaperRepositoryImpl extends AbstractGenericRepository<ExamPaper
 			Query qCount = session.createQuery("SELECT COUNT(distinct ep.id) " + hqlQuery);
 			q.setParameter("key", key);
 			qCount.setParameter("key", key);
-			q.setFirstResult(start);
+			q.setFirstResult(start*size);
 			q.setMaxResults(size);
 			q.setParameter("bankType", Constant.BANK_TYPE_ADMIN);
 			qCount.setParameter("bankType", Constant.BANK_TYPE_ADMIN);

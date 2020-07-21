@@ -29,7 +29,7 @@
 				style="font-weight: 600;" id='link-back-search'>
 				<span class="navbar-text"> <i class="fas fa-link"></i> <a
 					class='text-primary' href="<c:url value='/admin/ql-mon-hoc' />">Quản
-						Lý Môn Học</a><span> / Tìm Kiếm</span>
+						lý môn học</a><span> / Tìm kiếm</span>
 				</span>
 			</nav>
 			<div class="row ">
@@ -40,8 +40,7 @@
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary text-responsive-lg d-none d-sm-block"">Danh Sách Môn
-								Học</h6>
+							<h6 class="m-0 font-weight-bold text-primary text-responsive-lg d-none d-sm-block"">Danh sách môn học</h6>
 							<div class="m-0"></div>
 							<div class="d-flex">
 								<button class="btn btn-add text-success btn-control"
@@ -85,17 +84,17 @@
 																		aria-expanded="false"></div>
 																	<div class="dropdown-menu"
 																		aria-labelledby="dropdownMenuButton">
-																		<a class="dropdown-item" id="select-all">Chọn Tất
-																			Cả</a> <a class="dropdown-item" id="deselect-all">Bỏ
-																			Chọn Tất Cả</a>
+																		<a class="dropdown-item" id="select-all">Chọn tất
+																			cả</a> <a class="dropdown-item" id="deselect-all">Bỏ
+																			chọn tất cả</a>
 																	</div>
 																</div>
 															</th>
 															<th class="table-cell column1">STT</th>
-															<th class="table-cell column2">Mã Học Phần</th>
-															<th class="table-cell column3">Tên Học Phần</th>
-															<th class="table-cell column4">Mô Tả</th>
-															<th class="table-cell column5">Tùy Chọn</th>
+															<th class="table-cell column2">Mã học phần</th>
+															<th class="table-cell column3">Tên học phần</th>
+															<th class="table-cell column4">Mô tả</th>
+															<th class="table-cell column5">Tùy chọn</th>
 
 														</tr>
 
@@ -108,7 +107,7 @@
 													<tbody id="table-data-body">
 														<h5 id='data-empty-alert'
 															class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
-															Có Dữ Liệu</h5>
+															có dữ liệu</h5>
 														<tr class="table-row body hidden" id="row-data-container">
 
 															<td class="table-cell column0" field='checkBox'><div
@@ -168,7 +167,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thêm Môn Học</p>
+				<p class="heading lead">Thêm môn học</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -183,22 +182,21 @@
 						<div class="form-v4-content">
 							<form class="form-detail" action="#" method="post"
 								id="form-add-new">
-								<h2>Thông Tin Môn Học</h2>
+								<h2>Thông tin môn học</h2>
 								<div class="form-group">
 									<div class="form-row form-row-1">
-										<label for="code">Mã Môn Học (*)</label> <input type="text"
+										<label for="code">Mã môn học (*)</label> <input type="text"
 											name="code" class="input-text" required> <label
-											name="code-error" class="error hidden">Mã Môn Học Tồn
-											Tại</label>
+											name="code-error" class="error hidden">Mã môn học tồn tại</label>
 									</div>
 									<div class="form-row form-row-1">
-										<label for="subjectName">Tên Môn Học (*)</label> <input
+										<label for="subjectName">Tên môn học (*)</label> <input
 											type="text" name="subjectName" class="input-text" required>
 									</div>
 								</div>
 
 								<div class="form-row">
-									<label for="descriptor">Mô Tả</label> <input type="text"
+									<label for="descriptor">Mô tả</label> <input type="text"
 										name="descriptor" class=" input-text">
 
 								</div>
@@ -229,7 +227,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thêm Môn Học</p>
+				<p class="heading lead">Sửa thông tin môn học</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -243,22 +241,21 @@
 					<div class="form-v4">
 						<div class="form-v4-content">
 							<form class="form-detail" action="#" method="post" id="form-edit">
-								<h2>Sửa Thông Tin Môn Học</h2>
+								<h2>Sửa thông tin môn học</h2>
 								<div class="form-group">
 									<div class="form-row form-row-1">
-										<label for="code">Mã Môn Học (*)</label> <input type="text"
+										<label for="code">Mã môn học (*)</label> <input type="text"
 											name="code" class="input-text" required> <label
-											name="code-error" class="error hidden">Mã Môn Học Tồn
-											Tại</label>
+											name="code-error" class="error hidden">Mã môn học tồn tại</label>
 									</div>
 									<div class="form-row form-row-1">
-										<label for="subjectName">Tên Môn Học (*)</label> <input
+										<label for="subjectName">Tên môn học (*)</label> <input
 											type="text" name="subjectName" class="input-text" required>
 									</div>
 								</div>
 
 								<div class="form-row">
-									<label for="descriptor">Mô Tả</label> <input type="text"
+									<label for="descriptor">Mô tả</label> <input type="text"
 										name="descriptor" class=" input-text">
 
 								</div>
@@ -291,7 +288,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header bg-warning">
-				<p class="heading lead">Cảnh Báo</p>
+				<p class="heading lead">Cảnh báo</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -301,7 +298,7 @@
 
 			<!--Body-->
 			<div class="modal-body border-top my-3">
-				<div class="message">Bạn Có Muốn Tiếp Tục Xóa ?</div>
+				<div class="message">Bạn có muốn tiếp tục xóa ?</div>
 
 				<div class="border-top my-3"></div>
 				<div class="d-flex justify-content-center">

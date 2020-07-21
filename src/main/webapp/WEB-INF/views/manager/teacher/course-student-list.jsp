@@ -25,16 +25,16 @@
 				style="font-weight: 600;" id="link-current">
 				<span class="navbar-text"> <i class="fas fa-link"></i> <a
 					class='text-primary' href="<c:url value='/teacher/ql-lop-hoc' />">Danh
-						Sách Lớp</a><span> / Danh Sách Sinh Viên</span>
+						sách lớp</a><span> / Danh sách sinh viên</span>
 				</span>
 			</nav>
 			<nav class="col-10 navbar navbar-light bg-light hidden"
 				style="font-weight: 600;" id='link-back-search'>
 				<span class="navbar-text"> <i class="fas fa-link"></i> <a
 					class='text-primary' href="<c:url value='/admin/ql-mon-hoc' />">Danh
-						Sách Lớp</a><a class='text-primary'
-					href="javascript:location.reload(true)"> / Danh Sách Sinh Viên</a><span>
-						/ Tìm Kiếm</span>
+						sách lớp</a><a class='text-primary'
+					href="javascript:location.reload(true)"> / Danh sách sinh viên</a><span>
+						/ Tìm kiếm</span>
 				</span>
 			</nav>
 			<div class="row ">
@@ -91,9 +91,8 @@
 																		aria-expanded="false"></div>
 																	<div class="dropdown-menu"
 																		aria-labelledby="dropdownMenuButton">
-																		<a class="dropdown-item" id="select-all">Chọn Tất
-																			Cả</a> <a class="dropdown-item" id="deselect-all">Bỏ
-																			Chọn Tất Cả</a>
+																		<a class="dropdown-item" id="select-all">Chọn tất cả</a> <a class="dropdown-item" id="deselect-all">Bỏ
+																			chọn tất cả</a>
 																	</div>
 																</div>
 															</th>
@@ -102,7 +101,7 @@
 															<th class="table-cell column3">Họ&Tên</th>
 															<th class="table-cell column4">Lớp</th>
 															<th class="table-cell column5">Email</th>
-															<th class="table-cell column6">Ngày Sinh</th>
+															<th class="table-cell column6">Ngày sinh</th>
 
 														</tr>
 
@@ -115,7 +114,7 @@
 													<tbody id="table-data-body">
 														<h5 id='data-empty-alert'
 															class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
-															Có Dữ Liệu</h5>
+															có dữ liệu</h5>
 														<tr class="table-row body hidden border-bottom border-top"
 															id="row-data-container">
 
@@ -156,7 +155,7 @@
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary">Chi Tiết</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Chi tiết</h6>
 							
 						</div>
 						<!-- Card Body -->
@@ -236,7 +235,7 @@
 												<div class="border-top my-3"></div>
 												<div class="row">
 													<div class="col-md-4">
-														<label>Địa Chỉ</label>
+														<label>Địa chỉ</label>
 													</div>
 													<div class="col-md-8">
 														<p field="addr"></p>
@@ -247,7 +246,7 @@
 												<div class="border-top my-3"></div>
 												<div class="row">
 													<div class="col-md-4">
-														<label>Ngày Sinh</label>
+														<label>Ngày sinh</label>
 													</div>
 													<div class="col-md-8">
 														<p field="dateOfBirth"></p>
@@ -283,7 +282,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thêm Sinh Viên Vào Lớp</p>
+				<p class="heading lead">Thêm sinh viên vào lớp</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -297,10 +296,10 @@
 					<li class="nav-item"><a class="nav-link active"
 						id="add-one-tab-btn" data-toggle="tab" href="#add-one-tab"
 						role="tab" aria-controls="tab-add" aria-selected="true">Thêm
-							Thủ Công</a></li>
+							thủ công</a></li>
 					<li class="nav-item"><a class="nav-link" id="add-exel-tab-btn"
 						data-toggle="tab" href="#add-exel-tab" role="tab"
-						aria-controls="profile" aria-selected="false">Import file Exel</a></li>
+						aria-controls="profile" aria-selected="false">Import file Excel</a></li>
 
 				</ul>
 				<div class="tab-content">
@@ -312,12 +311,12 @@
 								<div class="form-v4-content">
 									<form class="form-detail" action="#" method="post"
 										id="form-student">
-										<h2>Thông Tin Sinh Viên</h2>
+										<h2>Thông tin sinh viên</h2>
 										<div class="form-row">
-											<label for="code">Mã Sinh Viên</label> <input type="text"
+											<label for="code">Mã sinh viên</label> <input type="text"
 												class=" input-text student-code" name="teacher.code">
 											<label name="code-error" id="student-code-error"
-												class="error hidden">Mã Sinh Viên Không Tồn Tại</label>
+												class="error hidden">Sinh viên không tồn tại</label>
 
 										</div>
 										<div
@@ -367,7 +366,7 @@
 													</div>
 													<div class="row h-50">
 														<div class="col-md-4 align-self-center">
-															<label>Ngày Sinh</label>
+															<label>Ngày sinh</label>
 														</div>
 														<div class="col-md-8 align-self-center">
 
@@ -400,12 +399,12 @@
 							<div class="form-v4">
 								<div class="form-v4-content">
 									<form class="form-detail" id="form-exel-file">
-										<h2>Thêm Danh Sách Sinh Viên Từ File Exel</h2>
+										<h2>Thêm sinh viên từ file Excel</h2>
 
 										<div
 											class="hidden alert alert-danger alert-dismissible fade show"
 											role="alert" id='alert-file-exel'>
-											<strong>Cảnh Báo !</strong> Bạn Chưa Chọn File.
+											<strong>Cảnh báo!</strong> Bạn chưa chọn file.
 											<button type="button" class="close" data-dismiss="alert"
 												aria-label="Close">
 												<span aria-hidden="true">&times;</span>
@@ -426,7 +425,7 @@
 							<div class="d-flex justify-content-center">
 								<a type="button" class="btn  waves-effect btn-cancel"
 									data-dismiss="modal">Hủy</a> <a type="button"
-									class="btn  waves-effect btn-submit-file-exel">Tải Lên</a>
+									class="btn  waves-effect btn-submit-file-exel">Tải lên</a>
 							</div>
 						</div>
 
@@ -452,7 +451,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header bg-warning">
-				<p class="heading lead">Cảnh Báo</p>
+				<p class="heading lead">Cảnh báo</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -462,7 +461,7 @@
 
 			<!--Body-->
 			<div class="modal-body border-top my-3">
-				<div class="message">Bạn Có Muốn Tiếp Tục Xóa ?</div>
+				<div class="message">Bạn có muốn tiếp tục xóa?</div>
 
 				<div class="border-top my-3"></div>
 				<div class="d-flex justify-content-center">
@@ -488,7 +487,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Đang Xử Lý...</p>
+				<p class="heading lead">Đang xử lý...</p>
 
 			</div>
 
@@ -526,7 +525,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thông Tin Giảng Viên</p>
+				<p class="heading lead">Thông tin giảng viên</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -613,7 +612,7 @@
 											<div class="border-top my-3"></div>
 											<div class="row">
 												<div class="col-md-4">
-													<label>Địa Chỉ</label>
+													<label>Địa chỉ</label>
 												</div>
 												<div class="col-md-8">
 													<p field="addr"></p>
@@ -624,7 +623,7 @@
 											<div class="border-top my-3"></div>
 											<div class="row">
 												<div class="col-md-4">
-													<label>Ngày Sinh</label>
+													<label>Ngày sinh</label>
 												</div>
 												<div class="col-md-8">
 													<p field="dateOfBirth"></p>

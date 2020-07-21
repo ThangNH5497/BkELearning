@@ -9,7 +9,7 @@
 		<div
 			class="d-flex align-items-center justify-content-between mb-4 row">
 			<h1 class="col-8 h5 mb-0 text-gray-600" id='table-title'>Danh
-				Sách Bài Thi</h1>
+				sách bài thi</h1>
 			<a href="#" class=" col-1 btn btn-sm btn-primary shadow-sm btn-add"><i
 				class="fas fa-plus fa-sm text-white-50"></i>Thêm</a>
 		</div>
@@ -32,7 +32,7 @@
 					class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6
 						class="m-0 font-weight-bold text-primary text-responsive-lg d-none d-sm-block"">Danh
-						Sách Bài Thi</h6>
+						sách bài thi</h6>
 					<div class="m-0"></div>
 					<div class="d-flex">
 						<button class="btn btn-result text-success btn-control ">
@@ -70,22 +70,21 @@
 																aria-expanded="false"></div>
 															<div class="dropdown-menu"
 																aria-labelledby="dropdownMenuButton">
-																<a class="dropdown-item" id="select-all">Chọn Tất Cả</a>
-																<a class="dropdown-item" id="deselect-all">Bỏ Chọn
-																	Tất Cả</a>
+																<a class="dropdown-item" id="select-all">Chọn tất cả</a>
+																<a class="dropdown-item" id="deselect-all">Bỏ chọn tất cả</a>
 															</div>
 														</div>
 													</th>
 													<th class="table-cell column1">Mã</th>
 													<th class="table-cell column2">Tên</th>
 													<th class="table-cell column3">TG</th>
-													<th class="table-cell column4">Ngày Tạo</th>
-													<th class="table-cell column5">Ngày Sửa</th>
-													<th class="table-cell column6">TG Mở</th>
-													<th class="table-cell column7">TG Đóng</th>
-													<th class="table-cell column8">Trạng Thái</th>
-													<th class="table-cell column9">Phạm Vi</th>
-													<th class="table-cell column10">Tùy Chọn</th>
+													<th class="table-cell column4">Ngày tạo</th>
+													<th class="table-cell column5">Ngày sửa</th>
+													<th class="table-cell column6">TG mở</th>
+													<th class="table-cell column7">TG đóng</th>
+													<th class="table-cell column8">Trạng thái</th>
+													<th class="table-cell column9">Phạm vi</th>
+													<th class="table-cell column10">Tùy chọn</th>
 
 												</tr>
 
@@ -169,7 +168,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header bg-warning">
-				<p class="heading lead">Cảnh Báo</p>
+				<p class="heading lead">Cảnh báo</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -179,7 +178,7 @@
 
 			<!--Body-->
 			<div class="modal-body border-top my-3">
-				<div class="message">Bạn Có Muốn Tiếp Tục Xóa ?</div>
+				<div class="message">Bạn có muốn tiếp tục xóa ?</div>
 
 				<div class="border-top my-3"></div>
 				<div class="d-flex justify-content-center">
@@ -205,7 +204,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Chọn Môn Học</p>
+				<p class="heading lead">Chọn môn học</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -286,14 +285,14 @@
 	<!-- /.modal-dialog -->
 </div>
 <!-- modal add new Class-->
-
+<!-- 
 <div class="modal modal-reset fade" id="modal-add-new" tabindex="-1"
 	role="dialog" aria-labelledby="edit" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
-			<!--Header-->
+			Header
 			<div class="modal-header">
-				<p class="heading lead">Thêm Bài Thi</p>
+				<p class="heading lead">Thêm bài thi</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -301,20 +300,19 @@
 				</button>
 			</div>
 
-			<!--Body-->
+			Body
 			<div class="modal-body">
 				<div class="form-container">
 					<div class="form-v4">
 						<div class="form-v4-content">
 							<form class="form-detail" action="#" method="post"
 								id="form-add-new">
-								<h2>Thông Tin Lớp</h2>
+								<h2>Thông tin lớp</h2>
 								<div class="form-group">
 									<div class="form-row form-row-1">
-										<label for="code">Mã Lớp Học (*)</label> <input type="text"
+										<label for="code">Mã lớp học (*)</label> <input type="text"
 											name="code" class="input-text" required> <label
-											name="code-error" class="error hidden">Mã Môn Học Tồn
-											Tại</label>
+											name="code-error" class="error hidden">Mã mã lớp học</label>
 									</div>
 									<div class="form-row form-row-1">
 										<label for="subjectName">Tên Lớp Học (*)</label> <input
@@ -331,7 +329,7 @@
 							</form>
 						</div>
 					</div>
-					<!--Footer-->
+					Footer
 					<div class="border-top my-3"></div>
 					<div class="d-flex justify-content-center">
 						<a type="button" class="btn  waves-effect btn-cancel"
@@ -342,8 +340,8 @@
 			</div>
 
 		</div>
-		<!-- /.modal-content -->
+		/.modal-content
 	</div>
-	<!-- /.modal-dialog -->
-</div>
+	/.modal-dialog
+</div> -->
 

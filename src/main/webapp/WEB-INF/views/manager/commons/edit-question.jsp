@@ -20,6 +20,7 @@
 			<div class="topbar-divider d-none d-sm-block"></div>
 
 			<!-- Nav Item - User Information -->
+			<!-- Nav Item - User Information -->
 			<li class="nav-item dropdown no-arrow"><a
 				class="nav-link dropdown-toggle" href="#" id="userDropdown"
 				data-toggle="dropdown"><img
@@ -28,20 +29,19 @@
 					src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
 					<span
 					class="mr-2 d-none d-lg-inline text-gray-600 small user-full-name">Tài
-						Khoản</span> </a> <!-- Dropdown - User Information -->
+						khoản</span> </a> <!-- Dropdown - User Information -->
 				<div
 					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 					aria-labelledby="userDropdown">
 					<a class="dropdown-item" href="#" id="btn-edit-profile"> <i
-						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập Nhật
-						Thông Tin
+						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập nhật
+						thông tin
 					</a> <a class="dropdown-item" href="#" id="btn-change-password"> <i
-						class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
-						Khẩu
+						class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi mật
+						khẩu
 					</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#" data-toggle="modal"
-						data-target="#logoutModal"> <i
+					<a class="dropdown-item" href="<c:url value='/logout'/>"> <i
 						class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 						Logout
 					</a>
@@ -53,7 +53,7 @@
 	<!-- End of Topbar -->
 	<div class="container-fluid">
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h4 mb-0 text-gray-600">Chỉnh Sửa Câu Hỏi</h1>
+			<h1 class="h4 mb-0 text-gray-600">Chỉnh sửa câu hỏi</h1>
 			<a href="#" class="btn btn-reload btn-primary btn-icon-split btn-sm">
 				<span class="icon text-white-50"> <i class="fas fa-redo"></i>
 			</span> <span class="text">Reset</span>
@@ -63,11 +63,11 @@
 		<div class="card mb-4 py-3 border-left-info">
 			<div class="card-body">
 				<h5 class="mb-4 font-weight-bold text-primary col-12 text-center">Thông
-					Tin Câu Hỏi</h5>
+					tin câu hỏi</h5>
 				<div id="question-infor">
 					<div class="row">
 						<div class='col-2'>
-							<label>Môn Học</label>
+							<label>Môn học</label>
 						</div>
 
 						<div class="input-group col-9 mt-3">
@@ -85,7 +85,7 @@
 
 					<div class="form-group row mt-3">
 						<label for="inputName" class="col-2 col-form-label">Tên
-							Câu Hỏi</label>
+							câu hỏi</label>
 						<div class="col-9">
 							<input type="text" class="form-control" id="inputName" required
 								placeholder="name">
@@ -96,7 +96,7 @@
 
 					<div class="row mt-3">
 						<div class='col-2'>
-							<label>Danh Mục (*)</label>
+							<label>Danh mục (*)</label>
 						</div>
 
 						<div class="form-group col-9">
@@ -108,27 +108,27 @@
 
 					<div class="row">
 						<div class='col-2'>
-							<label>Loại Câu Hỏi</label>
+							<label>Loại câu hỏi</label>
 						</div>
 
 						<div class="form-group col-9">
 							<select class="form-control" id="question-type">
-								<option value='ONE_CHOICE'>Một Đáp Án</option>
-								<option value='MULTIPLE_CHOICE'>Nhiều Đáp Án</option>
-								<option value='FILL_WORD'>Điền Từ</option>
+								<option value='ONE_CHOICE'>Một đáp án</option>
+								<option value='MULTIPLE_CHOICE'>Nhiều đáp án</option>
+								<option value='FILL_WORD'>Điền từ</option>
 							</select>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class='col-2'>
-							<label>Độ Khó</label>
+							<label>Độ khó</label>
 						</div>
 
 						<div class="form-group col-9">
 							<select class="form-control" id="question-level">
 								<option value='0'>Dễ</option>
-								<option value='1' selected>Trung Bình</option>
+								<option value='1' selected>Trung bình</option>
 								<option value='2'>Khó</option>
 							</select>
 						</div>
@@ -144,11 +144,11 @@
 		<div class="card mb-4 py-3">
 			<div class="card-body pl-4">
 				<h5 class="mb-4 font-weight-bold text-primary col-12 text-center">Nội
-					Dung Câu Hỏi</h5>
+					dung câu hỏi</h5>
 				<div class="question-wrap mt-3">
 
 					<div class="d-flex row question">
-						<label class="col-2 text-lg">Câu Hỏi</label>
+						<label class="col-2 text-lg">Câu hỏi</label>
 						<div class="col-9 wrap-editor ">
 							<div id="question-editor"></div>
 						</div>
@@ -183,7 +183,7 @@
 
 		<div class='row d-flex justify-content-center mt-4'>
 			<button type="button" class="btn btn-success btn-submit"
-				id="btn-submit-question">Lưu Câu Hỏi</button>
+				id="btn-submit-question">Lưu câu hỏi</button>
 		</div>
 		<!-- end table -->
 	</div>
@@ -198,7 +198,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Chọn Môn Học</p>
+				<p class="heading lead">Chọn môn học</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -271,7 +271,8 @@
 							class="btn  waves-effect btn-submit disabled"
 							id='btn-submit-subject'>Chọn</a> <a type="button"
 							class="btn  waves-effect btn-submit disabled hidden"
-							style="margin-right: 10%;" id='btn-select-subject-import'>Tiếp Tục</a>
+							style="margin-right: 10%;" id='btn-select-subject-import'>Tiếp
+							tục</a>
 
 					</div>
 				</div>
@@ -291,7 +292,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header bg-success">
-				<p class="heading lead">Xác Nhận</p>
+				<p class="heading lead">Xác nhận</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -301,7 +302,7 @@
 
 			<!--Body-->
 			<div class="modal-body border-top my-3">
-				<div class="message">Bạn Có Muốn Tiếp Tục Lưu Thay Đổi ?</div>
+				<div class="message">Bạn có muốn lưu thay đổi ?</div>
 
 				<div class="border-top my-3"></div>
 				<div class="d-flex justify-content-center">

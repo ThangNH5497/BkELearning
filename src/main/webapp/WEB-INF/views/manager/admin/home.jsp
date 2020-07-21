@@ -17,8 +17,8 @@
 	<div id="content" class="mb-5">
 		<jsp:include page="/WEB-INF/views/manager/commons/topbar.jsp"></jsp:include>
 		<div class="container-fluid">
-			<h1 class="h3 p-4 mb-1 text-gray-800 text-center">Hệ Thống Quản
-				Trị BkELearning</h1>
+			<h1 class="h3 p-4 mb-1 text-gray-800 text-center">Hệ thống quản
+				trị BkELearning</h1>
 
 			<h3 class="h5  mb-1 text-center text-primary">Trang Admin</h3>
 
@@ -26,8 +26,8 @@
 				<div class="p-4 mb-4 col-md-6 col-sm-12 h-100">
 					<div class="card shadow p-4 h-100">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Quản Lý Giảng
-								Viên</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Quản lý giảng
+								viên</h6>
 						</div>
 						<div class="card-body">
 							<div class="text-center">
@@ -36,9 +36,9 @@
 									src="<c:url value='/resources/commons/image/icon/account-1.svg' />"
 									alt="">
 							</div>
-							<p>Quản Lý Các Tài Khoản Giảng Viên Trong Hệ Thống</p>
+							<p>Quản lý các tài khoản giảng viên trong hệ thống</p>
 							<a target="_blank" rel="nofollow"
-								href="<c:url value='/admin/ql-giang-vien'/>">Đi Đến →</a>
+								href="<c:url value='/admin/ql-giang-vien'/>">Đi đến →</a>
 						</div>
 					</div>
 				</div>
@@ -46,8 +46,7 @@
 				<div class="p-4 mb-4 col-md-6 col-sm-12 h-100">
 					<div class="card shadow p-4 h-100">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Quản Lý Sinh
-								Viên</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Quản lý sinh viên</h6>
 						</div>
 						<div class="card-body">
 							<div class="text-center">
@@ -56,9 +55,9 @@
 									src="<c:url value='/resources/commons/image/icon/account-2.svg' />"
 									alt="">
 							</div>
-							<p>Quản Lý Các Tài Khoản Sinh Viên Trong Hệ Thống</p>
+							<p>Quản lý các tài khoản sinh viên trong hệ thống</p>
 							<a target="_blank" rel="nofollow"
-								href="<c:url value='/admin/ql-sinh-vien'/>">Đi Đến →</a>
+								href="<c:url value='/admin/ql-sinh-vien'/>">Đi đến →</a>
 						</div>
 					</div>
 				</div>
@@ -67,8 +66,7 @@
 				<div class="p-4 mb-4 col-md-6 col-sm-12 h-100">
 					<div class="card shadow p-4 h-100">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Quản Lý Môn
-								Học, Lớp Học & Bài Thi</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Quản lý môn học, lớp học, bài thi...</h6>
 						</div>
 						<div class="card-body">
 							<div class="text-center">
@@ -79,7 +77,7 @@
 							</div>
 							<p>Quản các môn học , lớp học, bài thi trong hệ thống</p>
 							<a target="_blank" rel="nofollow"
-								href="<c:url value='/admin/ql-mon-hoc'/>">Đi Đến →</a>
+								href="<c:url value='/admin/ql-mon-hoc'/>">Đi đến →</a>
 						</div>
 					</div>
 				</div>
@@ -87,8 +85,7 @@
 				<div class="p-4 mb-4 col-md-6 col-sm-12 h-100">
 					<div class="card shadow p-4 h-100">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Quản Lý Hệ
-								Thống Câu Hỏi</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Quản hệ thống câu hỏi trong hệ thống</h6>
 						</div>
 						<div class="card-body">
 							<div class="text-center">
@@ -99,7 +96,7 @@
 							</div>
 							<p>Quản Lý các kho câu hỏi cho các bài thi và môn học</p>
 							<a target="_blank" rel="nofollow"
-								href="<c:url value='/admin/ql-cau-hoi/kho-chung?subject=ALL&level=ALL&type=ALL'/>">Đi Đến →</a>
+								href="<c:url value='/admin/ql-cau-hoi/kho-chung?subject=ALL&level=ALL&type=ALL'/>">Đi đến →</a>
 						</div>
 					</div>
 				</div>

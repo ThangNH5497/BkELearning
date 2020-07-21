@@ -28,7 +28,7 @@ function initData()
 			
 			$('#question-container [dataId='+question.id+'] [field=content]').html(question.content);
 			
-			$('#question-container [dataId='+question.id+'] .question-index').text('Câu Hỏi '+(parseInt(i)+1));
+			$('#question-container [dataId='+question.id+'] .question-index').text('Câu hỏi '+(parseInt(i)+1));
 			
 			var answers=examPaper.examPaperQuestions[i].examPaperQuestionAnswers;
 			

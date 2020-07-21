@@ -19,13 +19,13 @@
 		<div class="container-fluid">
 			<div
 				class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800">Ngân Hàng Câu Hỏi</h1>
+				<h1 class="h3 mb-0 text-gray-800">Ngân hàng câu hỏi</h1>
 				<a href="<c:url value='/teacher/them-cau-hoi'/>"
 					class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-					class="fas fa-plus fa-sm text-white-50"></i>Thêm Câu Hỏi</a>
+					class="fas fa-plus fa-sm text-white-50"></i>Thêm câu hỏi</a>
 				<a href="#"
 					class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-					class="fas fa-file-import fa-sm text-white-50"></i> Import Câu Hỏi</a>
+					class="fas fa-file-import fa-sm text-white-50"></i> Import câu hỏi</a>
 			</div>
 			<!-- table -->
 			<!-- end table -->

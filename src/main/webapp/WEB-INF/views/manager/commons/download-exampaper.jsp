@@ -59,11 +59,11 @@ margin-bottom: 8px;
 				</div>
 				<div class="exam-info row m-0 p-0 d-flex mt-2 mb-4">
 					<div class='col-6 d-flex'>
-						<div class="col-4">Học Phần :</div>
+						<div class="col-4">Học phần :</div>
 						<div class="col-6" field='subject-name'>............................</div>
 					</div>
 					<div class='col-6 d-flex m-0 p-0 justify-content-end'>
-						<div class="col-4">Mã Học Phần :</div>
+						<div class="col-4">Mã học phần :</div>
 						<div class="col-6" field='subject-code'>.............................</div>
 					</div>
 				</div>
@@ -74,7 +74,7 @@ margin-bottom: 8px;
 						<div class="col-6" field='student-code'>............................</div>
 					</div>
 					<div class='col-6 d-flex m-0 p-0 justify-content-end'>
-						<div class="col-4">Họ Và Tên :</div>
+						<div class="col-4">Họ và tên :</div>
 						<div class="col-6" field='student-name'>.............................</div>
 					</div>
 				</div>

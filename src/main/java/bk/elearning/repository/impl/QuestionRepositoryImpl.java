@@ -69,7 +69,7 @@ public class QuestionRepositoryImpl extends SubjectComponentRepositoryImpl<Quest
 			qCount.setParameter("bankType", Constant.BANK_TYPE_TEACHER);
 			qCount.setParameter("searchById", key);
 			qCount.setParameter("searchByName", key);
-			q.setFirstResult(start);
+			q.setFirstResult(start*size);
 			q.setMaxResults(size);
 
 			if (!teacherId.equals("ALL")) {
@@ -142,7 +142,7 @@ public class QuestionRepositoryImpl extends SubjectComponentRepositoryImpl<Quest
 			Query qCount = session.createQuery("SELECT COUNT(distinct q.id) " + hqlQuery);
 			q.setParameter("bankType", Constant.BANK_TYPE_TEACHER);
 			qCount.setParameter("bankType", Constant.BANK_TYPE_TEACHER);
-			q.setFirstResult(start);
+			q.setFirstResult(start*size);
 			q.setMaxResults(size);
 			if (!teacherId.equals("ALL")) {
 				q.setParameter("teacherId", Integer.parseInt(teacherId));

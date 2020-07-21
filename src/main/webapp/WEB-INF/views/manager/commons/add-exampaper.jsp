@@ -25,16 +25,16 @@
 					src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
 					<span
 					class="mr-2 d-none d-lg-inline text-gray-600 small user-full-name">Tài
-						Khoản</span> </a> <!-- Dropdown - User Information -->
+						khoản</span> </a> <!-- Dropdown - User Information -->
 				<div
 					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 					aria-labelledby="userDropdown">
 					<a class="dropdown-item" href="#" id="btn-edit-profile"> <i
-						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập Nhật
-						Thông Tin
-					</a> <a class="dropdown-item" href="#"  id="btn-change-password"> <i
-						class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
-						Khẩu
+						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập nhật
+						thông tin
+					</a> <a class="dropdown-item" href="#" id="btn-change-password"> <i
+						class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi mật
+						khẩu
 					</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="<c:url value='/logout'/>"> <i
@@ -48,16 +48,16 @@
 	<!-- End of Topbar -->
 	<div class="container-fluid">
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h4 mb-0 text-gray-600">Thêm Đề Thi</h1>
+			<h1 class="h4 mb-0 text-gray-600">Thêm đề thi</h1>
 		</div>
 		<!-- filter -->
 		<div class="card mb-4 py-3 border-left-info" id="exampaper-info">
 			<div class="card-body">
 				<h5 class="mb-4 font-weight-bold text-primary col-12 text-center">Thông
-					Tin Đề Thi</h5>
+					tin đề thi</h5>
 				<div id="question-infor mt-3">
 					<div class="row">
-						<label class='col-2 col-form-label'>Môn Học (*)</label>
+						<label class='col-2 col-form-label'>Môn học (*)</label>
 						<div class="input-group col-9">
 							<input class="form-control" type="text" subjectId='' value=""
 								id="input-subject" readonly required>
@@ -72,30 +72,29 @@
 
 					<form class=" ">
 						<div class="form-group row mt-3">
-							<label for="inputName" class="col-2 col-form-label">Mã Đề Thi
-								(*)</label>
+							<label for="inputName" class="col-2 col-form-label">Mã đề thi (*)</label>
 							<div class="col-9">
 								<input type="text" class="form-control" id="input-code" required>
 							</div>
 							<div class="col-1"></div>
 						</div>
 					</form>
-					
+
 					<form class=" ">
 						<div class="form-group row mt-3">
-							<label for="inputName" class="col-2 col-form-label">Tên Đề Thi
-								(*)</label>
+							<label for="inputName" class="col-2 col-form-label">Tên
+								đề thi (*)</label>
 							<div class="col-9">
 								<input type="text" class="form-control" id="input-name" required>
 							</div>
 							<div class="col-1"></div>
 						</div>
 					</form>
-					
+
 					<form class=" ">
 						<div class="form-group row mt-3">
-							<label for="inputName" class="col-2 col-form-label">Thời Gian
-								(*)</label>
+							<label for="inputName" class="col-2 col-form-label">Thời
+								gian (*)</label>
 							<div class="col-9">
 								<input type="text" class="form-control" id="input-time" required>
 							</div>
@@ -105,15 +104,14 @@
 
 					<form>
 						<div class="form-group row mt-3">
-							<label for="inputName" class="col-2 col-form-label">Mô Tả</label>
+							<label for="inputName" class="col-2 col-form-label">Mô tả</label>
 							<div class="col-9">
-								<textarea class="form-control" id="input-descriptor"
-									rows="3"></textarea>
+								<textarea class="form-control" id="input-descriptor" rows="3"></textarea>
 							</div>
 							<div class="col-1"></div>
 						</div>
 					</form>
-					
+
 				</div>
 			</div>
 		</div>
@@ -125,7 +123,7 @@
 
 		<div class='row d-flex justify-content-center mt-4'>
 			<button type="button" class="btn btn-primary btn-submit"
-				id="btn-submit-exampaper">Tạo Đề Thi</button>
+				id="btn-submit-exampaper">Tạo đề thi</button>
 		</div>
 		<!-- end table -->
 	</div>
@@ -140,7 +138,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Chọn Môn Học</p>
+				<p class="heading lead">Chọn môn học</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">

@@ -24,8 +24,8 @@
 			<nav class="navbar navbar-light bg-light hidden"
 				style="font-weight: 600;" id='link-back-search'>
 				<span class="navbar-text"> <i class="fas fa-link"></i> <a
-					class='text-primary' href="ql-sinh-vien">Quản Lý Sinh Viên</a><span>
-						/ Tìm Kiếm</span>
+					class='text-primary' href="ql-sinh-vien">Quản lý sinh viên</a><span>
+						/ Tìm kiếm</span>
 				</span>
 			</nav>
 			<div class="row ">
@@ -38,7 +38,7 @@
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 							<h6
 								class="m-0 font-weight-bold text-primary text-responsive-lg d-none d-sm-block">Danh
-								Sách Sinh Viên</h6>
+								sách sinh viên</h6>
 							<div class="m-0"></div>
 							<div class="d-flex">
 								<button
@@ -86,9 +86,9 @@
 																		aria-expanded="false"></div>
 																	<div class="dropdown-menu"
 																		aria-labelledby="dropdownMenuButton">
-																		<a class="dropdown-item" id="select-all">Chọn Tất
-																			Cả</a> <a class="dropdown-item" id="deselect-all">Bỏ
-																			Chọn Tất Cả</a>
+																		<a class="dropdown-item" id="select-all">Chọn tất
+																			cả</a> <a class="dropdown-item" id="deselect-all">Bỏ
+																			chọn tất cả</a>
 																	</div>
 																</div>
 															</th>
@@ -97,7 +97,7 @@
 															<th class="table-cell column3">Họ&Tên</th>
 															<th class="table-cell column4">Lớp</th>
 															<th class="table-cell column5">Email</th>
-															<th class="table-cell column6">Ngày Sinh</th>
+															<th class="table-cell column6">Ngày sinh</th>
 
 														</tr>
 
@@ -149,7 +149,7 @@
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary">Chi Tiết</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Chi tiết</h6>
 							
 						</div>
 						<!-- Card Body -->
@@ -229,7 +229,7 @@
 												<div class="border-top my-3"></div>
 												<div class="row">
 													<div class="col-md-4">
-														<label>Địa Chỉ</label>
+														<label>Địa chỉ</label>
 													</div>
 													<div class="col-md-8">
 														<p field="addr"></p>
@@ -240,7 +240,7 @@
 												<div class="border-top my-3"></div>
 												<div class="row">
 													<div class="col-md-4">
-														<label>Ngày Sinh</label>
+														<label>Ngày sinh</label>
 													</div>
 													<div class="col-md-8">
 														<p field="dateOfBirth"></p>
@@ -277,7 +277,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thêm Sinh Viên</p>
+				<p class="heading lead">Thêm sinh viên</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -291,10 +291,10 @@
 					<li class="nav-item"><a class="nav-link active"
 						id="add-one-tab-btn" data-toggle="tab" href="#add-one-tab"
 						role="tab" aria-controls="tab-add" aria-selected="true">Thêm
-							Thủ Công</a></li>
+							thủ công</a></li>
 					<li class="nav-item"><a class="nav-link" id="add-exel-tab-btn"
 						data-toggle="tab" href="#add-exel-tab" role="tab"
-						aria-controls="profile" aria-selected="false">Thêm từ Exel</a></li>
+						aria-controls="profile" aria-selected="false">Thêm từ Excel</a></li>
 
 				</ul>
 				<div class="tab-content">
@@ -306,7 +306,7 @@
 								<div class="form-v4-content">
 									<form class="form-detail" action="#" method="post"
 										id="form-add-step-one">
-										<h2>Thông Tin Sinh Viên Bắt Buộc</h2>
+										<h2>Thông tin sinh viên bắt buộc</h2>
 										<div class="form-group">
 											<div class="form-row form-row-1">
 												<label for="code">Mã SV (*)</label> <input type="text"
@@ -329,13 +329,12 @@
 										</div>
 										<div class="form-group">
 											<div class="form-row form-row-1 ">
-												<label for="password">Mật Khẩu Từ 6 ký tự (*)</label> <input
+												<label for="password">Mật khẩu từ 6 ký tự (*)</label> <input
 													type="password" name="password" class="input-text" required>
-												<label name="password-error" class="error hidden">Nhỏ
-													hơn 6 ký tự</label>
+												<label name="password-error" class="error hidden">Nhỏ hơn 6 ký tự</label>
 											</div>
 											<div class="form-row form-row-1">
-												<label>Xác Nhận Mật Khẩu (*)</label> <input type="password"
+												<label>Xác nhận mật khẩu (*)</label> <input type="password"
 													class="input-text confirm-password" required> <label
 													name="confirm-password-error" class="error hidden">Xác
 													nhận mật khẩu chưa khớp</label>
@@ -350,7 +349,7 @@
 							<div class="d-flex justify-content-center">
 								<a type="button" class="btn  waves-effect btn-cancel"
 									data-dismiss="modal">Hủy</a> <a type="button"
-									class="btn  waves-effect btn-next">Tiếp Tục</a>
+									class="btn  waves-effect btn-next">Tiếp tục</a>
 							</div>
 						</div>
 
@@ -364,7 +363,7 @@
 												src="<c:url value='/resources/commons/image/user/default-user.jpg' />"
 												alt="" />
 											<div class="file btn btn-lg btn-primary">
-												Change Photo <input type="file" name="file"
+												Chọn ảnh <input type="file" name="file"
 													class="input-file-avatar" />
 											</div>
 										</div>
@@ -389,7 +388,7 @@
 
 											</div>
 											<div class="form-row">
-												<label for="addr">Địa Chỉ</label> <input type="text"
+												<label for="addr">Địa chỉ</label> <input type="text"
 													name="addr" class="input-text">
 											</div>
 											<div class="form-group">
@@ -398,7 +397,7 @@
 														class="input-text">
 												</div>
 												<div class="form-row form-row-1">
-													<label for="comfirm-password">Ngày Sinh</label> <input
+													<label for="comfirm-password">Ngày sinh</label> <input
 														type="date" value="2011-08-19" name="dateOfBirth"
 														class="input-text">
 												</div>
@@ -416,7 +415,7 @@
 							<div class="d-flex justify-content-center">
 								<a type="button" class="btn  waves-effect btn-cancel"
 									data-dismiss="modal">Hủy</a> <a type="button"
-									class="btn  waves-effect btn-back">Quay Lại</a> <a
+									class="btn  waves-effect btn-back">Quay lại</a> <a
 									type="button" class="btn  waves-effect btn-submit">Lưu</a>
 							</div>
 						</div>
@@ -433,12 +432,12 @@
 							<div class="form-v4">
 								<div class="form-v4-content">
 									<form class="form-detail" id="form-exel-file">
-										<h2>Thêm Danh Sách Sinh Viên Từ File Exel</h2>
+										<h2>Thêm danh sách sinh viên từ file Excel</h2>
 
 										<div
 											class="hidden alert alert-danger alert-dismissible fade show"
 											role="alert" id='alert-file-exel'>
-											<strong>Cảnh Báo !</strong> Bạn Chưa Chọn File.
+											<strong>Cảnh báo !</strong> Bạn chưa chọn file.
 											<button type="button" class="close" data-dismiss="alert"
 												aria-label="Close">
 												<span aria-hidden="true">&times;</span>
@@ -459,7 +458,7 @@
 							<div class="d-flex justify-content-center">
 								<a type="button" class="btn  waves-effect btn-cancel"
 									data-dismiss="modal">Hủy</a> <a type="button"
-									class="btn  waves-effect btn-submit-file-exel">Tải Lên</a>
+									class="btn  waves-effect btn-submit-file-exel">Tải lên</a>
 							</div>
 						</div>
 
@@ -490,7 +489,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Sửa Thông Tin Sinh Viên</p>
+				<p class="heading lead">Sửa thông tin sinh viên</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -509,7 +508,7 @@
 										src="<c:url value='/resources/commons/image/user/default-user.jpg' />"
 										alt="" />
 									<div class="file btn btn-lg btn-primary">
-										Change Photo <input type="file" name="file"
+										Chọn ảnh <input type="file" name="file"
 											class="input-file-avatar" />
 									</div>
 								</div>
@@ -534,7 +533,7 @@
 
 									</div>
 									<div class="form-row">
-										<label for="addr">Địa Chỉ</label> <input type="text"
+										<label for="addr">Địa chỉ</label> <input type="text"
 											name="addr" class="input-text">
 									</div>
 									<div class="form-group">
@@ -543,7 +542,7 @@
 												class="input-text">
 										</div>
 										<div class="form-row form-row-1">
-											<label for="comfirm-password">Ngày Sinh</label> <input
+											<label for="comfirm-password">Ngày sinh</label> <input
 												type="date" value="2011-08-19" name="dateOfBirth"
 												class="input-text">
 										</div>
@@ -581,7 +580,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header bg-warning">
-				<p class="heading lead">Cảnh Báo</p>
+				<p class="heading lead">Cảnh báo</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -591,7 +590,7 @@
 
 			<!--Body-->
 			<div class="modal-body border-top my-3">
-				<div class="message">Bạn Có Muốn Tiếp Tục Xóa ?</div>
+				<div class="message">Bạn có muốn tiếp tục xóa ?</div>
 
 				<div class="border-top my-3"></div>
 				<div class="d-flex justify-content-center">
@@ -617,7 +616,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Đang Xử Lý...</p>
+				<p class="heading lead">Đang xử lý...</p>
 
 			</div>
 
@@ -656,7 +655,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thông Tin Giảng Viên</p>
+				<p class="heading lead">Thông tin sinh viên</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -743,7 +742,7 @@
 											<div class="border-top my-3"></div>
 											<div class="row">
 												<div class="col-md-4">
-													<label>Địa Chỉ</label>
+													<label>Địa chỉ</label>
 												</div>
 												<div class="col-md-8">
 													<p field="addr"></p>
@@ -754,7 +753,7 @@
 											<div class="border-top my-3"></div>
 											<div class="row">
 												<div class="col-md-4">
-													<label>Ngày Sinh</label>
+													<label>Ngày sinh</label>
 												</div>
 												<div class="col-md-8">
 													<p field="dateOfBirth"></p>

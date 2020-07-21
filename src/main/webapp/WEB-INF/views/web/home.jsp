@@ -32,7 +32,7 @@
 					alt="">
 				<div class="carousel-caption d-none d-md-block">
 					<h3>HUST</h3>
-					<p>Lời Giới Thiệu</p>
+					<p>Lời giới thiệu</p>
 				</div>
 			</div>
 			<div class="carousel-item">
@@ -41,7 +41,7 @@
 					alt="">
 				<div class="carousel-caption d-none d-md-block">
 					<h3>HUST</h3>
-					<p>Lời Giới Thiệu</p>
+					<p>Lời giới thiệu</p>
 				</div>
 			</div>
 			<div class="carousel-item">
@@ -50,7 +50,7 @@
 					alt="" class="d-block img-fluid">
 				<div class="carousel-caption d-none d-md-block">
 					<h3>HUST</h3>
-					<p>Lời Giới Thiệu</p>
+					<p>Lời giới thiệu</p>
 				</div>
 			</div>
 		</div>
@@ -78,7 +78,7 @@
 				<!-- Nav Item - User Information -->
 				<li class="nav-item dropdown no-arrow"><a
 					class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-						<span class="mr-2  text-gray-600">Bộ Lọc</span><i
+						<span class="mr-2  text-gray-600">Bộ lọc</span><i
 						class="fas fa-filter"></i>
 				</a>
 					<div id="filterDropdown"
@@ -86,12 +86,12 @@
 						aria-labelledby="filterDropdown">
 						<a class="dropdown-item filter" href="#" value='all'> <i
 							class="fas fa-pen-square mr-2 fa-sm fa-fw text-gray-400"
-							id="filter-all"></i>Tất Cả
+							id="filter-all"></i>Tất cả
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item filter" href="#" value='continue'> <i
 							class="fas fa-pen-square mr-2 fa-sm fa-fw text-gray-400"
-							id="filter-continue"></i>Tiếp Tục
+							id="filter-continue"></i>Tiếp tục
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item filter" href="#" value='open'> <i
@@ -102,7 +102,7 @@
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item filter" href="#" value='complete'> <i
 							class="fas fa-check-circle fa-sm fa-fw mr-2 text-gray-400"
-							id="filter-complete"></i> Đã Hoàn Thành
+							id="filter-complete"></i> Đã hoàn thành
 						</a>
 					</div></li>
 
@@ -114,7 +114,7 @@
 
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Danh Sách Bài Thi</h6>
+			<h6 class="m-0 font-weight-bold text-primary">Danh sách bài thi</h6>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
@@ -134,48 +134,48 @@
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
 											rowspan="1" colspan="1"
 											aria-label="Position: activate to sort column ascending">Tên
-											Bài Thi</th>
+											bài thi</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
 											rowspan="1" colspan="1"
 											aria-label="Office: activate to sort column ascending">Môn
-											Học</th>
+											học</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
 											rowspan="1" colspan="1"
 											aria-label="Office: activate to sort column ascending">Lớp
-											Học</th>
+											học</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
 											rowspan="1" colspan="1"
 											aria-label="Age: activate to sort column ascending">Thời
-											Gian</th>
+											gian</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
 											rowspan="1" colspan="1"
 											aria-label="Start date: activate to sort column ascending">Thời
-											Gian Mở</th>
+											gian mở</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
 											rowspan="1" colspan="1"
 											aria-label="Salary: activate to sort column ascending">Thời
-											Gian Đóng</th>
+											gian đóng</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
 											rowspan="1" colspan="1"
 											aria-label="Salary: activate to sort column ascending">Trạng
-											Thái</th>
+											thái</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
 											rowspan="1" colspan="1"
 											aria-label="Salary: activate to sort column ascending">Kết
-											Quả</th>
+											quả</th>
 									</tr>
 								</thead>
 								<tfoot>
 									<tr>
 										<th rowspan="1" colspan="1">Mã</th>
-										<th rowspan="1" colspan="1">Tên Bài Thi</th>
-										<th rowspan="1" colspan="1">Môn Học</th>
-										<th rowspan="1" colspan="1">Lớp Học</th>
-										<th rowspan="1" colspan="1">Thời Gian</th>
-										<th rowspan="1" colspan="1">Thời Gian Mở</th>
-										<th rowspan="1" colspan="1">Thời Gian Đóng</th>
-										<th rowspan="1" colspan="1">Trạng Thái</th>
-										<th rowspan="1" colspan="1">Kết Qủa</th>
+										<th rowspan="1" colspan="1">Tên bài thi</th>
+										<th rowspan="1" colspan="1">Môn học</th>
+										<th rowspan="1" colspan="1">Lớp học</th>
+										<th rowspan="1" colspan="1">Thời gian</th>
+										<th rowspan="1" colspan="1">Thời gian mở</th>
+										<th rowspan="1" colspan="1">Thời gian đóng</th>
+										<th rowspan="1" colspan="1">Trạng thái</th>
+										<th rowspan="1" colspan="1">Kết quả</th>
 									</tr>
 								</tfoot>
 								<tbody id='table-data-body'>
@@ -218,7 +218,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thông Báo</p>
+				<p class="heading lead">Thông báo</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -239,7 +239,7 @@
 					<div class="d-flex justify-content-center">
 						<a type="button" class="btn  waves-effect btn-cancel"
 							data-dismiss="modal">Đóng</a><a type="button"
-							class="btn  waves-effect btn-submit">Gửi Yêu Cầu</a>
+							class="btn  waves-effect btn-submit">Gửi yêu cầu</a>
 					</div>
 				</div>
 			</div>
@@ -256,7 +256,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thông Báo</p>
+				<p class="heading lead">Thông báo</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -268,7 +268,7 @@
 			<div class="modal-body pl-0 pr-0 pt-0">
 				<div class="m-4 p-4 justify-content-center">
 					<h6 class="m-0 font-weight-bold text-primary text-center ">Yêu
-						Cầu Xem Chi Tiết đang chờ xử lý !</h6>
+						cầu Xem Chi Tiết đang chờ xử lý !</h6>
 
 				</div>
 				<div>

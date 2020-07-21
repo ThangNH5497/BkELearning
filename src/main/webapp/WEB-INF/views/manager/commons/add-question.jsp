@@ -17,38 +17,38 @@
 			<div class="topbar-divider d-none d-sm-block"></div>
 
 			<!-- Nav Item - User Information -->
-			<li class="nav-item dropdown no-arrow"><a
-				class="nav-link dropdown-toggle" href="#" id="userDropdown"
-				data-toggle="dropdown"><img
-					style="max-height: 60px; max-width: 60px;"
-					class="img-profile rounded-circle"
-					src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
-					<span
-					class="mr-2 d-none d-lg-inline text-gray-600 small user-full-name">Tài
-						Khoản</span> </a> <!-- Dropdown - User Information -->
-				<div
-					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-					aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#" id="btn-edit-profile"> <i
-						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập Nhật
-						Thông Tin
-					</a> <a class="dropdown-item" href="#" id="btn-change-password"> <i
-						class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
-						Khẩu
-					</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="<c:url value='/logout'/>"> <i
-						class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-						Logout
-					</a>
-				</div></li>
+		<li class="nav-item dropdown no-arrow"><a
+			class="nav-link dropdown-toggle" href="#" id="userDropdown"
+			data-toggle="dropdown"><img
+				style="max-height: 60px; max-width: 60px;"
+				class="img-profile rounded-circle"
+				src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
+				<span
+				class="mr-2 d-none d-lg-inline text-gray-600 small user-full-name">Tài
+					khoản</span> </a> <!-- Dropdown - User Information -->
+			<div
+				class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+				aria-labelledby="userDropdown">
+				<a class="dropdown-item" href="#" id="btn-edit-profile"> <i
+					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập nhật
+					thông tin
+				</a> <a class="dropdown-item" href="#" id="btn-change-password"> <i
+					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi mật
+					khẩu
+				</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="<c:url value='/logout'/>"> <i
+					class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+					Logout
+				</a>
+			</div></li>
 
 		</ul>
 	</nav>
 	<!-- End of Topbar -->
 	<div class="container-fluid">
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h4 mb-0 text-gray-600">Thêm Câu Hỏi</h1>
+			<h1 class="h4 mb-0 text-gray-600">Thêm câu hỏi</h1>
 
 			<div class='justify-content-end d-flex'>
 				<!--  	<a
@@ -56,7 +56,7 @@
 						class=" btn btn-sm btn-info shadow-sm btn-import"><i
 						class="fas fa-list fa-sm text-white-50"></i> Danh Sách Câu Hỏi</a>-->
 				<a href="#" class="ml-3 btn btn-sm btn-primary shadow-sm btn-import"><i
-					class="fas fa-file-import fa-sm text-white-50"></i> Import Câu Hỏi</a>
+					class="fas fa-file-import fa-sm text-white-50"></i> Import câu hỏi</a>
 			</div>
 
 
@@ -65,10 +65,10 @@
 		<div class="card mb-4 py-3 border-left-info">
 			<div class="card-body">
 				<h5 class="mb-4 font-weight-bold text-primary col-12 text-center">Thông
-					Tin Câu Hỏi</h5>
+					tin câu hỏi</h5>
 				<div id="question-info">
 					<div class="row">
-						<label class='col-2 col-form-label'>Môn Học (*)</label>
+						<label class='col-2 col-form-label'>Môn học (*)</label>
 						<div class="input-group col-9">
 							<input class="form-control" type="text" subjectId=''
 								id="question-subject" readonly>
@@ -84,7 +84,7 @@
 					<form class=" ">
 						<div class="form-group row mt-3">
 							<label for="inputName" class="col-2 col-form-label">Tên
-								Câu Hỏi (*)</label>
+								câu hỏi (*)</label>
 							<div class="col-9">
 								<input type="text" class="form-control" id="inputName" required>
 							</div>
@@ -94,7 +94,7 @@
 					
 					<div class="row mt-3">
 						<div class='col-2'>
-							<label>Danh Mục (*)</label>
+							<label>Danh mục (*)</label>
 						</div>
 
 						<div class="form-group col-9">
@@ -106,27 +106,27 @@
 
 					<div class="row">
 						<div class='col-2'>
-							<label>Loại Câu Hỏi (*)</label>
+							<label>Loại câu hỏi (*)</label>
 						</div>
 
 						<div class="form-group col-9">
 							<select class="form-control" id="question-type">
-								<option value='ONE_CHOICE'>Một Đáp Án</option>
-								<option value='MULTIPLE_CHOICE'>Nhiều Đáp Án</option>
-								<option value='FILL_WORD'>Điền Từ</option>
+								<option value='ONE_CHOICE'>Một đáp án</option>
+								<option value='MULTIPLE_CHOICE'>Nhiều đáp án</option>
+								<option value='FILL_WORD'>Điền từ</option>
 							</select>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class='col-2'>
-							<label>Độ Khó (*)</label>
+							<label>Độ khó (*)</label>
 						</div>
 
 						<div class="form-group col-9">
 							<select class="form-control" id="question-level">
 								<option value='0'>Dễ</option>
-								<option value='1' selected>Trung Bình</option>
+								<option value='1' selected>Trung bình</option>
 								<option value='2'>Khó</option>
 							</select>
 						</div>
@@ -143,11 +143,11 @@
 		<div class="card mb-4 py-3">
 			<div class="card-body pl-4">
 				<h5 class="mb-4 font-weight-bold text-primary col-12 text-center">Nội
-					Dung Câu Hỏi</h5>
+					dung câu hỏi</h5>
 				<div class="question-wrap mt-3">
 
 					<div class="d-flex row question">
-						<label class="col-2 text-lg">Câu Hỏi</label>
+						<label class="col-2 text-lg">Câu hỏi</label>
 						<div class="col-9 wrap-editor ">
 							<div id="question-editor"></div>
 						</div>
@@ -182,7 +182,7 @@
 
 		<div class='row d-flex justify-content-center mt-4'>
 			<button type="button" class="btn btn-success btn-submit"
-				id="btn-submit-question">Lưu Câu Hỏi</button>
+				id="btn-submit-question">Lưu câu hỏi</button>
 		</div>
 		<!-- end table -->
 	</div>
@@ -198,7 +198,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Chọn Môn Học</p>
+				<p class="heading lead">Chọn môn học</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -271,7 +271,7 @@
 							class="btn  waves-effect btn-submit disabled"
 							id='btn-submit-subject'>Chọn</a> <a type="button"
 							class="btn  waves-effect btn-submit disabled hidden"
-							id='btn-select-subject-import'>Tiếp Tục</a>
+							id='btn-select-subject-import'>Tiếp tục</a>
 
 
 					</div>
@@ -291,7 +291,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Import Câu Hỏi</p>
+				<p class="heading lead">Import câu hỏi</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -305,12 +305,12 @@
 					<div class="form-v4">
 						<div class="form-v4-content">
 							<form class="form-detail" id="form-exel-file">
-								<h2>Import Câu Hỏi Từ File Exel</h2>
+								<h2>Import câu hỏi từ file Excel</h2>
 
 								<div
 									class="hidden alert alert-danger alert-dismissible fade show"
 									role="alert" id='alert-file-exel'>
-									<strong>Cảnh Báo !</strong> Bạn Chưa Chọn File.
+									<strong>Cảnh báo !</strong> Bạn chưa chọn file.
 									<button type="button" class="close" data-dismiss="alert"
 										aria-label="Close">
 										<span aria-hidden="true">&times;</span>
@@ -331,7 +331,7 @@
 					<div class="d-flex justify-content-center">
 						<a type="button" class="btn  waves-effect btn-cancel"
 							data-dismiss="modal">Hủy</a> <a type="button"
-							class="btn  waves-effect btn-submit-file-exel">Tải Lên</a>
+							class="btn  waves-effect btn-submit-file-exel">Tải lên</a>
 					</div>
 				</div>
 
@@ -352,7 +352,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Đang Xử Lý...</p>
+				<p class="heading lead">Đang xử lý...</p>
 
 			</div>
 
@@ -391,7 +391,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header bg-success">
-				<p class="heading lead">Xác Nhận</p>
+				<p class="heading lead">Xác nhận</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -401,7 +401,7 @@
 
 			<!--Body-->
 			<div class="modal-body border-top my-3">
-				<div class="message">Xác Nhận Lưu Câu Hỏi ?</div>
+				<div class="message">Xác nhận lưu câu hỏi ?</div>
 
 				<div class="border-top my-3"></div>
 				<div class="d-flex justify-content-center">
@@ -425,7 +425,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thêm Danh Mục</p>
+				<p class="heading lead">Thêm danh mục</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -440,12 +440,12 @@
 						<div class="form-v4-content">
 							<form class="form-detail" action="#" method="post"
 								id="form-add-new">
-								<h2>Thông Tin Danh Mục</h2>
+								<h2>Thông tin danh mục</h2>
 
 								<div class="form-row">
-									<label for="code">Tên Danh Mục (*)</label> <input type="text"
+									<label for="code">Tên danh mục (*)</label> <input type="text"
 										name="name" class="input-text" required> <label
-										name="name-error" class="error hidden">Tên Danh Mục Trống</label>
+										name="name-error" class="error hidden">Tên danh mục trống</label>
 
 								</div>
 
@@ -475,7 +475,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Chọn Danh Mục</p>
+				<p class="heading lead">Chọn danh mục</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -488,7 +488,7 @@
 			<div class="modal-body p-4">
 				<div class="row mt-3">
 					<div class='col-2'>
-						<label>Danh Mục (*)</label>
+						<label>Danh mục (*)</label>
 					</div>
 
 					<div class="form-group col-9">
@@ -502,7 +502,7 @@
 					<div class="d-flex justify-content-center">
 						<a type="button" class="btn waves-effect btn-cancel"
 							data-dismiss="modal">Hủy</a><a type="button"
-							class="btn  waves-effect btn-submit">Xác Nhận</a>
+							class="btn  waves-effect btn-submit">Xác nhận</a>
 					</div>
 				</div>
 			</div>

@@ -17,7 +17,7 @@
 		<div class="input-group">
 			<input id="key-search" type="text"
 				class="form-control bg-light border-0 small"
-				placeholder="Nhập Mã Hoặc Tên..." aria-label="Search"
+				placeholder="Nhập mã hoặc tên..." aria-label="Search"
 				aria-describedby="basic-addon2">
 			<div class="input-group-append">
 				<button class="btn btn-primary " type="button" id="btn-search">
@@ -64,16 +64,16 @@
 				src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
 				<span
 				class="mr-2 d-none d-lg-inline text-gray-600 small user-full-name">Tài
-					Khoản</span> </a> <!-- Dropdown - User Information -->
+					khoản</span> </a> <!-- Dropdown - User Information -->
 			<div
 				class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="userDropdown">
 				<a class="dropdown-item" href="#" id="btn-edit-profile"> <i
-					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập Nhật
-					Thông Tin
+					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập nhật
+					thông tin
 				</a> <a class="dropdown-item" href="#" id="btn-change-password"> <i
-					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
-					Khẩu
+					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi mật
+					khẩu
 				</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="<c:url value='/logout'/>"> <i

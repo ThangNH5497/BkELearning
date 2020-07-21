@@ -177,7 +177,7 @@ function updateEditor()
 	//update all editor answer
 	var answer=$('.answer');
 	for (var i = 1; i < answer.length; i++) {
-		$($('.answer-index')[i]).text('Đáp Án '+i);
+		$($('.answer-index')[i]).text('Đáp án '+i);
 		
 		$($('.answer-check input')[i]).attr('id','check-'+i);
 		
@@ -328,7 +328,7 @@ function validInput()
 				if(checked.length<=0)
 				{
 					check=false;
-					alert('Bạn Chưa Chọn Đáp Án Đúng Cho Câu Hỏi !');
+					alert('Bạn chưa chọn đáp án đúng !');
 				}
 			}
 			else if(check==true)
@@ -345,14 +345,14 @@ function validInput()
 				if(checkAnswerWeigh!=true)
 				{
 					check=false;
-					alert('Chưa Cài Trọng Số Đáp Án Cho Câu Hỏi !')
+					alert('Chưa cài trọng số đáp án !')
 				}
 			}
 		}
 	}
 	else
 	{
-		alert('Thông Tin Câu Hỏi Chưa Đầy Đủ !');
+		alert('Thông tin câu hỏi chưa đầy đủ !');
 	}
 	return check;
 	

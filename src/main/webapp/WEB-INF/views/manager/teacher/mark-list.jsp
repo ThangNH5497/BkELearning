@@ -35,16 +35,16 @@
 						src="<c:url value='/resources/commons/image/user/default-user.jpg' />">
 						<span
 						class="mr-2 d-none d-lg-inline text-gray-600 small user-full-name">Tài
-							Khoản</span> </a> <!-- Dropdown - User Information -->
+							khoản</span> </a> <!-- Dropdown - User Information -->
 					<div
 						class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 						aria-labelledby="userDropdown">
-						<a class="dropdown-item" href="#"  id="btn-edit-profile"> <i
-							class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập Nhật
-							Thông Tin
-						</a> <a class="dropdown-item" href="#"  id="btn-change-password"> <i
-							class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi Mật
-							Khẩu
+						<a class="dropdown-item" href="#" id="btn-edit-profile"> <i
+							class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Cập nhật
+							thông tin
+						</a> <a class="dropdown-item" href="#" id="btn-change-password"> <i
+							class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Đổi mật
+							khẩu
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<c:url value='/logout'/>"> <i
@@ -57,17 +57,15 @@
 		</nav>
 
 		<div class="container-content container-fluid">
-			<nav class="navbar navbar-light " style="font-weight: 600;"
-				>
+			<nav class="navbar navbar-light " style="font-weight: 600;">
 
 				<span class="navbar-text"> <i class="fas fa-arrow-left"></i><a
-					class='text-primary' href="#" id="back-link">Quay Lại Danh Sách Bài Thi</a></span>
+					class='text-primary' href="#" id="back-link">Quay lại danh sách bài thi</a></span>
 
 			</nav>
 			<div class="card shadow mb-4 mt-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Danh Sách Bài
-						Thi Cần Xác Nhận</h6>
+					<h6 class="m-0 font-weight-bold text-primary">Danh sách bài thi cần xác nhận</h6>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -85,25 +83,25 @@
 													aria-controls="dataTable" rowspan="1" colspan="1"
 													aria-sort="ascending">STT</th>
 												<th class="sorting" tabindex="0" aria-controls="dataTable"
-													rowspan="1" colspan="1">Mã Đề</th>
+													rowspan="1" colspan="1">Mã đề</th>
 
 												<th class="sorting" tabindex="0" aria-controls="dataTable"
-													rowspan="1" colspan="1">Mã Sinh Viên</th>
+													rowspan="1" colspan="1">Mã sinh viên</th>
 
 												<th class="sorting" tabindex="0" aria-controls="dataTable"
-													rowspan="1" colspan="1">Tên Sinh Viên</th>
+													rowspan="1" colspan="1">Tên sinh viên</th>
 
 												<th class="sorting" tabindex="0" aria-controls="dataTable"
-													rowspan="1" colspan="1">Chấm Bài</th>
+													rowspan="1" colspan="1">Chấm bài</th>
 											</tr>
 										</thead>
 										<tfoot>
 											<tr>
 												<th rowspan="1" colspan="1">STT</th>
-												<th rowspan="1" colspan="1">Mã Đề</th>
-												<th rowspan="1" colspan="1">Mã Sinh Viên</th>
-												<th rowspan="1" colspan="1">Tên Sinh Viên</th>
-												<th rowspan="1" colspan="1">Chấm Bài</th>
+												<th rowspan="1" colspan="1">Mã đề</th>
+												<th rowspan="1" colspan="1">Mã sinh viên</th>
+												<th rowspan="1" colspan="1">Tên sinh viên</th>
+												<th rowspan="1" colspan="1">Chấm bài</th>
 
 											</tr>
 										</tfoot>
@@ -119,7 +117,7 @@
 												<td field="control" class='justify-content-center d-flex'><button
 														class="btn btn-mark text-primary justify-content-center"
 														style="box-shadow: none;">
-														Chấm Bài <i class="fas fa-arrow-circle-right"></i>
+														Chấm bài <i class="fas fa-arrow-circle-right"></i>
 													</button></td>
 
 											</tr>
@@ -128,7 +126,7 @@
 									</table>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
 

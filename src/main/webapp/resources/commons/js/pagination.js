@@ -1,5 +1,5 @@
 //so luong data max tren 1 trang
-const MAX_ITEMS = 20;
+const MAX_ITEMS = 10;
 // so luong lien ket hien thi
 const TOTAL_PAGE_SHOW=5;
 function handlePagination(paginationId,dataContainerId,rowDataContainerId,url,callBack) {

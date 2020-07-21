@@ -19,14 +19,13 @@
 			<nav class="navbar navbar-light " style="font-weight: 600;">
 
 				<span class="navbar-text"> <i class="fas fa-arrow-left mr-2"></i><a
-					class='text-primary' href="#" id="back-link">Quay Lại Danh Sách
-						Bài Thi</a></span>
+					class='text-primary' href="#" id="back-link">Quay lại danh sách bài thi</a></span>
 
 			</nav>
 			<div class="card shadow mb-4 mt-4">
 				<div
 					class="card-header py-3 row m-0 px-4 d-flex justify-content-between">
-					<h6 class="m-0 font-weight-bold text-primary">Kết Quả Bài Thi</h6>
+					<h6 class="m-0 font-weight-bold text-primary">Kết quả bài thi</h6>
 					<div class="download">
 
 						<a href="#" class="btn btn-success btn-icon-split btn-sm btn-download-excel"> <span
@@ -57,15 +56,15 @@
 												<th class="sorting font-weight-bold" tabindex="0"
 													aria-controls="dataTable" rowspan="1" colspan="1"
 													aria-label="Position: activate to sort column ascending">Mã
-													Sinh Viên</th>
+													sinh viên</th>
 												<th class="sorting font-weight-bold" tabindex="0"
 													aria-controls="dataTable" rowspan="1" colspan="1"
 													aria-label="Office: activate to sort column ascending">Họ
-													Và Tên</th>
+													và tên</th>
 												<th class="sorting font-weight-bold" tabindex="0"
 													aria-controls="dataTable" rowspan="1" colspan="1"
 													aria-label="Office: activate to sort column ascending">Kết
-													Quả</th>
+													quả</th>
 
 											</tr>
 										</thead>
@@ -73,11 +72,11 @@
 											<tr>
 												<th rowspan="1" colspan="1" class="font-weight-bold">STT</th>
 												<th rowspan="1" colspan="1" class="font-weight-bold">Mã
-													Sinh Viên</th>
+													sinh viên</th>
 												<th rowspan="1" colspan="1" class="font-weight-bold">Họ
-													Và Tên</th>
+													và tên</th>
 												<th rowspan="1" colspan="1" class="font-weight-bold">Kết
-													Quả</th>
+													quả</th>
 
 											</tr>
 										</tfoot>

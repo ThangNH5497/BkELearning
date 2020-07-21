@@ -144,9 +144,9 @@ function replaceDataView() {
 	$('#table-data-body [field=level]:contains("1")').text('TB');
 	$('#table-data-body [field=level]:contains("2")').text('Khó');
 	
-	$('#table-data-body [field=type]:contains("ONE_CHOICE")').text('Một Đáp ÁN');
-	$('#table-data-body [field=type]:contains("MULTIPLE_CHOICE")').text('Nhiều Đáp ÁN');
-	$('#table-data-body [field=type]:contains("FILL_WORD")').text('Điền Từ');
+	$('#table-data-body [field=type]:contains("ONE_CHOICE")').text('Một đáp án');
+	$('#table-data-body [field=type]:contains("MULTIPLE_CHOICE")').text('Nhiều đáp án');
+	$('#table-data-body [field=type]:contains("FILL_WORD")').text('Điền từ');
 	
 	$('#table-data-body [field=content] img').replaceWith(
 			'<i class="ml-2 mr-2 h4 fas fa-images"></i>');

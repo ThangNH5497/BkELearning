@@ -25,16 +25,16 @@
 
 					<span class="navbar-text"> <i class="fas fa-link"></i> <a 
 						class='text-primary' href="<c:url value='/admin/ql-mon-hoc' />">Quản
-							Lý Môn Học</a><span> / Danh Sách Lớp</span>
+							lý môn học</a><span> / Danh sách lớp</span>
 					</span>
 				</nav>
 				<nav class="col-10 navbar navbar-light bg-light hidden"
 					style="font-weight: 600;" id='link-back-search'>
 					<span class="navbar-text"> <i class="fas fa-link"></i> <a
 						class='text-primary' href="<c:url value='/admin/ql-mon-hoc' />">Quản
-							Lý Môn Học</a><a class='text-primary'
-						href="javascript:location.reload(true)"> / Danh Sách Lớp</a><span>
-							/ Tìm Kiếm</span>
+							lý môn học</a><a class='text-primary'
+						href="javascript:location.reload(true)"> / Danh sách lớp</a><span>
+							/ Tìm kiếm</span>
 					</span>
 				</nav>
 				<div class="d-flex justify-content-end col-2">
@@ -51,7 +51,7 @@
 			</div>
 			<h5 id='data-empty-alert'
 				class="hidden mt-3 mb-3 w-100 d-flex justify-content-center font-weight-bold text-primary">Không
-				Có Dữ Liệu</h5>
+				có dữ liệu</h5>
 
 			<div class="row " id="table-data-body">
 				<!-- Area Chart -->
@@ -65,7 +65,7 @@
 								<div class="col-6  p-0 m-0" style="font-weight: 600;"
 									id="link-current">
 									<span class="navbar-text text-primary font-weight-bold d-flex">Mã
-										Lớp
+										lớp
 										<p field="code" class="pl-4">10000</p>
 									</span>
 								</div>
@@ -95,7 +95,7 @@
 								<div class="col-6 d-block">
 									<div class="row">
 										<div class="col-md-4 font-weight-bold">
-											<label>Tên Lớp </label>
+											<label>Tên lớp </label>
 										</div>
 										<div class="col-md-8">
 
@@ -159,7 +159,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Thêm Lớp Học</p>
+				<p class="heading lead">Thêm lớp học</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -174,22 +174,21 @@
 						<div class="form-v4-content">
 							<form class="form-detail" action="#" method="post"
 								id="form-add-new">
-								<h2>Thông Tin Lớp</h2>
+								<h2>Thông tin lớp</h2>
 								<div class="form-group">
 									<div class="form-row form-row-1">
-										<label for="code">Mã Lớp Học (*)</label> <input type="text"
+										<label for="code">Mã lớp học (*)</label> <input type="text"
 											name="code" class="input-text" required> <label
-											name="code-error" class="error hidden">Mã Môn Học Tồn
-											Tại</label>
+											name="code-error" class="error hidden">Mã lớp học tồn tại</label>
 									</div>
 									<div class="form-row form-row-1">
-										<label for="subjectName">Tên Lớp Học (*)</label> <input
+										<label for="subjectName">Tên lớp học (*)</label> <input
 											type="text" name="courseName" class="input-text" required>
 									</div>
 								</div>
 
 								<div class="form-row">
-									<label for="descriptor">Mô Tả</label> <input type="text"
+									<label for="descriptor">Mô tả</label> <input type="text"
 										name="descriptor" class=" input-text">
 
 								</div>
@@ -220,7 +219,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Sửa Thông Tin Lớp</p>
+				<p class="heading lead">Sửa thông tin lớp</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -234,21 +233,21 @@
 					<div class="form-v4">
 						<div class="form-v4-content">
 							<form class="form-detail" action="#" method="post" id="form-edit">
-								<h2>Sửa Thông Tin Lớp</h2>
+								<h2>Sửa thông tin lớp</h2>
 								<div class="form-group">
 									<div class="form-row form-row-1">
-										<label for="code">Mã Lớp (*)</label> <input type="text"
+										<label for="code">Mã lớp (*)</label> <input type="text"
 											name="code" class="input-text" required> <label
-											name="code-error" class="error hidden">Mã Lớp Tồn Tại</label>
+											name="code-error" class="error hidden">Mã lớp tồn tại</label>
 									</div>
 									<div class="form-row form-row-1">
-										<label for="subjectName">Tên Lớp (*)</label> <input
+										<label for="subjectName">Tên lớp (*)</label> <input
 											type="text" name="courseName" class="input-text" required>
 									</div>
 								</div>
 
 								<div class="form-row">
-									<label for="descriptor">Mô Tả</label> <input type="text"
+									<label for="descriptor">Mô tả</label> <input type="text"
 										name="descriptor" class=" input-text">
 								</div>
 							</form>
@@ -279,7 +278,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header">
-				<p class="heading lead">Quản Lý Giảng Viên Phụ Trách</p>
+				<p class="heading lead">Quản lý giảng viên phụ trách</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -294,13 +293,12 @@
 						<div class="form-v4-content">
 							<form class="form-detail" action="#" method="post"
 								id="form-teacher">
-								<h2>Thông Tin Giảng Viên</h2>
+								<h2>Thông tin giảng viên</h2>
 								<div class="form-row">
-									<label for="code">Mã Giảng Viên Phụ Trách</label> <input
+									<label for="code">Mã giảng viên phụ trách</label> <input
 										type="text" class=" input-text teacher-code"
 										name="teacher.code"> <label name="code-error"
-										id="teacher-code-error" class="error hidden">Mã Giảng
-										Viên Không Tồn Tại</label>
+										id="teacher-code-error" class="error hidden">Giảng viên không tồn tại</label>
 
 								</div>
 								<div
@@ -340,7 +338,7 @@
 										<div class="col-5 pl-3">
 											<div class="row h-50">
 												<div class="col-md-4 align-self-center">
-													<label>Chức Vụ</label>
+													<label>Chức vụ</label>
 												</div>
 												<div class="col-md-8 align-self-center">
 
@@ -349,7 +347,7 @@
 											</div>
 											<div class="row h-50">
 												<div class="col-md-4 align-self-center">
-													<label>Bộ Môn</label>
+													<label>Bộ môn</label>
 												</div>
 												<div class="col-md-8 align-self-center">
 
@@ -387,7 +385,7 @@
 		<div class="modal-content">
 			<!--Header-->
 			<div class="modal-header bg-warning">
-				<p class="heading lead">Cảnh Báo</p>
+				<p class="heading lead">Cảnh báo</p>
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -397,7 +395,7 @@
 
 			<!--Body-->
 			<div class="modal-body border-top my-3">
-				<div class="message">Bạn Có Muốn Tiếp Tục Xóa ?</div>
+				<div class="message">Bạn có muốn tiếp tục xóa ?</div>
 
 				<div class="border-top my-3"></div>
 				<div class="d-flex justify-content-center">
