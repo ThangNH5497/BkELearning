@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<hibernate.version>5.2.17.Final</hibernate.version>
+		<hibernate.version>5.4.24.Final</hibernate.version>
 		<spring.data>2.2.3.RELEASE</spring.data>
 		<mysql.version>8.0.13</mysql.version>
 		<servlet.api.version>4.0.1</servlet.api.version>
